@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{41E47118-284B-4CC5-95F0-58A9927BC879}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DesktopAdmin</RootNamespace>
+    <AssemblyName>DesktopAdmin</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BALayer\BAAdmin.cs" />
+    <Compile Include="BALayer\BAExamManage.cs" />
+    <Compile Include="BALayer\BAMerchantFeeRate.cs" />
+    <Compile Include="BALayer\BAMerchantLevel.cs" />
+    <Compile Include="BALayer\BAMerchantManage.cs" />
+    <Compile Include="BALayer\BAPaymentOption.cs" />
+    <Compile Include="BALayer\BAQuestionType.cs" />
+    <Compile Include="BALayer\BASalesReports.cs" />
+    <Compile Include="BALayer\BASecondCategory.cs" />
+    <Compile Include="BALayer\BAThirdCategory.cs" />
+    <Compile Include="BALayer\BATopCategory.cs" />
+    <Compile Include="BALayer\BAWithDrawManage.cs" />
+    <Compile Include="BOLayer\BOAdmin.cs" />
+    <Compile Include="BOLayer\BOExamManage.cs" />
+    <Compile Include="BOLayer\BOMerchantFeeRate.cs" />
+    <Compile Include="BOLayer\BOMerchantLevel.cs" />
+    <Compile Include="BOLayer\BOMerchantManage.cs" />
+    <Compile Include="BOLayer\BOPaymentOption.cs" />
+    <Compile Include="BOLayer\BOQuestionType.cs" />
+    <Compile Include="BOLayer\BOSalesReports.cs" />
+    <Compile Include="BOLayer\BOSecondCategory.cs" />
+    <Compile Include="BOLayer\BOThirdCategory.cs" />
+    <Compile Include="BOLayer\BOTopCategory.cs" />
+    <Compile Include="BOLayer\BOWithDrawManage.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="DALayer\ConnectionInfo.cs" />
+    <Compile Include="DALayer\DAAdmin.cs" />
+    <Compile Include="DALayer\DAExamManage.cs" />
+    <Compile Include="DALayer\DAMerchantFeeRate.cs" />
+    <Compile Include="DALayer\DAMerchantLevel.cs" />
+    <Compile Include="DALayer\DAMerchantManage.cs" />
+    <Compile Include="DALayer\DAPaymentOption.cs" />
+    <Compile Include="DALayer\DAQuestionType.cs" />
+    <Compile Include="DALayer\DASalesReports.cs" />
+    <Compile Include="DALayer\DASecondCategory.cs" />
+    <Compile Include="DALayer\DAThirdCategory.cs" />
+    <Compile Include="DALayer\DATopCategory.cs" />
+    <Compile Include="DALayer\DAWithDrawManage.cs" />
+    <Compile Include="frmAdminLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdminLogin.Designer.cs">
+      <DependentUpon>frmAdminLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdminSecondCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdminSecondCategory.Designer.cs">
+      <DependentUpon>frmAdminSecondCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdminThirdCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdminThirdCategory.Designer.cs">
+      <DependentUpon>frmAdminThirdCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdminTopCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdminTopCategory.Designer.cs">
+      <DependentUpon>frmAdminTopCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmExamsManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExamsManage.Designer.cs">
+      <DependentUpon>frmExamsManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMerchantFeeRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMerchantFeeRate.Designer.cs">
+      <DependentUpon>frmMerchantFeeRate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMerchantLevel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMerchantLevel.Designer.cs">
+      <DependentUpon>frmMerchantLevel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMerchantManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMerchantManage.Designer.cs">
+      <DependentUpon>frmMerchantManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQuestionTypeManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuestionTypeManage.Designer.cs">
+      <DependentUpon>frmQuestionTypeManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSalesReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSalesReports.Designer.cs">
+      <DependentUpon>frmSalesReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWithDrawManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWithDrawManage.Designer.cs">
+      <DependentUpon>frmWithDrawManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWithdrawOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWithdrawOption.Designer.cs">
+      <DependentUpon>frmWithdrawOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDIfrmAdminDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIfrmAdminDashboard.designer.cs">
+      <DependentUpon>MDIfrmAdminDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAdminLogin.resx">
+      <DependentUpon>frmAdminLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdminSecondCategory.resx">
+      <DependentUpon>frmAdminSecondCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdminThirdCategory.resx">
+      <DependentUpon>frmAdminThirdCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdminTopCategory.resx">
+      <DependentUpon>frmAdminTopCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExamsManage.resx">
+      <DependentUpon>frmExamsManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMerchantFeeRate.resx">
+      <DependentUpon>frmMerchantFeeRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMerchantLevel.resx">
+      <DependentUpon>frmMerchantLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMerchantManage.resx">
+      <DependentUpon>frmMerchantManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuestionTypeManage.resx">
+      <DependentUpon>frmQuestionTypeManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSalesReports.resx">
+      <DependentUpon>frmSalesReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWithDrawManage.resx">
+      <DependentUpon>frmWithDrawManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWithdrawOption.resx">
+      <DependentUpon>frmWithdrawOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIfrmAdminDashboard.resx">
+      <DependentUpon>MDIfrmAdminDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

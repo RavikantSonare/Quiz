@@ -1,0 +1,62 @@
+*{
+	padding:0;
+	margin:0;
+}
+.admin-section {
+	list-style: none;
+	font-size: 13px;
+	margin-top:50px;
+}
+.admin-section-tab li{
+	display: block;
+	float:none;
+}
+.admin-section-tab li a, .admin-section-tab li.active a, 
+.nav-tabs, .admin-section-tab li.active a:hover{
+	border: none;
+}
+.admin-section a{
+	text-decoration: underline;
+}
+.admin-section a:hover{
+	text-decoration: none;
+}
+.mtop{
+	margin:60px 0 20px;
+}
+.admin-section li{
+	list-style: none;
+}
+table td{
+	border: none;
+}
+.top-category-content .form-control{
+	padding:6px 6px;
+}
+.subtab{padding-left:30px;}
+.subtab li {
+    padding: 5px;
+}
+.subtab li.active a{
+	color:#555;
+}
+.merchant-section .form-group label{
+	text-align: left;
+}
+.mtop10{margin-top:10px;}
+.mtop30{margin-top:30px;}
+.mlr{margin:0 15px;}
+.mbtm20{margin-bottom:20px;}
+table.table.merchantLogin-table td{
+	padding:3px;
+	font-size: 13px;
+}
+.examreport-table td, .examreport-table select, .examreport-table button{
+	padding:3px;
+	font-size: 13px;
+}
+.merchant-section .nav-tabs > li.active > a, 
+.merchant-section .nav-tabs > li.active > a:focus, 
+.merchant-section .nav-tabs > li.active > a:hover{
+	border:none;
+}

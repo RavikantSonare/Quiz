@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Merchant My User</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="merchant-section">
+                <div class="admin-section-tab">
+                    <div class="col-sm-2">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="">
+                                <a href="#addExam" aria-controls="home" role="tab" data-toggle="tab">Add Exams</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#myExam" aria-controls="profile" role="tab" data-toggle="tab">My Exams</a>
+                            </li>
+                            <li role="presentation" class="active">
+                                <a href="#myUser" aria-controls="messages" role="tab" data-toggle="tab">My Users</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#examReport" aria-controls="settings" role="tab" data-toggle="tab">Exam Reports</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#salesReport" aria-controls="settings" role="tab" data-toggle="tab">Sales Reports</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#financeReport" aria-controls="settings" role="tab" data-toggle="tab">Finance Reports</a>
+                            </li>
+                        </ul> 
+                    </div>
+                </div>
+
+                <div class="col-sm-10">
+                    <div class="tab-content">
+                    <div class="tab-pane active" id="myUser">                        
+                        <div class="row">                        
+                            <div class="col-sm-12">
+                                <h5>Add User</h5>
+                                <form class="form-horizontal">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-3 control-label">User Name/Real Name:</label>
+                                    <div class="col-sm-3">
+                                      <input type="text" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-3 control-label">Access Password:</label>
+                                    <div class="col-sm-3">
+                                      <input type="password" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-3 control-label">Categoary:</label>
+                                    <div class="col-sm-2">
+                                    <select class="form-control">
+                                      <option selected>Cisco</option>
+                                    </select>
+                                    <div class="mtop10"><input type="checkbox"> Select All</div>
+                                    <div class="mtop10"><input type="checkbox"> 200-120</div>                                    
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-3 control-label">Exam:</label>
+                                    <div class="col-sm-3">
+                                      <div class=""><input type="checkbox"> 300-120</div>
+                                    </div>
+                                  </div> 
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-3 control-label">show all listed in the merchant</label>
+                                    <div class="col-sm-3">
+                                      <div class="mtop10"><input type="checkbox"> 200-120</div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-3 control-label">Valid Time:</label>
+                                    <div class="col-sm-3"></div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-3 control-label">Access Option:</label>
+                                    <div class="col-sm-5">
+                                      <div class="row">
+                                        <div class="col-sm-3"><input type="checkbox"> Online</div>
+                                        <div class="col-sm-3"><input type="checkbox"> Offline</div>
+                                      </div>
+                                    </div>
+                                  </div>                                  
+                                  <div class="form-group">
+
+                                    <div class="col-sm-offset-3 col-sm-10">
+                                      <button type="submit" class="btn btn-default">Add</button>
+                                    </div>
+                                  </div>
+                                </form>
+                            </div>
+                        </div> 
+                        <div class="row">  
+                            <div class="clearfix col-sm-12 mtop10">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <td>User Name/Real Name</td>
+                                            <td>Access Password</td>
+                                            <td>Categoary</td>
+                                            <td>Exam Code</td>
+                                            <td>Valid Time</td>
+                                            <td>Access Option</td>
+                                            <td>Edit</td>
+                                            <td>Delete</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>User A</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>Online</td>
+                                            <td>Edit</td>
+                                            <td>Delete</td>
+                                        </tr>
+                                        <tr>
+                                            <td>User B</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>Online & Offline</td>
+                                            <td>Edit</td>
+                                            <td>Delete</td>
+                                        </tr>
+                                        <tr>
+                                            <td>User C</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>Offline</td>
+                                            <td>Edit</td>
+                                            <td>Delete</td>
+                                        </tr>
+                                    </tbody>
+                                </table>                            
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p>Lorem Ipsum is simply dummy text of the printing and Lorem Ipsum has...  </p>
+                                 <p>Lorem Ipsum is simply dummy text of the printing and Lorem Ipsum hasLorem Ipsum is simply dummy text of the printing and Lorem Ipsum has</p>
+                            </div>
+                        </div>                 
+                    </div>
+                    <div class="tab-pane" id="addExam">Add Exams</div>                    
+                    <div class="tab-pane" id="myExam">My Exams</div> 
+                    <div class="tab-pane" id="examReport">Exam Reports</div>
+                    <div class="tab-pane" id="salesReport">Sales Reports</div>
+                    <div class="tab-pane" id="financeReport">Finance Reports</div>
+
+                    </div>
+                </div>               
+            </div>            
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

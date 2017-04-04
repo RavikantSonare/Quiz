@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Merchant Finance Config</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="merchant-section">
+                <div class="admin-section-tab">
+                    <div class="col-sm-2">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="">
+                                <a href="#addExam" aria-controls="home" role="tab" data-toggle="tab">Add Exams</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#myExam" aria-controls="profile" role="tab" data-toggle="tab">My Exams</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#myUser" aria-controls="messages" role="tab" data-toggle="tab">My Users</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#examReport" aria-controls="settings" role="tab" data-toggle="tab">Exam Reports</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#salesReport" aria-controls="settings" role="tab" data-toggle="tab">Sales Reports</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#financeReport" aria-controls="settings" role="tab" data-toggle="tab">Finance Reports</a>
+                                <ul class="subtab">
+                                    <li class="active">
+                                        <a href="#financeConfig" aria-controls="settings" role="tab" data-toggle="tab">
+                                            Config 
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#financeWithDraw" aria-controls="settings" role="tab" data-toggle="tab">
+                                            Withdraw
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul> 
+                    </div>
+                </div>
+
+                <div class="col-sm-10">
+                    <div class="tab-content">
+                    <div class="tab-pane active mtop30" id="financeConfig">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <form class="form-horizontal">
+                                     <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Payment Receive Option:</label>
+                                        <div class="col-sm-2">
+                                            <select class="form-control">
+                                              <option selected="">Paypal</option>
+                                              <option selected="">Wire</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-12">(When select Paypal will see NEXT)</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Account Email:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                        <div class="col-sm-12">(When select Wire transfer will see NEXT)</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">First Name:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                        <label for="" class="col-sm-3 control-label">Last Name:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Country:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                        <label for="" class="col-sm-3 control-label">City:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Bank Of Name:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                        <label for="" class="col-sm-3 control-label">Swift Code:</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <button type="submit" class="btn btn-default">Add</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            Your Currently payment receive option:
+                                        </div>
+                                        <div class="col-sm-12 mtop30">
+                                            PayPal <a href="#">Edit</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="tab-pane" id="addExam">Add Exams</div>                    
+                    <div class="tab-pane" id="myExam">My Exams</div> 
+                    <div class="tab-pane" id="myUser">My Users</div>
+                    <div class="tab-pane" id="examReport">Exam Reports</div>
+                    <div class="tab-pane" id="salesReport">Sales Reports</div>
+                    <div class="tab-pane" id="financeReport">Finance Reports</div>
+                    <div class="tab-pane" id="financeWithDraw">Finance WithDraw</div>
+
+                    </div>
+                </div>               
+            </div>            
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>
