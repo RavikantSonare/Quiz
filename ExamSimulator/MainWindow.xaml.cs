@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Collections;
+using Microsoft.Win32;
 
 namespace ExamSimulator
 {
@@ -29,16 +30,20 @@ namespace ExamSimulator
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            BindFileListBox();
+        }
+
+        private void BindFileListBox()
+        {
             List<TodoItem> _item = new List<TodoItem>();
             String[] files = null;
-            // string[] files1 = Directory.GetFiles(@"C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\ExamSimulator\Examfile\", "*.txt", SearchOption.AllDirectories);
             if (Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\"))
             {
                 files = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\", "*.txt", SearchOption.AllDirectories);
             }
             else
             {
-                files = Directory.GetFiles(@"C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\ExamSimulator\Examfile\", "*.txt", SearchOption.AllDirectories);
+                files = Directory.GetFiles(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\Examfile\\", "*.txt", SearchOption.AllDirectories);
             }
             if (files.Length > 0)
             {
@@ -89,6 +94,29 @@ namespace ExamSimulator
         private void Windows_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void btnDownload_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://quizuser.mobi96.org");
+        }
+
+        private string filename = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\Examfile\\";
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            openFileDialog.Filter = "Text files (*.txt)|*.txt";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (openFileDialog.ShowDialog() == true)
+            {
+                if (!Directory.Exists(filename + openFileDialog.SafeFileName))
+                {
+                    File.Delete(filename + openFileDialog.SafeFileName);
+                }
+                File.Copy(openFileDialog.FileName, System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\Examfile\\" + openFileDialog.SafeFileName);
+                BindFileListBox();
+            }
         }
     }
 

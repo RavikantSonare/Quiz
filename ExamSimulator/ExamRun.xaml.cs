@@ -91,7 +91,7 @@ namespace ExamSimulator
                 }
                 else
                 {
-                    filePath = File.ReadAllLines(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\Quiz4.txt");
+                    filePath = File.ReadAllLines(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\Examfile\\Quiz1.txt");
                 }
 
                 List<Answerlist> _answerlist = new List<Answerlist>();

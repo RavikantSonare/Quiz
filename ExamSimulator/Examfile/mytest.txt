@@ -1,0 +1,100 @@
+ private void ListBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ListBox parent = (ListBox)sender;
+            dragSource = parent;
+            object data = GetDataFromListBox(dragSource, e.GetPosition(parent));
+
+            if (data != null)
+            {
+                DragDrop.DoDragDrop(parent, data, DragDropEffects.Move);
+            }
+        }
+        int OrderingListNo = 0;
+        private void lbDrop_Drop(object sender, DragEventArgs e)
+        {
+
+            Answerlist droppedData = e.Data.GetData(typeof(Answerlist)) as Answerlist;
+         var obj =   _list.Where(q => q.QuestionNo.Equals(droppedData.QuestionNo)).FirstOrDefault().Answerlist.Where(f => f.Answer.Equals(droppedData.Answer)).FirstOrDefault();
+            obj.UserAnwer = true; obj.OrderingList = OrderingListNo;
+            OrderingListNo++;
+            foreach (var item in listQuestion.Items)
+            {
+                var _Container = listQuestion.ItemContainerGenerator
+                    .ContainerFromItem(item);
+                var _Children = AllChildren(_Container);
+                if (_Children.Count > 0)
+                {
+                    var _control = _Children.OfType<ListBox>().First(x => x.Name.Equals("lbDrag")); _control.Items.Refresh();
+                    _control = _Children.OfType<ListBox>().First(x => x.Name.Equals("lbDrop"));
+                    _control.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("OrderingList", System.ComponentModel.ListSortDirection.Ascending));
+                    _control.Items.Refresh();
+                }
+
+                // only interested in FirstName
+
+
+
+                // test & set color
+                //_FirstName.Background =
+                //    (string.IsNullOrWhiteSpace(_FirstName.Text))
+                //    ? new SolidColorBrush(Colors.Red)
+                //    : new SolidColorBrush(Colors.White);
+            }
+
+
+
+
+            //ListBox parent = (ListBox)sender;
+            //object data = e.Data.GetData(typeof(string));
+            //((IList)dragSource.ItemsSource).Remove(data);
+            //parent.Items.Add(data);
+        }
+        public List<Control> AllChildren(DependencyObject parent)
+        {
+
+            var _List = new List<Control>();
+            if (parent != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+                {
+                    var _Child = VisualTreeHelper.GetChild(parent, i);
+                    if (_Child is Control)
+                        _List.Add(_Child as Control);
+                    _List.AddRange(AllChildren(_Child));
+                }
+            }
+            return _List;
+        }
+
+
+        #region GetDataFromListBox(ListBox,Point)
+        private static object GetDataFromListBox(ListBox source, Point point)
+        {
+            UIElement element = source.InputHitTest(point) as UIElement;
+            if (element != null)
+            {
+                object data = DependencyProperty.UnsetValue;
+                while (data == DependencyProperty.UnsetValue)
+                {
+                    data = source.ItemContainerGenerator.ItemFromContainer(element);
+
+                    if (data == DependencyProperty.UnsetValue)
+                    {
+                        element = VisualTreeHelper.GetParent(element) as UIElement;
+                    }
+
+                    if (element == source)
+                    {
+                        return null;
+                    }
+                }
+
+                if (data != DependencyProperty.UnsetValue)
+                {
+                    return data;
+                }
+            }
+
+            return null;
+        }
+        #endregion

@@ -67,7 +67,7 @@ namespace WebUser
 
         protected void btnTestMode_Click(object sender, EventArgs e)
         {
-            string fileName = "ExamSimulator.zip";// Replace Your Filename with your required filename
+            string fileName = "Quiz.txt";// Replace Your Filename with your required filename
 
             Response.ContentType = "application/octet-stream";
 

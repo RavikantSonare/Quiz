@@ -28,6 +28,9 @@
                                     <li role="presentation" class="" id="menu1">
                                         <a href="UserLogin.aspx" aria-controls="home" role="tab">User Login</a>
                                     </li>
+                                    <li role="presentation" class="" id="menu2">
+                                        <asp:LinkButton ID="lnkbtnSimulatorDownload" runat="server" OnClick="lnkbtnSimulatorDownload_Click">Download Simulator (Offline)</asp:LinkButton>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

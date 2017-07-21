@@ -47,5 +47,17 @@ namespace WebUser
             Session.Clear();
             Response.Redirect("Default.aspx", false);
         }
+        protected void lnkbtnSimulatorDownload_Click(object sender, EventArgs e)
+        {
+            string fileName = "ExamSimulator.zip";// Replace Your Filename with your required filename
+
+            Response.ContentType = "application/octet-stream";
+
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
+
+            Response.TransmitFile(Server.MapPath("~/ExamSimulator/" + fileName));//Place "YourFolder" your server folder Here
+
+            Response.End();
+        }
     }
 }
