@@ -1,0 +1,146 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="WebAdmin.Admin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Admin</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container">
+            <div class="row">
+                <div class="top-category">
+                    <div class="col-sm-2">
+                        <div class="admin-section-tab">
+                            <div id="navbar">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="dash">Dashboard |
+                                        <asp:LinkButton ID="lnkbtnlogout" runat="server" OnClick="lnkbtnlogout_Click">Logout</asp:LinkButton></li>
+                                    <li role="presentation" class="" id="menu1">
+                                        <a href="AdminAddTopCategory.aspx" aria-controls="home" role="tab">Add/Edit Top Category</a>
+                                    </li>
+                                    <li role="presentation" id="menu2">
+                                        <a href="AdminAddSecondCategory.aspx" aria-controls="profile" role="tab">Add/Edit Second Category</a>
+                                    </li>
+                                    <li role="presentation" id="menu3">
+                                        <a href="AdminAddThirdCategory.aspx" aria-controls="messages" role="tab">Add/Edit Third Category</a>
+                                    </li>
+                                    <li role="presentation" id="menu4">
+                                        <a href="AdminQuestionType.aspx" aria-controls="settings" role="tab">Questions Type Manage</a>
+                                    </li>
+                                    <li role="presentation" id="menu5">
+                                        <a href="AdminExamManage.aspx" aria-controls="settings" role="tab">Exams Manage</a>
+                                    </li>
+                                    <li role="presentation" class="hasSubtab" id="menu6">
+                                        <a aria-controls="settings" role="tab" data-toggle="tab">Merchant<span class="arrow"></span></a>
+                                        <ul class="subtab" id="submenu6" style="display: none;">
+                                            <li class="" id="submenu6li1">
+                                                <a href="AdminMerchantManage.aspx" aria-controls="settings" role="tab"><span class="subtabarrow"></span>
+                                                    Merchant Manage 
+                                                </a>
+                                            </li>
+                                            <li class="" id="submenu6li2">
+                                                <a href="AdminMerchantLevelManage.aspx" aria-controls="settings" role="tab"><span class="subtabarrow"></span>
+                                                    Merchant Level 
+                                                </a>
+                                            </li>
+                                            <li id="submenu6li3">
+                                                <a href="AdminMerchantFeeRateManage.aspx" aria-controls="settings" role="tab"><span class="subtabarrow"></span>
+                                                    Merchant Fee Rate
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li role="presentation" id="menu7">
+                                        <a href="AdminSalesReport.aspx" aria-controls="settings" role="tab">Sales Report</a>
+                                    </li>
+                                    <li role="presentation" class="hasSubtab" id="menu8">
+                                        <a aria-controls="settings" role="tab" data-toggle="tab">Withdraw Manage <span class="arrow"></span></a>
+                                        <ul class="subtab" id="submenu8" style="display: none;">
+                                            <li class="" id="submenu8li1">
+                                                <a href="AdminWithdrawManage.aspx" aria-controls="settings" role="tab"><span class="subtabarrow"></span>
+                                                    Withdraw Manage
+                                                </a>
+                                            </li>
+                                            <li id="submenu7li2">
+                                                <a href="AdminWithdrawOption.aspx" aria-controls="settings" role="tab"><span class="subtabarrow"></span>
+                                                    Withdraw Option
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-10">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="js/custome.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+        <script>
+            $('#menu6 > a').click(function () {
+                $('#submenu6').slideToggle();
+            });
+            $('#menu8 > a').click(function () {
+                $('#submenu8').slideToggle();
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var url = window.location.pathname;
+                var substr = url.split('/');
+                var urlaspx = substr[substr.length - 1];
+                $('.nav li a').each(function () {
+                    if (this.href.indexOf(urlaspx) >= 0) {
+                        $(this).parent().addClass('active');
+                        $('.nav li ul li a').each(function () {
+                            if (this.href.indexOf(urlaspx) >= 0) {
+                                $(this).parent().addClass('active');
+                                $(this).parents().addClass('active');
+                                $(this).parents().css("display", "block");
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+        <style type="text/css">
+            .messagealert {
+                width: 50%;
+                position: fixed;
+                top: 0px;
+                z-index: 100000;
+                padding: 0;
+                font-size: 15px;
+            }
+        </style>
+        <div class="messagealert" id="alert_container">
+        </div>
+    </form>
+</body>
+</html>

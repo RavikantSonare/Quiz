@@ -1,0 +1,50 @@
+﻿Question 
+
+You are a system administrator for Microsoft Dynamics CRM Online. 
+You need to provision a user. 
+Which two steps should you perform? Each correct answer presents part of the solution. 
+
+A. Add the user in the Microsoft Online Services Portal. 
+
+B. Configure the user with Read access mode. 
+
+C. Enable the user record in Microsoft Dynamics CRM Online. 
+
+D. Assign a Microsoft Dynamics CRM Online license to the user. 
+
+Answer: A
+
+
+Question 
+
+You install Microsoft Dynamics CRM on-premises. 
+The installation fails and you receive an installation error. 
+You need to access the installation log files to view the details about the error. 
+What should you do? 
+
+A. Query the Microsoft Dynamics CRM database and view the log table. 
+
+B. View the installation log files in the folder <SystemDrive>'\Program Files\Microsoft Dynamics CRM\Logs. 
+
+C. View the installation log files in the folder <SysremDnVe>:\Users\<L/serno/ne>\AppData\Roaming\Microsoft\MSCRM\Logs. 
+
+D. View the installation log files by opening the Event Viewer. 
+
+Answer: B
+
+
+
+Question 
+Refer to the exhibit.
+ 
+Which action will delete only page Cl?
+
+A. Expire replay 2
+
+B. Expire replay 1
+
+C. Expire replay 3
+
+D. Expire replay 4
+
+Answer: C

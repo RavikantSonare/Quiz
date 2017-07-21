@@ -4,100 +4,56 @@ using System.Linq;
 using System.Web;
 using System.Reflection;
 using System.Data;
+using System.IO;
 using System.Web.UI;
+using System.Text;
+using System.Security.Cryptography;
 using System.Web.UI.WebControls;
+using System.Globalization;
 
 namespace WebMerchant
 {
     public class Common
     {
-        public static string ConfirmDeleteMsg = "Are you sure do you want to delete this record";
-        public static string ConfirmUpdateMsg = "Are you sure do you want to update this record";
+        public static string Select = "---Select---";
+        public static string All = "All";
+        public static string EncryptionKey = "PROJECT63QUIZ17";
 
-
-        public static string Message(int val)
+        public static string MessageBox(int returnValue)
         {
             string _mess = string.Empty;
-            if (val.Equals(1))
+
+            if (returnValue.Equals(1))
                 _mess = "Record Inserted";
-            if (val.Equals(2))
+            else if (returnValue.Equals(2))
+                _mess = "Loding/Email Already Exists";
+            else if (returnValue.Equals(3))
+                _mess = "Name Already Exists";
+            else if (returnValue.Equals(4))
                 _mess = "Record Updated";
-            if (val.Equals(3))
-                _mess = "Record Deleted";
-            if (val.Equals(4))
-                _mess = "User Name Already Exists";
-            if (val.Equals(5))
-                _mess = "You Can't Delete Because Used in Another Entity";
-            if (val.Equals(6))
-                _mess = "activated";
-            if (val.Equals(7))
-                _mess = "inactivated";
-            if (val.Equals(8))
-                _mess = "confirmed successfully";
-            if (val.Equals(100))
-                _mess = "Some Technical Error!!";
+            else if (returnValue.Equals(5))
+                _mess = "Record hasbeen Deleted";
+
             return _mess;
         }
-        public static string Message(string msg, int val)
-        {
-            string _mess = string.Empty;
-            if (val.Equals(1))
-                _mess = msg + " added successfully";
-            if (val.Equals(2))
-                _mess = msg + " updated successfully";
-            if (val.Equals(3))
-                _mess = msg + " deleted successfully";
-            if (val.Equals(4))
-                _mess = msg + " already exists";
-            if (val.Equals(5))
-                _mess = "Can't delete " + msg + " because used in another entity";
-            if (val.Equals(6))
-                _mess = msg + " activated";
-            if (val.Equals(7))
-                _mess = msg + " inactivated";
-            if (val.Equals(8))
-                _mess = msg + " confirmed successfully";
-            return _mess;
-        }
-        public static DataTable LINQToDataTable<T>(IEnumerable<T> linqList)
-        {
-            var dtReturn = new DataTable();
-            PropertyInfo[] columnNameList = null;
 
-            if (linqList == null) return dtReturn;
+        public static DateTime ConverDate(string strDate)
+        {
+            DateTime parsed;
+            bool valid = DateTime.TryParseExact(strDate, "dd/MM/yyyy",
+                                                CultureInfo.InvariantCulture,
+                                                DateTimeStyles.None,
+                                                out parsed);
 
-            foreach (T t in linqList)
+            if (valid.Equals(false))
             {
-                // Use reflection to get property names, to create table, Only first time, others will follow 
-                if (columnNameList == null)
-                {
-                    columnNameList = ((Type)t.GetType()).GetProperties();
-
-                    foreach (PropertyInfo columnName in columnNameList)
-                    {
-                        Type columnType = columnName.PropertyType;
-
-                        if ((columnType.IsGenericType) && (columnType.GetGenericTypeDefinition() == typeof(Nullable<>)))
-                        {
-                            columnType = columnType.GetGenericArguments()[0];
-                        }
-
-                        dtReturn.Columns.Add(new DataColumn(columnName.Name, columnType));
-                    }
-                }
-
-                DataRow dataRow = dtReturn.NewRow();
-
-                foreach (PropertyInfo columnName in columnNameList)
-                {
-                    dataRow[columnName.Name] =
-                        columnName.GetValue(t, null) == null ? DBNull.Value : columnName.GetValue(t, null);
-                }
-
-                dtReturn.Rows.Add(dataRow);
+                valid = DateTime.TryParseExact(strDate, "MM/dd/yyyy",
+                                                               CultureInfo.InvariantCulture,
+                                                               DateTimeStyles.None,
+                                                               out parsed);
             }
 
-            return dtReturn;
+            return parsed;
         }
 
         public static void ClearControl(Panel _page)
@@ -133,6 +89,75 @@ namespace WebMerchant
                 }
 
             }
+        }
+
+        public static void LogError(Exception ex)
+        {
+            string message = string.Format("Time: {0}", DateTime.UtcNow.ToString("dd/MM/yyyy hh:mm:ss tt"));
+            message += Environment.NewLine;
+            message += "-----------------------------------------------------------";
+            message += Environment.NewLine;
+            message += string.Format("Message: {0}", ex.Message);
+            message += Environment.NewLine;
+            message += string.Format("StackTrace: {0}", ex.StackTrace);
+            message += Environment.NewLine;
+            message += string.Format("Source: {0}", ex.Source);
+            message += Environment.NewLine;
+            message += string.Format("TargetSite: {0}", ex.TargetSite.ToString());
+            message += Environment.NewLine;
+            message += "-----------------------------------------------------------";
+            message += Environment.NewLine;
+            string path = System.Web.HttpContext.Current.Server.MapPath("~/Errorfile/ErrorLog.txt");
+            using (StreamWriter writer = new StreamWriter(path, true))
+            {
+                writer.WriteLine(message);
+                writer.Close();
+            }
+        }
+
+        public static string Encrypt(string clearText)
+        {
+            //string EncryptionKey = "MAKV2SPBNI99212";
+            byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(clearBytes, 0, clearBytes.Length);
+                        cs.Close();
+                    }
+                    clearText = Convert.ToBase64String(ms.ToArray());
+                }
+            }
+            return clearText;
+        }
+
+        public static string Decrypt(string cipherText)
+        {
+            //string EncryptionKey = "MAKV2SPBNI99212";
+            cipherText = cipherText.Replace(" ", "+");
+            byte[] cipherBytes = Convert.FromBase64String(cipherText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(cipherBytes, 0, cipherBytes.Length);
+                        cs.Close();
+                    }
+                    cipherText = Encoding.Unicode.GetString(ms.ToArray());
+                }
+            }
+            return cipherText;
         }
     }
 }

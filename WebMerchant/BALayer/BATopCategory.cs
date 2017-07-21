@@ -14,7 +14,7 @@ namespace WebMerchant.BALayer
 
         internal DataTable SelectTopCategoryList(string eventtxt)
         {
-            return _datopcat.SelectTopCategory(eventtxt)
+            return _datopcat.SelectTopCategory(eventtxt);
         }
     }
 }

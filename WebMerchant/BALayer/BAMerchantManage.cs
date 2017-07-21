@@ -19,7 +19,17 @@ namespace WebMerchant.BALayer
 
         internal DataTable SelectMerchantDetail(string eventtxt, int merchantid)
         {
-            return _damchntmng.SelectMerchantDetail(eventtxt,merchantid);
+            return _damchntmng.SelectMerchantDetail(eventtxt, merchantid);
+        }
+
+        internal DateTime SelectValiddate(string v, int merchantId)
+        {
+            return _damchntmng.ValidDate(v, merchantId);
+        }
+
+        public int Insert(BOMerchantManage _bomermng)
+        {
+            return _damchntmng.IUDMerchantManage(_bomermng);
         }
     }
 }

@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Merchant Login</title>
+    <title>Merchant</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <!-- Bootstrap Core CSS -->
@@ -18,28 +18,66 @@
         <div class="container">
             <div class="row">
                 <div class="merchant-section">
-                    <div class="admin-section-tab">
-                        <div class="col-sm-2">
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="">
-                                    <a href="#addExam" aria-controls="home" role="tab" data-toggle="tab">Add Exams</a>
-                                </li>
-                                <li role="presentation" class="">
-                                    <a href="#myExam" aria-controls="profile" role="tab" data-toggle="tab">My Exams</a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#myUser" aria-controls="messages" role="tab" data-toggle="tab">My Users</a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#examReport" aria-controls="settings" role="tab" data-toggle="tab">Exam Reports</a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#salesReport" aria-controls="settings" role="tab" data-toggle="tab">Sales Reports</a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#financeReport" aria-controls="settings" role="tab" data-toggle="tab">Finance Reports</a>
-                                </li>
-                            </ul>
+                    <div class="col-sm-2">
+                        <div class="admin-section-tab">
+                            <div id="navbar">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="dash">Dashboard |
+                                        <asp:LinkButton ID="lnkbtnlogout" runat="server" OnClick="lnkbtnlogout_Click">Logout</asp:LinkButton></li>
+                                    <li role="presentation" class="hasSubtab" id="menu1">
+                                        <a aria-controls="settings" role="tab" data-toggle="tab">Add Exam <span class="arrow"></span></a>
+                                        <ul class="subtab" id="submenu1" style="display: none;">
+                                            <li class="" id="submenu1li1">
+                                                <a href="MerchantLogin.aspx" aria-controls="settings" role="tab">
+                                                    <span class="subtabarrow"></span>
+                                                    Dashboard
+                                                </a>
+                                            </li>
+                                            <li class="" id="submenu1li2">
+                                                <a href="MerchantExamConfig.aspx" aria-controls="settings" role="tab">
+                                                    <span class="subtabarrow"></span>
+                                                    Config Exam
+                                                </a>
+                                            </li>
+                                            <li id="submenu1li3">
+                                                <a href="MerchantManageQA.aspx" aria-controls="settings" role="tab">
+                                                    <span class="subtabarrow"></span>
+                                                    Manage Question
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li role="presentation" class="" id="menu2">
+                                        <a href="MerchantMyExams.aspx" aria-controls="home" role="tab">My Exams</a>
+                                    </li>
+                                    <li role="presentation" id="menu3" runat="server">
+                                        <a href="MerchantMyUsers.aspx" aria-controls="profile" role="tab">My Users</a>
+                                    </li>
+                                    <li role="presentation" id="menu4" runat="server">
+                                        <a href="MerchantExamReports.aspx" aria-controls="messages" role="tab">Exam Reports</a>
+                                    </li>
+                                    <li role="presentation" id="menu5" runat="server">
+                                        <a href="MerchantSalesReports.aspx" aria-controls="settings" role="tab">Sales Reports</a>
+                                    </li>
+                                    <li role="presentation" class="hasSubtab" id="menu6" runat="server">
+                                        <a aria-controls="settings" role="tab" data-toggle="tab">Finance Reports <span class="arrow"></span></a>
+                                        <ul class="subtab" id="submenu2" style="display: none;">
+                                            <li class="" id="submenu2li1">
+                                                <a href="MerchantFinanceConfig.aspx" aria-controls="settings" role="tab">
+                                                    <span class="subtabarrow"></span>
+                                                    Config
+                                                </a>
+                                            </li>
+                                            <li id="submenu2li2">
+                                                <a href="MerchantWithDraw.aspx" aria-controls="settings" role="tab">
+                                                    <span class="subtabarrow"></span>
+                                                    WithDraw
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
@@ -53,8 +91,54 @@
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="js/custome.js"></script>
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
+        <script>
+            $('#menu1 > a').click(function () {
+                $('#submenu1').slideToggle();
+            });
+        </script>
+        <script>
+            $('#menu6 > a').click(function () {
+                $('#submenu2').slideToggle();
+            });
+        </script>
+        <script type="text/javascript">
+            //$(document).ready(function () {
+            //    var url = window.location.pathname;
+            //    var substr = url.split('/');
+            //    var urlaspx = substr[substr.length - 1];
+            //    $('.nav li a').each(function () {
+            //        if (this.href.indexOf(urlaspx) >= 0) {
+            //            $(this).parent().addClass('active');
+            //            $('.nav li ul li a').each(function () {
+            //                if (this.href.indexOf(urlaspx) >= 0) {
+            //                    $(this).parent().addClass('active');
+            //                    $(this).parents().addClass('active');
+            //                    $(this).parents().css("display", "block");
+            //                }
+            //            });
+            //        }
+            //    });
+            //});
+            $(document).ready(function () { var a = window.location.pathname, i = a.split("/"), t = i[i.length - 1]; $(".nav li a").each(function () { this.href.indexOf(t) >= 0 && ($(this).parent().addClass("active"), $(".nav li ul li a").each(function () { this.href.indexOf(t) >= 0 && ($(this).parent().addClass("active"), $(this).parents().addClass("active"), $(this).parents().css("display", "block")) })) }) });
+        </script>
+        <style type="text/css">
+            .messagealert {
+                width: 50%;
+                position: fixed;
+                top: 0px;
+                z-index: 100000;
+                padding: 0;
+                font-size: 15px;
+            }
+        </style>
+        <div class="messagealert" id="alert_container">
+        </div>
+        <link href="css/summernote.css" rel="stylesheet" />
+        <script src="js/summernote.js"></script>
+        <script src="js/editor_generate.js"></script>
     </form>
 </body>
 </html>

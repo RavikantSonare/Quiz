@@ -1,0 +1,105 @@
+﻿Time: 19/06/2017 04:17:21 PM
+-----------------------------------------------------------
+Message: Specified cast is not valid.
+StackTrace:    at System.Data.DataRowExtensions.UnboxT`1.ValueField(Object value)
+   at System.Data.DataRowExtensions.Field[T](DataRow row, String columnName)
+   at WebUser.DAlayer.DAUser.<>c.<SelectUserDetail>b__3_0(DataRow list) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\DAlayer\DAUser.cs:line 37
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at WebUser.DAlayer.DAUser.SelectUserDetail(String v1, String text, String v2) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\DAlayer\DAUser.cs:line 36
+   at WebUser.BALayer.BAUser.SelectUserDetail(String v1, String text, String v2) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\BALayer\BAUser.cs:line 15
+   at WebUser.Default.btnLogin_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\Default.aspx.cs:line 38
+Source: System.Data.DataSetExtensions
+TargetSite: T ValueField(System.Object)
+-----------------------------------------------------------
+
+Time: 19/06/2017 04:17:27 PM
+-----------------------------------------------------------
+Message: Specified cast is not valid.
+StackTrace:    at System.Data.DataRowExtensions.UnboxT`1.ValueField(Object value)
+   at System.Data.DataRowExtensions.Field[T](DataRow row, String columnName)
+   at WebUser.DAlayer.DAUser.<>c.<SelectUserDetail>b__3_0(DataRow list) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\DAlayer\DAUser.cs:line 37
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at WebUser.DAlayer.DAUser.SelectUserDetail(String v1, String text, String v2) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\DAlayer\DAUser.cs:line 36
+   at WebUser.BALayer.BAUser.SelectUserDetail(String v1, String text, String v2) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\BALayer\BAUser.cs:line 15
+   at WebUser.Default.btnLogin_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\Default.aspx.cs:line 38
+Source: System.Data.DataSetExtensions
+TargetSite: T ValueField(System.Object)
+-----------------------------------------------------------
+
+Time: 19/06/2017 04:17:36 PM
+-----------------------------------------------------------
+Message: Specified cast is not valid.
+StackTrace:    at System.Data.DataRowExtensions.UnboxT`1.ValueField(Object value)
+   at System.Data.DataRowExtensions.Field[T](DataRow row, String columnName)
+   at WebUser.DAlayer.DAUser.<>c.<SelectUserDetail>b__3_0(DataRow list) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\DAlayer\DAUser.cs:line 37
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at WebUser.DAlayer.DAUser.SelectUserDetail(String v1, String text, String v2) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\DAlayer\DAUser.cs:line 36
+   at WebUser.BALayer.BAUser.SelectUserDetail(String v1, String text, String v2) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\BALayer\BAUser.cs:line 15
+   at WebUser.Default.btnLogin_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\Default.aspx.cs:line 38
+Source: System.Data.DataSetExtensions
+TargetSite: T ValueField(System.Object)
+-----------------------------------------------------------
+
+Time: 19/06/2017 04:17:46 PM
+-----------------------------------------------------------
+Message: Specified cast is not valid.
+StackTrace:    at System.Data.DataRowExtensions.UnboxT`1.ValueField(Object value)
+   at System.Data.DataRowExtensions.Field[T](DataRow row, String columnName)
+   at WebUser.DAlayer.DAUser.<>c.<SelectUserDetail>b__3_0(DataRow list) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\DAlayer\DAUser.cs:line 37
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at WebUser.DAlayer.DAUser.SelectUserDetail(String v1, String text, String v2) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\DAlayer\DAUser.cs:line 36
+   at WebUser.BALayer.BAUser.SelectUserDetail(String v1, String text, String v2) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\BALayer\BAUser.cs:line 15
+   at WebUser.Default.btnLogin_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\Default.aspx.cs:line 38
+Source: System.Data.DataSetExtensions
+TargetSite: T ValueField(System.Object)
+-----------------------------------------------------------
+
+Time: 19/06/2017 04:18:39 PM
+-----------------------------------------------------------
+Message: Specified cast is not valid.
+StackTrace:    at System.Data.DataRowExtensions.UnboxT`1.ValueField(Object value)
+   at System.Data.DataRowExtensions.Field[T](DataRow row, String columnName)
+   at WebUser.DAlayer.DAUser.<>c.<SelectUserDetail>b__3_0(DataRow list) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\DAlayer\DAUser.cs:line 37
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at WebUser.DAlayer.DAUser.SelectUserDetail(String v1, String text, String v2) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\DAlayer\DAUser.cs:line 36
+   at WebUser.BALayer.BAUser.SelectUserDetail(String v1, String text, String v2) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\BALayer\BAUser.cs:line 15
+   at WebUser.Default.btnLogin_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\Default.aspx.cs:line 38
+Source: System.Data.DataSetExtensions
+TargetSite: T ValueField(System.Object)
+-----------------------------------------------------------
+
+Time: 19/06/2017 04:19:39 PM
+-----------------------------------------------------------
+Message: Specified cast is not valid.
+StackTrace:    at System.Data.DataRowExtensions.UnboxT`1.ValueField(Object value)
+   at System.Data.DataRowExtensions.Field[T](DataRow row, String columnName)
+   at WebUser.DAlayer.DAUser.<>c.<SelectUserDetail>b__3_0(DataRow list) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\DAlayer\DAUser.cs:line 37
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at WebUser.DAlayer.DAUser.SelectUserDetail(String v1, String text, String v2) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\DAlayer\DAUser.cs:line 36
+   at WebUser.BALayer.BAUser.SelectUserDetail(String v1, String text, String v2) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\BALayer\BAUser.cs:line 15
+   at WebUser.Default.btnLogin_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\Default.aspx.cs:line 38
+Source: System.Data.DataSetExtensions
+TargetSite: T ValueField(System.Object)
+-----------------------------------------------------------
+
+Time: 19/06/2017 04:21:07 PM
+-----------------------------------------------------------
+Message: Specified cast is not valid.
+StackTrace:    at System.Data.DataRowExtensions.UnboxT`1.ValueField(Object value)
+   at System.Data.DataRowExtensions.Field[T](DataRow row, String columnName)
+   at WebUser.DAlayer.DAUser.<>c.<SelectUserDetail>b__3_0(DataRow list) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\DAlayer\DAUser.cs:line 37
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at WebUser.DAlayer.DAUser.SelectUserDetail(String v1, String text, String v2) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\DAlayer\DAUser.cs:line 36
+   at WebUser.BALayer.BAUser.SelectUserDetail(String v1, String text, String v2) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\BALayer\BAUser.cs:line 15
+   at WebUser.Default.btnLogin_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebUser\Default.aspx.cs:line 38
+Source: System.Data.DataSetExtensions
+TargetSite: T ValueField(System.Object)
+-----------------------------------------------------------
+

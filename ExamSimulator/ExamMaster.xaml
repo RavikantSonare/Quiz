@@ -1,0 +1,75 @@
+﻿<Window x:Class="ExamSimulator.ExamMaster"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExamSimulator"
+        mc:Ignorable="d" MouseDown="Windows_MouseDown"
+        Title="ExamMaster" Height="700" Width="1050" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  AllowsTransparency="True" BorderBrush="#A5BBC8" BorderThickness="6" >
+    <Window.Resources>
+        <Style x:Key="WindowIconStyle" TargetType="{x:Type Button}">
+            <Setter Property="FontFamily" Value="Webdings" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
+            <Setter Property="Cursor" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Gray" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <DockPanel LastChildFill="True">
+        <Border Height="70" Background="#083C64" DockPanel.Dock="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="label" Grid.Row="0" Grid.ColumnSpan="2" Content="Exam Simulator" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30"/>
+                        <Label x:Name="lblMode" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Orange" FontStyle="Italic" FontWeight="Bold"  FontSize="17" Margin="0,-10,0,0" />
+                    </Grid>
+                </StackPanel>
+                <Label x:Name="lblExamName" Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                <Rectangle  HorizontalAlignment="Stretch" Height="35" VerticalAlignment="Top" Grid.Column="2"/>
+                <Button Style="{StaticResource WindowIconStyle}" x:Name="Btnclose" Content="r" Grid.Row="0" Grid.Column="2" Click="TriggerClose"/>
+                <Button Style="{StaticResource WindowIconStyle}" x:Name="btnrestore" Content="1" Grid.Row="0" Grid.Column="2" Margin="0,0,25,0" Click="TriggerMaximize"/>
+                <Button Style="{StaticResource WindowIconStyle}" x:Name="Btnmin" Content="0" Grid.Row="0" Grid.Column="2" Margin="0,0,50,0" Click="TriggerMinimize"/>
+            </Grid>
+        </Border>
+        <Border Background="White">
+            <Frame NavigationUIVisibility="Hidden"  Name="frmContent"  Grid.Row="2" Source="ExamBegin.xaml" Background="#F1F1F1" />
+        </Border>
+    </DockPanel>
+</Window>

@@ -18,7 +18,15 @@ namespace WebMerchant
         {
             if (!IsPostBack)
             {
-
+                if (Session["Merchantid"] != null)
+                {
+                    Response.Redirect("MerchantLogin.aspx", false);
+                }
+                else
+                {
+                    Session.Abandon();
+                    Session.Clear();
+                }
             }
         }
 
@@ -31,31 +39,49 @@ namespace WebMerchant
                     BOMerchantManage _bomerchantDetail = _bamermng.SelectMerchantLogin("MerchantLogin", txtUserName.Text, Encryptdata(txtPassword.Text));
                     if (_bomerchantDetail != null)
                     {
+
                         if (txtPassword.Text == Decryptdata(_bomerchantDetail.Password))
                         {
-                            Session["Merchantid"] = _bomerchantDetail.MerchantId;
-                            Session["merchantDetail"] = _bomerchantDetail;
-                            if (Session["Merchantid"] != null)
-                                Response.Redirect("Merchant-Login.aspx");
+                            if (_bomerchantDetail.ActiveStatus)
+                            {
+                                Session["Merchantid"] = _bomerchantDetail.MerchantId;
+                                Session["merchantDetail"] = _bomerchantDetail;
+                                if (Session["Merchantid"] != null)
+                                    Response.Redirect("MerchantLogin.aspx", false);
+                            }
+                            else
+                            {
+                                lblerror.InnerText = "Your account is currently not active. Contact your administrator to activate it.";
+                                lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
+                            }
                         }
                         else
                         {
-                            Response.Write(@"<script language='javascript'>alert('Password invalid')</script>");
+                            lblerror.InnerText = "Password invalid";
+                            lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
+                            txtPassword.Focus();
                         }
+
                     }
                     else
                     {
-                        Response.Write(@"<script language='javascript'>alert('Username or Password invalid')</script>");
+                        lblerror.InnerText = "Username or Password invalid";
+                        lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
+                        txtUserName.Focus();
                     }
                 }
                 else
                 {
-                    Response.Write(@"<script language='javascript'>alert('Please Enter Correct UserName/Password')</script>");
+                    lblerror.InnerText = "Please Enter Correct UserName/Password";
+                    lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
+                    txtUserName.Focus();
                 }
             }
             catch (Exception ex)
             {
-                Response.Write(@"<script language='javascript'>alert('" + ex + "')</script>");
+                Common.LogError(ex);
+                lblerror.InnerText = "Server not respond";
+                lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
             }
         }
 

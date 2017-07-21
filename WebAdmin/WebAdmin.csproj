@@ -71,6 +71,10 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.TraceListener, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.TraceListener.2.2.0\lib\net45\Microsoft.ApplicationInsights.TraceListener.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -94,10 +98,31 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminAddSecondCategory.aspx" />
+    <Content Include="AdminAddThirdCategory.aspx" />
+    <Content Include="AdminAddTopCategory.aspx" />
+    <Content Include="AdminError.aspx" />
+    <Content Include="AdminExamManage.aspx" />
+    <Content Include="AdminLogin.aspx" />
+    <Content Include="AdminMerchantFeeRateManage.aspx" />
+    <Content Include="AdminMerchantLevelManage.aspx" />
+    <Content Include="AdminMerchantManage.aspx" />
+    <Content Include="AdminMerchantManageEdit.aspx" />
+    <Content Include="AdminQuestionType.aspx" />
+    <Content Include="AdminSalesReport.aspx" />
+    <Content Include="AdminWithdrawAccount.aspx" />
+    <Content Include="AdminWithdrawManage.aspx" />
+    <Content Include="AdminWithdrawOption.aspx" />
+    <Content Include="css\custom.css" />
+    <Content Include="css\login.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="EmailTemplate.html" />
+    <Content Include="Errorfile\ErrorLog.txt" />
+    <Content Include="js\custome.js" />
     <Content Include="packages.config" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Admin.Master" />
+    <Content Include="ApplicationInsights.config" />
+    <None Include="Properties\PublishProfiles\QuizAdmin.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -106,14 +131,198 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="AdminAddSecondCategory.aspx.cs">
+      <DependentUpon>AdminAddSecondCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminAddSecondCategory.aspx.designer.cs">
+      <DependentUpon>AdminAddSecondCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminAddThirdCategory.aspx.cs">
+      <DependentUpon>AdminAddThirdCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminAddThirdCategory.aspx.designer.cs">
+      <DependentUpon>AdminAddThirdCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminAddTopCategory.aspx.cs">
+      <DependentUpon>AdminAddTopCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminAddTopCategory.aspx.designer.cs">
+      <DependentUpon>AdminAddTopCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminError.aspx.cs">
+      <DependentUpon>AdminError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminError.aspx.designer.cs">
+      <DependentUpon>AdminError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminExamManage.aspx.cs">
+      <DependentUpon>AdminExamManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminExamManage.aspx.designer.cs">
+      <DependentUpon>AdminExamManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminLogin.aspx.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminLogin.aspx.designer.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminMerchantFeeRateManage.aspx.cs">
+      <DependentUpon>AdminMerchantFeeRateManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminMerchantFeeRateManage.aspx.designer.cs">
+      <DependentUpon>AdminMerchantFeeRateManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminMerchantLevelManage.aspx.cs">
+      <DependentUpon>AdminMerchantLevelManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminMerchantLevelManage.aspx.designer.cs">
+      <DependentUpon>AdminMerchantLevelManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminMerchantManage.aspx.cs">
+      <DependentUpon>AdminMerchantManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminMerchantManage.aspx.designer.cs">
+      <DependentUpon>AdminMerchantManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminMerchantManageEdit.aspx.cs">
+      <DependentUpon>AdminMerchantManageEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminMerchantManageEdit.aspx.designer.cs">
+      <DependentUpon>AdminMerchantManageEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminQuestionType.aspx.cs">
+      <DependentUpon>AdminQuestionType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminQuestionType.aspx.designer.cs">
+      <DependentUpon>AdminQuestionType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSalesReport.aspx.cs">
+      <DependentUpon>AdminSalesReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSalesReport.aspx.designer.cs">
+      <DependentUpon>AdminSalesReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWithdrawAccount.aspx.cs">
+      <DependentUpon>AdminWithdrawAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminWithdrawAccount.aspx.designer.cs">
+      <DependentUpon>AdminWithdrawAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWithdrawManage.aspx.cs">
+      <DependentUpon>AdminWithdrawManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminWithdrawManage.aspx.designer.cs">
+      <DependentUpon>AdminWithdrawManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWithdrawOption.aspx.cs">
+      <DependentUpon>AdminWithdrawOption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminWithdrawOption.aspx.designer.cs">
+      <DependentUpon>AdminWithdrawOption.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BALayer\BAAdminLogin.cs" />
+    <Compile Include="BALayer\BAExamManage.cs" />
+    <Compile Include="BALayer\BAFinanceConfig.cs" />
+    <Compile Include="BALayer\BAMerchantFeeRate.cs" />
+    <Compile Include="BALayer\BAMerchantLevel.cs" />
+    <Compile Include="BALayer\BAMerchantManage.cs" />
+    <Compile Include="BALayer\BAPaymentOption.cs" />
+    <Compile Include="BALayer\BAQuestionType.cs" />
+    <Compile Include="BALayer\BASalesReport.cs" />
+    <Compile Include="BALayer\BASecondCategory.cs" />
+    <Compile Include="BALayer\BAThirdCategory.cs" />
+    <Compile Include="BALayer\BATopCategory.cs" />
+    <Compile Include="BALayer\BAWithDrawManage.cs" />
+    <Compile Include="BOLayer\BOAdminLogin.cs" />
+    <Compile Include="BOLayer\BOExamManage.cs" />
+    <Compile Include="BOLayer\BOFinanceConfig.cs" />
+    <Compile Include="BOLayer\BOMerchantFeeRate.cs" />
+    <Compile Include="BOLayer\BOMerchantLevel.cs" />
+    <Compile Include="BOLayer\BOMerchantManage.cs" />
+    <Compile Include="BOLayer\BOPaymentOption.cs" />
+    <Compile Include="BOLayer\BOQuestionType.cs" />
+    <Compile Include="BOLayer\BOSalesReport.cs" />
+    <Compile Include="BOLayer\BOSecondCategory.cs" />
+    <Compile Include="BOLayer\BOThirdCategory.cs" />
+    <Compile Include="BOLayer\BOTopCategory.cs" />
+    <Compile Include="BOLayer\BOWithDrawManage.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="ConnectionInfo.cs" />
+    <Compile Include="DALayer\DAAdminLogin.cs" />
+    <Compile Include="DALayer\DAExamManage.cs" />
+    <Compile Include="DALayer\DAFinanceConfig.cs" />
+    <Compile Include="DALayer\DAMerchantFeeRate.cs" />
+    <Compile Include="DALayer\DAMerchantLevel.cs" />
+    <Compile Include="DALayer\DAMerchantManage.cs" />
+    <Compile Include="DALayer\DAPaymentOption.cs" />
+    <Compile Include="DALayer\DAQuestionType.cs" />
+    <Compile Include="DALayer\DASalesReport.cs" />
+    <Compile Include="DALayer\DASecondCategory.cs" />
+    <Compile Include="DALayer\DAThirdCategory.cs" />
+    <Compile Include="DALayer\DATopCategory.cs" />
+    <Compile Include="DALayer\DAWithDrawManage.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="fonts\" />
+    <Folder Include="images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

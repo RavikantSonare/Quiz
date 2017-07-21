@@ -43,6 +43,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Code7248.word_reader">
+      <HintPath>..\..\..\..\..\AppData\Roaming\Skype\My Skype Received Files\Code7248.word_reader.dll</HintPath>
+    </Reference>
+    <Reference Include="FreeTextBox, Version=3.3.1.12354, Culture=neutral, PublicKeyToken=5962a4e684a48b87, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Work\Code Demo Example\FTBv3-3-1\Framework-4-0\FreeTextBox.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -76,6 +87,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4420.1017\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -94,38 +109,130 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\login.css" />
+    <Content Include="css\summernote.css" />
+    <Content Include="Errorfile\ErrorLog.txt" />
+    <Content Include="images\processing.gif" />
+    <Content Include="img_mapjs\main.css" />
+    <Content Include="img_mapjs\summerHTMLImageMapCreator.js" />
+    <Content Include="js\custome.js" />
+    <Content Include="js\editor_generate.js" />
+    <Content Include="js\summernote.js" />
+    <Content Include="MerchantAllowSales.aspx" />
+    <Content Include="MerchantCheckout.html" />
+    <Content Include="MerchantDragdrop.aspx" />
+    <Content Include="MerchantError.aspx" />
+    <Content Include="MerchantExamConfig.aspx" />
+    <Content Include="MerchantExamReports.aspx" />
+    <Content Include="MerchantFinanceConfig.aspx" />
+    <Content Include="MerchantImageMap.aspx" />
+    <Content Include="MerchantManageQA.aspx" />
+    <Content Include="MerchantMyExams.aspx" />
+    <Content Include="MerchantMyUsers.aspx" />
+    <Content Include="MerchantRegistration.aspx" />
+    <Content Include="MerchantRegsitrationEmail.html" />
+    <Content Include="MerchantSalesReports.aspx" />
+    <Content Include="MerchantWithDraw.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Merchant.Master" />
+    <Content Include="WebForm1.aspx" />
+    <Content Include="WebForm2.aspx" />
+    <None Include="Properties\PublishProfiles\QuizMerchant.pubxml" />
+    <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Debug.config123">
+      <DependentUpon>Web.config123</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <None Include="Web.Release.config123">
+      <DependentUpon>Web.config123</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
-    <Content Include="merchant-exam-config.html" />
-    <Content Include="merchant-exam-reports.html" />
-    <Content Include="merchant-finance-config.html" />
-    <Content Include="Merchant-Login.aspx" />
-    <Content Include="merchant-login.html" />
-    <Content Include="merchant-manage-qa.html" />
-    <Content Include="merchant-my-exams.html" />
-    <Content Include="merchant-my-users.html" />
-    <Content Include="merchant-sales-reports.html" />
-    <Content Include="merchant-withdraw.html" />
-    <Content Include="Web.config" />
+    <Content Include="MerchantLogin.aspx" />
+    <Content Include="TemplateImage\Image1.jpg" />
+    <Content Include="TemplateImage\Image2.jpg" />
+    <Content Include="TemplateImage\Image3.jpg" />
+    <Content Include="TemplateImage\Image4.jpg" />
+    <Content Include="TemplateImage\Image5.jpg" />
+    <Content Include="TemplateImage\quiz-duello-icon.jpg" />
+    <Content Include="test.aspx" />
+    <Content Include="Testing.aspx" />
+    <None Include="Web.config123">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BALayer\BAExamManage.cs" />
+    <Compile Include="BALayer\BAExamReports.cs" />
+    <Compile Include="BALayer\BAFinanceConfig.cs" />
+    <Compile Include="BALayer\BAMasterCountry.cs" />
+    <Compile Include="BALayer\BAMasterState.cs" />
+    <Compile Include="BALayer\BAMerchantAllowSales.cs" />
+    <Compile Include="BALayer\BAMerchantBalance.cs" />
+    <Compile Include="BALayer\BAMerchantLevel.cs" />
     <Compile Include="BALayer\BAMerchantManage.cs" />
+    <Compile Include="BALayer\BAMerchantPayment.cs" />
+    <Compile Include="BALayer\BAMerchantWithDraw.cs" />
+    <Compile Include="BALayer\BAMyUsers.cs" />
+    <Compile Include="BALayer\BAPaymentOption.cs" />
+    <Compile Include="BALayer\BAQAManage.cs" />
+    <Compile Include="BALayer\BAQAnswer.cs" />
+    <Compile Include="BALayer\BAQuestionType.cs" />
+    <Compile Include="BALayer\BASalesReports.cs" />
+    <Compile Include="BALayer\BASecondCategory.cs" />
+    <Compile Include="BALayer\BATemplate.cs" />
+    <Compile Include="BALayer\BATopCategory.cs" />
+    <Compile Include="BOLayer\BOExamManage.cs" />
+    <Compile Include="BOLayer\BOExamReports.cs" />
+    <Compile Include="BOLayer\BOFinanceConfig.cs" />
+    <Compile Include="BOLayer\BOMasterCountry.cs" />
+    <Compile Include="BOLayer\BOMasterState.cs" />
+    <Compile Include="BOLayer\BOMerchantAllowSales.cs" />
+    <Compile Include="BOLayer\BOMerchantBalance.cs" />
+    <Compile Include="BOLayer\BOMerchantLevel.cs" />
     <Compile Include="BOLayer\BOMerchantManage.cs" />
+    <Compile Include="BOLayer\BOMerchantPayment.cs" />
+    <Compile Include="BOLayer\BOMerchantWithDraw.cs" />
+    <Compile Include="BOLayer\BOMyUsers.cs" />
+    <Compile Include="BOLayer\BOPaymentOption.cs" />
+    <Compile Include="BOLayer\BOQAManage.cs" />
+    <Compile Include="BOLayer\BOQAnswer.cs" />
+    <Compile Include="BOLayer\BOQuestionType.cs" />
+    <Compile Include="BOLayer\BOSalesReports.cs" />
+    <Compile Include="BOLayer\BOSecondCategory.cs" />
+    <Compile Include="BOLayer\BOTemplate.cs" />
+    <Compile Include="BOLayer\BOTopCategory.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="ConnectionInfo.cs" />
+    <Compile Include="DALayer\DAExamManage.cs" />
+    <Compile Include="DALayer\DAExamReports.cs" />
+    <Compile Include="DALayer\DAFinanceConfig.cs" />
+    <Compile Include="DALayer\DAMasterCountry.cs" />
+    <Compile Include="DALayer\DAMasterState.cs" />
+    <Compile Include="DALayer\DAMerchantAllowSales.cs" />
+    <Compile Include="DALayer\DAMerchantBalance.cs" />
+    <Compile Include="DALayer\DAMerchantLevel.cs" />
     <Compile Include="DALayer\DAMerchantManage.cs" />
+    <Compile Include="DALayer\DAMerchantPayment.cs" />
+    <Compile Include="DALayer\DAMerchantWithDraw.cs" />
+    <Compile Include="DALayer\DAMyUsers.cs" />
+    <Compile Include="DALayer\DAPaymentOption.cs" />
+    <Compile Include="DALayer\DAQAManage.cs" />
+    <Compile Include="DALayer\DAQAnswer.cs" />
+    <Compile Include="DALayer\DAQuestionType.cs" />
+    <Compile Include="DALayer\DASalesReports.cs" />
+    <Compile Include="DALayer\DASecondCategory.cs" />
+    <Compile Include="DALayer\DATemplate.cs" />
+    <Compile Include="DALayer\DATopCategory.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -133,12 +240,61 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Merchant-Login.aspx.cs">
-      <DependentUpon>Merchant-Login.aspx</DependentUpon>
+    <Compile Include="MerchantAllowSales.aspx.cs">
+      <DependentUpon>MerchantAllowSales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Merchant-Login.aspx.designer.cs">
-      <DependentUpon>Merchant-Login.aspx</DependentUpon>
+    <Compile Include="MerchantAllowSales.aspx.designer.cs">
+      <DependentUpon>MerchantAllowSales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantDragdrop.aspx.cs">
+      <DependentUpon>MerchantDragdrop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantDragdrop.aspx.designer.cs">
+      <DependentUpon>MerchantDragdrop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantError.aspx.cs">
+      <DependentUpon>MerchantError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantError.aspx.designer.cs">
+      <DependentUpon>MerchantError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantExamConfig.aspx.cs">
+      <DependentUpon>MerchantExamConfig.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantExamConfig.aspx.designer.cs">
+      <DependentUpon>MerchantExamConfig.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantExamReports.aspx.cs">
+      <DependentUpon>MerchantExamReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantExamReports.aspx.designer.cs">
+      <DependentUpon>MerchantExamReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantFinanceConfig.aspx.cs">
+      <DependentUpon>MerchantFinanceConfig.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantFinanceConfig.aspx.designer.cs">
+      <DependentUpon>MerchantFinanceConfig.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantImageMap.aspx.cs">
+      <DependentUpon>MerchantImageMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantImageMap.aspx.designer.cs">
+      <DependentUpon>MerchantImageMap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantLogin.aspx.cs">
+      <DependentUpon>MerchantLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantLogin.aspx.designer.cs">
+      <DependentUpon>MerchantLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Merchant.Master.cs">
       <DependentUpon>Merchant.Master</DependentUpon>
@@ -147,17 +303,119 @@
     <Compile Include="Merchant.Master.designer.cs">
       <DependentUpon>Merchant.Master</DependentUpon>
     </Compile>
+    <Compile Include="MerchantManageQA.aspx.cs">
+      <DependentUpon>MerchantManageQA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantManageQA.aspx.designer.cs">
+      <DependentUpon>MerchantManageQA.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantMyExams.aspx.cs">
+      <DependentUpon>MerchantMyExams.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantMyExams.aspx.designer.cs">
+      <DependentUpon>MerchantMyExams.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantMyUsers.aspx.cs">
+      <DependentUpon>MerchantMyUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantMyUsers.aspx.designer.cs">
+      <DependentUpon>MerchantMyUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantRegistration.aspx.cs">
+      <DependentUpon>MerchantRegistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantRegistration.aspx.designer.cs">
+      <DependentUpon>MerchantRegistration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantSalesReports.aspx.cs">
+      <DependentUpon>MerchantSalesReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantSalesReports.aspx.designer.cs">
+      <DependentUpon>MerchantSalesReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantWithDraw.aspx.cs">
+      <DependentUpon>MerchantWithDraw.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantWithDraw.aspx.designer.cs">
+      <DependentUpon>MerchantWithDraw.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Testing.aspx.cs">
+      <DependentUpon>Testing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Testing.aspx.designer.cs">
+      <DependentUpon>Testing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="css\" />
+    <Folder Include="css\font\" />
+    <Folder Include="ExcelUpload\" />
     <Folder Include="fonts\" />
-    <Folder Include="images\" />
-    <Folder Include="js\" />
+    <Folder Include="img_map\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

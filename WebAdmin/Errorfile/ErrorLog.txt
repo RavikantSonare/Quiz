@@ -1,0 +1,591 @@
+﻿Time: 30/05/2017 01:54:48 PM
+-----------------------------------------------------------
+Message: Failure sending mail.
+StackTrace:    at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminSalesReport.SendHTMLMail(String merchantname, String orderno, String amount, String status) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 193
+   at WebAdmin.AdminSalesReport.btnSendMail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 103
+Source: System
+TargetSite: Void Send(System.Net.Mail.MailMessage)
+-----------------------------------------------------------
+
+Time: 30/05/2017 02:08:19 PM
+-----------------------------------------------------------
+Message: Failure sending mail.
+StackTrace:    at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminWithdrawManage.SendHTMLMail(String merchantname, String orderno, String amount, String status) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminWithdrawManage.aspx.cs:line 181
+   at WebAdmin.AdminWithdrawManage.btnSendEmail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminWithdrawManage.aspx.cs:line 122
+Source: System
+TargetSite: Void Send(System.Net.Mail.MailMessage)
+-----------------------------------------------------------
+
+Time: 30/05/2017 02:10:43 PM
+-----------------------------------------------------------
+Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.5.1 Authentication Required. Learn more at
+StackTrace:    at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminWithdrawManage.btnSendEmail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminWithdrawManage.aspx.cs:line 140
+Source: System
+TargetSite: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+-----------------------------------------------------------
+
+Time: 02/06/2017 02:30:08 PM
+-----------------------------------------------------------
+Message: Specified cast is not valid.
+StackTrace:    at System.Data.DataRowExtensions.UnboxT`1.ValueField(Object value)
+   at System.Data.DataRowExtensions.Field[T](DataRow row, String columnName)
+   at WebAdmin.AdminSalesReport.<>c.<FillgirdViewSalesReport>b__5_1(DataRow row) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 53
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.Sum(IEnumerable`1 source)
+   at System.Linq.Enumerable.Sum[TSource](IEnumerable`1 source, Func`2 selector)
+   at WebAdmin.AdminSalesReport.FillgirdViewSalesReport() in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 53
+   at WebAdmin.AdminSalesReport.Page_Load(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 32
+Source: System.Data.DataSetExtensions
+TargetSite: T ValueField(System.Object)
+-----------------------------------------------------------
+
+Time: 03/06/2017 02:14:49 PM
+-----------------------------------------------------------
+Message: 'ddlSecondCategory' has a SelectedValue which is invalid because it does not exist in the list of items.
+Parameter name: value
+StackTrace:    at System.Web.UI.WebControls.ListControl.set_SelectedValue(String value)
+   at WebAdmin.AdminAddThirdCatagoary.lnkbtnEdit_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminAddThirdCatagoary.aspx.cs:line 130
+Source: System.Web
+TargetSite: Void set_SelectedValue(System.String)
+-----------------------------------------------------------
+
+Time: 03/06/2017 02:15:23 PM
+-----------------------------------------------------------
+Message: 'ddlSecondCategory' has a SelectedValue which is invalid because it does not exist in the list of items.
+Parameter name: value
+StackTrace:    at System.Web.UI.WebControls.ListControl.set_SelectedValue(String value)
+   at WebAdmin.AdminAddThirdCatagoary.lnkbtnEdit_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminAddThirdCatagoary.aspx.cs:line 130
+Source: System.Web
+TargetSite: Void set_SelectedValue(System.String)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:10:51 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:10:52 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:10:53 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:10:59 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:11:00 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:11:00 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:11:01 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:11:02 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:11:03 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:11:04 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:11:05 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:11:29 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:12:29 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:20:36 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 07:21:03 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 09:32:14 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 09:32:16 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 09:32:26 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 09:32:28 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 09:32:29 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 09:34:05 AM
+-----------------------------------------------------------
+Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.5.1 Authentication Required. Learn more at
+StackTrace:    at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminSalesReport.SendHTMLMail(String merchantname, String orderno, String amount, String status) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 197
+   at WebAdmin.AdminSalesReport.btnSendMail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 105
+Source: System
+TargetSite: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+-----------------------------------------------------------
+
+Time: 06/06/2017 09:34:13 AM
+-----------------------------------------------------------
+Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.5.1 Authentication Required. Learn more at
+StackTrace:    at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminSalesReport.SendHTMLMail(String merchantname, String orderno, String amount, String status) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 197
+   at WebAdmin.AdminSalesReport.btnSendMail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 105
+Source: System
+TargetSite: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+-----------------------------------------------------------
+
+Time: 06/06/2017 09:38:42 AM
+-----------------------------------------------------------
+Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.5.1 Authentication Required. Learn more at
+StackTrace:    at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminSalesReport.SendHTMLMail(String merchantname, String orderno, String amount, String status) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 217
+   at WebAdmin.AdminSalesReport.btnSendMail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 121
+Source: System
+TargetSite: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+-----------------------------------------------------------
+
+Time: 06/06/2017 09:39:44 AM
+-----------------------------------------------------------
+Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.5.1 Authentication Required. Learn more at
+StackTrace:    at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminSalesReport.SendHTMLMail(String merchantname, String orderno, String amount, String status) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 217
+   at WebAdmin.AdminSalesReport.btnSendMail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 121
+Source: System
+TargetSite: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+-----------------------------------------------------------
+
+Time: 06/06/2017 09:43:04 AM
+-----------------------------------------------------------
+Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.5.1 Authentication Required. Learn more at
+StackTrace:    at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminWithdrawManage.SendHTMLMail(String merchantname, String orderno, String amount, String status) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminWithdrawManage.aspx.cs:line 182
+   at WebAdmin.AdminWithdrawManage.btnSendEmail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminWithdrawManage.aspx.cs:line 123
+Source: System
+TargetSite: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+-----------------------------------------------------------
+
+Time: 06/06/2017 09:43:18 AM
+-----------------------------------------------------------
+Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.5.1 Authentication Required. Learn more at
+StackTrace:    at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminWithdrawManage.SendHTMLMail(String merchantname, String orderno, String amount, String status) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminWithdrawManage.aspx.cs:line 182
+   at WebAdmin.AdminWithdrawManage.btnSendEmail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminWithdrawManage.aspx.cs:line 123
+Source: System
+TargetSite: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+-----------------------------------------------------------
+
+Time: 06/06/2017 09:50:07 AM
+-----------------------------------------------------------
+Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.5.1 Authentication Required. Learn more at
+StackTrace:    at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminWithdrawManage.SendHTMLMail(String merchantname, String orderno, String amount, String status) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminWithdrawManage.aspx.cs:line 202
+   at WebAdmin.AdminWithdrawManage.btnSendEmail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminWithdrawManage.aspx.cs:line 139
+Source: System
+TargetSite: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+-----------------------------------------------------------
+
+Time: 06/06/2017 09:53:30 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.IUDMerchantManage(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 79
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 10:03:21 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.UpdateStatus(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 115
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 10:10:14 AM
+-----------------------------------------------------------
+Message: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAMerchantManage.UpdateStatus(BOMerchantManage _bomermng) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAMerchantManage.cs:line 115
+Source: System.Data
+TargetSite: System.Threading.Tasks.Task TdsExecuteRPC(System.Data.SqlClient.SqlCommand, System.Data.SqlClient._SqlRPC[], Int32, Boolean, System.Data.Sql.SqlNotificationRequest, System.Data.SqlClient.TdsParserStateObject, Boolean, Boolean, System.Threading.Tasks.TaskCompletionSource`1[System.Object], Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/06/2017 10:23:30 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminMerchantManage.aspx.cs:line 140
+   at System.Web.UI.WebControls.GridView.OnRowDataBound(GridViewRowEventArgs e)
+   at System.Web.UI.WebControls.GridView.CreateRow(Int32 rowIndex, Int32 dataSourceIndex, DataControlRowType rowType, DataControlRowState rowState, Boolean dataBind, Object dataItem, DataControlField[] fields, TableRowCollection rows, PagedDataSource pagedDataSource)
+   at System.Web.UI.WebControls.GridView.CreateChildControls(IEnumerable dataSource, Boolean dataBinding)
+   at System.Web.UI.WebControls.CompositeDataBoundControl.PerformDataBinding(IEnumerable data)
+   at System.Web.UI.WebControls.GridView.PerformDataBinding(IEnumerable data)
+   at System.Web.UI.WebControls.DataBoundControl.OnDataSourceViewSelectCallback(IEnumerable data)
+   at System.Web.UI.DataSourceView.Select(DataSourceSelectArguments arguments, DataSourceViewSelectCallback callback)
+   at System.Web.UI.WebControls.DataBoundControl.PerformSelect()
+   at System.Web.UI.WebControls.BaseDataBoundControl.DataBind()
+   at System.Web.UI.WebControls.GridView.DataBind()
+   at WebAdmin.AdminMerchantManage.FillgridViewMerchantManage() in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminMerchantManage.aspx.cs:line 57
+   at WebAdmin.AdminMerchantManage.Page_Load(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminMerchantManage.aspx.cs:line 30
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 06/06/2017 10:29:42 AM
+-----------------------------------------------------------
+Message: String was not recognized as a valid Boolean.
+StackTrace:    at System.Boolean.Parse(String value)
+   at System.Convert.ToBoolean(String value)
+   at WebAdmin.AdminMerchantManage.lnkbtnactive_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminMerchantManage.aspx.cs:line 72
+Source: mscorlib
+TargetSite: Boolean Parse(System.String)
+-----------------------------------------------------------
+
+Time: 06/06/2017 10:37:58 AM
+-----------------------------------------------------------
+Message: String was not recognized as a valid Boolean.
+StackTrace:    at System.Boolean.Parse(String value)
+   at System.Convert.ToBoolean(String value)
+   at WebAdmin.AdminMerchantManage.lnkbtnactive_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminMerchantManage.aspx.cs:line 72
+Source: mscorlib
+TargetSite: Boolean Parse(System.String)
+-----------------------------------------------------------
+
+Time: 06/06/2017 12:27:23 PM
+-----------------------------------------------------------
+Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.5.1 Authentication Required. Learn more at
+StackTrace:    at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminSalesReport.SendHTMLMail(String merchantname, String orderno, String amount, String status) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 218
+   at WebAdmin.AdminSalesReport.btnSendMail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 122
+Source: System
+TargetSite: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+-----------------------------------------------------------
+
+Time: 06/06/2017 02:44:33 PM
+-----------------------------------------------------------
+Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.5.1 Authentication Required. Learn more at
+StackTrace:    at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminSalesReport.SendHTMLMail(String merchantname, String orderno, String amount, String status) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 218
+   at WebAdmin.AdminSalesReport.btnSendMail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 122
+Source: System
+TargetSite: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+-----------------------------------------------------------
+
+Time: 07/06/2017 06:12:36 AM
+-----------------------------------------------------------
+Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.5.1 Authentication Required. Learn more at
+StackTrace:    at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminSalesReport.SendHTMLMail(String merchantname, String orderno, String amount, String status) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 218
+   at WebAdmin.AdminSalesReport.btnSendMail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 122
+Source: System
+TargetSite: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+-----------------------------------------------------------
+
+Time: 09/06/2017 07:17:15 AM
+-----------------------------------------------------------
+Message: An item placeholder must be specified on ListView 'ListView1'. Specify an item placeholder by setting a control's ID property to "itemPlaceholder". The item placeholder control must also specify runat="server".
+StackTrace:    at System.Web.UI.WebControls.ListView.GetPreparedContainerInfo(Control outerContainer, Boolean isItem, Int32& placeholderIndex)
+   at System.Web.UI.WebControls.ListView.CreateItemsWithoutGroups(ListViewPagedDataSource dataSource, Boolean dataBinding, InsertItemPosition insertPosition, ArrayList keyArray)
+   at System.Web.UI.WebControls.ListView.CreateChildControls(IEnumerable dataSource, Boolean dataBinding)
+   at System.Web.UI.WebControls.ListView.PerformDataBinding(IEnumerable data)
+   at System.Web.UI.WebControls.DataBoundControl.OnDataSourceViewSelectCallback(IEnumerable data)
+   at System.Web.UI.DataSourceView.Select(DataSourceSelectArguments arguments, DataSourceViewSelectCallback callback)
+   at System.Web.UI.WebControls.DataBoundControl.PerformSelect()
+   at System.Web.UI.WebControls.ListView.PerformSelect()
+   at System.Web.UI.WebControls.BaseDataBoundControl.DataBind()
+   at WebAdmin.AdminAddTopCategory.FillgridViewTopCategory() in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminAddTopCategory.aspx.cs:line 53
+   at WebAdmin.AdminAddTopCategory.Page_Load(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminAddTopCategory.aspx.cs:line 31
+Source: System.Web.Extensions
+TargetSite: System.Web.UI.Control GetPreparedContainerInfo(System.Web.UI.Control, Boolean, Int32 ByRef)
+-----------------------------------------------------------
+
+Time: 14/06/2017 07:24:45 AM
+-----------------------------------------------------------
+Message: Parameter '@UpdateDate' was supplied multiple times.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebAdmin.DALayer.DAQuestionType.IUDQuestionType(BOQuestionType bqtype) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\DALayer\DAQuestionType.cs:line 42
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 19/06/2017 09:21:40 AM
+-----------------------------------------------------------
+Message: Failure sending mail.
+StackTrace:    at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminWithdrawManage.SendHTMLMail(String merchantname, String orderno, String amount, String status, String Emailid) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminWithdrawManage.aspx.cs:line 181
+   at WebAdmin.AdminWithdrawManage.btnSendEmail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminWithdrawManage.aspx.cs:line 137
+Source: System
+TargetSite: Void Send(System.Net.Mail.MailMessage)
+-----------------------------------------------------------
+
+Time: 19/06/2017 09:37:19 AM
+-----------------------------------------------------------
+Message: Failure sending mail.
+StackTrace:    at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebAdmin.AdminSalesReport.SendHTMLMail(String merchantname, String orderno, String amount, String status, String Emailid) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 227
+   at WebAdmin.AdminSalesReport.btnSendMail_Click(Object sender, EventArgs e) in C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\WebAdmin\AdminSalesReport.aspx.cs:line 147
+Source: System
+TargetSite: Void Send(System.Net.Mail.MailMessage)
+-----------------------------------------------------------
+
