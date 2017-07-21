@@ -30,8 +30,16 @@ namespace ExamSimulator
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             List<TodoItem> _item = new List<TodoItem>();
+            String[] files = null;
             // string[] files1 = Directory.GetFiles(@"C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\ExamSimulator\Examfile\", "*.txt", SearchOption.AllDirectories);
-            String[] files = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\", "*.txt", SearchOption.AllDirectories);
+            if (Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\"))
+            {
+                files = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\", "*.txt", SearchOption.AllDirectories);
+            }
+            else
+            {
+                files = Directory.GetFiles(@"C:\Users\mobiweb\Documents\Visual Studio 2015\Projects\QuizProjectApp\ExamSimulator\Examfile\", "*.txt", SearchOption.AllDirectories);
+            }
             if (files.Length > 0)
             {
                 foreach (var item in files)
