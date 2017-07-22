@@ -28,6 +28,7 @@ namespace ExamSimulator
             InitializeComponent();
 
         }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             BindFileListBox();
@@ -117,6 +118,17 @@ namespace ExamSimulator
                 File.Copy(openFileDialog.FileName, System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\Examfile\\" + openFileDialog.SafeFileName);
                 BindFileListBox();
             }
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            string file = ((ExamSimulator.TodoItem)button.CommandParameter).Path;
+            if (!Directory.Exists(file))
+            {
+                File.Delete(file);
+            }
+            BindFileListBox();
         }
     }
 

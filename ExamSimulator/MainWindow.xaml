@@ -25,6 +25,14 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="btnEnable" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <DataTrigger Binding ="{Binding ElementName=listFile, Path=SelectedIndex}" Value="-1">
+                    <Setter Property="Button.IsEnabled" Value="false"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <DockPanel LastChildFill="True">
         <Border Height="70" Background="#3B6688" DockPanel.Dock="Top">
@@ -70,30 +78,10 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Row="0" Grid.Column="1">
-                    <Button x:Name="btnStudyMode" Height="40" Margin="10,7,10,0" Background="Orange"  Foreground="White" FontSize="20" Click="btnStart_Click" CommandParameter="{Binding ElementName=listFile,Path=SelectedItem}" ToolTip="SM">Study Mode
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Style.Triggers>
-                                    <DataTrigger Binding ="{Binding ElementName=listFile, Path=SelectedIndex}" Value="-1">
-                                        <Setter Property="Button.IsEnabled" Value="false"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                    <Button x:Name="btnStudyMode" Height="40" Margin="10,7,10,0" Background="Orange"  Foreground="White" FontSize="20" Click="btnStart_Click" CommandParameter="{Binding ElementName=listFile,Path=SelectedItem}" Style="{StaticResource btnEnable}" ToolTip="SM">Study Mode</Button>
                 </StackPanel>
                 <StackPanel Grid.Row="0" Grid.Column="2">
-                    <Button x:Name="btnTestMode" Height="40" Margin="10,7,10,0" Background="Orange"  Foreground="White" FontSize="20" Click="btnStart_Click" CommandParameter="{Binding ElementName=listFile,Path=SelectedItem}" ToolTip="TM">Test Mode
-                        <Button.Style>
-                            <Style>
-                                <Style.Triggers>
-                                    <DataTrigger Binding ="{Binding ElementName=listFile, Path=SelectedIndex}" Value="-1">
-                                        <Setter Property="Button.IsEnabled" Value="false"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                    <Button x:Name="btnTestMode" Height="40" Margin="10,7,10,0" Background="Orange"  Foreground="White" FontSize="20" Click="btnStart_Click" CommandParameter="{Binding ElementName=listFile,Path=SelectedItem}" Style="{StaticResource btnEnable}" ToolTip="TM">Test Mode</Button>
                 </StackPanel>
 
             </Grid>
@@ -108,7 +96,7 @@
                 <StackPanel Grid.Column="0">
                     <Button Height="40" Margin="10,7,10,0" Background="Orange" Foreground="White" FontSize="20" Name="btnDownload" Click="btnDownload_Click">Download</Button>
                     <Button Height="40" Margin="10,7,10,0" Background="#29577B" Foreground="White" FontSize="20" Name="btnAdd" Click="btnAdd_Click">Add</Button>
-                    <Button Height="40" Margin="10,7,10,0" Background="#29577B" Foreground="White" FontSize="20" Name="btnRemove">Remove</Button>
+                    <Button Height="40" Margin="10,7,10,0" Background="#29577B" Foreground="White" FontSize="20" Name="btnRemove" Click="btnRemove_Click" CommandParameter="{Binding ElementName=listFile,Path=SelectedItem}" Style="{StaticResource btnEnable}">Remove</Button>
                 </StackPanel>
             </Grid>
         </Border>

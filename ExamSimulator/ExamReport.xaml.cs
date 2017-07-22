@@ -20,13 +20,23 @@ namespace ExamSimulator
     /// </summary>
     public partial class ExamReport : Page
     {
-        public ExamReport(int Score,int OutOfScore)
+        public ExamReport(int Score, int OutOfScore)
         {
             InitializeComponent();
             DateTime now = DateTime.Now;
             lbldate.Content = now.ToShortDateString();
             lbltime.Content = now.ToLongTimeString();
             lblYourScore.Content = Score + " / " + OutOfScore;
+            if (Score > OutOfScore / 2)
+            {
+                lblresultStatus.Content = "Congratulation! You has passed the xxx exam";
+                lblresultStatus.Foreground = Brushes.Green;
+            }
+            else
+            {
+                lblresultStatus.Content = "Sorry! You has failed the xxx exam";
+                lblresultStatus.Foreground = Brushes.Red;
+            }
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

@@ -27,30 +27,6 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type RadioButton}">
-                        <!--<BulletDecorator Background="Transparent">
-                            <BulletDecorator.Bullet>
-                                <StackPanel Orientation="Horizontal" >
-                                    <Grid Width="25" Height="25">
-                                        <Ellipse Name="MainEllipse" Width="17" Height="17">
-                                            <Ellipse.Fill>
-                                                
-                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                    <GradientStop Color="#FFC8C8C8" Offset="0"/>
-                                                    <GradientStop Color="#FFF7F7F7" Offset="0.991"/>
-                                                </LinearGradientBrush>
-                                            </Ellipse.Fill>
-                                        </Ellipse>
-                                        <Ellipse Margin="4,4,4,4"   Width="Auto" Height="Auto"></Ellipse>
-                                        <Ellipse x:Name="Selected" Margin="4,4,4,4"     Width="Auto" Height="Auto" >
-                                            <Ellipse.Fill>
-                                                <SolidColorBrush Color="#3babe3"   />
-                                            </Ellipse.Fill>
-                                        </Ellipse>
-                                    </Grid>
-                                    <ContentPresenter Margin="4,0,0,0" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </BulletDecorator.Bullet>
-                        </BulletDecorator>-->
                         <BulletDecorator>
                             <BulletDecorator.Bullet>
                                 <Grid Width="25" Height="25"
@@ -117,14 +93,6 @@
                                       VerticalAlignment="Center"
                         RecognizesAccessKey="True" />
                         </BulletDecorator>
-                        <ControlTemplate.Triggers>
-                            <!--<Trigger Property="IsMouseOver"  Value="true">
-                                <Setter TargetName="MainEllipse" Property="Fill"  Value="LightBlue"/>
-                            </Trigger>
-                            <Trigger Property="IsChecked" Value="false">
-                                <Setter TargetName="Selected" Property="Visibility" Value="Collapsed"/>
-                            </Trigger>-->
-                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -281,6 +249,9 @@
                     <StackPanel Grid.Row="0" Grid.Column="1">
                         <Button x:Name="btnNext" Height="40" Margin="10,7,10,0" Background="#0769B4" Foreground="White" FontSize="20" Click="btnNext_Click" Content="Next"/>
                     </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="3">
+                        <Button x:Name="btnReviewMarkExam" Content="Review Marked" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnReviewMarkExam_Click"/>
+                    </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="4">
                         <Button x:Name="btnEndExam" Content="End Exam" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnEndExam_Click"/>
                     </StackPanel>
@@ -303,7 +274,17 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <!--<CheckBox x:Name="chkMark" Content="Mark" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0"/>-->
+                        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                            <ListBox  x:Name="listQuestionMark" ItemsSource="{Binding _list}" Width="auto" BorderThickness="0" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <CheckBox x:Name="chkMark" IsChecked="{Binding Mark}" Content="Mark" TabIndex="{Binding QuestionNo}" Click="checkMark_click" HorizontalAlignment="Left" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
                             <Label  Content="Question" FontSize="15" FontWeight="Bold"/>
                             <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="4" Height="30">

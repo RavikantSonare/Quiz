@@ -36,7 +36,6 @@ namespace ExamSimulator
         public ExamRun()
         {
             InitializeComponent();
-
             try
             {
                 _time = TimeSpan.FromSeconds(300);
@@ -64,19 +63,20 @@ namespace ExamSimulator
             try
             {
                 _list = bindQuestionListboxToList();
-                listQuestion.ItemsSource = _list.Skip(index).Take(1);
+                BindQuestionlist(_list);
                 btnPrevious.IsEnabled = false;
                 showQuestionNo(index + 1, _list.Count);
-                if (_list.Count < 2)
-                {
-                    btnNext.IsEnabled = false;
-                    btnPrevious.IsEnabled = false;
-                }
             }
             catch
             {
 
             }
+        }
+
+        private void BindQuestionlist(List<Questions> _qestlist)
+        {
+            listQuestion.ItemsSource = _qestlist.Skip(index).Take(1);
+            listQuestionMark.ItemsSource = _qestlist.Skip(index).Take(1);
         }
 
         List<Questions> _quetionList = new List<Questions>();
@@ -174,7 +174,7 @@ namespace ExamSimulator
                         }
                         if (filelist != null && filelist.Mode == "SM")
                         { mode = false; ureslut = true; }
-                        _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode });
+                        _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
                         CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty;
                         _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
                         questionNo++;
@@ -197,7 +197,7 @@ namespace ExamSimulator
                 {
                     index++;
                     btnPrevious.IsEnabled = true;
-                    listQuestion.ItemsSource = _list.Skip(index).Take(1);
+                    BindQuestionlist(_list);
                     showQuestionNo(index + 1, _list.Count);
                 }
                 if (_list.Count - 1 == index)
@@ -220,7 +220,7 @@ namespace ExamSimulator
                 {
                     index--;
                     btnNext.IsEnabled = true;
-                    listQuestion.ItemsSource = _list.Skip(index).Take(1);
+                    BindQuestionlist(_list);
                     showQuestionNo(index + 1, _list.Count);
                 }
                 if (index == 0)
@@ -315,6 +315,20 @@ namespace ExamSimulator
             }
         }
 
+        private void checkMark_click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var button = sender as CheckBox;
+                var QuestionNo = Convert.ToInt32(button.TabIndex);
+                _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Mark = Convert.ToBoolean(button.IsChecked);
+            }
+            catch
+            {
+
+            }
+        }
+
         private void btnEndExam_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -325,6 +339,12 @@ namespace ExamSimulator
             {
 
             }
+        }
+
+        private void btnReviewMarkExam_Click(object sender, RoutedEventArgs e)
+        {
+            _list = _list.Where(q => q.Mark.Equals(true)).ToList();
+            BindQuestionlist(_list);
         }
 
         private void ListBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -469,6 +489,7 @@ namespace ExamSimulator
         public bool userResult { get; set; }
         public string Explaination { get; set; }
         public bool ExamMode { get; set; }
+        public bool Mark { get; set; }
     }
 
     class Answerlist

@@ -33,7 +33,6 @@
         </Style>
     </Page.Resources>
     <DockPanel LastChildFill="True">
-
         <Border Height="50" DockPanel.Dock="Bottom">
             <Grid>
                 <Grid.RowDefinitions>
@@ -59,9 +58,9 @@
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <StackPanel HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top">
+                    <Label Name="lblresultStatus"  FontSize="25" HorizontalAlignment="Center"></Label>
                     <Label  FontSize="50" HorizontalAlignment="Center">Examination Score Report</Label>
                     <Label  FontSize="22" HorizontalAlignment="Center">Exam sample</Label>
-
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Width="auto">
                     <Grid HorizontalAlignment="Center" Width="auto">
@@ -92,7 +91,6 @@
                     </Grid>
                 </StackPanel>
             </Grid>
-
         </Border>
     </DockPanel>
 </Page>
