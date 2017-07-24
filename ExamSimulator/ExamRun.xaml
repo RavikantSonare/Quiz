@@ -294,7 +294,7 @@
                             <Label x:Name="lblQuestionOutof"  FontSize="15"/>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Image VerticalAlignment="Top">
+                            <Image VerticalAlignment="Top" Name="imgtimer">
                                 <Image.Source>
                                     <BitmapImage UriSource="Resources\stopwatch.png" />
                                 </Image.Source>

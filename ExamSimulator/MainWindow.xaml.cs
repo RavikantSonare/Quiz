@@ -44,7 +44,7 @@ namespace ExamSimulator
             }
             else
             {
-                files = Directory.GetFiles(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\Examfile\\", "*.txt", SearchOption.AllDirectories);
+                files = Directory.GetFiles(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\Examfile\\", "*.docx", SearchOption.AllDirectories);
             }
             if (files.Length > 0)
             {

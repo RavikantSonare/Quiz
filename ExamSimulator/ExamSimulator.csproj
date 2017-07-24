@@ -35,8 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GongSolutions.WPF.DragDrop">
-      <HintPath>D:\Work\Code Demo Example\WPF-gong-wpf-dragdrop-dev\gong-wpf-dragdrop-dev\src\bin\GongSolutions.WPF.DragDrop\Debug_NET45\GongSolutions.WPF.DragDrop.dll</HintPath>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Windows\assembly\GAC\Microsoft.Office.Interop.Word\12.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Word.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -136,6 +138,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Examfile\Document.docx" />
+    <None Include="Examfile\Document2.docx" />
     <None Include="Examfile\QuizDemo.docx" />
     <None Include="Examfile\QuizDemo13.docx" />
     <None Include="Properties\Settings.settings">

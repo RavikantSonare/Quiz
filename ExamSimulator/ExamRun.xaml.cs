@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Windows.Threading;
 using System.Collections.ObjectModel;
 using System.Collections;
@@ -79,6 +80,8 @@ namespace ExamSimulator
             listQuestionMark.ItemsSource = _qestlist.Skip(index).Take(1);
         }
 
+        private Microsoft.Office.Interop.Word.Application m_word;
+        private int m_i;
         List<Questions> _quetionList = new List<Questions>();
         private List<Questions> bindQuestionListboxToList()
         {
@@ -100,6 +103,56 @@ namespace ExamSimulator
                 string CommanStrflag = "Q", QuestionStr = string.Empty, AnswerStr = string.Empty, RightAnswerStr = string.Empty, ExpStr = string.Empty;
                 int DoneQueStatus = 0, questionNo = 0;
                 string[] aas = null;
+
+
+                object missing = Type.Missing;
+                object FileName = filelist.Path;
+                object readOnly = true;
+                m_word = new Microsoft.Office.Interop.Word.Application();
+                m_word.Documents.Open(ref FileName,
+                                        ref missing, ref readOnly, ref missing, ref missing,
+                                        ref missing, ref missing, ref missing, ref missing,
+                                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+                try
+                {
+                    for (int i = 1; i <= m_word.ActiveDocument.InlineShapes.Count; i++)
+                    {
+                        m_i = i;
+                        // CopyFromClipboardShape();
+                        Thread thread = new Thread(CopyFromClipbordInlineShape);
+                        thread.SetApartmentState(ApartmentState.STA);
+                        thread.Start();
+                        thread.Join();
+                    }
+                }
+                finally
+                {
+                    object save = false;
+                    m_word.Quit(ref save, ref missing, ref missing);
+                    m_word = null;
+                }
+
+                //StringBuilder sb = new StringBuilder();
+                //Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();
+                //object file = filelist.Path;
+
+                //object nullobj = System.Reflection.Missing.Value;
+
+                //Microsoft.Office.Interop.Word.Document doc = wordApp.Documents.Open
+                //                                        (ref file, ref nullobj, ref nullobj,
+                //                                        ref nullobj, ref nullobj, ref nullobj,
+                //                                        ref nullobj, ref nullobj, ref nullobj,
+                //                                        ref nullobj, ref nullobj, ref nullobj);
+
+
+                //Microsoft.Office.Interop.Word.Paragraphs DocPar = doc.Paragraphs;
+                //for (int i = 0; i < doc.Paragraphs.Count; i++)
+                //{
+                //    sb.Append(doc.Paragraphs[i + 1].Range.Text.Trim());
+                //}
+                //doc.Close(ref nullobj, ref nullobj, ref nullobj);
+                //wordApp.Quit(ref nullobj, ref nullobj, ref nullobj);
+                //sb.ToString();
 
                 for (int i = 0; i < filePath.Length; i++)
                 {
@@ -182,11 +235,37 @@ namespace ExamSimulator
                     DoneQueStatus = 0;
                 }
             }
-            catch
+            catch (Exception ex)
             {
 
             }
             return _quetionList;
+        }
+
+        protected void CopyFromClipbordInlineShape()
+        {
+            //System.Windows.Interop.InteropBitmap
+            Microsoft.Office.Interop.Word.InlineShape inlineShape = m_word.ActiveDocument.InlineShapes[m_i];
+            inlineShape.Select();
+            m_word.Selection.Copy();
+            if (Clipboard.GetDataObject() != null)
+            {
+                IDataObject data = Clipboard.GetDataObject();
+                if (data.GetDataPresent(System.Windows.DataFormats.Bitmap))
+                {
+                    //Image image = (Image)data.GetData(DataFormats.Bitmap, true);
+                    System.Windows.Interop.InteropBitmap image = (System.Windows.Interop.InteropBitmap)data.GetData(DataFormats.Bitmap, true);
+                    imgtimer.Source = image;
+                }
+                else
+                {
+                    MessageBox.Show("The Data In Clipboard is not as image format");
+                }
+            }
+            else
+            {
+                MessageBox.Show("The Clipboard was empty");
+            }
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
