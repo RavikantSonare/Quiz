@@ -19,6 +19,10 @@ using System.Threading;
 using System.Windows.Threading;
 using System.Collections.ObjectModel;
 using System.Collections;
+using Spire.Doc;
+using Spire.Doc.Documents;
+using Spire.Doc.Fields;
+using System.Drawing;
 
 namespace ExamSimulator
 {
@@ -103,143 +107,202 @@ namespace ExamSimulator
                 int DoneQueStatus = 0, questionNo = 0;
                 string[] aas = null;
 
-                /// <summary>
-                /// Read image to word doc
-                /// </summary>
 
-                //object missing = Type.Missing;
-                //object FileName = filelist.Path;
-                //object readOnly = true;
-                //m_word = new Microsoft.Office.Interop.Word.Application();
-                //m_word.Documents.Open(ref FileName,
-                //                       ref missing, ref readOnly, ref missing, ref missing,
-                //                       ref missing, ref missing, ref missing, ref missing,
-                //                       ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
-                //try
-                //{
-                //    for (int i = 1; i <= m_word.ActiveDocument.InlineShapes.Count; i++)
-                //    {
-                //        m_i = i;
-                //        // CopyFromClipboardShape();
-                //        Thread thread = new Thread(CopyFromClipbordInlineShape);
-                //        thread.SetApartmentState(ApartmentState.STA);
-                //        thread.Start();
-                //        thread.Join();
-                //    }
-                //}
-                //finally
-                //{
-                //    object save = false;
-                //    m_word.Quit(ref save, ref missing, ref missing);
-                //    m_word = null;
-                //}
+                Document document = new Document(filelist.Path);
+                int index = 0;
 
-                /// <summary>
-                /// Read text to word doc
-                /// </summary>
-
-                //StringBuilder sb = new StringBuilder();
-                //Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();
-                //object file = filelist.Path;
-
-                //object nullobj = System.Reflection.Missing.Value;
-
-                //Microsoft.Office.Interop.Word.Document doc = wordApp.Documents.Open
-                //                                        (ref file, ref nullobj, ref nullobj,
-                //                                        ref nullobj, ref nullobj, ref nullobj,
-                //                                        ref nullobj, ref nullobj, ref nullobj,
-                //                                        ref nullobj, ref nullobj, ref nullobj);
-
-
-                //Microsoft.Office.Interop.Word.Paragraphs DocPar = doc.Paragraphs;
-                //for (int i = 0; i < doc.Paragraphs.Count; i++)
-                //{
-                //    sb.Append(doc.Paragraphs[i + 1].Range.Text.Trim());
-                //}
-                //doc.Close(ref nullobj, ref nullobj, ref nullobj);
-                //wordApp.Quit(ref nullobj, ref nullobj, ref nullobj);
-                //sb.ToString();
-
-                for (int i = 0; i < filePath.Length; i++)
+                foreach (Spire.Doc.Section section in document.Sections)
                 {
-                    string CurrrentStr = filePath[i].Trim();
-                    if (String.IsNullOrEmpty(CurrrentStr))
+                    //Get Each Paragraph of Section
+                    foreach (Spire.Doc.Documents.Paragraph paragraph in section.Paragraphs)
                     {
+                        //Get Each Document Object of Paragraph Items
                         DoneQueStatus++;
-                        continue;
-                    }
-
-                    if (!String.IsNullOrEmpty(CurrrentStr))
-                    {
-                        if (CurrrentStr == "Question")
+                        foreach (DocumentObject docObject in paragraph.ChildObjects)
                         {
-                            CommanStrflag = "Q";
-                            if (questionNo == 0)
-                                questionNo++;
-                        }
-
-                        if (AnswerCharList.Contains(CurrrentStr.Substring(0, 2)))
-                            CommanStrflag = "A";
-
-                        if (CurrrentStr.Contains("Answer:"))
-                            CommanStrflag = "RA";
-
-                        if (CurrrentStr.Contains("Explanation:"))
-                            CommanStrflag = "E";
-                    }
-                    switch (CommanStrflag)
-                    {
-                        case "Q":
-                            if (CurrrentStr != "Question")
+                            string CurrrentStr = paragraph.Text.Trim();
+                            if (String.IsNullOrEmpty(CurrrentStr))
                             {
-                                QuestionStr += CurrrentStr + "\n";
-                            }
-                            break;
-                        case "RA":
-                            RightAnswerStr += CurrrentStr;
-                            if (RightAnswerStr.Contains("Answer:"))
-                            {
-                                var s = RightAnswerStr.Split(':');
-                                aas = Array.ConvertAll(s[1].Split(','), p => p.Trim());
-                                for (int j = 0; j < _answerlist.Count; j++)
+                                if (docObject.DocumentObjectType == DocumentObjectType.Picture)
                                 {
-                                    string value = Convert.ToChar(65 + j).ToString();
-                                    if (aas.Contains(value))
-                                    {
-                                        _rightAnswerlist.Add(new RightAnswer { Rightanswer = true });
-                                        if (filelist != null && filelist.Mode == "SM")
-                                        {
-                                            _answerlist[j].UserAnwer = true;
-                                        }
-                                    }
-                                    else _rightAnswerlist.Add(new RightAnswer { Rightanswer = false });
+                                    DocPicture pic = docObject as DocPicture;
+                                    String imgName = String.Format(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\ExamImage\\Question" + questionNo + "-{0}.png", index);
+
+                                    //Save Image
+                                    pic.Image.Save(imgName, System.Drawing.Imaging.ImageFormat.Png);
+                                    index++;
                                 }
                             }
-                            break;
-                        case "A":
-                            _answerlist.Add(new Answerlist { Answer = CurrrentStr.Trim(), QuestionNo = questionNo });
-                            break;
-                        case "E":
-                            ExpStr += CurrrentStr + "\n";
-                            break;
 
-                    }
-                    if (filePath.Length == i + 2 || DoneQueStatus >= 2)
-                    {
-                        int qtype = 1; bool mode = true; bool ureslut = false;
-                        if (aas.Length > 1)
-                        {
-                            qtype = 2;
+                            if (!String.IsNullOrEmpty(CurrrentStr))
+                            {
+                                if (CurrrentStr == "Question")
+                                {
+                                    CommanStrflag = "Q";
+                                    if (questionNo == 0)
+                                        questionNo++;
+                                }
+
+                                if (AnswerCharList.Contains(CurrrentStr.Substring(0, 2)))
+                                    CommanStrflag = "A";
+
+                                if (CurrrentStr.Contains("Answer:"))
+                                    CommanStrflag = "RA";
+
+                                if (CurrrentStr.Contains("Explanation:"))
+                                    CommanStrflag = "E";
+                            }
+                            switch (CommanStrflag)
+                            {
+                                case "Q":
+                                    if (CurrrentStr != "Question")
+                                    {
+                                        QuestionStr += CurrrentStr + "\n";
+                                    }
+                                    break;
+                                case "RA":
+                                    RightAnswerStr += CurrrentStr;
+                                    if (RightAnswerStr.Contains("Answer:"))
+                                    {
+                                        var s = RightAnswerStr.Split(':');
+                                        aas = Array.ConvertAll(s[1].Split(','), p => p.Trim());
+                                        for (int j = 0; j < _answerlist.Count; j++)
+                                        {
+                                            string value = Convert.ToChar(65 + j).ToString();
+                                            if (aas.Contains(value))
+                                            {
+                                                _rightAnswerlist.Add(new RightAnswer { Rightanswer = true });
+                                                if (filelist != null && filelist.Mode == "SM")
+                                                {
+                                                    _answerlist[j].UserAnwer = true;
+                                                }
+                                            }
+                                            else _rightAnswerlist.Add(new RightAnswer { Rightanswer = false });
+                                        }
+                                    }
+                                    break;
+                                case "A":
+                                    _answerlist.Add(new Answerlist { Answer = CurrrentStr.Trim(), QuestionNo = questionNo });
+                                    break;
+                                case "E":
+                                    ExpStr += CurrrentStr + "\n";
+                                    break;
+                            }
+                            //if (filePath.Length == section.Paragraphs.Count + 2 || DoneQueStatus >= 2)
+                            //{
+                            //    int qtype = 1; bool mode = true; bool ureslut = false;
+                            //    if (aas.Length > 1)
+                            //    {
+                            //        qtype = 2;
+                            //    }
+                            //    if (filelist != null && filelist.Mode == "SM")
+                            //    { mode = false; ureslut = true; }
+                            //    _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
+                            //    CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty;
+                            //    _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
+                            //    questionNo++;
+                            //}
+                            //DoneQueStatus = 0;
                         }
-                        if (filelist != null && filelist.Mode == "SM")
-                        { mode = false; ureslut = true; }
-                        _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
-                        CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty;
-                        _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
-                        questionNo++;
+                        if (paragraph.ChildObjects.Count == 0)
+                        {
+                            int qtype = 1; bool mode = true; bool ureslut = false;
+                            if (aas.Length > 1)
+                            {
+                                qtype = 2;
+                            }
+                            if (filelist != null && filelist.Mode == "SM")
+                            { mode = false; ureslut = true; }
+                            _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
+                            CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty;
+                            _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
+                            questionNo++;
+                        }
                     }
-                    DoneQueStatus = 0;
                 }
+
+
+
+                //for (int i = 0; i < filePath.Length; i++)
+                //{
+                //    string CurrrentStr = filePath[i].Trim();
+                //    if (String.IsNullOrEmpty(CurrrentStr))
+                //    {
+                //        DoneQueStatus++;
+                //        continue;
+                //    }
+
+                //    if (!String.IsNullOrEmpty(CurrrentStr))
+                //    {
+                //        if (CurrrentStr == "Question")
+                //        {
+                //            CommanStrflag = "Q";
+                //            if (questionNo == 0)
+                //                questionNo++;
+                //        }
+
+                //        if (AnswerCharList.Contains(CurrrentStr.Substring(0, 2)))
+                //            CommanStrflag = "A";
+
+                //        if (CurrrentStr.Contains("Answer:"))
+                //            CommanStrflag = "RA";
+
+                //        if (CurrrentStr.Contains("Explanation:"))
+                //            CommanStrflag = "E";
+                //    }
+                //    switch (CommanStrflag)
+                //    {
+                //        case "Q":
+                //            if (CurrrentStr != "Question")
+                //            {
+                //                QuestionStr += CurrrentStr + "\n";
+                //            }
+                //            break;
+                //        case "RA":
+                //            RightAnswerStr += CurrrentStr;
+                //            if (RightAnswerStr.Contains("Answer:"))
+                //            {
+                //                var s = RightAnswerStr.Split(':');
+                //                aas = Array.ConvertAll(s[1].Split(','), p => p.Trim());
+                //                for (int j = 0; j < _answerlist.Count; j++)
+                //                {
+                //                    string value = Convert.ToChar(65 + j).ToString();
+                //                    if (aas.Contains(value))
+                //                    {
+                //                        _rightAnswerlist.Add(new RightAnswer { Rightanswer = true });
+                //                        if (filelist != null && filelist.Mode == "SM")
+                //                        {
+                //                            _answerlist[j].UserAnwer = true;
+                //                        }
+                //                    }
+                //                    else _rightAnswerlist.Add(new RightAnswer { Rightanswer = false });
+                //                }
+                //            }
+                //            break;
+                //        case "A":
+                //            _answerlist.Add(new Answerlist { Answer = CurrrentStr.Trim(), QuestionNo = questionNo });
+                //            break;
+                //        case "E":
+                //            ExpStr += CurrrentStr + "\n";
+                //            break;
+
+                //    }
+                //    if (filePath.Length == i + 2 || DoneQueStatus >= 2)
+                //    {
+                //        int qtype = 1; bool mode = true; bool ureslut = false;
+                //        if (aas.Length > 1)
+                //        {
+                //            qtype = 2;
+                //        }
+                //        if (filelist != null && filelist.Mode == "SM")
+                //        { mode = false; ureslut = true; }
+                //        _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
+                //        CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty;
+                //        _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
+                //        questionNo++;
+                //    }
+                //    DoneQueStatus = 0;
+                //}
             }
             catch (Exception ex)
             {
@@ -248,38 +311,41 @@ namespace ExamSimulator
             return _quetionList;
         }
 
-        public void voidReadMsWord(string filePath)
+        private static void ExtractImages()
         {
             StringBuilder sb = new StringBuilder();
-            try
+            //Load document
+            Document document = new Document(@"D:\ExtractImages.docx");
+            int index = 0;
+
+            //Get Each Section of Document
+            foreach (Spire.Doc.Section section in document.Sections)
             {
-                // create word application
-                Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
-                // create object of missing value
-                object miss = System.Reflection.Missing.Value;
-                // create object of selected file path
-                object path = filePath;
-                // set file path mode
-                object readOnly = false;
-                // open document                
-                Microsoft.Office.Interop.Word.Document docs = word.Documents.Open(ref path, ref miss, ref readOnly, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss);
-                // select whole data from active window document
-                docs.ActiveWindow.Selection.WholeStory();
-                // handover the data to cllipboard
-                docs.ActiveWindow.Selection.Copy();
-                // clipboard create reference of idataobject interface which transfer the data
-                IDataObject data = Clipboard.GetDataObject();
-                //set data into richtextbox control in text format
-                sb.Append(data.GetData(DataFormats.Text).ToString());
+                //Get Each Paragraph of Section
+                foreach (Spire.Doc.Documents.Paragraph paragraph in section.Paragraphs)
+                {
+                    //Get Each Document Object of Paragraph Items
+                    foreach (DocumentObject docObject in paragraph.ChildObjects)
+                    {
+                        //If Type of Document Object is Picture, Extract.
+                        if (docObject.DocumentObjectType == DocumentObjectType.Picture)
+                        {
+                            DocPicture pic = docObject as DocPicture;
+                            String imgName = String.Format(@"D:\DocImage\Extracted_Image-{0}.png", index);
 
-                // read bitmap image from clipboard with help of iddataobject interface
-                Image img = (Image)data.GetData(DataFormats.Bitmap);
-                // close the document
-                docs.Close(ref miss, ref miss, ref miss);
-                sb.ToString();
+                            //Save Image
+                            pic.Image.Save(imgName, System.Drawing.Imaging.ImageFormat.Png);
+                            index++;
+                        }
+                        else if (docObject.DocumentObjectType == DocumentObjectType.TextRange)
+                        {
+                            Spire.Doc.Fields.TextRange range = docObject as Spire.Doc.Fields.TextRange;
+                            sb.Append(range.Text);
+                        }
+                    }
+                }
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
-
+            sb.ToString();
         }
 
         protected void CopyFromClipbordInlineShape()
@@ -569,7 +635,7 @@ namespace ExamSimulator
         }
 
         #region GetDataFromListBox(ListBox,Point)
-        private static object GetDataFromListBox(ListBox source, Point point)
+        private static object GetDataFromListBox(ListBox source, System.Windows.Point point)
         {
             UIElement element = source.InputHitTest(point) as UIElement;
             if (element != null)

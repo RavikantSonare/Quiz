@@ -40,6 +40,21 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>C:\Windows\assembly\GAC\Microsoft.Office.Interop.Word\12.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Word.dll</HintPath>
     </Reference>
+    <Reference Include="Spire.Common">
+      <HintPath>C:\Users\mobiweb\Downloads\ImageOperationsInWord\ImageOperationsInWord\bin\Debug\Spire.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Doc">
+      <HintPath>C:\Users\mobiweb\Downloads\ImageOperationsInWord\ImageOperationsInWord\bin\Debug\Spire.Doc.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.License">
+      <HintPath>C:\Users\mobiweb\Downloads\ImageOperationsInWord\ImageOperationsInWord\bin\Debug\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf">
+      <HintPath>C:\Users\mobiweb\Downloads\ImageOperationsInWord\ImageOperationsInWord\bin\Debug\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.XLS">
+      <HintPath>C:\Users\mobiweb\Downloads\ImageOperationsInWord\ImageOperationsInWord\bin\Debug\Spire.XLS.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -143,6 +158,7 @@
     <None Include="Examfile\Document2.docx" />
     <None Include="Examfile\Document3.docx" />
     <None Include="Examfile\Document4.docx" />
+    <None Include="Examfile\Document5.docx" />
     <None Include="Examfile\QuizDemo.docx" />
     <None Include="Examfile\QuizDemo13.docx" />
     <None Include="Properties\Settings.settings">
