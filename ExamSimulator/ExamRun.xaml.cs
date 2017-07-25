@@ -96,7 +96,6 @@ namespace ExamSimulator
                 {
                     filePath = File.ReadAllLines(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\Examfile\\Quiz1.txt");
                 }
-
                 List<Answerlist> _answerlist = new List<Answerlist>();
                 List<RightAnswer> _rightAnswerlist = new List<RightAnswer>();
                 List<string> AnswerCharList = new List<string>() { "A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.", "J." };
@@ -104,33 +103,40 @@ namespace ExamSimulator
                 int DoneQueStatus = 0, questionNo = 0;
                 string[] aas = null;
 
+                /// <summary>
+                /// Read image to word doc
+                /// </summary>
 
-                object missing = Type.Missing;
-                object FileName = filelist.Path;
-                object readOnly = true;
-                m_word = new Microsoft.Office.Interop.Word.Application();
-                m_word.Documents.Open(ref FileName,
-                                        ref missing, ref readOnly, ref missing, ref missing,
-                                        ref missing, ref missing, ref missing, ref missing,
-                                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
-                try
-                {
-                    for (int i = 1; i <= m_word.ActiveDocument.InlineShapes.Count; i++)
-                    {
-                        m_i = i;
-                        // CopyFromClipboardShape();
-                        Thread thread = new Thread(CopyFromClipbordInlineShape);
-                        thread.SetApartmentState(ApartmentState.STA);
-                        thread.Start();
-                        thread.Join();
-                    }
-                }
-                finally
-                {
-                    object save = false;
-                    m_word.Quit(ref save, ref missing, ref missing);
-                    m_word = null;
-                }
+                //object missing = Type.Missing;
+                //object FileName = filelist.Path;
+                //object readOnly = true;
+                //m_word = new Microsoft.Office.Interop.Word.Application();
+                //m_word.Documents.Open(ref FileName,
+                //                       ref missing, ref readOnly, ref missing, ref missing,
+                //                       ref missing, ref missing, ref missing, ref missing,
+                //                       ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+                //try
+                //{
+                //    for (int i = 1; i <= m_word.ActiveDocument.InlineShapes.Count; i++)
+                //    {
+                //        m_i = i;
+                //        // CopyFromClipboardShape();
+                //        Thread thread = new Thread(CopyFromClipbordInlineShape);
+                //        thread.SetApartmentState(ApartmentState.STA);
+                //        thread.Start();
+                //        thread.Join();
+                //    }
+                //}
+                //finally
+                //{
+                //    object save = false;
+                //    m_word.Quit(ref save, ref missing, ref missing);
+                //    m_word = null;
+                //}
+
+                /// <summary>
+                /// Read text to word doc
+                /// </summary>
 
                 //StringBuilder sb = new StringBuilder();
                 //Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();
@@ -242,9 +248,42 @@ namespace ExamSimulator
             return _quetionList;
         }
 
+        public void voidReadMsWord(string filePath)
+        {
+            StringBuilder sb = new StringBuilder();
+            try
+            {
+                // create word application
+                Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
+                // create object of missing value
+                object miss = System.Reflection.Missing.Value;
+                // create object of selected file path
+                object path = filePath;
+                // set file path mode
+                object readOnly = false;
+                // open document                
+                Microsoft.Office.Interop.Word.Document docs = word.Documents.Open(ref path, ref miss, ref readOnly, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss);
+                // select whole data from active window document
+                docs.ActiveWindow.Selection.WholeStory();
+                // handover the data to cllipboard
+                docs.ActiveWindow.Selection.Copy();
+                // clipboard create reference of idataobject interface which transfer the data
+                IDataObject data = Clipboard.GetDataObject();
+                //set data into richtextbox control in text format
+                sb.Append(data.GetData(DataFormats.Text).ToString());
+
+                // read bitmap image from clipboard with help of iddataobject interface
+                Image img = (Image)data.GetData(DataFormats.Bitmap);
+                // close the document
+                docs.Close(ref miss, ref miss, ref miss);
+                sb.ToString();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+
+        }
+
         protected void CopyFromClipbordInlineShape()
         {
-            //System.Windows.Interop.InteropBitmap
             Microsoft.Office.Interop.Word.InlineShape inlineShape = m_word.ActiveDocument.InlineShapes[m_i];
             inlineShape.Select();
             m_word.Selection.Copy();
@@ -253,9 +292,16 @@ namespace ExamSimulator
                 IDataObject data = Clipboard.GetDataObject();
                 if (data.GetDataPresent(System.Windows.DataFormats.Bitmap))
                 {
-                    //Image image = (Image)data.GetData(DataFormats.Bitmap, true);
                     System.Windows.Interop.InteropBitmap image = (System.Windows.Interop.InteropBitmap)data.GetData(DataFormats.Bitmap, true);
-                    imgtimer.Source = image;
+                    BitmapSource bmpSource = image as BitmapSource;
+                    BitmapEncoder encoder = new PngBitmapEncoder();
+                    Guid photoID = System.Guid.NewGuid();
+                    String photolocation = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\ExamImage\\" + photoID.ToString() + ".png";
+                    encoder.Frames.Add(BitmapFrame.Create(bmpSource));
+                    using (var fileStream = new System.IO.FileStream(photolocation, FileMode.Create))
+                    {
+                        encoder.Save(fileStream);
+                    }
                 }
                 else
                 {

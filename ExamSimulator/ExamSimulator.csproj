@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -140,6 +141,8 @@
     </EmbeddedResource>
     <None Include="Examfile\Document.docx" />
     <None Include="Examfile\Document2.docx" />
+    <None Include="Examfile\Document3.docx" />
+    <None Include="Examfile\Document4.docx" />
     <None Include="Examfile\QuizDemo.docx" />
     <None Include="Examfile\QuizDemo13.docx" />
     <None Include="Properties\Settings.settings">
@@ -165,6 +168,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\stopwatch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ExamImage\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
