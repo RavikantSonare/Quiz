@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamSimulator"
         mc:Ignorable="d" MouseDown="Windows_MouseDown"
-        Title="ExamMaster" Height="700" Width="1050" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  AllowsTransparency="True" BorderBrush="#A5BBC8" BorderThickness="6" >
+        Title="ExamMaster" Height="700" Width="1050" WindowStyle="None"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  
+        AllowsTransparency="True" BorderBrush="#A5BBC8" BorderThickness="6" 
+        Icon="Resources/q.ico">
     <Window.Resources>
         <Style x:Key="WindowIconStyle" TargetType="{x:Type Button}">
             <Setter Property="FontFamily" Value="Webdings" />

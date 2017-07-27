@@ -1,28 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
 using System.Data;
-using System.Data.SqlClient;
-using System.Threading;
 using System.Windows.Threading;
-using System.Collections.ObjectModel;
-using System.Collections;
 using Spire.Doc;
 using Spire.Doc.Documents;
 using Spire.Doc.Fields;
-using System.Drawing;
 
 namespace ExamSimulator
 {
@@ -84,8 +73,6 @@ namespace ExamSimulator
             listQuestionMark.ItemsSource = _qestlist.Skip(index).Take(1);
         }
 
-        private Microsoft.Office.Interop.Word.Application m_word;
-        private int m_i;
         List<Questions> _quetionList = new List<Questions>();
         private List<Questions> bindQuestionListboxToList()
         {
@@ -315,75 +302,6 @@ namespace ExamSimulator
                 MessageBox.Show(ex.ToString());
             }
             return _quetionList;
-        }
-
-        private static void ExtractImages()
-        {
-            StringBuilder sb = new StringBuilder();
-            //Load document
-            Document document = new Document(@"D:\ExtractImages.docx");
-            int index = 0;
-
-            //Get Each Section of Document
-            foreach (Spire.Doc.Section section in document.Sections)
-            {
-                //Get Each Paragraph of Section
-                foreach (Spire.Doc.Documents.Paragraph paragraph in section.Paragraphs)
-                {
-                    //Get Each Document Object of Paragraph Items
-                    foreach (DocumentObject docObject in paragraph.ChildObjects)
-                    {
-                        //If Type of Document Object is Picture, Extract.
-                        if (docObject.DocumentObjectType == DocumentObjectType.Picture)
-                        {
-                            DocPicture pic = docObject as DocPicture;
-                            String imgName = String.Format(@"D:\DocImage\Extracted_Image-{0}.png", index);
-
-                            //Save Image
-                            pic.Image.Save(imgName, System.Drawing.Imaging.ImageFormat.Png);
-                            index++;
-                        }
-                        else if (docObject.DocumentObjectType == DocumentObjectType.TextRange)
-                        {
-                            Spire.Doc.Fields.TextRange range = docObject as Spire.Doc.Fields.TextRange;
-                            sb.Append(range.Text);
-                        }
-                    }
-                }
-            }
-            sb.ToString();
-        }
-
-        protected void CopyFromClipbordInlineShape()
-        {
-            Microsoft.Office.Interop.Word.InlineShape inlineShape = m_word.ActiveDocument.InlineShapes[m_i];
-            inlineShape.Select();
-            m_word.Selection.Copy();
-            if (Clipboard.GetDataObject() != null)
-            {
-                IDataObject data = Clipboard.GetDataObject();
-                if (data.GetDataPresent(System.Windows.DataFormats.Bitmap))
-                {
-                    System.Windows.Interop.InteropBitmap image = (System.Windows.Interop.InteropBitmap)data.GetData(DataFormats.Bitmap, true);
-                    BitmapSource bmpSource = image as BitmapSource;
-                    BitmapEncoder encoder = new PngBitmapEncoder();
-                    Guid photoID = System.Guid.NewGuid();
-                    String photolocation = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\ExamImage\\" + photoID.ToString() + ".png";
-                    encoder.Frames.Add(BitmapFrame.Create(bmpSource));
-                    using (var fileStream = new System.IO.FileStream(photolocation, FileMode.Create))
-                    {
-                        encoder.Save(fileStream);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("The Data In Clipboard is not as image format");
-                }
-            }
-            else
-            {
-                MessageBox.Show("The Clipboard was empty");
-            }
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
@@ -672,7 +590,7 @@ namespace ExamSimulator
         }
         #endregion
 
-        private void btnShow_Click(object sender, EventArgs e)
+        private void btnExhibit_Click(object sender, EventArgs e)
         {
             foreach (var item in listQuestion.Items)
             {
@@ -680,8 +598,11 @@ namespace ExamSimulator
                 ListBoxItem myListBoxItem = (ListBoxItem)(listQuestion.ItemContainerGenerator.ContainerFromIndex(0));
                 ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-                System.Windows.Controls.Primitives.Popup target = (System.Windows.Controls.Primitives.Popup)myDataTemplate.FindName("MyPopup", myContentPresenter);
-                target.IsOpen = true;
+                Button target = (Button)myDataTemplate.FindName("btnExhibit", myContentPresenter);
+                ExhibitImage test2 = new ExhibitImage(Convert.ToString(target.CommandParameter));
+                test2.ShowDialog();
+                //System.Windows.Controls.Primitives.Popup target = (System.Windows.Controls.Primitives.Popup)myDataTemplate.FindName("MyPopup", myContentPresenter);
+                //target.IsOpen = true;
             }
         }
 

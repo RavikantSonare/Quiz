@@ -1,0 +1,76 @@
+﻿<Window x:Class="ExamSimulator.ExhibitImage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExamSimulator"
+        mc:Ignorable="d"
+        Title="ExhibitImage" Height="350" Width="600" 
+        WindowStyle="None" ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        BorderBrush="#0C4068" BorderThickness="1 6 1 6"
+        MouseDown="Windows_MouseDown" Name="ExhibitImagePopup" ShowInTaskbar="False">
+    <Window.Resources>
+        <VisualBrush x:Key="HatchBrushnew" 
+  TileMode="Tile"
+  Viewport="0,0,5,30" 
+  ViewportUnits="Absolute" 
+  Viewbox="0,0,30,30"    
+  ViewboxUnits="Absolute">
+            <VisualBrush.Transform>
+                <RotateTransform Angle="135" CenterX=".5" CenterY=".5" />
+            </VisualBrush.Transform>
+            <VisualBrush.Visual>
+                <Canvas>
+                    <Path  Stroke="Black" StrokeThickness="1" >
+                        <Path.Data>
+                            <LineGeometry StartPoint="15,0" EndPoint="15,30" />
+                        </Path.Data>
+                    </Path>
+                </Canvas>
+            </VisualBrush.Visual>
+        </VisualBrush>
+
+        <Style  TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="{StaticResource HatchBrushnew}"/>
+        </Style>
+    </Window.Resources>
+    <DockPanel LastChildFill="True">
+        <Border Height="60" Background="WhiteSmoke" DockPanel.Dock="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="label" Grid.Row="0" Grid.Column="0" Content="Exhibit" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray" FontSize="20"/>
+
+            </Grid>
+        </Border>
+        <Border Height="60"  DockPanel.Dock="Bottom">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnCloase" Grid.Row="0" Grid.Column="1" Content="Close" Height="35" Margin="10,12,10,0" Background="#29577B" Foreground="White" FontSize="20" Click="btnClose"/>
+            </Grid>
+        </Border>
+        <Border Background="White">
+            <ScrollViewer
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto">
+                <Image x:Name="imgExhibit"
+                            Stretch="None"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+            </ScrollViewer>
+        </Border>
+    </DockPanel>
+</Window>

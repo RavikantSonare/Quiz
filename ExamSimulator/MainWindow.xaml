@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamSimulator" Loaded="Page_Loaded"
         mc:Ignorable="d" MouseDown="Windows_MouseDown"
-        Title="MainWindow" Height="455" Width="725" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  AllowsTransparency="True" BorderBrush="#A5BBC8" BorderThickness="6">
+        Title="MainWindow" Height="455" Width="725" 
+        WindowStyle="None" ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen"  
+        AllowsTransparency="True" BorderBrush="#A5BBC8" BorderThickness="6"
+        Icon="Resources/q.ico">
     <Window.Resources>
         <Style x:Key="WindowIconStyle" TargetType="{x:Type Button}">
             <Setter Property="FontFamily" Value="Webdings" />
