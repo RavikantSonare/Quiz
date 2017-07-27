@@ -308,6 +308,21 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock  Name="txtQuestion" Text="{Binding Question}" Tag="{Binding QuestionType}" Style="{StaticResource wpfStyle1}"/>
+                                <Button Name="Exhibit" HorizontalAlignment="Center" Content="Exhibit" Background="#1C3347" Foreground="White" Click="btnShow_Click"/>
+                                <Popup Name="MyPopup" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                              HorizontalOffset="-150" Placement="Mouse"  VerticalOffset="20" >
+                                    <StackPanel>
+                                        <Border BorderBrush="Black" Background="Brown" BorderThickness="1" Width="400" Height="200" >
+                                            <Grid>
+                                                <Image HorizontalAlignment="Center" Name="imgQuestion">
+                                                    <Image.Source>
+                                                        <BitmapImage UriSource="{Binding Image}"/>
+                                                    </Image.Source>
+                                                </Image>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+                                </Popup>
                                 <ListBox  x:Name="list" ItemsSource="{Binding Answerlist}" Width="auto" BorderThickness="0" IsEnabled="{Binding ExamMode}" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>

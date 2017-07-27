@@ -104,12 +104,14 @@ namespace ExamSimulator
                 List<RightAnswer> _rightAnswerlist = new List<RightAnswer>();
                 List<string> AnswerCharList = new List<string>() { "A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.", "J." };
                 string CommanStrflag = "Q", QuestionStr = string.Empty, AnswerStr = string.Empty, RightAnswerStr = string.Empty, ExpStr = string.Empty;
+                string QuestionImageStr = string.Empty;
                 int DoneQueStatus = 0, questionNo = 0;
                 string[] aas = null;
 
 
                 Document document = new Document(filelist.Path);
-                int index = 0;
+                int index = 1;
+
 
                 foreach (Spire.Doc.Section section in document.Sections)
                 {
@@ -125,11 +127,15 @@ namespace ExamSimulator
                             {
                                 if (docObject.DocumentObjectType == DocumentObjectType.Picture)
                                 {
+                                    string docname = System.IO.Path.GetFileNameWithoutExtension(filelist.Path);
                                     DocPicture pic = docObject as DocPicture;
-                                    String imgName = String.Format(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\ExamImage\\Question" + questionNo + "-{0}.png", index);
-
+                                    String imgName = String.Format(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\ExamImage\\" + docname + "-Question" + questionNo + "-{0}.png", index);
+                                    QuestionImageStr = imgName;
                                     //Save Image
-                                    pic.Image.Save(imgName, System.Drawing.Imaging.ImageFormat.Png);
+                                    if (!File.Exists(imgName))
+                                    {
+                                        pic.Image.Save(imgName, System.Drawing.Imaging.ImageFormat.Png);
+                                    }
                                     index++;
                                 }
                             }
@@ -213,10 +219,10 @@ namespace ExamSimulator
                             }
                             if (filelist != null && filelist.Mode == "SM")
                             { mode = false; ureslut = true; }
-                            _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
+                            _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Image = QuestionImageStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
                             CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty;
                             _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
-                            questionNo++;
+                            questionNo++; index = 1;
                         }
                     }
                 }
@@ -306,7 +312,7 @@ namespace ExamSimulator
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString());
             }
             return _quetionList;
         }
@@ -665,6 +671,36 @@ namespace ExamSimulator
             return null;
         }
         #endregion
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            foreach (var item in listQuestion.Items)
+            {
+                ListBoxItem container = listQuestion.ItemContainerGenerator.ContainerFromItem(item) as ListBoxItem;
+                ListBoxItem myListBoxItem = (ListBoxItem)(listQuestion.ItemContainerGenerator.ContainerFromIndex(0));
+                ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+                DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+                System.Windows.Controls.Primitives.Popup target = (System.Windows.Controls.Primitives.Popup)myDataTemplate.FindName("MyPopup", myContentPresenter);
+                target.IsOpen = true;
+            }
+        }
+
+        private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                if (child != null && child is childItem)
+                    return (childItem)child;
+                else
+                {
+                    childItem childOfChild = FindVisualChild<childItem>(child);
+                    if (childOfChild != null)
+                        return childOfChild;
+                }
+            }
+            return null;
+        }
     }
 
 
@@ -672,6 +708,7 @@ namespace ExamSimulator
     {
         public int QuestionNo { get; set; }
         public string Question { get; set; }
+        public string Image { get; set; }
         public List<Answerlist> Answerlist { get; set; }
         public List<RightAnswer> RightAnswerlist { get; set; }
         public int QuestionType { get; set; }

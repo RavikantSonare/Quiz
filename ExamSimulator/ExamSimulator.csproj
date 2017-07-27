@@ -157,8 +157,8 @@
     <None Include="Examfile\Document.docx" />
     <None Include="Examfile\Document2.docx" />
     <None Include="Examfile\Document3.docx" />
-    <None Include="Examfile\Document4.docx" />
     <None Include="Examfile\Document5.docx" />
+    <None Include="Examfile\ExtractImages.docx" />
     <None Include="Examfile\QuizDemo.docx" />
     <None Include="Examfile\QuizDemo13.docx" />
     <None Include="Properties\Settings.settings">
