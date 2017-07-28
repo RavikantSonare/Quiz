@@ -89,9 +89,10 @@ namespace ExamSimulator
                 }
                 List<Answerlist> _answerlist = new List<Answerlist>();
                 List<RightAnswer> _rightAnswerlist = new List<RightAnswer>();
+                List<string> QuestionTypeList = new List<string>() { "Question(Single Choice)", "Question(Multi Choice)", "Question(Vacant)", "Question(Drag & Drop)", "Question(Hotspot)", "Question(Scenario)" };
                 List<string> AnswerCharList = new List<string>() { "A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.", "J." };
                 string CommanStrflag = "Q", QuestionStr = string.Empty, AnswerStr = string.Empty, RightAnswerStr = string.Empty, ExpStr = string.Empty;
-                string QuestionImageStr = string.Empty;
+                string QuestionImageStr = string.Empty, qtype = string.Empty;
                 int DoneQueStatus = 0, questionNo = 0;
                 string[] aas = null;
 
@@ -129,9 +130,11 @@ namespace ExamSimulator
 
                             if (!String.IsNullOrEmpty(CurrrentStr))
                             {
-                                if (CurrrentStr == "Question")
+                                string value = CurrrentStr.Substring(0, 9);
+                                if (QuestionTypeList.Contains(CurrrentStr))
                                 {
                                     CommanStrflag = "Q";
+                                    qtype = CurrrentStr;
                                     if (questionNo == 0)
                                         questionNo++;
                                 }
@@ -148,7 +151,7 @@ namespace ExamSimulator
                             switch (CommanStrflag)
                             {
                                 case "Q":
-                                    if (CurrrentStr != "Question")
+                                    if (!QuestionTypeList.Contains(CurrrentStr))
                                     {
                                         QuestionStr += CurrrentStr + "\n";
                                     }
@@ -199,15 +202,12 @@ namespace ExamSimulator
                         }
                         if (paragraph.ChildObjects.Count == 0)
                         {
-                            int qtype = 1; bool mode = true; bool ureslut = false;
-                            if (aas.Length > 1)
-                            {
-                                qtype = 2;
-                            }
+                            bool mode = true; bool ureslut = false;
+
                             if (filelist != null && filelist.Mode == "SM")
                             { mode = false; ureslut = true; }
                             _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Image = QuestionImageStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
-                            CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty;
+                            CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty; QuestionImageStr = string.Empty;
                             _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
                             questionNo++; index = 1;
                         }
@@ -599,8 +599,9 @@ namespace ExamSimulator
                 ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
                 Button target = (Button)myDataTemplate.FindName("btnExhibit", myContentPresenter);
-                ExhibitImage test2 = new ExhibitImage(Convert.ToString(target.CommandParameter));
-                test2.ShowDialog();
+                ExhibitImage frmexhibit = new ExhibitImage(Convert.ToString(target.CommandParameter));
+                frmexhibit.Owner = Window.GetWindow(this);
+                frmexhibit.ShowDialog();
                 //System.Windows.Controls.Primitives.Popup target = (System.Windows.Controls.Primitives.Popup)myDataTemplate.FindName("MyPopup", myContentPresenter);
                 //target.IsOpen = true;
             }
@@ -622,6 +623,24 @@ namespace ExamSimulator
             }
             return null;
         }
+
+        private void Rectangle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var rect = sender as System.Windows.Shapes.Rectangle;
+            rect.Fill = Brushes.Goldenrod;
+            rect.StrokeThickness = 3;
+            rect.Stroke = Brushes.Orange;
+            rect.Opacity = .25d;
+        }
+
+        private void Rectangle_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var rect = sender as System.Windows.Shapes.Rectangle;
+            rect.Fill = Brushes.Transparent;
+            rect.StrokeThickness = 2;
+            rect.Stroke = Brushes.Goldenrod;
+            rect.Opacity = 1d;
+        }
     }
 
 
@@ -632,7 +651,7 @@ namespace ExamSimulator
         public string Image { get; set; }
         public List<Answerlist> Answerlist { get; set; }
         public List<RightAnswer> RightAnswerlist { get; set; }
-        public int QuestionType { get; set; }
+        public string QuestionType { get; set; }
         public int NoofAnswer { get; set; }
         public decimal Score { get; set; }
         public bool userResult { get; set; }

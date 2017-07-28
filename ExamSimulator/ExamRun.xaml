@@ -97,9 +97,10 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="2">
-                    <Setter Property="RadioButton.Visibility" Value="Collapsed"/>
+                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="Question(Single Choice)">
+                    <Setter Property="RadioButton.Visibility" Value="Visible"/>
                 </DataTrigger>
                 <DataTrigger  Binding ="{Binding ElementName=txtUserAnswer, Path=Text}"  Value="True">
                     <Setter Property="RadioButton.IsChecked" Value="True"/>
@@ -199,12 +200,40 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="1">
-                    <Setter Property="CheckBox.Visibility" Value="Collapsed"/>
+                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="Question(Multi Choice)">
+                    <Setter Property="CheckBox.Visibility" Value="Visible"/>
                 </DataTrigger>
                 <DataTrigger  Binding ="{Binding ElementName=txtUserAnswer, Path=Text}"  Value="True">
                     <Setter Property="CheckBox.IsChecked" Value="True"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="griddragdrop" TargetType="{x:Type Grid}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="Question(Drag &amp; Drop)">
+                    <Setter Property="CheckBox.Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="canvasHotspot" TargetType="{x:Type Canvas}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="Question(Hotspot)">
+                    <Setter Property="CheckBox.Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="btnexhibit" TargetType="{x:Type Button}">
+            <Setter Property="Visibility" Value="Visible" />
+            <Style.Triggers>
+                <DataTrigger  Binding ="{Binding ElementName=btnExhibit, Path=CommandParameter}"  Value="">
+                    <Setter Property="CheckBox.Visibility" Value="Collapsed"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -309,44 +338,27 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock  Name="txtQuestion" Text="{Binding Question}" Tag="{Binding QuestionType}" Style="{StaticResource wpfStyle1}"/>
-                                <Button Name="btnExhibit" HorizontalAlignment="Center" CommandParameter="{Binding Image}" Content="Exhibit" Background="#1C3347" Foreground="White" Height="30" Margin="10,7,10,0" FontSize="20" Click="btnExhibit_Click"/>
-                                <!--<Popup Name="MyPopup" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                              HorizontalOffset="-150" Placement="Mouse"  VerticalOffset="20" >
-                                    <StackPanel>
-                                        <Border BorderBrush="Black" Background="Brown" BorderThickness="1" Width="400" Height="200" >
-                                            <Grid>
-                                                <Image HorizontalAlignment="Center" Name="imgQuestion">
-                                                    <Image.Source>
-                                                        <BitmapImage UriSource="{Binding Image}"/>
-                                                    </Image.Source>
-                                                </Image>
-                                            </Grid>
-                                        </Border>
-                                    </StackPanel>
-                                </Popup>-->
+                                <Button Name="btnExhibit" HorizontalAlignment="Center" CommandParameter="{Binding Image}" Content="Exhibit" Style="{StaticResource btnexhibit}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnExhibit_Click"/>
                                 <ListBox  x:Name="list" ItemsSource="{Binding Answerlist}" Width="auto" BorderThickness="0" IsEnabled="{Binding ExamMode}" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
                                                 <TextBox Name="txtUserAnswer" Text="{Binding UserAnwer}" Visibility="Collapsed" />
                                                 <RadioButton x:Name="rbtnanswer" Style="{StaticResource rbtnanswer}" Tag="{Binding Answer}" TabIndex="{Binding QuestionNo}"  GroupName="Answer" Click="RadioButton_Checked">
-                                                    <!--Checked="RadioButton_Checked">-->
                                                     <RadioButton.Content>
                                                         <ContentPresenter Content="{Binding Answer}"/>
                                                     </RadioButton.Content>
                                                 </RadioButton>
-                                                <CheckBox x:Name="chkanswer" Style="{StaticResource chkanswer}" Tag="{Binding Answer}" TabIndex="{Binding QuestionNo}" Click="Checkbox_checked">
-                                                    <!-- Checked="Checkbox_checked">-->
+                                                <CheckBox x:Name="chkanswer" Style="{StaticResource chkanswer}" Tag="{Binding Answer}" TabIndex="{Binding QuestionNo}" Click="Checkbox_checked" >
                                                     <CheckBox.Content>
                                                         <ContentPresenter Content="{Binding Answer}"/>
                                                     </CheckBox.Content>
-
                                                 </CheckBox>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
                                 </ListBox>
-                                <Grid>
+                                <Grid Name="gridDragDrop" Style="{StaticResource griddragdrop}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
@@ -407,6 +419,14 @@
                                         </ListBox.ItemTemplate>
                                     </ListBox>
                                 </Grid>
+                                <Canvas Style="{StaticResource canvasHotspot}">
+                                    <Image Source="{Binding Image}"/>
+                                    <Rectangle Canvas.Left="30"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="145" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                                    <Rectangle Canvas.Left="188"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="142" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                                    <Rectangle Canvas.Left="340"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="143" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave">
+
+                                    </Rectangle>
+                                </Canvas>
                                 <TextBlock Text="{Binding Explaination}" Style="{StaticResource wpfStyle2}"/>
                             </StackPanel>
                         </DataTemplate>
