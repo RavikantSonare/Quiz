@@ -29,10 +29,28 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <VisualBrush x:Key="HatchBrushnew" TileMode="Tile" Viewport="0,0,5,30" ViewportUnits="Absolute" Viewbox="0,0,30,30" ViewboxUnits="Absolute">
+            <VisualBrush.Transform>
+                <RotateTransform Angle="135" CenterX=".5" CenterY=".5" />
+            </VisualBrush.Transform>
+            <VisualBrush.Visual>
+                <Canvas>
+                    <Path  Stroke="Black" StrokeThickness="1" >
+                        <Path.Data>
+                            <LineGeometry StartPoint="15,0" EndPoint="15,30" />
+                        </Path.Data>
+                    </Path>
+                </Canvas>
+            </VisualBrush.Visual>
+        </VisualBrush>
+        <Style x:Key="bottomborder"  TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="{StaticResource HatchBrushnew}"/>
+        </Style>
     </Page.Resources>
     <DockPanel LastChildFill="True">
 
-        <Border Height="50" DockPanel.Dock="Bottom">
+        <Border Height="50" DockPanel.Dock="Bottom" Style="{StaticResource bottomborder}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>

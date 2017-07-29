@@ -22,23 +22,17 @@ namespace ExamSimulator
         public test2()
         {
             InitializeComponent();
-        }
 
-        private void OpenMbox_Clicked(object sender, RoutedEventArgs e)
-        {
-            DialogReplacement.Visibility = System.Windows.Visibility.Visible;
-        }
+            Rectangle rect = new Rectangle
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Fill = (Brush)FindResource("Alcanc"),
+                Width = 200,
+                Height = 150
+            };
 
-
-        private void mbox_ok(object sender, RoutedEventArgs e)
-        {
-            DialogReplacement.Visibility = System.Windows.Visibility.Collapsed;
-        }
-
-
-        private void mbox_cancel(object sender, RoutedEventArgs e)
-        {
-            DialogReplacement.Visibility = System.Windows.Visibility.Collapsed;
+            canvas1.Children.Add(rect);
         }
     }
 }
