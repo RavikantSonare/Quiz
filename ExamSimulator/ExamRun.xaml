@@ -276,6 +276,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+
     </Page.Resources>
     <DockPanel LastChildFill="True">
         <Border Height="55" DockPanel.Dock="Bottom" Style="{StaticResource bottomborder}">
@@ -382,8 +383,8 @@
                                             <RowDefinition></RowDefinition>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <ListBox ItemsSource="{Binding Answerlist}" Grid.Row="0" Grid.Column="0" x:Name="lbDrag" Drop="lbDrag_Drop" AllowDrop="True" PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown" >
                                             <ListBox.ItemContainerStyle>
@@ -442,10 +443,9 @@
                                         <Image Source="{Binding Image}"/>
                                         <Rectangle Canvas.Left="30"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="145" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
                                         <Rectangle Canvas.Left="188"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="142" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
-                                        <Rectangle Canvas.Left="340"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="143" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave">
-
-                                        </Rectangle>
+                                        <Rectangle Canvas.Left="340"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="143" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"></Rectangle>
                                     </Canvas>
+
                                     <TextBlock Text="{Binding Explaination}" Style="{StaticResource wpfStyle2}"/>
                                 </StackPanel>
                             </DataTemplate>

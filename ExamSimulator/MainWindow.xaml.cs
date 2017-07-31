@@ -40,7 +40,7 @@ namespace ExamSimulator
             String[] files = null;
             if (Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\"))
             {
-                files = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\", "*.txt", SearchOption.AllDirectories);
+                files = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\", "*.docx", SearchOption.AllDirectories);
             }
             else
             {
@@ -102,12 +102,12 @@ namespace ExamSimulator
             System.Diagnostics.Process.Start("http://quizuser.mobi96.org");
         }
 
-        private string filename = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\Examfile\\";
+        private string filename = System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\";
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
-            openFileDialog.Filter = "Text files (*.txt)|*.txt";
+            openFileDialog.Filter = "Text files (*.docx)|*.docx";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (openFileDialog.ShowDialog() == true)
             {
@@ -115,7 +115,8 @@ namespace ExamSimulator
                 {
                     File.Delete(filename + openFileDialog.SafeFileName);
                 }
-                File.Copy(openFileDialog.FileName, System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\Examfile\\" + openFileDialog.SafeFileName);
+                //File.Copy(openFileDialog.FileName, System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\Examfile\\" + openFileDialog.SafeFileName);
+                File.Copy(openFileDialog.FileName, System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + openFileDialog.SafeFileName);
                 BindFileListBox();
             }
         }

@@ -130,7 +130,6 @@ namespace ExamSimulator
 
                             if (!String.IsNullOrEmpty(CurrrentStr))
                             {
-                                string value = CurrrentStr.Substring(0, 9);
                                 if (QuestionTypeList.Contains(CurrrentStr))
                                 {
                                     CommanStrflag = "Q";
