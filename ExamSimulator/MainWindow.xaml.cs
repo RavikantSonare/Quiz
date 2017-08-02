@@ -106,7 +106,6 @@ namespace ExamSimulator
                         File.Delete(filename + openFileDialog.SafeFileName);
                     }
                     File.AppendAllText(System.AppDomain.CurrentDomain.BaseDirectory + "\\Input\\ExamListFilePath.txt", filename + openFileDialog.SafeFileName + Environment.NewLine);
-                    MessageBox.Show(filename + openFileDialog.SafeFileName);
                     //File.Copy(openFileDialog.FileName, System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + openFileDialog.SafeFileName);
                     BindFileListBox();
                 }
