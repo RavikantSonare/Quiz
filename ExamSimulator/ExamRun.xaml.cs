@@ -12,6 +12,8 @@ using System.Windows.Threading;
 using Spire.Doc;
 using Spire.Doc.Documents;
 using Spire.Doc.Fields;
+using System.Security.Principal;
+using System.Security.AccessControl;
 
 namespace ExamSimulator
 {
@@ -94,7 +96,7 @@ namespace ExamSimulator
                 string CommanStrflag = "Q", QuestionStr = string.Empty, AnswerStr = string.Empty, RightAnswerStr = string.Empty, ExpStr = string.Empty;
                 string QuestionImageStr = string.Empty, qtype = string.Empty;
                 int DoneQueStatus = 0, questionNo = 0;
-                string[] aas = null;
+                string[] aas = null; string CurrrentStr = string.Empty;
 
 
                 Document document = new Document(filelist.Path);
@@ -110,14 +112,29 @@ namespace ExamSimulator
                         DoneQueStatus++;
                         foreach (DocumentObject docObject in paragraph.ChildObjects)
                         {
-                            string CurrrentStr = paragraph.Text.Trim();
+                            CurrrentStr = paragraph.Text.Trim();
                             if (String.IsNullOrEmpty(CurrrentStr))
                             {
                                 if (docObject.DocumentObjectType == DocumentObjectType.Picture)
                                 {
                                     string docname = System.IO.Path.GetFileNameWithoutExtension(filelist.Path);
                                     DocPicture pic = docObject as DocPicture;
-                                    String imgName = String.Format(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\ExamImage\\" + docname + "-Question" + questionNo + "-{0}.png", index);
+                                    string filename = System.AppDomain.CurrentDomain.BaseDirectory + "ExamImage\\";
+                                    bool exists = System.IO.Directory.Exists(filename);
+                                    if (!exists)
+                                    {
+                                        DirectoryInfo di = System.IO.Directory.CreateDirectory(filename);
+                                    }
+                                    else
+                                    {
+                                        //Console.WriteLine("The Folder already exists");
+                                    }
+                                    DirectoryInfo dInfo = new DirectoryInfo(filename);
+                                    DirectorySecurity dSecurity = dInfo.GetAccessControl();
+                                    dSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
+                                    dInfo.SetAccessControl(dSecurity);
+
+                                    String imgName = String.Format(filename + docname + "-Question" + questionNo + "-{0}.png", index);
                                     QuestionImageStr = imgName;
                                     //Save Image
                                     if (!File.Exists(imgName))
@@ -199,7 +216,7 @@ namespace ExamSimulator
                             //}
                             //DoneQueStatus = 0;
                         }
-                        if (paragraph.ChildObjects.Count == 0)
+                        if (paragraph.ChildObjects.Count == 0 && CurrrentStr != null)
                         {
                             bool mode = true; bool ureslut = false;
 

@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUser", "WebUser\WebUser.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamSimulator", "ExamSimulator\ExamSimulator.csproj", "{1A84FE99-61EC-44E1-964E-735126F8C5D8}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ExamSimulatorSetup", "ExamSimulatorSetup\ExamSimulatorSetup.vdproj", "{E28E1F8A-F0F7-474F-BA91-FD2028AEB1B6}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ExamSimulatorSetup", "ExamSimulatorSetup\ExamSimulatorSetup.vdproj", "{1D50EBC2-6428-4BB0-AF44-F197B77AA00A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,10 +73,10 @@ Global
 		{1A84FE99-61EC-44E1-964E-735126F8C5D8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1A84FE99-61EC-44E1-964E-735126F8C5D8}.Release|x86.ActiveCfg = Release|Any CPU
 		{1A84FE99-61EC-44E1-964E-735126F8C5D8}.Release|x86.Build.0 = Release|Any CPU
-		{E28E1F8A-F0F7-474F-BA91-FD2028AEB1B6}.Debug|Any CPU.ActiveCfg = Debug
-		{E28E1F8A-F0F7-474F-BA91-FD2028AEB1B6}.Debug|x86.ActiveCfg = Debug
-		{E28E1F8A-F0F7-474F-BA91-FD2028AEB1B6}.Release|Any CPU.ActiveCfg = Release
-		{E28E1F8A-F0F7-474F-BA91-FD2028AEB1B6}.Release|x86.ActiveCfg = Release
+		{1D50EBC2-6428-4BB0-AF44-F197B77AA00A}.Debug|Any CPU.ActiveCfg = Debug
+		{1D50EBC2-6428-4BB0-AF44-F197B77AA00A}.Debug|x86.ActiveCfg = Debug
+		{1D50EBC2-6428-4BB0-AF44-F197B77AA00A}.Release|Any CPU.ActiveCfg = Release
+		{1D50EBC2-6428-4BB0-AF44-F197B77AA00A}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

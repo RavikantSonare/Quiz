@@ -44,11 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Code7248.word_reader">
-      <HintPath>..\..\..\..\..\AppData\Roaming\Skype\My Skype Received Files\Code7248.word_reader.dll</HintPath>
-    </Reference>
-    <Reference Include="FreeTextBox, Version=3.3.1.12354, Culture=neutral, PublicKeyToken=5962a4e684a48b87, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Work\Code Demo Example\FTBv3-3-1\Framework-4-0\FreeTextBox.dll</HintPath>
+      <HintPath>C:\Users\mobiweb\Downloads\Code7248.word_reader.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
@@ -382,18 +378,7 @@
     <Folder Include="img_map\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\licenses.licx" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="Microsoft.Office.Core">
-      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>5</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

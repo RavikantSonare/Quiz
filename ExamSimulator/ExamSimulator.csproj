@@ -35,25 +35,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Office.Interop.Word, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>C:\Windows\assembly\GAC\Microsoft.Office.Interop.Word\12.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Word.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Common">
-      <HintPath>C:\Users\mobiweb\Downloads\ImageOperationsInWord\ImageOperationsInWord\bin\Debug\Spire.Common.dll</HintPath>
-    </Reference>
     <Reference Include="Spire.Doc">
       <HintPath>C:\Users\mobiweb\Downloads\ImageOperationsInWord\ImageOperationsInWord\bin\Debug\Spire.Doc.dll</HintPath>
     </Reference>
     <Reference Include="Spire.License">
       <HintPath>C:\Users\mobiweb\Downloads\ImageOperationsInWord\ImageOperationsInWord\bin\Debug\Spire.License.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Pdf">
-      <HintPath>C:\Users\mobiweb\Downloads\ImageOperationsInWord\ImageOperationsInWord\bin\Debug\Spire.Pdf.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.XLS">
-      <HintPath>C:\Users\mobiweb\Downloads\ImageOperationsInWord\ImageOperationsInWord\bin\Debug\Spire.XLS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -199,7 +185,6 @@
     <Resource Include="Resources\stopwatch.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Debug\Examfile\" />
     <Folder Include="bin\Debug\Input\" />
   </ItemGroup>
   <ItemGroup>

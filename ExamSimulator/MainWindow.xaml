@@ -123,14 +123,7 @@
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-                <!--<ListBoxItem Background="#FFFACD" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="Images/docs-icon.png" />
-                        <Label x:Name="lblExam2" Content="Exam 2"/>
-                    </StackPanel>
-                </ListBoxItem>-->
             </ListBox>
-
         </Border>
     </DockPanel>
 

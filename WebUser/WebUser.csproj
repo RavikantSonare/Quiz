@@ -100,7 +100,7 @@
     </Content>
     <Content Include="User.Master" />
     <Content Include="ExamSimulator\ExamSimulator.zip" />
-    <Content Include="ExamSimulator\ExtractImages.docx" />
+    <Content Include="ExamSimulator\Cisco-301-102.docx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
