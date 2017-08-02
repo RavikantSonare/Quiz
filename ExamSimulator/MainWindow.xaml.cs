@@ -1,19 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
-using System.Collections;
 using Microsoft.Win32;
 using System.Security.Principal;
 using System.Security.AccessControl;
@@ -109,36 +99,21 @@ namespace ExamSimulator
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (openFileDialog.ShowDialog() == true)
             {
-                bool exists = System.IO.Directory.Exists(filename);
-                if (!exists)
+                try
                 {
-                    DirectoryInfo di = System.IO.Directory.CreateDirectory(filename);
-                    MessageBox.Show(filename);
+                    if (!Directory.Exists(filename + openFileDialog.SafeFileName))
+                    {
+                        File.Delete(filename + openFileDialog.SafeFileName);
+                    }
+                    File.AppendAllText(System.AppDomain.CurrentDomain.BaseDirectory + "\\Input\\ExamListFilePath.txt", filename + openFileDialog.SafeFileName + Environment.NewLine);
+                    MessageBox.Show(filename + openFileDialog.SafeFileName);
+                    //File.Copy(openFileDialog.FileName, System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + openFileDialog.SafeFileName);
+                    BindFileListBox();
                 }
-                else
+                catch (Exception exmess)
                 {
-                    MessageBox.Show(filename);
+                    MessageBox.Show(exmess.ToString());
                 }
-                DirectoryInfo dInfo = new DirectoryInfo(filename);
-                DirectorySecurity dSecurity = dInfo.GetAccessControl();
-                var currentUserIdentity = WindowsIdentity.GetCurrent();
-                var fileSystemRule = new FileSystemAccessRule(currentUserIdentity.Owner,
-                                                 FileSystemRights.FullControl,
-                                                 InheritanceFlags.ObjectInherit |
-                                                 InheritanceFlags.ContainerInherit,
-                                                 PropagationFlags.None,
-                                                 AccessControlType.Allow);
-                dSecurity.AddAccessRule(fileSystemRule);
-                dInfo.SetAccessControl(dSecurity);
-                //dSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
-                //dInfo.SetAccessControl(dSecurity);
-
-                if (!Directory.Exists(filename + openFileDialog.SafeFileName))
-                {
-                    File.Delete(filename + openFileDialog.SafeFileName);
-                }
-                File.Copy(openFileDialog.FileName, System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + openFileDialog.SafeFileName);
-                BindFileListBox();
             }
         }
 

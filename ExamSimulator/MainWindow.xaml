@@ -69,7 +69,7 @@
             </Grid>
         </Border>
         <Border Height="50" Background="#0C4068" DockPanel.Dock="Bottom">
-            <TextBlock Foreground="Black"></TextBlock>
+
         </Border>
         <Border Height="50" DockPanel.Dock="Bottom">
             <Grid>

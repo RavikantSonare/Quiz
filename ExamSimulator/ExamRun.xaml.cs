@@ -98,8 +98,8 @@ namespace ExamSimulator
                 int DoneQueStatus = 0, questionNo = 0;
                 string[] aas = null; string CurrrentStr = string.Empty;
 
-
-                Document document = new Document(filelist.Path);
+                string path = @"D:\ExtractImages.docx";
+                Document document = new Document(path);
                 int index = 1;
 
 
