@@ -22,17 +22,11 @@ namespace ExamSimulator
         public test2()
         {
             InitializeComponent();
+        }
 
-            Rectangle rect = new Rectangle
-            {
-                VerticalAlignment = VerticalAlignment.Center,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                Fill = (Brush)FindResource("Alcanc"),
-                Width = 200,
-                Height = 150
-            };
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
 
-            canvas1.Children.Add(rect);
         }
     }
 }

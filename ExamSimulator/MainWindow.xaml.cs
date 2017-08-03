@@ -99,20 +99,12 @@ namespace ExamSimulator
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (openFileDialog.ShowDialog() == true)
             {
-                try
+                if (Directory.Exists(filename + openFileDialog.SafeFileName))
                 {
-                    if (!Directory.Exists(filename + openFileDialog.SafeFileName))
-                    {
-                        File.Delete(filename + openFileDialog.SafeFileName);
-                    }
-                    File.AppendAllText(System.AppDomain.CurrentDomain.BaseDirectory + "\\Input\\ExamListFilePath.txt", filename + openFileDialog.SafeFileName + Environment.NewLine);
-                    //File.Copy(openFileDialog.FileName, System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + openFileDialog.SafeFileName);
-                    BindFileListBox();
+                    File.Delete(filename + openFileDialog.SafeFileName);
                 }
-                catch (Exception exmess)
-                {
-                    MessageBox.Show(exmess.ToString());
-                }
+                File.Copy(openFileDialog.FileName, System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + openFileDialog.SafeFileName);
+                BindFileListBox();
             }
         }
 

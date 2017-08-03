@@ -48,7 +48,7 @@ namespace DesktopMerchant.DALayer
                     _sqlcommand.ExecuteNonQuery();
                     returnvalue = Convert.ToInt32(_sqlcommand.Parameters["@returnValue"].Value);
                 }
-                catch (Exception ex)
+                catch
                 {
                     returnvalue = 100;
                 }
@@ -87,7 +87,7 @@ namespace DesktopMerchant.DALayer
                                                         {
                                                             FinanceConfigId = li.Field<int>("FinanceConfigId"),
                                                             PaymentOptionId = li.Field<int>("PaymentOptionId"),
-                                                            PaymentOption=li.Field<string>("PaymentOption"),
+                                                            PaymentOption = li.Field<string>("PaymentOption"),
                                                             MerchantId = li.Field<int>("MerchantId"),
                                                             AccountEmail = li.Field<string>("AccountEmail"),
                                                             FirstName = li.Field<string>("FirstName"),
