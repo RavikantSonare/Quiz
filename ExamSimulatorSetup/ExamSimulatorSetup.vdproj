@@ -16,7 +16,7 @@
         "Entry"
         {
         "MsmKey" = "8:_26B15565ACB905423819134307763694"
-        "OwnerKey" = "8:_75C9C479CA464C7D8E047D81AAD14C18"
+        "OwnerKey" = "8:_2F912CF5BB004A42AABE46E1E0049267"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -33,20 +33,26 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2F912CF5BB004A42AABE46E1E0049267"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_36020287153948EEA0E54830ED21F5BE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_75C9C479CA464C7D8E047D81AAD14C18"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_800D810EF34F98E2BB519180A2D36E50"
+        "OwnerKey" = "8:_2F912CF5BB004A42AABE46E1E0049267"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_800D810EF34F98E2BB519180A2D36E50"
-        "OwnerKey" = "8:_75C9C479CA464C7D8E047D81AAD14C18"
+        "MsmKey" = "8:_8683E1467136424DBF4AAB991D70AA2B"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -58,7 +64,7 @@
         "Entry"
         {
         "MsmKey" = "8:_B9B13E8E268CE3BE63094C45B87311A9"
-        "OwnerKey" = "8:_75C9C479CA464C7D8E047D81AAD14C18"
+        "OwnerKey" = "8:_2F912CF5BB004A42AABE46E1E0049267"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -69,20 +75,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CD4EDFDE6D4942D7BB3D792209B6CF61"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F0D9CCA4A7E33BCE7D1B38EB3DFCA4AC"
-        "OwnerKey" = "8:_75C9C479CA464C7D8E047D81AAD14C18"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_F6FF5FD0ECF553858BDC1EC12DD82C22"
-        "OwnerKey" = "8:_75C9C479CA464C7D8E047D81AAD14C18"
+        "OwnerKey" = "8:_2F912CF5BB004A42AABE46E1E0049267"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -94,13 +88,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F0D9CCA4A7E33BCE7D1B38EB3DFCA4AC"
+        "OwnerKey" = "8:_F6FF5FD0ECF553858BDC1EC12DD82C22"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_75C9C479CA464C7D8E047D81AAD14C18"
+        "OwnerKey" = "8:_2F912CF5BB004A42AABE46E1E0049267"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -119,12 +113,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B9B13E8E268CE3BE63094C45B87311A9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F6FF5FD0ECF553858BDC1EC12DD82C22"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -324,43 +312,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B9B13E8E268CE3BE63094C45B87311A9"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8683E1467136424DBF4AAB991D70AA2B"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Spire.License, Version=1.3.2.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_B9B13E8E268CE3BE63094C45B87311A9"
-                    {
-                    "Name" = "8:Spire.License.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Spire.License.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:C:\\Users\\mobiweb\\Desktop\\licence.rtf"
+            "TargetName" = "8:licence.rtf"
             "Tag" = "8:"
             "Folder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CD4EDFDE6D4942D7BB3D792209B6CF61"
-            {
-            "SourcePath" = "8:..\\ExamSimulator\\bin\\Debug\\Input\\ExamListFilePath.txt"
-            "TargetName" = "8:ExamListFilePath.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_F605CA7C9D804C68A8A8B5199F9D9031"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -375,20 +332,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F0D9CCA4A7E33BCE7D1B38EB3DFCA4AC"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B9B13E8E268CE3BE63094C45B87311A9"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+            "AssemblyAsmDisplayName" = "8:Spire.License, Version=1.3.2.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F0D9CCA4A7E33BCE7D1B38EB3DFCA4AC"
+                    "_B9B13E8E268CE3BE63094C45B87311A9"
                     {
-                    "Name" = "8:System.Net.Http.dll"
+                    "Name" = "8:Spire.License.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.Net.Http.dll"
+            "SourcePath" = "8:Spire.License.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
@@ -537,15 +494,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ExamSimulatorSetup"
-        "ProductCode" = "8:{DFA6AC9A-AF8B-47A6-8AC0-CEDEDF40E037}"
-        "PackageCode" = "8:{7E0852A4-385B-4DE1-ADF8-A6A561A86F7A}"
+        "ProductCode" = "8:{0EA6FE69-400C-4DD4-9FE6-BD1765D6D5D6}"
+        "PackageCode" = "8:{AF5F0744-8630-435D-9175-FD20FD5FC868}"
         "UpgradeCode" = "8:{CF53BD36-E778-4A65-95C2-4CD0A9D866CB}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.1"
+        "ProductVersion" = "8:1.0.0"
         "Manufacturer" = "8:Mobiweb Technologies"
         "ARPHELPTELEPHONE" = "8:9755814842"
         "ARPHELPLINK" = "8:"
@@ -658,29 +615,29 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_02A45220E85242D0B864CC9B89384546"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3974472729124847BABC2EFD0A385465"
             {
-            "Name" = "8:ExamSimulatorSetup"
+            "Name" = "8:ExamSimulator"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_75C9C479CA464C7D8E047D81AAD14C18"
+            "Target" = "8:_2F912CF5BB004A42AABE46E1E0049267"
             "Folder" = "8:_4F4BCCDA690243109B99D3F5731521B3"
             "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
             "Icon" = "8:_36020287153948EEA0E54830ED21F5BE"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_219F7F35E8B84F6FB4E0742BACF43DDA"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3C4A143B8A75423CBB976AFAFDE9308E"
             {
-            "Name" = "8:ExamSimulatorSetup"
+            "Name" = "8:ExamSimulator"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_75C9C479CA464C7D8E047D81AAD14C18"
+            "Target" = "8:_2F912CF5BB004A42AABE46E1E0049267"
             "Folder" = "8:_8E35F698B507442BB7AA70CD35B4D655"
             "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
             "Icon" = "8:_36020287153948EEA0E54830ED21F5BE"
@@ -830,7 +787,7 @@
                 {
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_628FAEFD911C40F9862A848925642890"
                     {
-                    "Sequence" = "3:200"
+                    "Sequence" = "3:400"
                     "DisplayName" = "8:Installation Folder"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -863,9 +820,56 @@
                             }
                         }
                     }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_911DB2546CF14EC0A1DDFEBD05851B9D"
+                    {
+                    "Sequence" = "3:200"
+                    "DisplayName" = "8:License Agreement"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdLicenseDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "EulaText"
+                            {
+                            "Name" = "8:EulaText"
+                            "DisplayName" = "8:#1008"
+                            "Description" = "8:#1108"
+                            "Type" = "3:6"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:_8683E1467136424DBF4AAB991D70AA2B"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Sunken"
+                            {
+                            "Name" = "8:Sunken"
+                            "DisplayName" = "8:#1007"
+                            "Description" = "8:#1107"
+                            "Type" = "3:5"
+                            "ContextData" = "8:4;True=4;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:4"
+                            "DefaultValue" = "3:4"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_E68429DBCCDE405988012E7DF4307FBB"
                     {
-                    "Sequence" = "3:100"
+                    "Sequence" = "3:300"
                     "DisplayName" = "8:Welcome"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -913,7 +917,7 @@
                     }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_EB1A9795FCD4494C81CBDA8C18183882"
                     {
-                    "Sequence" = "3:300"
+                    "Sequence" = "3:500"
                     "DisplayName" = "8:Confirm Installation"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -1085,7 +1089,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_75C9C479CA464C7D8E047D81AAD14C18"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_2F912CF5BB004A42AABE46E1E0049267"
             {
             "SourcePath" = "8:..\\ExamSimulator\\obj\\Debug\\ExamSimulator.exe"
             "TargetName" = "8:"

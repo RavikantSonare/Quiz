@@ -52,7 +52,7 @@
                 </Grid.ColumnDefinitions>
                 <Label x:Name="label" Grid.Row="0" Grid.Column="0" Content="Exam Simulator" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30"/>
                 <Label Margin="10,40,10,0" Grid.Row="0" Grid.Column="0" Content="Demo-Only" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="15"/>
-                <Menu Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" FontSize="18" Background="#3B6688" Foreground="White">
+                <Menu Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" FontSize="18" Background="#3B6688" Foreground="White" Visibility="Collapsed">
                     <MenuItem Header="File">
                         <MenuItem Header="Add"/>
                         <MenuItem Header="Remove" />

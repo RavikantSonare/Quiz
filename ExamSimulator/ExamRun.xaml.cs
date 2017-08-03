@@ -80,152 +80,146 @@ namespace ExamSimulator
         {
             try
             {
-                string[] filePath;
                 if (filelist != null)
                 {
-                    filePath = File.ReadAllLines(filelist.Path);
-                }
-                else
-                {
-                    filePath = File.ReadAllLines(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\Examfile\\Quiz1.txt");
-                }
-                List<Answerlist> _answerlist = new List<Answerlist>();
-                List<RightAnswer> _rightAnswerlist = new List<RightAnswer>();
-                List<string> QuestionTypeList = new List<string>() { "Question(Single Choice)", "Question(Multi Choice)", "Question(Vacant)", "Question(Drag & Drop)", "Question(Hotspot)", "Question(Scenario)" };
-                List<string> AnswerCharList = new List<string>() { "A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.", "J." };
-                string CommanStrflag = "Q", QuestionStr = string.Empty, AnswerStr = string.Empty, RightAnswerStr = string.Empty, ExpStr = string.Empty;
-                string QuestionImageStr = string.Empty, qtype = string.Empty;
-                int DoneQueStatus = 0, questionNo = 0;
-                string[] aas = null; string CurrrentStr = string.Empty;
+                    List<Answerlist> _answerlist = new List<Answerlist>();
+                    List<RightAnswer> _rightAnswerlist = new List<RightAnswer>();
+                    List<string> QuestionTypeList = new List<string>() { "Question(Single Choice)", "Question(Multi Choice)", "Question(Vacant)", "Question(Drag & Drop)", "Question(Hotspot)", "Question(Scenario)" };
+                    List<string> AnswerCharList = new List<string>() { "A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.", "J." };
+                    string CommanStrflag = "Q", QuestionStr = string.Empty, AnswerStr = string.Empty, RightAnswerStr = string.Empty, ExpStr = string.Empty;
+                    string QuestionImageStr = string.Empty, qtype = string.Empty;
+                    int DoneQueStatus = 0, questionNo = 0;
+                    string[] aas = null; string CurrrentStr = string.Empty;
 
 
-                Document document = new Document(filelist.Path);
-                int index = 1;
+                    Document document = new Document(filelist.Path);
+                    int index = 1;
 
 
-                foreach (Spire.Doc.Section section in document.Sections)
-                {
-                    //Get Each Paragraph of Section
-                    foreach (Spire.Doc.Documents.Paragraph paragraph in section.Paragraphs)
+                    foreach (Spire.Doc.Section section in document.Sections)
                     {
-                        //Get Each Document Object of Paragraph Items
-                        DoneQueStatus++;
-                        foreach (DocumentObject docObject in paragraph.ChildObjects)
+                        //Get Each Paragraph of Section
+                        foreach (Spire.Doc.Documents.Paragraph paragraph in section.Paragraphs)
                         {
-                            CurrrentStr = paragraph.Text.Trim();
-                            if (String.IsNullOrEmpty(CurrrentStr))
+                            //Get Each Document Object of Paragraph Items
+                            DoneQueStatus++;
+                            foreach (DocumentObject docObject in paragraph.ChildObjects)
                             {
-                                if (docObject.DocumentObjectType == DocumentObjectType.Picture)
+                                CurrrentStr = paragraph.Text.Trim();
+                                if (String.IsNullOrEmpty(CurrrentStr))
                                 {
-                                    string docname = System.IO.Path.GetFileNameWithoutExtension(filelist.Path);
-                                    DocPicture pic = docObject as DocPicture;
-                                    string filename = System.AppDomain.CurrentDomain.BaseDirectory + "ExamImage\\";
-                                    bool exists = System.IO.Directory.Exists(filename);
-                                    if (!exists)
+                                    if (docObject.DocumentObjectType == DocumentObjectType.Picture)
                                     {
-                                        DirectoryInfo di = System.IO.Directory.CreateDirectory(filename);
-                                    }
-                                    else
-                                    {
-                                        //Console.WriteLine("The Folder already exists");
-                                    }
-                                    DirectoryInfo dInfo = new DirectoryInfo(filename);
-                                    DirectorySecurity dSecurity = dInfo.GetAccessControl();
-                                    dSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
-                                    dInfo.SetAccessControl(dSecurity);
-
-                                    String imgName = String.Format(filename + docname + "-Question" + questionNo + "-{0}.png", index);
-                                    QuestionImageStr = imgName;
-                                    //Save Image
-                                    if (!File.Exists(imgName))
-                                    {
-                                        pic.Image.Save(imgName, System.Drawing.Imaging.ImageFormat.Png);
-                                    }
-                                    index++;
-                                }
-                            }
-
-                            if (!String.IsNullOrEmpty(CurrrentStr))
-                            {
-                                if (QuestionTypeList.Contains(CurrrentStr))
-                                {
-                                    CommanStrflag = "Q";
-                                    qtype = CurrrentStr;
-                                    if (questionNo == 0)
-                                        questionNo++;
-                                }
-
-                                if (AnswerCharList.Contains(CurrrentStr.Substring(0, 2)))
-                                    CommanStrflag = "A";
-
-                                if (CurrrentStr.Contains("Answer:"))
-                                    CommanStrflag = "RA";
-
-                                if (CurrrentStr.Contains("Explanation:"))
-                                    CommanStrflag = "E";
-                            }
-                            switch (CommanStrflag)
-                            {
-                                case "Q":
-                                    if (!QuestionTypeList.Contains(CurrrentStr))
-                                    {
-                                        QuestionStr += CurrrentStr + "\n";
-                                    }
-                                    break;
-                                case "RA":
-                                    RightAnswerStr += CurrrentStr;
-                                    if (RightAnswerStr.Contains("Answer:"))
-                                    {
-                                        var s = RightAnswerStr.Split(':');
-                                        aas = Array.ConvertAll(s[1].Split(','), p => p.Trim());
-                                        for (int j = 0; j < _answerlist.Count; j++)
+                                        string docname = System.IO.Path.GetFileNameWithoutExtension(filelist.Path);
+                                        DocPicture pic = docObject as DocPicture;
+                                        string filename = System.AppDomain.CurrentDomain.BaseDirectory + "ExamImage\\";
+                                        bool exists = System.IO.Directory.Exists(filename);
+                                        if (!exists)
                                         {
-                                            string value = Convert.ToChar(65 + j).ToString();
-                                            if (aas.Contains(value))
-                                            {
-                                                _rightAnswerlist.Add(new RightAnswer { Rightanswer = true });
-                                                if (filelist != null && filelist.Mode == "SM")
-                                                {
-                                                    _answerlist[j].UserAnwer = true;
-                                                }
-                                            }
-                                            else _rightAnswerlist.Add(new RightAnswer { Rightanswer = false });
+                                            DirectoryInfo di = System.IO.Directory.CreateDirectory(filename);
                                         }
-                                    }
-                                    break;
-                                case "A":
-                                    _answerlist.Add(new Answerlist { Answer = CurrrentStr.Trim(), QuestionNo = questionNo });
-                                    break;
-                                case "E":
-                                    ExpStr += CurrrentStr + "\n";
-                                    break;
-                            }
-                            //if (filePath.Length == section.Paragraphs.Count + 2 || DoneQueStatus >= 2)
-                            //{
-                            //    int qtype = 1; bool mode = true; bool ureslut = false;
-                            //    if (aas.Length > 1)
-                            //    {
-                            //        qtype = 2;
-                            //    }
-                            //    if (filelist != null && filelist.Mode == "SM")
-                            //    { mode = false; ureslut = true; }
-                            //    _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
-                            //    CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty;
-                            //    _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
-                            //    questionNo++;
-                            //}
-                            //DoneQueStatus = 0;
-                        }
-                        if (paragraph.ChildObjects.Count == 0 && CurrrentStr != null)
-                        {
-                            bool mode = true; bool ureslut = false;
+                                        else
+                                        {
+                                            //Console.WriteLine("The Folder already exists");
+                                        }
+                                        DirectoryInfo dInfo = new DirectoryInfo(filename);
+                                        DirectorySecurity dSecurity = dInfo.GetAccessControl();
+                                        dSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
+                                        dInfo.SetAccessControl(dSecurity);
 
-                            if (filelist != null && filelist.Mode == "SM")
-                            { mode = false; ureslut = true; }
-                            _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Image = QuestionImageStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
-                            CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty; QuestionImageStr = string.Empty;
-                            _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
-                            questionNo++; index = 1;
+                                        String imgName = String.Format(filename + docname + "-Question" + questionNo + "-{0}.png", index);
+                                        QuestionImageStr = imgName;
+                                        //Save Image
+                                        if (!File.Exists(imgName))
+                                        {
+                                            pic.Image.Save(imgName, System.Drawing.Imaging.ImageFormat.Png);
+                                        }
+                                        index++;
+                                    }
+                                }
+
+                                if (!String.IsNullOrEmpty(CurrrentStr))
+                                {
+                                    if (QuestionTypeList.Contains(CurrrentStr))
+                                    {
+                                        CommanStrflag = "Q";
+                                        qtype = CurrrentStr;
+                                        if (questionNo == 0)
+                                            questionNo++;
+                                    }
+
+                                    if (AnswerCharList.Contains(CurrrentStr.Substring(0, 2)))
+                                        CommanStrflag = "A";
+
+                                    if (CurrrentStr.Contains("Answer:"))
+                                        CommanStrflag = "RA";
+
+                                    if (CurrrentStr.Contains("Explanation:"))
+                                        CommanStrflag = "E";
+                                }
+                                switch (CommanStrflag)
+                                {
+                                    case "Q":
+                                        if (!QuestionTypeList.Contains(CurrrentStr))
+                                        {
+                                            QuestionStr += CurrrentStr + "\n";
+                                        }
+                                        break;
+                                    case "RA":
+                                        RightAnswerStr += CurrrentStr;
+                                        if (RightAnswerStr.Contains("Answer:"))
+                                        {
+                                            var s = RightAnswerStr.Split(':');
+                                            aas = Array.ConvertAll(s[1].Split(','), p => p.Trim());
+                                            for (int j = 0; j < _answerlist.Count; j++)
+                                            {
+                                                string value = Convert.ToChar(65 + j).ToString();
+                                                if (aas.Contains(value))
+                                                {
+                                                    _rightAnswerlist.Add(new RightAnswer { Rightanswer = true });
+                                                    if (filelist != null && filelist.Mode == "SM")
+                                                    {
+                                                        _answerlist[j].UserAnwer = true;
+                                                    }
+                                                }
+                                                else _rightAnswerlist.Add(new RightAnswer { Rightanswer = false });
+                                            }
+                                        }
+                                        break;
+                                    case "A":
+                                        _answerlist.Add(new Answerlist { Answer = CurrrentStr.Trim(), QuestionNo = questionNo });
+                                        break;
+                                    case "E":
+                                        ExpStr += CurrrentStr + "\n";
+                                        break;
+                                }
+                                //if (filePath.Length == section.Paragraphs.Count + 2 || DoneQueStatus >= 2)
+                                //{
+                                //    int qtype = 1; bool mode = true; bool ureslut = false;
+                                //    if (aas.Length > 1)
+                                //    {
+                                //        qtype = 2;
+                                //    }
+                                //    if (filelist != null && filelist.Mode == "SM")
+                                //    { mode = false; ureslut = true; }
+                                //    _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
+                                //    CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty;
+                                //    _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
+                                //    questionNo++;
+                                //}
+                                //DoneQueStatus = 0;
+                            }
+                            if (paragraph.ChildObjects.Count == 0 && CurrrentStr != null)
+                            {
+                                bool mode = true; bool ureslut = false;
+
+                                if (filelist != null && filelist.Mode == "SM")
+                                { mode = false; ureslut = true; }
+                                _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Image = QuestionImageStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
+                                CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty; QuestionImageStr = string.Empty;
+                                _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
+                                questionNo++; index = 1;
+                            }
                         }
                     }
                 }

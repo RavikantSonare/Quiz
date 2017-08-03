@@ -29,33 +29,38 @@ namespace ExamSimulator
         {
             try
             {
-                if (ValidateTextBoxes())
-                {
-                    if (File.Exists("Input\\credentials.txt"))
-                    {
-                        string[] lines = File.ReadAllLines(System.AppDomain.CurrentDomain.BaseDirectory + "\\Input\\credentials.txt");
-                        if ((txtUsername.Text == lines[0]) && (txtPassword.Password == lines[1]))
-                        {
-                            this.Hide();
-                            MainWindow _mainWindow = new ExamSimulator.MainWindow();
-                            _mainWindow.ShowDialog();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Username or Password Invalid", "Message", MessageBoxButton.OK);
-                            txtUsername.Text = txtPassword.Password = "";
-                            txtUsername.Focus();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Username or Password Invalid");
-                    }
-                }
+                LoginFunction();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void LoginFunction()
+        {
+            if (ValidateTextBoxes())
+            {
+                if (File.Exists("Input\\credentials.txt"))
+                {
+                    string[] lines = File.ReadAllLines(System.AppDomain.CurrentDomain.BaseDirectory + "\\Input\\credentials.txt");
+                    if ((txtUsername.Text == lines[0]) && (txtPassword.Password == lines[1]))
+                    {
+                        this.Hide();
+                        MainWindow _mainWindow = new ExamSimulator.MainWindow();
+                        _mainWindow.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Username or Password Invalid", "Message", MessageBoxButton.OK);
+                        txtUsername.Text = txtPassword.Password = "";
+                        txtUsername.Focus();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Username or Password Invalid");
+                }
             }
         }
 
@@ -77,6 +82,21 @@ namespace ExamSimulator
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                try
+                {
+                    LoginFunction();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

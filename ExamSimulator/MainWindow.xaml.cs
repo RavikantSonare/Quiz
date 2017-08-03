@@ -57,13 +57,9 @@ namespace ExamSimulator
         {
             Button button = sender as Button;
             int index = listFile.Items.IndexOf(button.CommandParameter);
-
-            ItemContainerGenerator generator = this.listFile.ItemContainerGenerator;
             TodoItem ds = new TodoItem();
-            List<TodoItem> ListofAllData = new List<TodoItem>();
-            //ListBoxItem selectedItem = (ListBoxItem)generator.ContainerFromIndex(listFile.SelectedIndex);
             int idx = 0;
-            foreach (TodoItem item in generator.Items)
+            foreach (TodoItem item in listFile.Items)
             {
                 if (idx == index)
                 {
@@ -93,30 +89,46 @@ namespace ExamSimulator
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = true;
-            openFileDialog.Filter = "Text files (*.docx)|*.docx";
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            if (openFileDialog.ShowDialog() == true)
+            try
             {
-                if (Directory.Exists(filename + openFileDialog.SafeFileName))
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Multiselect = true;
+                openFileDialog.Filter = "Text files (*.docx)|*.docx";
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                if (openFileDialog.ShowDialog() == true)
                 {
-                    File.Delete(filename + openFileDialog.SafeFileName);
+                    if (!Directory.Exists(filename + openFileDialog.SafeFileName))
+                    {
+                        File.Delete(filename + openFileDialog.SafeFileName);
+                    }
+                    File.Copy(openFileDialog.FileName, System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + openFileDialog.SafeFileName);
+                    BindFileListBox();
                 }
-                File.Copy(openFileDialog.FileName, System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + openFileDialog.SafeFileName);
-                BindFileListBox();
+            }
+            catch
+            {
+                MainWindow _mainWindow = new MainWindow();
+                _mainWindow.Show();
             }
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
-            string file = ((ExamSimulator.TodoItem)button.CommandParameter).Path;
-            if (!Directory.Exists(file))
+            try
             {
-                File.Delete(file);
+                Button button = sender as Button;
+                string file = ((ExamSimulator.TodoItem)button.CommandParameter).Path;
+                if (!Directory.Exists(file))
+                {
+                    File.Delete(file);
+                }
+                BindFileListBox();
             }
-            BindFileListBox();
+            catch
+            {
+                MainWindow _mainWindow = new MainWindow();
+                _mainWindow.Show();
+            }
         }
     }
 

@@ -16,9 +16,9 @@
                                     <asp:HiddenField ID="UserId" runat="server" Value='<%#Eval("UserId")%>' />
                                 </ItemTemplate>
 
-<HeaderStyle CssClass="hide"></HeaderStyle>
+                                <HeaderStyle CssClass="hide"></HeaderStyle>
 
-<ItemStyle CssClass="hide"></ItemStyle>
+                                <ItemStyle CssClass="hide"></ItemStyle>
                             </asp:TemplateField>
                             <asp:BoundField HeaderText="Exam Code" DataField="ExamCode" />
                             <asp:BoundField HeaderText="Category" DataField="SecondCategoryName" />
@@ -26,12 +26,12 @@
                             <asp:BoundField HeaderText="Valid Date" DataField="ValidDate" DataFormatString="{0:yyyy/MM/dd}" />
                             <asp:TemplateField HeaderText="Study Mode">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnStudyNow" runat="server" Text="Study Now" class="btn btn-default" Visible='<%# !(Convert.ToBoolean(Eval("OnlyTestOnce"))) %>' />
+                                    <asp:Button ID="btnStudyNow" runat="server" Text="Study Now" class="btn btn-default" CommandArgument='<%#Eval("ExamCode")%>' Visible='<%# !(Convert.ToBoolean(Eval("OnlyTestOnce"))) %>' OnClick="btnTestMode_Click" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Real Test Mode">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnTestMode" runat="server" Text="Test Now" CssClass="btn btn-default" CommandArgument='<%#Eval("OnlyTestOnce")%>' Visible='<%# (Convert.ToBoolean(Eval("OnlyTestOnce"))) %>' OnClick="btnTestMode_Click" />
+                                    <asp:Button ID="btnTestMode" runat="server" Text="Test Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCode")%>' Visible='<%# !(Convert.ToBoolean(Eval("OnlyTestOnce"))) %>' OnClick="btnTestMode_Click" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -52,7 +52,7 @@
                             <asp:BoundField HeaderText="Pass/Fail" DataField="Result" />
                             <asp:TemplateField HeaderText="Question Print">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnPrint" runat="server" Text="Print" class="btn btn-default" Visible='<%# (Convert.ToBoolean(Eval("AllowPrint"))) %>'/>
+                                    <asp:Button ID="btnPrint" runat="server" Text="Print" class="btn btn-default" Visible='<%# (Convert.ToBoolean(Eval("AllowPrint"))) %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Digital Certificate">

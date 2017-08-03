@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamSimulator"
         mc:Ignorable="d"
-        Title="Login"  Width="450" Height="250" WindowStartupLocation="CenterScreen" >
+        Title="Login"  Width="450" Height="250" 
+        WindowStartupLocation="CenterScreen" Icon="Resources/q.ico">
 
     <Grid>
         <Label Width="100" Name="lbl" Height="100" Margin="12,38,266,51">
@@ -17,7 +18,7 @@
         </Label>
         <Label Content="Password" FontSize="12" Width="100" Height="26" FontWeight="Bold" Margin="115,97,163,66" Foreground="#FF636162"></Label>
         <TextBox  x:Name="txtUsername" Margin="215,50,13,113" Width="180" Height="26" />
-        <PasswordBox  Height="26" Width="180" Name="txtPassword" Margin="215,97,13,66" />
+        <PasswordBox  Height="26" Width="180" Name="txtPassword" Margin="215,97,13,66" KeyDown="txtPassword_KeyDown"/>
         <Button x:Name="btnLogin" Margin="115,135,13,24" Height="30" Width="80"   Content="Log In"  FontWeight="Bold" FontSize="12" Click="btnLogin_Click" ></Button>
         <Button x:Name="btnCancel" Margin="315,135,13,24" Height="30" Width="80"   Content="Cancel"  FontWeight="Bold" FontSize="12" Click="btnCancel_Click" ></Button>
         <Label Content="Access Denied!!" Name="result" Visibility="Hidden" FontSize="12" Width="100" Height="26" FontWeight="Bold" Margin="12,170,266,15" Foreground="Red"></Label>

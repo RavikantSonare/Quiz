@@ -67,7 +67,21 @@ namespace WebUser
 
         protected void btnTestMode_Click(object sender, EventArgs e)
         {
-            string fileName = "Cisco-301-102.docx";// Replace Your Filename with your required filename
+            string fileName = string.Empty;
+            Button btntest = (Button)sender;
+            string val = btntest.CommandArgument;
+            if (btntest.CommandArgument == "300-120")
+            {
+                fileName = "Cisco-300-120.docx";
+            }
+            else if (btntest.CommandArgument == "302-120")
+            {
+                fileName = "Cisco-302-120.docx";// Replace Your Filename with your required filename
+            }
+            else
+            {
+                fileName = "Cisco-Math.docx";
+            }
 
             Response.ContentType = "application/octet-stream";
 
