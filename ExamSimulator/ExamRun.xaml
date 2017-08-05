@@ -444,8 +444,16 @@
                                         <Rectangle Canvas.Left="30"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="145" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
                                         <Rectangle Canvas.Left="188"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="142" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
                                         <Rectangle Canvas.Left="340"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="143" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"></Rectangle>
-                                    </Canvas>
+                                        <ItemsControl ItemsSource="{Binding Answerlist}">
 
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Answer}" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+
+                                    </Canvas>
                                     <TextBlock Text="{Binding Explaination}" Style="{StaticResource wpfStyle2}"/>
                                 </StackPanel>
                             </DataTemplate>
