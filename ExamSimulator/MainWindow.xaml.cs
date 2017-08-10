@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,7 +32,12 @@ namespace ExamSimulator
             String[] files = null;
             if (Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\"))
             {
-                files = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\", "*.docx", SearchOption.AllDirectories);
+                var allowedExtensions = new[] { ".doc", ".docx" };
+                var filesss = Directory
+                    .GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\")
+                    .Where(file => allowedExtensions.Any(file.ToLower().EndsWith))
+                    .ToList();
+                files = filesss.ToArray(); //Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\", "*.docx", SearchOption.AllDirectories);
             }
             if (files != null)
             {
@@ -93,7 +99,7 @@ namespace ExamSimulator
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Multiselect = true;
-                openFileDialog.Filter = "Text files (*.docx)|*.docx";
+                openFileDialog.Filter = "Text files (*.doc,*.docx)|*.doc;*.docx";
                 openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 if (openFileDialog.ShowDialog() == true)
                 {

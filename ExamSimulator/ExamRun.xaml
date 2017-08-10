@@ -439,7 +439,7 @@
                                             </ListBox.ItemTemplate>
                                         </ListBox>
                                     </Grid>
-                                    <Canvas Style="{StaticResource canvasHotspot}">
+                                    <!--<Canvas Style="{StaticResource canvasHotspot}">
                                         <Image Source="{Binding Image}"/>
                                         <Rectangle Canvas.Left="30"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="145" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
                                         <Rectangle Canvas.Left="188"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="142" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
@@ -447,12 +447,52 @@
                                         <ItemsControl ItemsSource="{Binding Answerlist}">
 
                                             <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Answer}" />
+                                                <DataTemplate >
+                                                    -->
+                                    <!--<TextBlock Text="{Binding Answer}" />-->
+                                    <!--
+                                                    <Path Stroke="Green" StrokeThickness="2" Fill="Transparent" >
+                                                        <Path.Data>
+                                                            <RectangleGeometry Rect="{Binding Answer}"/>
+                                                        </Path.Data>
+                                                    </Path>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
+                                        -->
+                                    <!--<Path Stroke="Black" StrokeThickness="2" Fill="Transparent">
+                                            <Path.Data>
+                                                <RectangleGeometry Rect="30,85 145,150"/>
+                                            </Path.Data>
+                                        </Path>-->
+                                    <!--
 
+                                    </Canvas>-->
+                                    <Canvas Style="{StaticResource canvasHotspot}">
+                                        <Image Source="{Binding Image}"/>
+                                        <ItemsControl ItemsSource="{Binding Answerlist}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <Canvas IsItemsHost="True"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid >
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
+                                                        </Grid.RowDefinitions>
+
+                                                        <Path Stroke="Goldenrod" StrokeThickness="2" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave">
+                                                            <Path.Data>
+                                                                <RectangleGeometry Rect="{Binding Answer}"/>
+                                                            </Path.Data>
+                                                        </Path>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
                                     </Canvas>
                                     <TextBlock Text="{Binding Explaination}" Style="{StaticResource wpfStyle2}"/>
                                 </StackPanel>

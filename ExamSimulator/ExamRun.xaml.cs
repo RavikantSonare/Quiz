@@ -14,6 +14,7 @@ using Spire.Doc.Documents;
 using Spire.Doc.Fields;
 using System.Security.Principal;
 using System.Security.AccessControl;
+using System.Security.Cryptography;
 
 namespace ExamSimulator
 {
@@ -75,6 +76,31 @@ namespace ExamSimulator
             listQuestionMark.ItemsSource = _qestlist.Skip(index).Take(1);
         }
 
+        private void Decrypt(string inputFilePath, string outputfilePath)
+        {
+            string EncryptionKey = "MAKV2SPBNI99212";
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (FileStream fsInput = new FileStream(inputFilePath, FileMode.Open))
+                {
+                    using (CryptoStream cs = new CryptoStream(fsInput, encryptor.CreateDecryptor(), CryptoStreamMode.Read))
+                    {
+                        using (FileStream fsOutput = new FileStream(outputfilePath, FileMode.Create))
+                        {
+                            int data;
+                            while ((data = cs.ReadByte()) != -1)
+                            {
+                                fsOutput.WriteByte((byte)data);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         List<Questions> _quetionList = new List<Questions>();
         private List<Questions> bindQuestionListboxToList()
         {
@@ -91,6 +117,23 @@ namespace ExamSimulator
                     int DoneQueStatus = 0, questionNo = 0;
                     string[] aas = null; string CurrrentStr = string.Empty;
 
+                    //Get the Input File Name and Extension
+                    //string fileName = Path.GetFileNameWithoutExtension(filelist.Path);
+                    //string fileExtension = Path.GetExtension(filelist.Path);
+
+                    ////Build the File Path for the original (input) and the decrypted (output) file
+                    //string input = filelist.Path;
+                    //string output = fileName + "_dec" + fileExtension;
+
+                    //if (!Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output))
+                    //{
+                    //    File.Delete(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
+                    //}
+                    //File.Copy(input, System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
+                    ////Save the Input File, Decrypt it and save the decrypted file in output path.
+                    ////FileUpload1.SaveAs(input);
+                    //this.Decrypt(input, System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
+                    //Document document = new Document(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
 
                     Document document = new Document(filelist.Path);
                     int index = 1;
@@ -187,7 +230,7 @@ namespace ExamSimulator
                                         }
                                         break;
                                     case "A":
-                                        _answerlist.Add(new Answerlist { Answer = CurrrentStr.Trim(), QuestionNo = questionNo });
+                                        _answerlist.Add(new Answerlist { Answer = CurrrentStr.Substring(2).Trim(), QuestionNo = questionNo });
                                         break;
                                     case "E":
                                         ExpStr += CurrrentStr + "\n";
@@ -553,7 +596,7 @@ namespace ExamSimulator
 
         private void Rectangle_MouseEnter(object sender, MouseEventArgs e)
         {
-            var rect = sender as System.Windows.Shapes.Rectangle;
+            var rect = sender as System.Windows.Shapes.Path;
             rect.Fill = Brushes.Goldenrod;
             rect.StrokeThickness = 3;
             rect.Stroke = Brushes.Orange;
@@ -562,7 +605,7 @@ namespace ExamSimulator
 
         private void Rectangle_MouseLeave(object sender, MouseEventArgs e)
         {
-            var rect = sender as System.Windows.Shapes.Rectangle;
+            var rect = sender as System.Windows.Shapes.Path;
             rect.Fill = Brushes.Transparent;
             rect.StrokeThickness = 2;
             rect.Stroke = Brushes.Goldenrod;
