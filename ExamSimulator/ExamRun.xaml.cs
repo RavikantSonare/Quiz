@@ -137,13 +137,12 @@ namespace ExamSimulator
 
                     Document document = new Document(filelist.Path);
                     int index = 1;
-
-
                     foreach (Spire.Doc.Section section in document.Sections)
                     {
                         //Get Each Paragraph of Section
                         foreach (Spire.Doc.Documents.Paragraph paragraph in section.Paragraphs)
                         {
+                            //paragraph.ChildObjects.Clear();
                             //Get Each Document Object of Paragraph Items
                             DoneQueStatus++;
                             foreach (DocumentObject docObject in paragraph.ChildObjects)
@@ -259,12 +258,29 @@ namespace ExamSimulator
                                 if (filelist != null && filelist.Mode == "SM")
                                 { mode = false; ureslut = true; }
                                 _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Image = QuestionImageStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
-                                CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty; QuestionImageStr = string.Empty;
+                                CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty; QuestionImageStr = string.Empty; CurrrentStr = string.Empty;
                                 _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
                                 questionNo++; index = 1;
                             }
                         }
                     }
+                    //foreach (Section section in document.Sections)
+                    //{
+                    //    for (int i = 0; i < section.Body.ChildObjects.Count; i++)
+                    //    {
+                    //        if (section.Body.ChildObjects[i].DocumentObjectType == DocumentObjectType.Paragraph)
+                    //        {
+                    //            if (String.IsNullOrEmpty((section.Body.ChildObjects[i] as Paragraph).Text.Trim()))
+                    //            {
+                    //                section.Body.ChildObjects.Remove(section.Body.ChildObjects[i]);
+                    //                i--;
+                    //            }
+                    //        }
+
+                    //    }
+                    //}
+                    //string result = "result.docx";
+                    //document.SaveToFile(result, FileFormat.Docx2010);
                 }
             }
             catch (Exception ex)

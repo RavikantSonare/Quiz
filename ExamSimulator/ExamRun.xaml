@@ -466,7 +466,6 @@
                                             </Path.Data>
                                         </Path>-->
                                     <!--
-
                                     </Canvas>-->
                                     <Canvas Style="{StaticResource canvasHotspot}">
                                         <Image Source="{Binding Image}"/>
