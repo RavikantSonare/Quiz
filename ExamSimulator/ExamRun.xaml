@@ -472,7 +472,7 @@
                                         <ItemsControl ItemsSource="{Binding Answerlist}">
                                             <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
-                                                    <Canvas IsItemsHost="True"/>
+                                                    <Canvas Name="hotspot" IsItemsHost="True"/>
                                                 </ItemsPanelTemplate>
                                             </ItemsControl.ItemsPanel>
                                             <ItemsControl.ItemTemplate>
@@ -482,11 +482,25 @@
                                                             <RowDefinition Height="Auto" />
                                                             <RowDefinition Height="Auto" />
                                                         </Grid.RowDefinitions>
-
-                                                        <Path Stroke="Goldenrod" StrokeThickness="2" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave">
+                                                        <Path Stroke="Goldenrod" StrokeThickness="2" Cursor="Hand" Tag="{Binding Answer}" ToolTip="{Binding QuestionNo}"  MouseLeftButtonUp="Rectangle_MouseLeftButtonup">
+                                                            <!--MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"-->
                                                             <Path.Data>
-                                                                <RectangleGeometry Rect="{Binding Answer}"/>
+                                                                <GeometryGroup>
+                                                                    <RectangleGeometry Rect="{Binding Answer}"/>
+                                                                </GeometryGroup>
                                                             </Path.Data>
+                                                            <Path.Style>
+                                                                <Style TargetType="{x:Type Path}">
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Setter Property="Path.Fill" Value="Gray" />
+                                                                        </Trigger>
+                                                                        <Trigger Property="IsMouseOver" Value="False">
+                                                                            <Setter Property="Path.Fill" Value="Transparent" />
+                                                                        </Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Path.Style>
                                                         </Path>
                                                     </Grid>
                                                 </DataTemplate>

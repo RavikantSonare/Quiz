@@ -42,7 +42,8 @@ namespace ExamSimulator
                     if (_time == TimeSpan.Zero)
                     {
                         _timer.Stop();
-                        NavigationService.Navigate(new ExamReport(_list.Where(z => z.userResult == true).Count(), _list.Count()));
+                        btnEndExam.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                        // NavigationService.Navigate(new ExamReport(_list.Where(z => z.userResult == true).Count(), _list.Count()));
                     }
                     _time = _time.Add(TimeSpan.FromSeconds(-1));
                 }, Application.Current.Dispatcher);
@@ -360,22 +361,22 @@ namespace ExamSimulator
                 _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.ToList().ForEach(n => n.UserAnwer = false);
                 _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.Where(f => f.Answer.Equals(UserAns)).FirstOrDefault().UserAnwer = true;
 
-                var QuetionOrignalAns = _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().RightAnswerlist;
-                var QuetionUserAns = _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.ToList();
-                int i = 0;
-                foreach (var item in QuetionOrignalAns.ToList())
-                {
-                    if (item.Rightanswer == QuetionUserAns[i].UserAnwer && item.Rightanswer)
-                    {
-                        _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().userResult = true;
-                        break;
-                    }
-                    else
-                    {
-                        _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().userResult = false;
-                    }
-                    i++;
-                }
+                //var QuetionOrignalAns = _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().RightAnswerlist;
+                //var QuetionUserAns = _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.ToList();
+                //int i = 0;
+                //foreach (var item in QuetionOrignalAns.ToList())
+                //{
+                //    if (item.Rightanswer == QuetionUserAns[i].UserAnwer && item.Rightanswer)
+                //    {
+                //        _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().userResult = true;
+                //        break;
+                //    }
+                //    else
+                //    {
+                //        _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().userResult = false;
+                //    }
+                //    i++;
+                //}
             }
             catch
             {
@@ -391,24 +392,23 @@ namespace ExamSimulator
                 var QuestionNo = Convert.ToInt32(button.TabIndex);
                 var UserAns = button.Tag.ToString();
                 //  _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.ToList().ForEach(n => n.UserAnwer = false);
-                _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.Where(f => f.Answer.Equals(UserAns)).FirstOrDefault().UserAnwer = true;
+                _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.Where(f => f.Answer.Equals(UserAns)).FirstOrDefault().UserAnwer = button.IsChecked.Value;
 
-                var QuetionOrignalAns = _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().RightAnswerlist;
-                var QuetionUserAns = _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.ToList();
-                int i = 0;
-                foreach (var item in QuetionOrignalAns.ToList())
-                {
-                    if (item.Rightanswer == QuetionUserAns[i].UserAnwer && item.Rightanswer)
-                    {
-                        _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().userResult = true;
-                        break;
-                    }
-                    else
-                    {
-                        _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().userResult = false;
-                    }
-                    i++;
-                }
+                //var QuetionOrignalAns = _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().RightAnswerlist;
+                //var QuetionUserAns = _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.ToList();
+                //int i = 0;
+                //foreach (var item in QuetionOrignalAns.ToList())
+                //{
+                //    if (item.Rightanswer == QuetionUserAns[i].UserAnwer && item.Rightanswer)
+                //    {
+                //        _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().userResult = true;
+                //    }
+                //    else
+                //    {
+                //        _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().userResult = false;
+                //    }
+                //    i++;
+                //}
             }
             catch
             {
@@ -434,7 +434,13 @@ namespace ExamSimulator
         {
             try
             {
-                NavigationService.Navigate(new ExamReport(_list.Where(z => z.userResult == true).Count(), _list.Count()));
+                foreach (var item in _list)
+                {
+                    var QuetionOrignalAns = _list.Where(q => q.QuestionNo.Equals(item.QuestionNo)).FirstOrDefault().RightAnswerlist;
+                    var QuetionUserAns = _list.Where(q => q.QuestionNo.Equals(item.QuestionNo)).FirstOrDefault().Answerlist.ToList();
+                    
+                }
+                // NavigationService.Navigate(new ExamReport(_list.Where(z => z.userResult == true).Count(), _list.Count()));
             }
             catch
             {
@@ -613,7 +619,7 @@ namespace ExamSimulator
         private void Rectangle_MouseEnter(object sender, MouseEventArgs e)
         {
             var rect = sender as System.Windows.Shapes.Path;
-            rect.Fill = Brushes.Goldenrod;
+            rect.Fill = Brushes.Gray;
             rect.StrokeThickness = 3;
             rect.Stroke = Brushes.Orange;
             rect.Opacity = .25d;
@@ -626,6 +632,18 @@ namespace ExamSimulator
             rect.StrokeThickness = 2;
             rect.Stroke = Brushes.Goldenrod;
             rect.Opacity = 1d;
+        }
+
+        private void Rectangle_MouseLeftButtonup(object sender, MouseEventArgs e)
+        {
+            var rect = sender as System.Windows.Shapes.Path;
+            rect.Fill = Brushes.Gray;
+            rect.StrokeThickness = 3;
+            rect.Opacity = .35d;
+
+            var QuestionNo = Convert.ToInt32(rect.ToolTip);
+            var UserAns = rect.Tag.ToString();
+            _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.Where(f => f.Answer.Equals(UserAns)).FirstOrDefault().UserAnwer = true;
         }
     }
 
