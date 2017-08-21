@@ -437,15 +437,32 @@ namespace ExamSimulator
                 foreach (var item in _list)
                 {
                     var QuetionOrignalAns = _list.Where(q => q.QuestionNo.Equals(item.QuestionNo)).FirstOrDefault().RightAnswerlist;
-                    var QuetionUserAns = _list.Where(q => q.QuestionNo.Equals(item.QuestionNo)).FirstOrDefault().Answerlist.ToList();
-                    
+                    var QuetionUserAns = _list.Where(q => q.QuestionNo.Equals(item.QuestionNo)).FirstOrDefault().Answerlist.ToList();//.Select(a => new { a.UserAnwer}).ToList();
+
+                    bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
+                    _list.Where(q => q.QuestionNo.Equals(item.QuestionNo)).FirstOrDefault().userResult = a;
                 }
-                // NavigationService.Navigate(new ExamReport(_list.Where(z => z.userResult == true).Count(), _list.Count()));
+                NavigationService.Navigate(new ExamReport(_list.Where(z => z.userResult == true).Count(), _list.Count()));
             }
             catch
             {
 
             }
+        }
+
+        private bool CheckUserAnswer(List<RightAnswer> list1, List<Answerlist> list2)
+        {
+
+            if (list1.Count != list2.Count)
+                return false;
+
+            for (int i = 0; i < list1.Count; i++)
+            {
+                if (list1[i].Rightanswer != list2[i].UserAnwer)
+                    return false;
+            }
+
+            return true;
         }
 
         private void btnReviewMarkExam_Click(object sender, RoutedEventArgs e)

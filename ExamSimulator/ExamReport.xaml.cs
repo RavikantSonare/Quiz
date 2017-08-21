@@ -20,6 +20,8 @@ namespace ExamSimulator
     /// </summary>
     public partial class ExamReport : Page
     {
+        TodoItem filelist = (TodoItem)Application.Current.Properties["test"];
+
         public ExamReport(int Score, int OutOfScore)
         {
             InitializeComponent();
@@ -29,12 +31,12 @@ namespace ExamSimulator
             lblYourScore.Content = Score + " / " + OutOfScore;
             if (Score > OutOfScore / 2)
             {
-                lblresultStatus.Content = "Congratulation! You has passed the xxx exam";
+                lblresultStatus.Content = "Congratulation! You has passed the " + filelist.Title + " exam";
                 lblresultStatus.Foreground = Brushes.Green;
             }
             else
             {
-                lblresultStatus.Content = "Sorry! You has failed the xxx exam";
+                lblresultStatus.Content = "Sorry! You has failed the " + filelist.Title + " exam";
                 lblresultStatus.Foreground = Brushes.Red;
             }
         }
