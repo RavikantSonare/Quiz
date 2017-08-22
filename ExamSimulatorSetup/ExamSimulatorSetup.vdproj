@@ -16,7 +16,7 @@
         "Entry"
         {
         "MsmKey" = "8:_26B15565ACB905423819134307763694"
-        "OwnerKey" = "8:_5F2CFFC15710424696A3773A51B15731"
+        "OwnerKey" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,14 +39,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5F2CFFC15710424696A3773A51B15731"
+        "MsmKey" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_800D810EF34F98E2BB519180A2D36E50"
-        "OwnerKey" = "8:_5F2CFFC15710424696A3773A51B15731"
+        "OwnerKey" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -64,7 +64,7 @@
         "Entry"
         {
         "MsmKey" = "8:_B9B13E8E268CE3BE63094C45B87311A9"
-        "OwnerKey" = "8:_5F2CFFC15710424696A3773A51B15731"
+        "OwnerKey" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,7 +76,7 @@
         "Entry"
         {
         "MsmKey" = "8:_F6FF5FD0ECF553858BDC1EC12DD82C22"
-        "OwnerKey" = "8:_5F2CFFC15710424696A3773A51B15731"
+        "OwnerKey" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -94,7 +94,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5F2CFFC15710424696A3773A51B15731"
+        "OwnerKey" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -615,7 +615,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_81A2406E407A484CA50EA363C4D9C84A"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_77792D66A8E649CFB0A605C22C205AF2"
             {
             "Name" = "8:ExamSimulator"
             "Arguments" = "8:"
@@ -623,13 +623,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_5F2CFFC15710424696A3773A51B15731"
+            "Target" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
             "Folder" = "8:_4F4BCCDA690243109B99D3F5731521B3"
             "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
             "Icon" = "8:_36020287153948EEA0E54830ED21F5BE"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D57B9614540747BD87D39162E349747A"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B718342DA169436BA8BDBB2A20840430"
             {
             "Name" = "8:ExamSimulator"
             "Arguments" = "8:"
@@ -637,7 +637,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_5F2CFFC15710424696A3773A51B15731"
+            "Target" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
             "Folder" = "8:_8E35F698B507442BB7AA70CD35B4D655"
             "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
             "Icon" = "8:_36020287153948EEA0E54830ED21F5BE"
@@ -1089,7 +1089,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5F2CFFC15710424696A3773A51B15731"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_48AB24C3AD2C486B964FA7C6CF816B70"
             {
             "SourcePath" = "8:..\\ExamSimulator\\obj\\Debug\\ExamSimulator.exe"
             "TargetName" = "8:"
