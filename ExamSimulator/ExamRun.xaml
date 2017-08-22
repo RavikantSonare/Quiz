@@ -24,10 +24,19 @@
         </Style>
 
         <Style x:Key="btnexhibit" TargetType="{x:Type Button}">
-            <Setter Property="Visibility" Value="Visible" />
+            <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger  Binding ="{Binding ElementName=btnExhibit, Path=CommandParameter}"  Value="">
-                    <Setter Property="CheckBox.Visibility" Value="Collapsed"/>
+                <DataTrigger  Binding ="{Binding ElementName=btnExhibit, Path=Tag}"  Value="Refer to the exhibit">
+                    <Setter Property="CheckBox.Visibility" Value="Visible"/>
+                    <Setter Property="Content" Value="Exhibit"/>
+                </DataTrigger>
+                <DataTrigger  Binding ="{Binding ElementName=btnExhibit, Path=Tag}"  Value="Refer to the topology">
+                    <Setter Property="CheckBox.Visibility" Value="Visible"/>
+                    <Setter Property="Content" Value="Topology"/>
+                </DataTrigger>
+                <DataTrigger  Binding ="{Binding ElementName=btnExhibit, Path=Tag}"  Value="Refer to the Scenario">
+                    <Setter Property="CheckBox.Visibility" Value="Visible"/>
+                    <Setter Property="Content" Value="Scenario"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -343,12 +352,14 @@
                             <Label x:Name="lblQuestionOutof"  FontSize="15"/>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button x:Name="btnPauseTimer" Content="Pause" Margin="0,0,7,8" Padding="4,2,4,2" Height="25" Background="#0769B4" Foreground="White" FontSize="13" Click="btnPauseTimer_Click"/>
                             <Image VerticalAlignment="Top" Name="imgtimer">
                                 <Image.Source>
                                     <BitmapImage UriSource="Resources\stopwatch.png" />
                                 </Image.Source>
                             </Image>
                             <Label x:Name="lblTimer" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" />
+                           
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -358,7 +369,7 @@
                             <DataTemplate>
                                 <StackPanel>
                                     <TextBlock  Name="txtQuestion" Text="{Binding Question}" Tag="{Binding QuestionType}" Style="{StaticResource wpfStyle1}"/>
-                                    <Button Name="btnExhibit" HorizontalAlignment="Center" CommandParameter="{Binding Image}" Content="Exhibit" Style="{StaticResource btnexhibit}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnExhibit_Click"/>
+                                    <Button Name="btnExhibit" HorizontalAlignment="Center" CommandParameter="{Binding Image}"  Tag="{Binding ImageBtnShow}" Style="{StaticResource btnexhibit}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnExhibit_Click"/>
                                     <ListBox  x:Name="list" ItemsSource="{Binding Answerlist}" Width="auto" BorderThickness="0" IsEnabled="{Binding ExamMode}" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>

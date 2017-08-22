@@ -19,11 +19,14 @@ namespace ExamSimulator
     /// </summary>
     public partial class ExhibitImage : Window
     {
-        public ExhibitImage(string imagename)
+        public ExhibitImage(string imagename, string heading)
         {
             InitializeComponent();
-            if (imagename != null)
+            if (imagename != null && heading != null)
+            {
                 imgExhibit.Source = new BitmapImage(new Uri(imagename));
+                lblName.Content = heading;
+            }
         }
 
         private void Windows_MouseDown(object sender, MouseButtonEventArgs e)

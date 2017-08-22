@@ -118,6 +118,9 @@ namespace ExamSimulator
                     int DoneQueStatus = 0, questionNo = 0;
                     string[] aas = null; string CurrrentStr = string.Empty;
 
+                    string _imgbtnshow = string.Empty;
+                    List<string> ImageTypeList = new List<string>() { "Refer to the exhibit", "Refer to the topology", "Refer to the Scenario" };
+
                     //Get the Input File Name and Extension
                     //string fileName = Path.GetFileNameWithoutExtension(filelist.Path);
                     //string fileExtension = Path.GetExtension(filelist.Path);
@@ -190,6 +193,10 @@ namespace ExamSimulator
                                         if (questionNo == 0)
                                             questionNo++;
                                     }
+                                    if (ImageTypeList.Contains(CurrrentStr))
+                                    {
+                                        CommanStrflag = "IN";
+                                    }
 
                                     if (AnswerCharList.Contains(CurrrentStr.Substring(0, 2)))
                                         CommanStrflag = "A";
@@ -207,6 +214,10 @@ namespace ExamSimulator
                                         {
                                             QuestionStr += CurrrentStr + "\n";
                                         }
+                                        break;
+                                    case "IN":
+                                        _imgbtnshow = CurrrentStr;
+                                        CommanStrflag = "";
                                         break;
                                     case "RA":
                                         RightAnswerStr += CurrrentStr;
@@ -258,9 +269,9 @@ namespace ExamSimulator
 
                                 if (filelist != null && filelist.Mode == "SM")
                                 { mode = false; ureslut = true; }
-                                _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Image = QuestionImageStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
+                                _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Image = QuestionImageStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false, ImageBtnShow = _imgbtnshow });
                                 CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty; QuestionImageStr = string.Empty; CurrrentStr = string.Empty;
-                                _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
+                                _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>(); _imgbtnshow = string.Empty;
                                 questionNo++; index = 1;
                             }
                         }
@@ -469,6 +480,8 @@ namespace ExamSimulator
         {
             _list = _list.Where(q => q.Mark.Equals(true)).ToList();
             BindQuestionlist(_list);
+            btnPrevious.IsEnabled = false;
+            showQuestionNo(index + 1, _list.Count);
         }
 
         private void ListBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -608,7 +621,7 @@ namespace ExamSimulator
                 ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
                 Button target = (Button)myDataTemplate.FindName("btnExhibit", myContentPresenter);
-                ExhibitImage frmexhibit = new ExhibitImage(Convert.ToString(target.CommandParameter));
+                ExhibitImage frmexhibit = new ExhibitImage(Convert.ToString(target.CommandParameter), Convert.ToString(target.Content));
                 frmexhibit.Owner = Window.GetWindow(this);
                 frmexhibit.ShowDialog();
                 //System.Windows.Controls.Primitives.Popup target = (System.Windows.Controls.Primitives.Popup)myDataTemplate.FindName("MyPopup", myContentPresenter);
@@ -662,6 +675,13 @@ namespace ExamSimulator
             var UserAns = rect.Tag.ToString();
             _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.Where(f => f.Answer.Equals(UserAns)).FirstOrDefault().UserAnwer = true;
         }
+
+        private void btnPauseTimer_Click(object sender, RoutedEventArgs e)
+        {
+            _timer.Stop();
+            MessageBox.Show("Your exam has been paused. Click 'OK' to continue.", "Paused", MessageBoxButton.OK, MessageBoxImage.Information);
+            _timer.Start();
+        }
     }
 
 
@@ -679,6 +699,7 @@ namespace ExamSimulator
         public string Explaination { get; set; }
         public bool ExamMode { get; set; }
         public bool Mark { get; set; }
+        public string ImageBtnShow { get; set; }
     }
 
     class Answerlist
