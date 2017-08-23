@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
+using ExamSimulator.BOLayer;
+using ExamSimulator.BALayer;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace ExamSimulator
 {
@@ -20,9 +24,15 @@ namespace ExamSimulator
     /// </summary>
     public partial class Login : Window
     {
+        private BAUser _bausr = new BAUser();
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -30,6 +40,10 @@ namespace ExamSimulator
             try
             {
                 LoginFunction();
+            }
+            catch (SqlException sqlex)
+            {
+                MessageBox.Show("Connection unsuccessful..");
             }
             catch (Exception ex)
             {
@@ -39,28 +53,26 @@ namespace ExamSimulator
 
         private void LoginFunction()
         {
-            if (ValidateTextBoxes())
+            BOUser _bousr = _bausr.SelectUserDetail("GetUserDetail", txtUsername.Text, Encryptdata(txtPassword.Password));
+            if (_bousr != null)
             {
-                if (File.Exists("Input\\credentials.txt"))
+                Application.Current.Properties["Bouser"] = _bousr;
+                if (txtPassword.Password == Decryptdata(_bousr.AccessPassword))
                 {
-                    string[] lines = File.ReadAllLines(System.AppDomain.CurrentDomain.BaseDirectory + "\\Input\\credentials.txt");
-                    if ((txtUsername.Text == lines[0]) && (txtPassword.Password == lines[1]))
-                    {
-                        this.Hide();
-                        MainWindow _mainWindow = new ExamSimulator.MainWindow();
-                        _mainWindow.ShowDialog();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Username or Password Invalid", "Message", MessageBoxButton.OK);
-                        txtUsername.Text = txtPassword.Password = "";
-                        txtUsername.Focus();
-                    }
+                    this.Hide();
+                    MainWindow _mainWindow = new ExamSimulator.MainWindow();
+                    _mainWindow.ShowDialog();
                 }
                 else
                 {
-                    MessageBox.Show("Username or Password Invalid");
+                    MessageBox.Show("Username or Password Invalid", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtUsername.Text = txtPassword.Password = "";
+                    txtUsername.Focus();
                 }
+            }
+            else
+            {
+                MessageBox.Show("Username or Password Invalid");
             }
         }
 
@@ -79,11 +91,6 @@ namespace ExamSimulator
             return true;
         }
 
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -97,6 +104,28 @@ namespace ExamSimulator
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private string Encryptdata(string password)
+        {
+            string strmsg = string.Empty;
+            byte[] encode = new byte[password.Length];
+            encode = Encoding.UTF8.GetBytes(password);
+            strmsg = Convert.ToBase64String(encode);
+            return strmsg;
+        }
+
+        private string Decryptdata(string encryptpwd)
+        {
+            string decryptpwd = string.Empty;
+            UTF8Encoding encodepwd = new UTF8Encoding();
+            Decoder Decode = encodepwd.GetDecoder();
+            byte[] todecode_byte = Convert.FromBase64String(encryptpwd);
+            int charCount = Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
+            char[] decoded_char = new char[charCount];
+            Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
+            decryptpwd = new String(decoded_char);
+            return decryptpwd;
         }
     }
 }

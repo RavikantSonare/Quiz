@@ -91,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BALayer\BAExamManage.cs" />
+    <Compile Include="BOLayer\BOExamManage.cs" />
+    <Compile Include="BOLayer\SecondCategoryList.cs" />
+    <Compile Include="DALayer\DAExamManage.cs" />
     <Compile Include="ExhibitImage.xaml.cs">
       <DependentUpon>ExhibitImage.xaml</DependentUpon>
     </Compile>

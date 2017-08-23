@@ -8,6 +8,11 @@ using System.IO;
 using Microsoft.Win32;
 using System.Security.Principal;
 using System.Security.AccessControl;
+using System.Net;
+using System.Diagnostics;
+using System.Data;
+using ExamSimulator.BOLayer;
+using ExamSimulator.BALayer;
 
 namespace ExamSimulator
 {
@@ -16,6 +21,8 @@ namespace ExamSimulator
     /// </summary>
     public partial class MainWindow : Window
     {
+        private BOUser _bouser = (BOUser)Application.Current.Properties["Bouser"];
+
         public MainWindow()
         {
             InitializeComponent();
@@ -26,9 +33,10 @@ namespace ExamSimulator
             BindFileListBox();
         }
 
+
         private void BindFileListBox()
         {
-            List<TodoItem> _item = new List<TodoItem>();
+            List<TodoItem> _exsitingExamlist = new List<TodoItem>();
             String[] files = null;
             if (Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\"))
             {
@@ -43,10 +51,29 @@ namespace ExamSimulator
             {
                 foreach (var item in files)
                 {
-                    _item.Add(new TodoItem() { Title = System.IO.Path.GetFileNameWithoutExtension(item), Path = item });
+                    _exsitingExamlist.Add(new TodoItem() { Title = System.IO.Path.GetFileNameWithoutExtension(item), Path = item });
                 }
             }
-            listFile.ItemsSource = _item;
+
+            BAExamManage _baexmmng = new BAExamManage();
+            List<BOExamManage> _boexammng = new List<BOExamManage>();
+            _boexammng = _baexmmng.SelectExamDetail("GetExWithUid", 3);
+
+            List<UserExamList> _userExamlist = new List<UserExamList>();
+
+            for (int i = 0; i < _boexammng.Count; i++)
+            {
+                if (_boexammng[i].SecondCategory + "-" + _boexammng[i].ExamCode == _exsitingExamlist[i].Title)
+                {
+                    _userExamlist.Add(new UserExamList { CategoryName = _boexammng[i].SecondCategory, ExamCodeList = new List<ExamCodelist>() { new ExamCodelist { ExamCode = _boexammng[i].ExamCode, Title = _exsitingExamlist[i].Title, Path = _exsitingExamlist[i].Path, IsActive = true } } });
+                }
+                else
+                { _userExamlist.Add(new UserExamList { CategoryName = _boexammng[i].SecondCategory, ExamCodeList = new List<ExamCodelist>() { new ExamCodelist { ExamCode = _boexammng[i].ExamCode, Title = "", Path = "", IsActive = false } } }); }
+            }
+            var _userExamFileList = from p in _userExamlist
+                                    group p.ExamCodeList by p.CategoryName into g
+                                    select new { SecondCategory = g.Key, ExamCodeList = g.ToList() };
+            listFile.ItemsSource = _userExamFileList;
         }
 
         private void TriggerClose(object sender, RoutedEventArgs e)
@@ -59,28 +86,6 @@ namespace ExamSimulator
             WindowState = System.Windows.WindowState.Minimized;
         }
 
-        private void btnStart_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            int index = listFile.Items.IndexOf(button.CommandParameter);
-            TodoItem ds = new TodoItem();
-            int idx = 0;
-            foreach (TodoItem item in listFile.Items)
-            {
-                if (idx == index)
-                {
-                    ds.ModeHeading = button.Content.ToString();
-                    ds.Mode = button.ToolTip.ToString();
-                    ds.Title = item.Title;
-                    ds.Path = item.Path;
-                }
-                idx++;
-            }
-            ExamMaster _exammaster = new ExamMaster(ds);
-            this.Close();
-            _exammaster.Show();
-        }
-
         private void Windows_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
@@ -88,53 +93,31 @@ namespace ExamSimulator
 
         private void btnDownload_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://quizuser.mobi96.org");
+            string fileName = string.Empty;
+            var button = sender as Button;
+            var Examcode = Convert.ToString(button.CommandParameter);
+            if (Examcode == "300-120")
+            {
+                fileName = "Cisco-300-120.docx";
+            }
+            else if (Examcode == "302-120")
+            {
+                fileName = "Cisco-302-120.docx";// Replace Your Filename with your required filename
+            }
+            else
+            {
+                fileName = "Cisco-Math.docx";
+            }
+
+            // Process.Start("http://quizuser.mobi96.org/ExamSimulator/Cisco-302.docx");
+            WebClient webClient = new WebClient();
+            webClient.DownloadFile("http://quizuser.mobi96.org/ExamSimulator/Cisco-302.docx", @"D:\Work\Project\ExamSimulator\bin\Debug\Examfile\" + fileName);
         }
 
-        private string filename = System.AppDomain.CurrentDomain.BaseDirectory + "Examfile\\";
-
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        private void btnExamCode_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Multiselect = true;
-                openFileDialog.Filter = "Text files (*.doc,*.docx)|*.doc;*.docx";
-                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    if (!Directory.Exists(filename + openFileDialog.SafeFileName))
-                    {
-                        File.Delete(filename + openFileDialog.SafeFileName);
-                    }
-                    File.Copy(openFileDialog.FileName, System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + openFileDialog.SafeFileName);
-                    BindFileListBox();
-                }
-            }
-            catch
-            {
-                MainWindow _mainWindow = new MainWindow();
-                _mainWindow.Show();
-            }
-        }
-
-        private void btnRemove_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Button button = sender as Button;
-                string file = ((ExamSimulator.TodoItem)button.CommandParameter).Path;
-                if (!Directory.Exists(file))
-                {
-                    File.Delete(file);
-                }
-                BindFileListBox();
-            }
-            catch
-            {
-                MainWindow _mainWindow = new MainWindow();
-                _mainWindow.Show();
-            }
+            var button = sender as Button;
+            var filename = button.CommandParameter;
         }
     }
 
@@ -144,5 +127,19 @@ namespace ExamSimulator
         public string Mode { get; set; }
         public string Title { get; set; }
         public string Path { get; set; }
+    }
+
+    public class UserExamList
+    {
+        public string CategoryName { get; set; }
+        public List<ExamCodelist> ExamCodeList { get; set; }
+    }
+
+    public class ExamCodelist
+    {
+        public string ExamCode { get; set; }
+        public string Title { get; set; }
+        public string Path { get; set; }
+        public bool IsActive { get; set; }
     }
 }

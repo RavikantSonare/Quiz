@@ -30,12 +30,44 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="btnEnable" TargetType="{x:Type Button}">
-            <Style.Triggers>
-                <DataTrigger Binding ="{Binding ElementName=listFile, Path=SelectedIndex}" Value="-1">
-                    <Setter Property="Button.IsEnabled" Value="false"/>
-                </DataTrigger>
-            </Style.Triggers>
+        <Style x:Key="RedGlowItemContainer" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border  x:Name="IconBorder"  Margin="8,4,8,4" >
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="IconBorder" Property="BitmapEffect">
+                                    <Setter.Value>
+                                        <OuterGlowBitmapEffect GlowColor="Red" GlowSize="5" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="LinkButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <TextBlock>
+                    <ContentPresenter />
+                        </TextBlock>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="Blue" />
+            <Setter Property="Cursor" Value="Hand" />
+            <!--<Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Foreground" Value="Red" />
+                </Trigger>
+            </Style.Triggers>-->
         </Style>
     </Window.Resources>
     <DockPanel LastChildFill="True">
@@ -68,63 +100,33 @@
                 <Button Style="{StaticResource WindowIconStyle}" x:Name="Btnmin" Content="0" Margin="0,0,25,0"  Grid.Row="0" Grid.Column="2" Click="TriggerMinimize"/>
             </Grid>
         </Border>
+        <Border Height="30"  DockPanel.Dock="Top">
+            <Label Name="lblheading" Content="Member Center" FontSize="15" FontWeight="Bold"></Label>
+        </Border>
         <Border Height="50" Background="#0C4068" DockPanel.Dock="Bottom">
 
         </Border>
-        <Border Height="50" DockPanel.Dock="Bottom">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Row="0" Grid.Column="1">
-                    <Button x:Name="btnStudyMode" Height="40" Margin="10,7,10,0" Background="Orange"  Foreground="White" FontSize="20" Click="btnStart_Click" CommandParameter="{Binding ElementName=listFile,Path=SelectedItem}" Style="{StaticResource btnEnable}" ToolTip="SM">Study Mode</Button>
-                </StackPanel>
-                <StackPanel Grid.Row="0" Grid.Column="2">
-                    <Button x:Name="btnTestMode" Height="40" Margin="10,7,10,0" Background="Orange"  Foreground="White" FontSize="20" Click="btnStart_Click" CommandParameter="{Binding ElementName=listFile,Path=SelectedItem}" Style="{StaticResource btnEnable}" ToolTip="TM">Test Mode</Button>
-                </StackPanel>
-
-            </Grid>
-        </Border>
-        <Border Width="200" Background="White" DockPanel.Dock="Right" BorderThickness="0,0,0,1" BorderBrush="Gray">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Column="0">
-                    <Button Height="40" Margin="10,7,10,0" Background="Orange" Foreground="White" FontSize="20" Name="btnDownload" Click="btnDownload_Click">Download</Button>
-                    <Button Height="40" Margin="10,7,10,0" Background="#29577B" Foreground="White" FontSize="20" Name="btnAdd" Click="btnAdd_Click">Add</Button>
-                    <Button Height="40" Margin="10,7,10,0" Background="#29577B" Foreground="White" FontSize="20" Name="btnRemove" Click="btnRemove_Click" CommandParameter="{Binding ElementName=listFile,Path=SelectedItem}" Style="{StaticResource btnEnable}">Remove</Button>
-                </StackPanel>
-            </Grid>
-        </Border>
         <Border Background="White">
-            <ListBox x:Name="listFile" Width="auto" ScrollViewer.VerticalScrollBarVisibility="Visible"  >
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="Background" Value="#FFFACD"/>
-                        <Setter Property="Foreground" Value="Orange"/>
-                        <Setter Property="FontFamily" Value="Georgia"/>
-                        <Setter Property="FontSize" Value="14"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                    </Style>
-                </ListBox.ItemContainerStyle>
+            <ListBox x:Name="listFile" ItemsSource="{Binding _userExamlist}" Width="auto" FontSize="14" ScrollViewer.VerticalScrollBarVisibility="Visible"  ItemContainerStyle="{StaticResource RedGlowItemContainer}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" >
-                            <Image Source="Images/docs-icon.png" />
-                            <Label x:Name="lblExam1"  Content="{Binding Title}" />
+                        <StackPanel>
+                            <Label x:Name="lblExam1"  Content="{Binding SecondCategory}" />
+                            <ListBox  x:Name="list" ItemsSource="{Binding ExamCodeList}" Width="auto" BorderThickness="0"  ItemContainerStyle="{StaticResource RedGlowItemContainer}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button x:Name="btnDownload" Content="Download" CommandParameter="{Binding ExamCode}" Click="btnDownload_Click"/>
+                                            <Label Content=" - "  />
+                                            <Button x:Name="btnExamCode" Content="{Binding ExamCode}" IsEnabled="{Binding IsActive}" CommandParameter="{Binding Path}" Style="{StaticResource LinkButton}" Click="btnExamCode_Click"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </Border>
     </DockPanel>
-
 </Window>
