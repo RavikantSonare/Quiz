@@ -61,14 +61,15 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Foreground" Value="Blue" />
+            <Setter Property="Foreground" Value="Black" />
             <Setter Property="Cursor" Value="Hand" />
-            <!--<Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="Foreground" Value="Red" />
-                </Trigger>
-            </Style.Triggers>-->
+            <Style.Triggers>
+                <DataTrigger Binding ="{Binding ElementName=btnExamCode, Path=IsEnabled}" Value="true">
+                    <Setter Property="Foreground" Value="Blue" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
+        
     </Window.Resources>
     <DockPanel LastChildFill="True">
         <Border Height="70" Background="#3B6688" DockPanel.Dock="Top">
@@ -104,7 +105,7 @@
             <Label Name="lblheading" Content="Member Center" FontSize="15" FontWeight="Bold"></Label>
         </Border>
         <Border Height="50" Background="#0C4068" DockPanel.Dock="Bottom">
-
+            <ProgressBar Name="pbDownloadStatus" Height="30" Width="300" Background="#0C4068" BorderBrush="#0C4068"/>
         </Border>
         <Border Background="White">
             <ListBox x:Name="listFile" ItemsSource="{Binding _userExamlist}" Width="auto" FontSize="14" ScrollViewer.VerticalScrollBarVisibility="Visible"  ItemContainerStyle="{StaticResource RedGlowItemContainer}">
@@ -118,7 +119,7 @@
                                         <StackPanel Orientation="Horizontal">
                                             <Button x:Name="btnDownload" Content="Download" CommandParameter="{Binding ExamCode}" Click="btnDownload_Click"/>
                                             <Label Content=" - "  />
-                                            <Button x:Name="btnExamCode" Content="{Binding ExamCode}" IsEnabled="{Binding IsActive}" CommandParameter="{Binding Path}" Style="{StaticResource LinkButton}" Click="btnExamCode_Click"/>
+                                            <Button x:Name="btnExamCode" Content="{Binding ExamCode}" IsEnabled="{Binding IsActive}" CommandParameter="{Binding Path}" Tag="{Binding Title}" Style="{StaticResource LinkButton}" Click="btnExamCode_Click"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>

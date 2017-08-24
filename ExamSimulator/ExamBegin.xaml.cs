@@ -20,15 +20,22 @@ namespace ExamSimulator
     /// </summary>
     public partial class ExamBegin : Page
     {
+        TodoItem value = (TodoItem)Application.Current.Properties["test"];
         public ExamBegin()
         {
             InitializeComponent();
-            var value = (TodoItem)Application.Current.Properties["test"];
+            lblhead1.Content = value.Title;
         }
 
         private void btnBegin_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ExamRun());
+            Button button = sender as Button;
+            TodoItem toitem = new TodoItem();
+            toitem.ModeHeading = button.Content.ToString();
+            toitem.Mode = button.Tag.ToString();
+            toitem.Title = value.Title;
+            toitem.Path = value.Path;
+            NavigationService.Navigate(new ExamRun(toitem));
         }
     }
 }

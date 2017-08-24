@@ -25,16 +25,18 @@ namespace ExamSimulator
     {
         int index = 0;
         List<Questions> _list = new List<Questions>();
-        TodoItem filelist = (TodoItem)Application.Current.Properties["test"];
+        // TodoItem filelist = (TodoItem)Application.Current.Properties["test"];
+        TodoItem filelist = new TodoItem();
         DispatcherTimer _timer;
         TimeSpan _time;
         ListBox dragSource = null;
 
-        public ExamRun()
+        public ExamRun(TodoItem filelistitem)
         {
             InitializeComponent();
             try
             {
+                filelist = filelistitem;
                 _time = TimeSpan.FromSeconds(300);
                 _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
                 {
@@ -482,6 +484,11 @@ namespace ExamSimulator
             BindQuestionlist(_list);
             btnPrevious.IsEnabled = false;
             showQuestionNo(index + 1, _list.Count);
+        }
+
+        private void btnCorrectAnswer_Click(object sender, RoutedEventArgs e)
+        {
+           
         }
 
         private void ListBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

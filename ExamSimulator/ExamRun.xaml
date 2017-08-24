@@ -308,7 +308,8 @@
                         <Button x:Name="btnNext" Height="40" Margin="10,7,10,0" Background="#0769B4" Foreground="White" FontSize="20" Click="btnNext_Click" Content="Next"/>
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="3">
-                        <Button x:Name="btnReviewMarkExam" Content="Review Marked" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnReviewMarkExam_Click"/>
+                        <Button x:Name="btnReviewMarkExam" Content="Review Marked" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnReviewMarkExam_Click" Visibility="Collapsed"/>
+                        <Button x:Name="btnCorrectAnswer" Content="Correct Answer" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnCorrectAnswer_Click"/>
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="4">
                         <Button x:Name="btnEndExam" Content="End Exam" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnEndExam_Click"/>
@@ -332,7 +333,7 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
                             <ListBox  x:Name="listQuestionMark" ItemsSource="{Binding _list}" Width="auto" BorderThickness="0" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
@@ -343,7 +344,7 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </StackPanel>
-                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
                             <Label  Content="Question" FontSize="15" FontWeight="Bold"/>
                             <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="4" Height="30">
                                 <Label x:Name="lblQuestionNo"   FontSize="15" />
@@ -351,7 +352,7 @@
                             <Label  Content="of"  FontSize="15" />
                             <Label x:Name="lblQuestionOutof"  FontSize="15"/>
                         </StackPanel>
-                        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
                             <Button x:Name="btnPauseTimer" Content="Pause" Margin="0,0,7,8" Padding="4,2,4,2" Height="25" Background="#0769B4" Foreground="White" FontSize="13" Click="btnPauseTimer_Click"/>
                             <Image VerticalAlignment="Top" Name="imgtimer">
                                 <Image.Source>
@@ -359,7 +360,6 @@
                                 </Image.Source>
                             </Image>
                             <Label x:Name="lblTimer" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" />
-                           
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -450,34 +450,6 @@
                                             </ListBox.ItemTemplate>
                                         </ListBox>
                                     </Grid>
-                                    <!--<Canvas Style="{StaticResource canvasHotspot}">
-                                        <Image Source="{Binding Image}"/>
-                                        <Rectangle Canvas.Left="30"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="145" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
-                                        <Rectangle Canvas.Left="188"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="142" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
-                                        <Rectangle Canvas.Left="340"  Stroke="Goldenrod" StrokeThickness="2" Canvas.Top="85" Width="143" Height="150" Fill="Transparent" Cursor="Hand" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"></Rectangle>
-                                        <ItemsControl ItemsSource="{Binding Answerlist}">
-
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate >
-                                                    -->
-                                    <!--<TextBlock Text="{Binding Answer}" />-->
-                                    <!--
-                                                    <Path Stroke="Green" StrokeThickness="2" Fill="Transparent" >
-                                                        <Path.Data>
-                                                            <RectangleGeometry Rect="{Binding Answer}"/>
-                                                        </Path.Data>
-                                                    </Path>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                        -->
-                                    <!--<Path Stroke="Black" StrokeThickness="2" Fill="Transparent">
-                                            <Path.Data>
-                                                <RectangleGeometry Rect="30,85 145,150"/>
-                                            </Path.Data>
-                                        </Path>-->
-                                    <!--
-                                    </Canvas>-->
                                     <Canvas Style="{StaticResource canvasHotspot}">
                                         <Image Source="{Binding Image}"/>
                                         <ItemsControl ItemsSource="{Binding Answerlist}">
@@ -519,6 +491,9 @@
                                         </ItemsControl>
                                     </Canvas>
                                     <TextBlock Text="{Binding Explaination}" Style="{StaticResource wpfStyle2}"/>
+                                    <Border Name="brdrCorrectAnswer" BorderBrush="Black" BorderThickness="1" Visibility="Collapsed">
+                                        <TextBlock Text="{Binding Explaination}" Style="{StaticResource wpfStyle2}"/>
+                                    </Border>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

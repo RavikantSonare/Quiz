@@ -63,7 +63,10 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Row="0" Grid.Column="0">
-                    <Button x:Name="btnBegin" Height="40" Margin="10,7,10,0" Background="#0769B4" Foreground="White" FontSize="20" Click="btnBegin_Click" >Begin</Button>
+                    <Button x:Name="btnStudyModel" Tag="SM" Height="40" Margin="10,7,10,0" Background="#0769B4" Foreground="White" FontSize="20" Click="btnBegin_Click" >Study Model</Button>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="4">
+                    <Button x:Name="btnTestModel" Tag="TM" Height="40" Margin="10,7,10,0" Background="#0769B4" Foreground="White" FontSize="20" Click="btnBegin_Click" >Test Model</Button>
                 </StackPanel>
             </Grid>
         </Border>
@@ -73,8 +76,7 @@
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Name="lblhead1" Grid.Row="1" FontSize="25">Exam Simulator</Label>
-                <Label Name="lblhead2" Grid.Row="1" FontSize="15" Margin="0 40">This is exam sample</Label>
+                <Label Name="lblhead1" Grid.Row="1" FontSize="45" HorizontalAlignment="Center"></Label>
             </Grid>
 
         </Border>

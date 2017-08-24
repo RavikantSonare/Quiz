@@ -63,10 +63,16 @@ namespace ExamSimulator
 
             for (int i = 0; i < _boexammng.Count; i++)
             {
-                if (_boexammng[i].SecondCategory + "-" + _boexammng[i].ExamCode == _exsitingExamlist[i].Title)
+                var data = _exsitingExamlist.Where(x => x.Title.Contains(_boexammng[i].SecondCategory + "-" + _boexammng[i].ExamCode));
+                if (data.Any())
+                // if (_exsitingExamlist.FirstOrDefault().Title.Contains(_boexammng[i].SecondCategory + "-" + _boexammng[i].ExamCode))
                 {
-                    _userExamlist.Add(new UserExamList { CategoryName = _boexammng[i].SecondCategory, ExamCodeList = new List<ExamCodelist>() { new ExamCodelist { ExamCode = _boexammng[i].ExamCode, Title = _exsitingExamlist[i].Title, Path = _exsitingExamlist[i].Path, IsActive = true } } });
+                    _userExamlist.Add(new UserExamList { CategoryName = _boexammng[i].SecondCategory, ExamCodeList = new List<ExamCodelist>() { new ExamCodelist { ExamCode = _boexammng[i].ExamCode, Title = data.FirstOrDefault().Title, Path = data.FirstOrDefault().Path, IsActive = true } } });
                 }
+                //    if (_boexammng[i].SecondCategory + "-" + _boexammng[i].ExamCode == _exsitingExamlist[i].Title)
+                //{
+                //    _userExamlist.Add(new UserExamList { CategoryName = _boexammng[i].SecondCategory, ExamCodeList = new List<ExamCodelist>() { new ExamCodelist { ExamCode = _boexammng[i].ExamCode, Title = _exsitingExamlist[i].Title, Path = _exsitingExamlist[i].Path, IsActive = true } } });
+                //}
                 else
                 { _userExamlist.Add(new UserExamList { CategoryName = _boexammng[i].SecondCategory, ExamCodeList = new List<ExamCodelist>() { new ExamCodelist { ExamCode = _boexammng[i].ExamCode, Title = "", Path = "", IsActive = false } } }); }
             }
@@ -94,7 +100,7 @@ namespace ExamSimulator
         private void btnDownload_Click(object sender, RoutedEventArgs e)
         {
             string fileName = string.Empty;
-            var button = sender as Button;
+            Button button = sender as Button;
             var Examcode = Convert.ToString(button.CommandParameter);
             if (Examcode == "300-120")
             {
@@ -108,16 +114,38 @@ namespace ExamSimulator
             {
                 fileName = "Cisco-Math.docx";
             }
-
-            // Process.Start("http://quizuser.mobi96.org/ExamSimulator/Cisco-302.docx");
             WebClient webClient = new WebClient();
-            webClient.DownloadFile("http://quizuser.mobi96.org/ExamSimulator/Cisco-302.docx", @"D:\Work\Project\ExamSimulator\bin\Debug\Examfile\" + fileName);
+            webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(wc_DownloadProgressChanged);
+            webClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(client_DownloadFileCompleted);
+            webClient.DownloadFileAsync(new Uri("http://quizuser.mobi96.org/ExamSimulator/" + fileName), @"D:\Work\Project\ExamSimulator\bin\Debug\Examfile\" + fileName);
+
+        }
+
+        public void wc_DownloadProgressChanged(Object sender, DownloadProgressChangedEventArgs e)
+        {
+            double bytesIn = double.Parse(e.BytesReceived.ToString());
+            double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+            double percentage = bytesIn / totalBytes * 100;
+            pbDownloadStatus.Value = int.Parse(Math.Truncate(percentage).ToString());
+        }
+
+        void client_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            MessageBox.Show("Download Completed");
+            pbDownloadStatus.Value = 0;
+            BindFileListBox();
         }
 
         private void btnExamCode_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
             var filename = button.CommandParameter;
+            TodoItem ds = new TodoItem();
+            ds.Title = button.Tag.ToString();
+            ds.Path = filename.ToString();
+            ExamMaster _exammaster = new ExamMaster(ds);
+            this.Close();
+            _exammaster.Show();
         }
     }
 
