@@ -450,8 +450,8 @@
                                             </ListBox.ItemTemplate>
                                         </ListBox>
                                     </Grid>
-                                    <Canvas Style="{StaticResource canvasHotspot}">
-                                        <Image Source="{Binding Image}"/>
+                                    <Canvas Style="{StaticResource canvasHotspot}" Height="{Binding ActualHeight, ElementName=canvas_image}">
+                                        <Image Source="{Binding Image}" Name="canvas_image" />
                                         <ItemsControl ItemsSource="{Binding Answerlist}">
                                             <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
@@ -491,7 +491,7 @@
                                         </ItemsControl>
                                     </Canvas>
                                     <TextBlock Text="{Binding Explaination}" Style="{StaticResource wpfStyle2}"/>
-                                    <Border Name="brdrCorrectAnswer" BorderBrush="Black" BorderThickness="1" Visibility="Collapsed">
+                                    <Border Name="brdrCorrectAnswer" BorderBrush="Black" BorderThickness="1">
                                         <TextBlock Text="{Binding Explaination}" Style="{StaticResource wpfStyle2}"/>
                                     </Border>
                                 </StackPanel>

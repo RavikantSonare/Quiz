@@ -65,14 +65,9 @@ namespace ExamSimulator
             {
                 var data = _exsitingExamlist.Where(x => x.Title.Contains(_boexammng[i].SecondCategory + "-" + _boexammng[i].ExamCode));
                 if (data.Any())
-                // if (_exsitingExamlist.FirstOrDefault().Title.Contains(_boexammng[i].SecondCategory + "-" + _boexammng[i].ExamCode))
                 {
                     _userExamlist.Add(new UserExamList { CategoryName = _boexammng[i].SecondCategory, ExamCodeList = new List<ExamCodelist>() { new ExamCodelist { ExamCode = _boexammng[i].ExamCode, Title = data.FirstOrDefault().Title, Path = data.FirstOrDefault().Path, IsActive = true } } });
                 }
-                //    if (_boexammng[i].SecondCategory + "-" + _boexammng[i].ExamCode == _exsitingExamlist[i].Title)
-                //{
-                //    _userExamlist.Add(new UserExamList { CategoryName = _boexammng[i].SecondCategory, ExamCodeList = new List<ExamCodelist>() { new ExamCodelist { ExamCode = _boexammng[i].ExamCode, Title = _exsitingExamlist[i].Title, Path = _exsitingExamlist[i].Path, IsActive = true } } });
-                //}
                 else
                 { _userExamlist.Add(new UserExamList { CategoryName = _boexammng[i].SecondCategory, ExamCodeList = new List<ExamCodelist>() { new ExamCodelist { ExamCode = _boexammng[i].ExamCode, Title = "", Path = "", IsActive = false } } }); }
             }
