@@ -57,7 +57,7 @@ namespace ExamSimulator
 
         private void Windows_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+            //this.DragMove();
         }
     }
 }

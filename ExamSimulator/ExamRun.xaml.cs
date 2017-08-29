@@ -235,6 +235,7 @@ namespace ExamSimulator
                                                     _rightAnswerlist.Add(new RightAnswer { Rightanswer = true });
                                                     if (filelist != null && filelist.Mode == "SM")
                                                     {
+                                                        btnCorrectAnswer.Visibility = Visibility.Visible;
                                                         _answerlist[j].UserAnwer = true;
                                                     }
                                                 }
@@ -271,7 +272,7 @@ namespace ExamSimulator
 
                                 if (filelist != null && filelist.Mode == "SM")
                                 { mode = false; ureslut = true; }
-                                _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Image = QuestionImageStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false, ImageBtnShow = _imgbtnshow });
+                                _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Image = QuestionImageStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false, ImageBtnShow = _imgbtnshow, RightAnswerString = RightAnswerStr });
                                 CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty; QuestionImageStr = string.Empty; CurrrentStr = string.Empty;
                                 _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>(); _imgbtnshow = string.Empty;
                                 questionNo++; index = 1;
@@ -356,7 +357,6 @@ namespace ExamSimulator
             {
                 lblQuestionOutof.Content = totalques.ToString();
                 lblQuestionNo.Content = qno.ToString();
-
             }
             catch
             {
@@ -488,7 +488,15 @@ namespace ExamSimulator
 
         private void btnCorrectAnswer_Click(object sender, RoutedEventArgs e)
         {
-           
+            foreach (var item in listQuestion.Items)
+            {
+                ListBoxItem container = listQuestion.ItemContainerGenerator.ContainerFromItem(item) as ListBoxItem;
+                ListBoxItem myListBoxItem = (ListBoxItem)(listQuestion.ItemContainerGenerator.ContainerFromIndex(0));
+                ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+                DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+                Border boderCorrectAnswer = (Border)myDataTemplate.FindName("brdrCorrectAnswer", myContentPresenter);
+                boderCorrectAnswer.Visibility = Visibility.Visible;
+            }
         }
 
         private void ListBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -707,6 +715,7 @@ namespace ExamSimulator
         public bool ExamMode { get; set; }
         public bool Mark { get; set; }
         public string ImageBtnShow { get; set; }
+        public string RightAnswerString { get; set; }
     }
 
     class Answerlist

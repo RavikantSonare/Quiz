@@ -15,7 +15,7 @@
 
         <Style x:Key="wpfStyle2" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Margin" Value="0,15,0,0"/>
+            <Setter Property="Margin" Value="15,10,0,0"/>
             <Style.Triggers>
                 <DataTrigger  Binding ="{Binding ElementName=list, Path=IsEnabled}"  Value="True">
                     <Setter Property="TextBlock.Visibility" Value="Collapsed"/>
@@ -286,6 +286,15 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="btnCorrectAnswerDisplay" TargetType="{x:Type Button}">
+            <Setter Property="Button.Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding ="{Binding ElementName=chkMark, Path=Tag}"  Value="SM">
+                    <Setter Property="Button.Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
     </Page.Resources>
     <DockPanel LastChildFill="True">
         <Border Height="55" DockPanel.Dock="Bottom" Style="{StaticResource bottomborder}">
@@ -300,6 +309,7 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Row="0" Grid.Column="0">
                         <Button x:Name="btnPrevious" Height="40" Margin="10,7,10,0" Background="#0769B4" Foreground="White" FontSize="20" Click="btnPrevious_Click" Content="Previous"/>
@@ -308,10 +318,12 @@
                         <Button x:Name="btnNext" Height="40" Margin="10,7,10,0" Background="#0769B4" Foreground="White" FontSize="20" Click="btnNext_Click" Content="Next"/>
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="3">
-                        <Button x:Name="btnReviewMarkExam" Content="Review Marked" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnReviewMarkExam_Click" Visibility="Collapsed"/>
-                        <Button x:Name="btnCorrectAnswer" Content="Correct Answer" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnCorrectAnswer_Click"/>
+                        <Button x:Name="btnCorrectAnswer" Content="Correct Answer" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnCorrectAnswer_Click" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="4">
+                        <Button x:Name="btnReviewMarkExam" Content="Review Marked" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnReviewMarkExam_Click"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="5">
                         <Button x:Name="btnEndExam" Content="End Exam" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnEndExam_Click"/>
                     </StackPanel>
                 </Grid>
@@ -490,9 +502,12 @@
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
                                     </Canvas>
-                                    <TextBlock Text="{Binding Explaination}" Style="{StaticResource wpfStyle2}"/>
-                                    <Border Name="brdrCorrectAnswer" BorderBrush="Black" BorderThickness="1">
-                                        <TextBlock Text="{Binding Explaination}" Style="{StaticResource wpfStyle2}"/>
+                                    <TextBlock  Text="{Binding Explaination}" Style="{StaticResource wpfStyle2}" Visibility="Collapsed"/>
+                                    <Border Name="brdrCorrectAnswer" BorderBrush="Black" BorderThickness="1" Margin="0,10,0,0" Visibility="Collapsed">
+                                        <StackPanel>
+                                            <TextBlock Name="txtRightAnswerString" Text="{Binding RightAnswerString}" Style="{StaticResource wpfStyle2}"/>
+                                            <TextBlock Name="txtExplanation" Text="{Binding Explaination}" Style="{StaticResource wpfStyle2}"/>
+                                        </StackPanel>
                                     </Border>
                                 </StackPanel>
                             </DataTemplate>

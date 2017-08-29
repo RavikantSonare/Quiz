@@ -10,6 +10,7 @@ using System.Security.Principal;
 using System.Security.AccessControl;
 using System.Net;
 using System.Diagnostics;
+using System.Windows.Media;
 using System.Data;
 using ExamSimulator.BOLayer;
 using ExamSimulator.BALayer;
@@ -121,12 +122,16 @@ namespace ExamSimulator
             double bytesIn = double.Parse(e.BytesReceived.ToString());
             double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
             double percentage = bytesIn / totalBytes * 100;
+            txtblkProgressValue.Visibility = Visibility.Visible;
+            pbDownloadStatus.BorderBrush = new SolidColorBrush(Colors.Green);
             pbDownloadStatus.Value = int.Parse(Math.Truncate(percentage).ToString());
         }
 
         void client_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             MessageBox.Show("Download Completed");
+            txtblkProgressValue.Visibility = Visibility.Collapsed;
+            pbDownloadStatus.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFromString("#0C4068");
             pbDownloadStatus.Value = 0;
             BindFileListBox();
         }

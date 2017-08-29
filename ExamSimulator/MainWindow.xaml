@@ -69,7 +69,16 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        
+
+        <Style x:Key="txtPercentagehide" TargetType="{x:Type TextBlock}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger  Binding ="{Binding ElementName=pbDownloadStatus, Path=Value}"  Value="Question(Hotspot)">
+                    <Setter Property="TextBlock.Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
     <DockPanel LastChildFill="True">
         <Border Height="70" Background="#3B6688" DockPanel.Dock="Top">
@@ -105,7 +114,10 @@
             <Label Name="lblheading" Content="Member Center" FontSize="15" FontWeight="Bold"></Label>
         </Border>
         <Border Height="50" Background="#0C4068" DockPanel.Dock="Bottom">
-            <ProgressBar Name="pbDownloadStatus" Height="30" Width="300" Background="#0C4068" BorderBrush="#0C4068"/>
+            <Grid>
+                <ProgressBar Name="pbDownloadStatus" Height="30" Width="300" Background="#0C4068" BorderBrush="#0C4068" Minimum="0" Maximum="100"/>
+                <TextBlock Name="txtblkProgressValue" Text="{Binding ElementName=pbDownloadStatus, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Visibility="Collapsed" />
+            </Grid>
         </Border>
         <Border Background="White">
             <ListBox x:Name="listFile" ItemsSource="{Binding _userExamlist}" Width="auto" FontSize="14" ScrollViewer.VerticalScrollBarVisibility="Visible"  ItemContainerStyle="{StaticResource RedGlowItemContainer}">

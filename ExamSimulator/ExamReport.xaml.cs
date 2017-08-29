@@ -28,14 +28,26 @@ namespace ExamSimulator
             DateTime now = DateTime.Now;
             lbldate.Content = now.ToShortDateString();
             lbltime.Content = now.ToLongTimeString();
-            lblYourScore.Content = Score + " / " + OutOfScore;
-            if (Score > OutOfScore / 2)
+            double passingSocre = ((OutOfScore * 100) * 75) / 100;
+            lblTargetScore.Content = Convert.ToString(passingSocre) + "/" + (OutOfScore * 100);
+            lblYourScore.Content = (Score * 100) + " / " + (OutOfScore * 100);
+            lblExamName.Content = filelist.Title;
+            pbPassingStatus.Minimum = 0;
+            pbPassingStatus.Value = passingSocre;
+            pbPassingStatus.Maximum = OutOfScore * 100;
+            pbPassingStatus.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#0C4068");
+            pbResultStatus.Minimum = 0;
+            pbResultStatus.Value = Score * 100;
+            pbResultStatus.Maximum = OutOfScore * 100;
+            lblPassingStatusValue.Content = lblResultStatusValue.Content = Convert.ToString(OutOfScore * 100);
+            if (Score * 100 >= passingSocre)
             {
                 lblresultStatus.Content = "Congratulation! You has passed the " + filelist.Title + " exam";
                 lblresultStatus.Foreground = Brushes.Green;
             }
             else
             {
+                pbResultStatus.Background = new SolidColorBrush(Colors.Red);
                 lblresultStatus.Content = "Sorry! You has failed the " + filelist.Title + " exam";
                 lblresultStatus.Foreground = Brushes.Red;
             }
