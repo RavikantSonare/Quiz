@@ -35,7 +35,7 @@ namespace ExamSimulator
             pbPassingStatus.Minimum = 0;
             pbPassingStatus.Value = passingSocre;
             pbPassingStatus.Maximum = OutOfScore * 100;
-            pbPassingStatus.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#0C4068");
+            pbPassingStatus.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#0C4068");
             pbResultStatus.Minimum = 0;
             pbResultStatus.Value = Score * 100;
             pbResultStatus.Maximum = OutOfScore * 100;
@@ -47,7 +47,7 @@ namespace ExamSimulator
             }
             else
             {
-                pbResultStatus.Background = new SolidColorBrush(Colors.Red);
+                pbResultStatus.Foreground = new SolidColorBrush(Colors.Red);
                 lblresultStatus.Content = "Sorry! You has failed the " + filelist.Title + " exam";
                 lblresultStatus.Foreground = Brushes.Red;
             }

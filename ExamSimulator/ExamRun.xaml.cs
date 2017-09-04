@@ -23,13 +23,15 @@ namespace ExamSimulator
     /// </summary>
     public partial class ExamRun : System.Windows.Controls.Page
     {
-        int index = 0;
+        #region Global Variables
+        int currentQuestionIndex = 0;
         List<Questions> _list = new List<Questions>();
         // TodoItem filelist = (TodoItem)Application.Current.Properties["test"];
         TodoItem filelist = new TodoItem();
         DispatcherTimer _timer;
         TimeSpan _time;
         ListBox dragSource = null;
+        #endregion
 
         public ExamRun(TodoItem filelistitem)
         {
@@ -49,7 +51,6 @@ namespace ExamSimulator
                     }
                     _time = _time.Add(TimeSpan.FromSeconds(-1));
                 }, Application.Current.Dispatcher);
-
                 _timer.Start();
             }
             catch
@@ -65,7 +66,7 @@ namespace ExamSimulator
                 _list = bindQuestionListboxToList();
                 BindQuestionlist(_list);
                 btnPrevious.IsEnabled = false;
-                showQuestionNo(index + 1, _list.Count);
+                showQuestionNo(currentQuestionIndex + 1, _list.Count);
             }
             catch
             {
@@ -75,8 +76,8 @@ namespace ExamSimulator
 
         private void BindQuestionlist(List<Questions> _qestlist)
         {
-            listQuestion.ItemsSource = _qestlist.Skip(index).Take(1);
-            listQuestionMark.ItemsSource = _qestlist.Skip(index).Take(1);
+            listQuestion.ItemsSource = _qestlist.Skip(currentQuestionIndex).Take(1);
+            listQuestionMark.ItemsSource = _qestlist.Skip(currentQuestionIndex).Take(1);
         }
 
         private void Decrypt(string inputFilePath, string outputfilePath)
@@ -309,14 +310,14 @@ namespace ExamSimulator
         {
             try
             {
-                if (_list.Count - 1 > index)
+                if (_list.Count - 1 > currentQuestionIndex)
                 {
-                    index++;
+                    currentQuestionIndex++;
                     btnPrevious.IsEnabled = true;
                     BindQuestionlist(_list);
-                    showQuestionNo(index + 1, _list.Count);
+                    showQuestionNo(currentQuestionIndex + 1, _list.Count);
                 }
-                if (_list.Count - 1 == index)
+                if (_list.Count - 1 == currentQuestionIndex)
                 {
                     btnPrevious.IsEnabled = true;
                     btnNext.IsEnabled = false;
@@ -332,14 +333,14 @@ namespace ExamSimulator
         {
             try
             {
-                if (index > 0)
+                if (currentQuestionIndex > 0)
                 {
-                    index--;
+                    currentQuestionIndex--;
                     btnNext.IsEnabled = true;
                     BindQuestionlist(_list);
-                    showQuestionNo(index + 1, _list.Count);
+                    showQuestionNo(currentQuestionIndex + 1, _list.Count);
                 }
-                if (index == 0)
+                if (currentQuestionIndex == 0)
                 {
                     btnNext.IsEnabled = true;
                     btnPrevious.IsEnabled = false;
@@ -406,22 +407,6 @@ namespace ExamSimulator
                 var UserAns = button.Tag.ToString();
                 //  _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.ToList().ForEach(n => n.UserAnwer = false);
                 _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.Where(f => f.Answer.Equals(UserAns)).FirstOrDefault().UserAnwer = button.IsChecked.Value;
-
-                //var QuetionOrignalAns = _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().RightAnswerlist;
-                //var QuetionUserAns = _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.ToList();
-                //int i = 0;
-                //foreach (var item in QuetionOrignalAns.ToList())
-                //{
-                //    if (item.Rightanswer == QuetionUserAns[i].UserAnwer && item.Rightanswer)
-                //    {
-                //        _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().userResult = true;
-                //    }
-                //    else
-                //    {
-                //        _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().userResult = false;
-                //    }
-                //    i++;
-                //}
             }
             catch
             {
@@ -465,7 +450,6 @@ namespace ExamSimulator
 
         private bool CheckUserAnswer(List<RightAnswer> list1, List<Answerlist> list2)
         {
-
             if (list1.Count != list2.Count)
                 return false;
 
@@ -474,16 +458,17 @@ namespace ExamSimulator
                 if (list1[i].Rightanswer != list2[i].UserAnwer)
                     return false;
             }
-
             return true;
         }
 
         private void btnReviewMarkExam_Click(object sender, RoutedEventArgs e)
         {
+            currentQuestionIndex = 0;
             _list = _list.Where(q => q.Mark.Equals(true)).ToList();
             BindQuestionlist(_list);
             btnPrevious.IsEnabled = false;
-            showQuestionNo(index + 1, _list.Count);
+            btnNext.IsEnabled = true;
+            showQuestionNo(currentQuestionIndex + 1, _list.Count);
         }
 
         private void btnCorrectAnswer_Click(object sender, RoutedEventArgs e)
@@ -506,7 +491,6 @@ namespace ExamSimulator
                 ListBox parent = (ListBox)sender;
                 dragSource = parent;
                 object data = GetDataFromListBox(dragSource, e.GetPosition(parent));
-
                 if (data != null)
                 {
                     DragDrop.DoDragDrop(parent, data, DragDropEffects.Move);
@@ -685,7 +669,6 @@ namespace ExamSimulator
             rect.Fill = Brushes.Gray;
             rect.StrokeThickness = 3;
             rect.Opacity = .35d;
-
             var QuestionNo = Convert.ToInt32(rect.ToolTip);
             var UserAns = rect.Tag.ToString();
             _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.Where(f => f.Answer.Equals(UserAns)).FirstOrDefault().UserAnwer = true;

@@ -8,7 +8,6 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="ExamRun">
     <Page.Resources>
-
         <Style x:Key="wpfStyle1" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="14"/>
         </Style>
@@ -295,6 +294,19 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="BaseButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="16,3,16,3"/>
+            <Setter Property="Margin" Value="10,10,10,10"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+
     </Page.Resources>
     <DockPanel LastChildFill="True">
         <Border Height="55" DockPanel.Dock="Bottom" Style="{StaticResource bottomborder}">
@@ -312,19 +324,19 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Row="0" Grid.Column="0">
-                        <Button x:Name="btnPrevious" Height="40" Margin="10,7,10,0" Background="#0769B4" Foreground="White" FontSize="20" Click="btnPrevious_Click" Content="Previous"/>
+                        <Button x:Name="btnPrevious" Style="{StaticResource BaseButtonStyle}" Background="#0769B4" Click="btnPrevious_Click" Content="Previous"/>
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="1">
-                        <Button x:Name="btnNext" Height="40" Margin="10,7,10,0" Background="#0769B4" Foreground="White" FontSize="20" Click="btnNext_Click" Content="Next"/>
+                        <Button x:Name="btnNext" Style="{StaticResource BaseButtonStyle}" Background="#0769B4" Click="btnNext_Click" Content="Next"/>
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="3">
-                        <Button x:Name="btnCorrectAnswer" Content="Correct Answer" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnCorrectAnswer_Click" Visibility="Collapsed"/>
+                        <Button x:Name="btnCorrectAnswer" Style="{StaticResource BaseButtonStyle}" Content="Correct Answer" Background="#1C3347" Click="btnCorrectAnswer_Click" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="4">
-                        <Button x:Name="btnReviewMarkExam" Content="Review Marked" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnReviewMarkExam_Click"/>
+                        <Button x:Name="btnReviewMarkExam" Style="{StaticResource BaseButtonStyle}" Content="Review Marked" Background="#1C3347" Click="btnReviewMarkExam_Click"/>
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="5">
-                        <Button x:Name="btnEndExam" Content="End Exam" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnEndExam_Click"/>
+                        <Button x:Name="btnEndExam" Style="{StaticResource BaseButtonStyle}" Content="End Exam" Background="#1C3347" Click="btnEndExam_Click"/>
                     </StackPanel>
                 </Grid>
             </Grid>

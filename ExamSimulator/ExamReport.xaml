@@ -31,9 +31,84 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <VisualBrush x:Key="HatchBrushnew" TileMode="Tile" Viewport="0,0,5,30" ViewportUnits="Absolute" Viewbox="0,0,30,30" ViewboxUnits="Absolute">
+            <VisualBrush.Transform>
+                <RotateTransform Angle="135" CenterX=".5" CenterY=".5" />
+            </VisualBrush.Transform>
+            <VisualBrush.Visual>
+                <Canvas>
+                    <Path  Stroke="Black" StrokeThickness="1" >
+                        <Path.Data>
+                            <LineGeometry StartPoint="15,0" EndPoint="15,30" />
+                        </Path.Data>
+                    </Path>
+                </Canvas>
+            </VisualBrush.Visual>
+        </VisualBrush>
+        <Style x:Key="bottomborder"  TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="{StaticResource HatchBrushnew}"/>
+        </Style>
+
+        <Style x:Key="BaseButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="16,3,16,3"/>
+            <Setter Property="Margin" Value="10,10,10,10"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter" Margin="{TemplateBinding Padding}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#333333" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#1ba1e2" />
+                                <Setter Property="BorderBrush" Value="#1ba1e2"/>
+                                <Setter Property="Foreground" Value="#ffffff"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="#1ba1e2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="BorderCornerRed" TargetType="Border">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Setter Property="CornerRadius" Value="4,0,0,4"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Value, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ProgressBar}}}" Value="100">
+                    <Setter Property="CornerRadius" Value="4"/>
+                </DataTrigger>
+                <DataTrigger  Binding ="{Binding ElementName=txtpbResultStatusValue, Path=Text}"  Value="0">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        
     </Page.Resources>
     <DockPanel LastChildFill="True">
-        <Border Height="50" DockPanel.Dock="Bottom">
+        <Border Height="50" DockPanel.Dock="Bottom" Style="{StaticResource bottomborder}" BorderThickness="0,1,0,0" BorderBrush="Gray">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -46,7 +121,7 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Row="0" Grid.Column="4">
-                    <Button x:Name="btnExit" Height="40" Margin="10,7,10,0" Background="#1C3347" Foreground="White" FontSize="20" Click="btnExit_Click"  >Exit</Button>
+                    <Button x:Name="btnExit" Style="{StaticResource BaseButtonStyle}" Background="#1C3347" Click="btnExit_Click"  >Exit</Button>
                 </StackPanel>
             </Grid>
         </Border>
@@ -55,7 +130,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="150"></RowDefinition>
-                    <RowDefinition Height="150"></RowDefinition>
+                    <RowDefinition Height="130"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <StackPanel HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top">
@@ -92,12 +167,11 @@
                         </StackPanel>
                     </Grid>
                 </StackPanel>
-
                 <StackPanel HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
-                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="20"></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -114,7 +188,7 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0">
-                                <Label Content="Requierd Socre:" FontSize="15"></Label>
+                                <Label Content="Required Score:" FontSize="15"></Label>
                             </StackPanel>
                             <Grid Grid.Row="1">
                                 <ProgressBar Name="pbPassingStatus" Height="20" Width="500" />
@@ -133,20 +207,19 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0">
-                                <Label Content="Your Socre:" FontSize="15"></Label>
+                                <Label Content="Your Score:" FontSize="15"></Label>
                             </StackPanel>
                             <Grid Grid.Row="1">
                                 <ProgressBar Name="pbResultStatus" Height="20" Width="500" />
-                                <TextBlock  Text="{Binding ElementName=pbResultStatus, Path=Value, StringFormat={}{0:0}}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
+                                <TextBlock Name="txtpbResultStatusValue"  Text="{Binding ElementName=pbResultStatus, Path=Value, StringFormat={}{0:0}}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
+                                <Border BorderThickness="1" x:Name="PART_Indicator" HorizontalAlignment="Left" Background="Red" BorderBrush="Red" Margin="0,0,0,0" Style="{StaticResource BorderCornerRed}"/>
                             </Grid>
                         </Grid>
                         <StackPanel Grid.Row="2" Grid.Column="2"  VerticalAlignment="Bottom">
                             <Label Name="lblResultStatusValue"/>
                         </StackPanel>
                     </Grid>
-
                 </StackPanel>
-
             </Grid>
         </Border>
     </DockPanel>

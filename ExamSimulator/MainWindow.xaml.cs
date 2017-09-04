@@ -34,7 +34,6 @@ namespace ExamSimulator
             BindFileListBox();
         }
 
-
         private void BindFileListBox()
         {
             List<TodoItem> _exsitingExamlist = new List<TodoItem>();
@@ -114,7 +113,6 @@ namespace ExamSimulator
             webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(wc_DownloadProgressChanged);
             webClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(client_DownloadFileCompleted);
             webClient.DownloadFileAsync(new Uri("http://quizuser.mobi96.org/ExamSimulator/" + fileName), @"D:\Work\Project\ExamSimulator\bin\Debug\Examfile\" + fileName);
-
         }
 
         public void wc_DownloadProgressChanged(Object sender, DownloadProgressChangedEventArgs e)
