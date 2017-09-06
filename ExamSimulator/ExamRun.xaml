@@ -285,6 +285,23 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="Pathcanvas" TargetType="{x:Type Path}">
+            <Setter Property="Path.Fill" Value="Transparent" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Path.Fill" Value="Gray" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Path.Fill" Value="Transparent" />
+                </Trigger>
+                <DataTrigger  Binding ="{Binding ElementName=txtUserAnswerPath, Path=Text}"  Value="True">
+                    <Setter Property="Path.Fill" Value="Gray" />
+                    <Setter Property="Path.StrokeThickness" Value="3" />
+                    <Setter Property="Path.Opacity" Value=".35" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
         <Style x:Key="btnCorrectAnswerDisplay" TargetType="{x:Type Button}">
             <Setter Property="Button.Visibility" Value="Collapsed"/>
             <Style.Triggers>
@@ -421,7 +438,7 @@
                                             <ColumnDefinition Width="1*"></ColumnDefinition>
                                             <ColumnDefinition Width="1*"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
-                                        <ListBox ItemsSource="{Binding Answerlist}" Grid.Row="0" Grid.Column="0" x:Name="lbDrag" Drop="lbDrag_Drop" AllowDrop="True" PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown" >
+                                        <ListBox ItemsSource="{Binding Answerlist}" Grid.Row="0" Grid.Column="0" x:Name="lbDrag" Drop="lbDrag_Drop" AllowDrop="True" PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown" IsEnabled="{Binding ExamMode}">
                                             <ListBox.ItemContainerStyle>
                                                 <Style TargetType="{x:Type ListBoxItem}">
                                                     <Setter Property="Height" Value="30" />
@@ -445,7 +462,7 @@
                                                 </DataTemplate>
                                             </ListBox.ItemTemplate>
                                         </ListBox>
-                                        <ListBox ItemsSource="{Binding Answerlist}" Grid.Row="1" Grid.Column="1" x:Name="lbDrop" Drop="lbDrop_Drop" AllowDrop="True" PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown" >
+                                        <ListBox ItemsSource="{Binding Answerlist}" Grid.Row="1" Grid.Column="1" x:Name="lbDrop" Drop="lbDrop_Drop" AllowDrop="True" PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown" IsEnabled="{Binding ExamMode}">
                                             <ListBox.ItemContainerStyle>
                                                 <Style TargetType="{x:Type ListBoxItem}">
                                                     <Style.Triggers>
@@ -476,7 +493,7 @@
                                     </Grid>
                                     <Canvas Style="{StaticResource canvasHotspot}" Height="{Binding ActualHeight, ElementName=canvas_image}">
                                         <Image Source="{Binding Image}" Name="canvas_image" />
-                                        <ItemsControl ItemsSource="{Binding Answerlist}">
+                                        <ItemsControl ItemsSource="{Binding Answerlist}" IsEnabled="{Binding ExamMode}">
                                             <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
                                                     <Canvas Name="hotspot" IsItemsHost="True"/>
@@ -489,25 +506,15 @@
                                                             <RowDefinition Height="Auto" />
                                                             <RowDefinition Height="Auto" />
                                                         </Grid.RowDefinitions>
-                                                        <Path Stroke="Goldenrod" StrokeThickness="2" Cursor="Hand" Tag="{Binding Answer}" ToolTip="{Binding QuestionNo}"  MouseLeftButtonUp="Rectangle_MouseLeftButtonup">
+                                                        <TextBox Name="txtUserAnswerPath" Text="{Binding UserAnwer}" Visibility="Collapsed" />
+                                                        <Path Name="pathcanvas" Style="{StaticResource Pathcanvas}" Stroke="Goldenrod" StrokeThickness="2" Cursor="Hand" Tag="{Binding Answer}" ToolTip="{Binding QuestionNo}"  MouseLeftButtonUp="Rectangle_MouseLeftButtonup">
                                                             <!--MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"-->
                                                             <Path.Data>
                                                                 <GeometryGroup>
                                                                     <RectangleGeometry Rect="{Binding Answer}"/>
                                                                 </GeometryGroup>
                                                             </Path.Data>
-                                                            <Path.Style>
-                                                                <Style TargetType="{x:Type Path}">
-                                                                    <Style.Triggers>
-                                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                                            <Setter Property="Path.Fill" Value="Gray" />
-                                                                        </Trigger>
-                                                                        <Trigger Property="IsMouseOver" Value="False">
-                                                                            <Setter Property="Path.Fill" Value="Transparent" />
-                                                                        </Trigger>
-                                                                    </Style.Triggers>
-                                                                </Style>
-                                                            </Path.Style>
+
                                                         </Path>
                                                     </Grid>
                                                 </DataTemplate>

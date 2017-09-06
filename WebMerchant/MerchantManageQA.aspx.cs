@@ -1026,9 +1026,7 @@ namespace WebMerchant
             {
                 if (this.FileUpload1.HasFile)
                 {
-
                     filePath = Server.MapPath("~/ExcelUpload/") + Path.GetFileName(FileUpload1.PostedFile.FileName);
-
 
                     if (!File.Exists(filePath))
                     {
@@ -1122,7 +1120,6 @@ namespace WebMerchant
             }
         }
 
-
         private string readFileContent(string path)
         {
             string filePath = Server.MapPath("~/ExcelUpload/") + Path.GetFileName(FileUpload1.PostedFile.FileName);
@@ -1133,7 +1130,6 @@ namespace WebMerchant
             return text;
 
         }
-
 
         protected void btnAddAnswerSingle_Click(object sender, EventArgs e)
         {

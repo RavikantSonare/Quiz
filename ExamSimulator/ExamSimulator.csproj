@@ -57,16 +57,14 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Spire.Doc, Version=4.9.33.4040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Spire.Doc.dll</HintPath>
+    <Reference Include="Spire.Doc">
+      <HintPath>C:\Users\mobiweb\Downloads\spire.doc_6.0.8\BIN\NET4.0\Spire.Doc.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.License, Version=1.3.2.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Spire.License.dll</HintPath>
+    <Reference Include="Spire.License">
+      <HintPath>C:\Users\mobiweb\Downloads\spire.doc_6.0.8\BIN\NET4.0\Spire.License.dll</HintPath>
     </Reference>
     <Reference Include="Spire.Pdf">
-      <HintPath>C:\Users\mobiweb\Downloads\ImageOperationsInWord\ImageOperationsInWord\bin\Debug\Spire.Pdf.dll</HintPath>
+      <HintPath>C:\Users\mobiweb\Downloads\spire.doc_6.0.8\BIN\NET4.0\Spire.Pdf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -204,6 +202,7 @@
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="bin\Debug\Examfile\ExamSimulator.zip" />
+    <None Include="bin\Debug\Examfile\Cisco-Math.docx" />
     <None Include="Examfile\Document.docx" />
     <None Include="Examfile\Document2.docx" />
     <None Include="Examfile\Document3.docx" />

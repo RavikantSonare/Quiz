@@ -31,6 +31,7 @@ namespace ExamSimulator
         DispatcherTimer _timer;
         TimeSpan _time;
         ListBox dragSource = null;
+        bool flagMark = false;
         #endregion
 
         public ExamRun(TodoItem filelistitem)
@@ -66,7 +67,6 @@ namespace ExamSimulator
                 _list = bindQuestionListboxToList();
                 BindQuestionlist(_list);
                 btnPrevious.IsEnabled = false;
-                showQuestionNo(currentQuestionIndex + 1, _list.Count);
             }
             catch
             {
@@ -76,8 +76,18 @@ namespace ExamSimulator
 
         private void BindQuestionlist(List<Questions> _qestlist)
         {
-            listQuestion.ItemsSource = _qestlist.Skip(currentQuestionIndex).Take(1);
-            listQuestionMark.ItemsSource = _qestlist.Skip(currentQuestionIndex).Take(1);
+            if (flagMark)
+            {
+                listQuestion.ItemsSource = _qestlist.Where(f => f.Mark).Skip(currentQuestionIndex).Take(1);
+                listQuestionMark.ItemsSource = _qestlist.Where(f => f.Mark).Skip(currentQuestionIndex).Take(1);
+                showQuestionNo(currentQuestionIndex + 1, _qestlist.Where(f => f.Mark).ToList().Count);
+            }
+            else
+            {
+                listQuestion.ItemsSource = _qestlist.Skip(currentQuestionIndex).Take(1);
+                listQuestionMark.ItemsSource = _qestlist.Skip(currentQuestionIndex).Take(1);
+                showQuestionNo(currentQuestionIndex + 1, _qestlist.Count);
+            }
         }
 
         private void Decrypt(string inputFilePath, string outputfilePath)
@@ -280,23 +290,6 @@ namespace ExamSimulator
                             }
                         }
                     }
-                    //foreach (Section section in document.Sections)
-                    //{
-                    //    for (int i = 0; i < section.Body.ChildObjects.Count; i++)
-                    //    {
-                    //        if (section.Body.ChildObjects[i].DocumentObjectType == DocumentObjectType.Paragraph)
-                    //        {
-                    //            if (String.IsNullOrEmpty((section.Body.ChildObjects[i] as Paragraph).Text.Trim()))
-                    //            {
-                    //                section.Body.ChildObjects.Remove(section.Body.ChildObjects[i]);
-                    //                i--;
-                    //            }
-                    //        }
-
-                    //    }
-                    //}
-                    //string result = "result.docx";
-                    //document.SaveToFile(result, FileFormat.Docx2010);
                 }
             }
             catch (Exception ex)
@@ -310,17 +303,35 @@ namespace ExamSimulator
         {
             try
             {
-                if (_list.Count - 1 > currentQuestionIndex)
+                if (flagMark)
                 {
-                    currentQuestionIndex++;
-                    btnPrevious.IsEnabled = true;
-                    BindQuestionlist(_list);
-                    showQuestionNo(currentQuestionIndex + 1, _list.Count);
+                    if (_list.Where(f => f.Mark).ToList().Count - 1 > currentQuestionIndex)
+                    {
+                        currentQuestionIndex++;
+                        btnPrevious.IsEnabled = true;
+                        BindQuestionlist(_list);
+                        showQuestionNo(currentQuestionIndex + 1, _list.Where(f => f.Mark).ToList().Count);
+                    }
+                    if (_list.Where(f => f.Mark).ToList().Count - 1 == currentQuestionIndex)
+                    {
+                        btnPrevious.IsEnabled = true;
+                        btnNext.IsEnabled = false;
+                    }
                 }
-                if (_list.Count - 1 == currentQuestionIndex)
+                else
                 {
-                    btnPrevious.IsEnabled = true;
-                    btnNext.IsEnabled = false;
+                    if (_list.Count - 1 > currentQuestionIndex)
+                    {
+                        currentQuestionIndex++;
+                        btnPrevious.IsEnabled = true;
+                        BindQuestionlist(_list);
+                        showQuestionNo(currentQuestionIndex + 1, _list.Count);
+                    }
+                    if (_list.Count - 1 == currentQuestionIndex)
+                    {
+                        btnPrevious.IsEnabled = true;
+                        btnNext.IsEnabled = false;
+                    }
                 }
             }
             catch
@@ -333,17 +344,35 @@ namespace ExamSimulator
         {
             try
             {
-                if (currentQuestionIndex > 0)
+                if (flagMark)
                 {
-                    currentQuestionIndex--;
-                    btnNext.IsEnabled = true;
-                    BindQuestionlist(_list);
-                    showQuestionNo(currentQuestionIndex + 1, _list.Count);
+                    if (currentQuestionIndex > 0)
+                    {
+                        currentQuestionIndex--;
+                        btnNext.IsEnabled = true;
+                        BindQuestionlist(_list);
+                        showQuestionNo(currentQuestionIndex + 1, _list.Where(f => f.Mark).ToList().Count);
+                    }
+                    if (currentQuestionIndex == 0)
+                    {
+                        btnNext.IsEnabled = true;
+                        btnPrevious.IsEnabled = false;
+                    }
                 }
-                if (currentQuestionIndex == 0)
+                else
                 {
-                    btnNext.IsEnabled = true;
-                    btnPrevious.IsEnabled = false;
+                    if (currentQuestionIndex > 0)
+                    {
+                        currentQuestionIndex--;
+                        btnNext.IsEnabled = true;
+                        BindQuestionlist(_list);
+                        showQuestionNo(currentQuestionIndex + 1, _list.Count);
+                    }
+                    if (currentQuestionIndex == 0)
+                    {
+                        btnNext.IsEnabled = true;
+                        btnPrevious.IsEnabled = false;
+                    }
                 }
             }
             catch
@@ -463,12 +492,13 @@ namespace ExamSimulator
 
         private void btnReviewMarkExam_Click(object sender, RoutedEventArgs e)
         {
+            flagMark = true;
             currentQuestionIndex = 0;
-            _list = _list.Where(q => q.Mark.Equals(true)).ToList();
+            // _list = _list.Where(q => q.Mark.Equals(true)).ToList();
             BindQuestionlist(_list);
             btnPrevious.IsEnabled = false;
             btnNext.IsEnabled = true;
-            showQuestionNo(currentQuestionIndex + 1, _list.Count);
+            //  showQuestionNo(currentQuestionIndex + 1, _list.Count);
         }
 
         private void btnCorrectAnswer_Click(object sender, RoutedEventArgs e)
@@ -680,9 +710,25 @@ namespace ExamSimulator
             MessageBox.Show("Your exam has been paused. Click 'OK' to continue.", "Paused", MessageBoxButton.OK, MessageBoxImage.Information);
             _timer.Start();
         }
+
+        private void NavigateExam(NavOption option, List<Questions> qlist)
+        {
+            if (option == NavOption.Begin)
+            {
+            }
+            else if (option == NavOption.Next)
+            {
+            }
+            else if (option == NavOption.Previous)
+            {
+            }
+            else if (option == NavOption.End)
+            {
+            }
+        }
     }
 
-
+    [Serializable]
     class Questions
     {
         public int QuestionNo { get; set; }
@@ -701,6 +747,7 @@ namespace ExamSimulator
         public string RightAnswerString { get; set; }
     }
 
+    [Serializable]
     class Answerlist
     {
         public string Answer { get; set; }
@@ -709,5 +756,14 @@ namespace ExamSimulator
         public int OrderingList { get; set; } = 0;
     }
 
+    [Serializable]
     class RightAnswer { public bool Rightanswer { get; set; } }
+
+    enum NavOption
+    {
+        Begin,
+        Next,
+        Previous,
+        End
+    }
 }
