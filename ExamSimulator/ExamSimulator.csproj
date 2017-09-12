@@ -17,6 +17,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,7 +30,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -53,8 +53,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup />
   <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>q.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Spire.Doc">
@@ -201,8 +202,14 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.manifest" />
+    <None Include="bin\Debug\Examfile\Cisco-300-120_enc.docx" />
+    <None Include="bin\Debug\Examfile\Cisco-300-120_enc.vcee" />
+    <None Include="bin\Debug\Examfile\Cisco-302-120_enc.docx" />
+    <None Include="bin\Debug\Examfile\Cisco-302-120_enc.vcee" />
+    <None Include="bin\Debug\Examfile\Cisco-Math_enc.docx" />
+    <None Include="bin\Debug\Examfile\Cisco-Math_enc.vcee" />
     <None Include="bin\Debug\Examfile\ExamSimulator.zip" />
-    <None Include="bin\Debug\Examfile\Cisco-Math.docx" />
+    <None Include="bin\Debug\Examfile\Cisco-Math.docx1" />
     <None Include="Examfile\Document.docx" />
     <None Include="Examfile\Document2.docx" />
     <None Include="Examfile\Document3.docx" />
@@ -261,6 +268,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\ExamReadfile\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="q.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

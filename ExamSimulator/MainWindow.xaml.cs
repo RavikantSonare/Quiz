@@ -40,7 +40,8 @@ namespace ExamSimulator
             String[] files = null;
             if (Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\"))
             {
-                var allowedExtensions = new[] { ".doc", ".docx" };
+                //var allowedExtensions = new[] { ".doc", ".docx" };
+                var allowedExtensions = new[] { ".vcee"};
                 var filesss = Directory
                     .GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\")
                     .Where(file => allowedExtensions.Any(file.ToLower().EndsWith))
@@ -79,6 +80,11 @@ namespace ExamSimulator
 
         private void TriggerClose(object sender, RoutedEventArgs e)
         {
+            System.IO.DirectoryInfo di = new DirectoryInfo(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\");
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
             Application.Current.Shutdown();
         }
 
