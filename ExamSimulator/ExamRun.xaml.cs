@@ -93,6 +93,7 @@ namespace ExamSimulator
         private void Decrypt(string inputFilePath, string outputfilePath)
         {
             string EncryptionKey = "MAKV2SPBNI99212";
+            //string EncryptionKey = "MOBI2WEBTE38209";
             using (Aes encryptor = Aes.Create())
             {
                 Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
@@ -136,7 +137,7 @@ namespace ExamSimulator
 
                     //Get the Input File Name and Extension
                     string fileName = Path.GetFileNameWithoutExtension(filelist.Path);
-                    string fileExtension = "docx"; //Path.GetExtension(filelist.Path);
+                    string fileExtension = ".docx"; //Path.GetExtension(filelist.Path);
 
                     //Build the File Path for the original (input) and the decrypted (output) file
                     string input = filelist.Path;
@@ -146,7 +147,7 @@ namespace ExamSimulator
                     {
                         File.Delete(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
                     }
-                   // File.Copy(input, System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
+                    // File.Copy(input, System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
                     //Save the Input File, Decrypt it and save the decrypted file in output path.
                     //FileUpload1.SaveAs(input);
                     this.Decrypt(input, System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);

@@ -15,14 +15,14 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_26B15565ACB905423819134307763694"
-        "OwnerKey" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
+        "MsmKey" = "8:_03FEFBF3F99F4DFEA0A9FB5B8A76870A"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_26B15565ACB905423819134307763694"
-        "OwnerKey" = "8:_800D810EF34F98E2BB519180A2D36E50"
+        "MsmKey" = "8:_09A02B0E6CDA4C5E85227967659521C2"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -33,20 +33,38 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_30ECE6DF000FF7710C2DC3F025F8844C"
+        "OwnerKey" = "8:_C1B4F7C9B0D87B33C8D52105302FF897"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_30ECE6DF000FF7710C2DC3F025F8844C"
+        "OwnerKey" = "8:_68DC5206484840CF97537DE7E26DF891"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_36020287153948EEA0E54830ED21F5BE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
+        "MsmKey" = "8:_68DC5206484840CF97537DE7E26DF891"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_800D810EF34F98E2BB519180A2D36E50"
-        "OwnerKey" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
+        "MsmKey" = "8:_7E9D88DAE658E2A8EA51C0BA4F4CAF97"
+        "OwnerKey" = "8:_68DC5206484840CF97537DE7E26DF891"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7E9D88DAE658E2A8EA51C0BA4F4CAF97"
+        "OwnerKey" = "8:_30ECE6DF000FF7710C2DC3F025F8844C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -57,62 +75,80 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B9B13E8E268CE3BE63094C45B87311A9"
-        "OwnerKey" = "8:_26B15565ACB905423819134307763694"
+        "MsmKey" = "8:_8DF030B1EA8044E5972FF23B6A26C506"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B9B13E8E268CE3BE63094C45B87311A9"
-        "OwnerKey" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
+        "MsmKey" = "8:_AC466B884EC440A688CE700667B3F36E"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B9B13E8E268CE3BE63094C45B87311A9"
-        "OwnerKey" = "8:_800D810EF34F98E2BB519180A2D36E50"
+        "MsmKey" = "8:_BE9A5EE1A15B63F16921DEAEDB4156DE"
+        "OwnerKey" = "8:_C1B4F7C9B0D87B33C8D52105302FF897"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F6FF5FD0ECF553858BDC1EC12DD82C22"
-        "OwnerKey" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
+        "MsmKey" = "8:_BE9A5EE1A15B63F16921DEAEDB4156DE"
+        "OwnerKey" = "8:_68DC5206484840CF97537DE7E26DF891"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F6FF5FD0ECF553858BDC1EC12DD82C22"
-        "OwnerKey" = "8:_26B15565ACB905423819134307763694"
+        "MsmKey" = "8:_BE9A5EE1A15B63F16921DEAEDB4156DE"
+        "OwnerKey" = "8:_30ECE6DF000FF7710C2DC3F025F8844C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F6FF5FD0ECF553858BDC1EC12DD82C22"
+        "MsmKey" = "8:_C1B4F7C9B0D87B33C8D52105302FF897"
+        "OwnerKey" = "8:_68DC5206484840CF97537DE7E26DF891"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
+        "MsmKey" = "8:_CDF1CCCFB8444C6CAA42C0D28B1CC468"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_800D810EF34F98E2BB519180A2D36E50"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_26B15565ACB905423819134307763694"
+        "MsmKey" = "8:_F4C6BBFD91B7405DB436652D93A9DA55"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B9B13E8E268CE3BE63094C45B87311A9"
+        "OwnerKey" = "8:_7E9D88DAE658E2A8EA51C0BA4F4CAF97"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_68DC5206484840CF97537DE7E26DF891"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C1B4F7C9B0D87B33C8D52105302FF897"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_30ECE6DF000FF7710C2DC3F025F8844C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BE9A5EE1A15B63F16921DEAEDB4156DE"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -210,14 +246,74 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_26B15565ACB905423819134307763694"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_03FEFBF3F99F4DFEA0A9FB5B8A76870A"
+            {
+            "SourcePath" = "8:..\\ExamSimulator\\bin\\Debug\\Examfile\\Cisco-302-120.docx"
+            "TargetName" = "8:Cisco-302-120.docx"
+            "Tag" = "8:"
+            "Folder" = "8:_974115F762F6421A984238E9CA5D0B8B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_09A02B0E6CDA4C5E85227967659521C2"
+            {
+            "SourcePath" = "8:..\\ExamSimulator\\bin\\Debug\\Examfile\\Cisco-Math_enc.vcee"
+            "TargetName" = "8:Cisco-Math_enc.vcee"
+            "Tag" = "8:"
+            "Folder" = "8:_974115F762F6421A984238E9CA5D0B8B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2DAFCCCFC36147D88D70F5F39AF45B59"
+            {
+            "SourcePath" = "8:..\\ExamSimulator\\bin\\Debug\\Input\\credentials.txt"
+            "TargetName" = "8:credentials.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_F605CA7C9D804C68A8A8B5199F9D9031"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_30ECE6DF000FF7710C2DC3F025F8844C"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Spire.Pdf, Version=2.8.87.4040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Spire.Pdf, Version=3.9.321.4040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_26B15565ACB905423819134307763694"
+                    "_30ECE6DF000FF7710C2DC3F025F8844C"
                     {
                     "Name" = "8:Spire.Pdf.dll"
                     "Attributes" = "3:512"
@@ -241,26 +337,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2DAFCCCFC36147D88D70F5F39AF45B59"
-            {
-            "SourcePath" = "8:..\\ExamSimulator\\bin\\Debug\\Input\\credentials.txt"
-            "TargetName" = "8:credentials.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_F605CA7C9D804C68A8A8B5199F9D9031"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_36020287153948EEA0E54830ED21F5BE"
             {
             "SourcePath" = "8:..\\ExamSimulator\\Resources\\q.ico"
@@ -281,20 +357,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_800D810EF34F98E2BB519180A2D36E50"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7E9D88DAE658E2A8EA51C0BA4F4CAF97"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Spire.Doc, Version=4.9.33.4040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_800D810EF34F98E2BB519180A2D36E50"
+                    "_7E9D88DAE658E2A8EA51C0BA4F4CAF97"
                     {
-                    "Name" = "8:Spire.Doc.dll"
+                    "Name" = "8:Microsoft.mshtml.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Spire.Doc.dll"
+            "SourcePath" = "8:Microsoft.mshtml.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
@@ -332,14 +408,54 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B9B13E8E268CE3BE63094C45B87311A9"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8DF030B1EA8044E5972FF23B6A26C506"
+            {
+            "SourcePath" = "8:..\\ExamSimulator\\bin\\Debug\\Examfile\\Cisco-302-120_enc.vcee"
+            "TargetName" = "8:Cisco-302-120_enc.vcee"
+            "Tag" = "8:"
+            "Folder" = "8:_974115F762F6421A984238E9CA5D0B8B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AC466B884EC440A688CE700667B3F36E"
+            {
+            "SourcePath" = "8:..\\ExamSimulator\\bin\\Debug\\Examfile\\Cisco-300-120.docx"
+            "TargetName" = "8:Cisco-300-120.docx"
+            "Tag" = "8:"
+            "Folder" = "8:_974115F762F6421A984238E9CA5D0B8B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BE9A5EE1A15B63F16921DEAEDB4156DE"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Spire.License, Version=1.3.2.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Spire.License, Version=1.3.6.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B9B13E8E268CE3BE63094C45B87311A9"
+                    "_BE9A5EE1A15B63F16921DEAEDB4156DE"
                     {
                     "Name" = "8:Spire.License.dll"
                     "Attributes" = "3:512"
@@ -363,20 +479,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F6FF5FD0ECF553858BDC1EC12DD82C22"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C1B4F7C9B0D87B33C8D52105302FF897"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+            "AssemblyAsmDisplayName" = "8:Spire.Doc, Version=6.0.8.4040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F6FF5FD0ECF553858BDC1EC12DD82C22"
+                    "_C1B4F7C9B0D87B33C8D52105302FF897"
                     {
-                    "Name" = "8:Microsoft.mshtml.dll"
+                    "Name" = "8:Spire.Doc.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Microsoft.mshtml.dll"
+            "SourcePath" = "8:Spire.Doc.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
@@ -392,6 +508,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CDF1CCCFB8444C6CAA42C0D28B1CC468"
+            {
+            "SourcePath" = "8:..\\ExamSimulator\\bin\\Debug\\Examfile\\Cisco-300-120_enc.vcee"
+            "TargetName" = "8:Cisco-300-120_enc.vcee"
+            "Tag" = "8:"
+            "Folder" = "8:_974115F762F6421A984238E9CA5D0B8B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F4C6BBFD91B7405DB436652D93A9DA55"
+            {
+            "SourcePath" = "8:..\\ExamSimulator\\bin\\Debug\\Examfile\\Cisco-Math.docx"
+            "TargetName" = "8:Cisco-Math.docx"
+            "Tag" = "8:"
+            "Folder" = "8:_974115F762F6421A984238E9CA5D0B8B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -417,6 +573,17 @@
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_80810BFF2ECD4B0197D39003C76A673B"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_93F4B97A27FB48E388E243E2BE6AF0FA"
+                    {
+                    "Name" = "8:ExamReadfile"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_26CA2FAA773F438D95479A2347FB6385"
                         "Folders"
                         {
                         }
@@ -467,7 +634,7 @@
                 {
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_4F4BCCDA690243109B99D3F5731521B3"
                     {
-                    "Name" = "8:ExamSimulator"
+                    "Name" = "8:QuizExamSimulator"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
@@ -495,7 +662,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ExamSimulatorSetup"
         "ProductCode" = "8:{0EA6FE69-400C-4DD4-9FE6-BD1765D6D5D6}"
-        "PackageCode" = "8:{64296789-1E0C-4D17-A3EB-AFDD95CC25C1}"
+        "PackageCode" = "8:{3472C507-B31D-4AFE-AAD5-BEEC70C0F33B}"
         "UpgradeCode" = "8:{CF53BD36-E778-4A65-95C2-4CD0A9D866CB}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -615,32 +782,32 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_77792D66A8E649CFB0A605C22C205AF2"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_23CAB74DE2054E08BE7848426E655022"
             {
-            "Name" = "8:ExamSimulator"
+            "Name" = "8:QuizExamSimulator"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
-            "Folder" = "8:_4F4BCCDA690243109B99D3F5731521B3"
-            "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
-            "Icon" = "8:_36020287153948EEA0E54830ED21F5BE"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B718342DA169436BA8BDBB2A20840430"
-            {
-            "Name" = "8:ExamSimulator"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_48AB24C3AD2C486B964FA7C6CF816B70"
+            "Target" = "8:_68DC5206484840CF97537DE7E26DF891"
             "Folder" = "8:_8E35F698B507442BB7AA70CD35B4D655"
             "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
-            "Icon" = "8:_36020287153948EEA0E54830ED21F5BE"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A45A19DBDCF7441FB07D73DEB5F74087"
+            {
+            "Name" = "8:QuizExamSimulator"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_68DC5206484840CF97537DE7E26DF891"
+            "Folder" = "8:_4F4BCCDA690243109B99D3F5731521B3"
+            "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }
@@ -1089,7 +1256,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_48AB24C3AD2C486B964FA7C6CF816B70"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_68DC5206484840CF97537DE7E26DF891"
             {
             "SourcePath" = "8:..\\ExamSimulator\\obj\\Debug\\ExamSimulator.exe"
             "TargetName" = "8:"

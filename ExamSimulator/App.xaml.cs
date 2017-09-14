@@ -26,6 +26,5 @@ namespace ExamSimulator
                 Environment.Exit(0);
             }
         }
-
     }
 }

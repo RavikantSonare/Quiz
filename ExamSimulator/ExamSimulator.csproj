@@ -209,7 +209,7 @@
     <None Include="bin\Debug\Examfile\Cisco-Math_enc.docx" />
     <None Include="bin\Debug\Examfile\Cisco-Math_enc.vcee" />
     <None Include="bin\Debug\Examfile\ExamSimulator.zip" />
-    <None Include="bin\Debug\Examfile\Cisco-Math.docx1" />
+    <None Include="bin\Debug\Examfile\Cisco-Math.docx" />
     <None Include="Examfile\Document.docx" />
     <None Include="Examfile\Document2.docx" />
     <None Include="Examfile\Document3.docx" />
@@ -271,6 +271,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="q.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <FileAssociation Include=".vcee">
+      <Visible>False</Visible>
+      <Description>Exam FIle</Description>
+      <Progid>ExamFIle</Progid>
+      <DefaultIcon>q.ico</DefaultIcon>
+    </FileAssociation>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
