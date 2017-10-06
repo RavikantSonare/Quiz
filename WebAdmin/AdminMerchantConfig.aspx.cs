@@ -10,12 +10,17 @@ using WebAdmin.BALayer;
 
 namespace WebAdmin
 {
-    public partial class AdminMerchantLevelManage : System.Web.UI.Page
+    public partial class AdminMerchantConfig : System.Web.UI.Page
     {
         private int adminId = default(int);
         private BOMerchantLevel _bomlvl = new BOMerchantLevel();
         private BAMerchantLevel _bamlvl = new BAMerchantLevel();
         public enum MessageType { Success, Error, Info, Warning };
+
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            ViewState["CheckRefresh"] = Session["CheckRefresh"];
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,6 +33,8 @@ namespace WebAdmin
                     if (!IsPostBack)
                     {
                         Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                        BindQuestionTypeCheckboxList();
+                        BindExtraPermissionCheckboxList();
                         FillgridViewMerchantLevel();
                     }
                 }
@@ -41,12 +48,40 @@ namespace WebAdmin
                 Common.LogError(ex);
                 ShowMessage("Some technical error", MessageType.Warning);
             }
-
         }
 
-        protected void Page_PreRender(object sender, EventArgs e)
+        private void BindQuestionTypeCheckboxList()
         {
-            ViewState["CheckRefresh"] = Session["CheckRefresh"];
+            BOQuestionType _boqtype = new BOQuestionType();
+            BAQuestionType _baqtype = new BAQuestionType();
+            DataTable _datatable1 = new DataTable();
+            _datatable1 = _baqtype.SelectQuestionType("GETALL");
+            foreach (DataRow row in _datatable1.Rows)
+            {
+                ListItem item = new ListItem();
+                item.Text = row["QuestionType"].ToString();
+                item.Value = row["QuestionTypeId"].ToString();
+                item.Selected = Convert.ToBoolean(row["DefaultPermission"]);
+                item.Enabled = !Convert.ToBoolean(row["DefaultPermission"]);
+                chkQuestionType.Items.Add(item);
+            }
+        }
+
+        private void BindExtraPermissionCheckboxList()
+        {
+            BOExtraPermission _boextper = new BOExtraPermission();
+            BAExtraPermission _baextper = new BAExtraPermission();
+            DataTable _datatable1 = new DataTable();
+            _datatable1 = _baextper.SelectExtraPermission("GETALL");
+            foreach (DataRow row in _datatable1.Rows)
+            {
+                ListItem item = new ListItem();
+                item.Text = row["ExtraPermissionOpt"].ToString();
+                item.Value = row["ExtraPermissionOptId"].ToString();
+                item.Selected = Convert.ToBoolean(row["DefaultPermission"]);
+                item.Enabled = !Convert.ToBoolean(row["DefaultPermission"]);
+                chkExtraPermission.Items.Add(item);
+            }
         }
 
         private void FillgridViewMerchantLevel()
@@ -61,13 +96,47 @@ namespace WebAdmin
         {
             try
             {
+                string questiontype = string.Empty;
+                string extrapermission = string.Empty;
                 if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
                 {
                     Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    if (!string.IsNullOrEmpty(txtMerchantLevel.Text) && !string.IsNullOrEmpty(txtAnnualFee.Text))
+                    if (!string.IsNullOrEmpty(txtMerchantLevel.Text) && !string.IsNullOrEmpty(txtPrice.Text))
                     {
                         _bomlvl.MerchantLevel = txtMerchantLevel.Text;
-                        _bomlvl.AnnualFee = Convert.ToDecimal(txtAnnualFee.Text);
+                        _bomlvl.AnnualFee = Convert.ToDecimal(txtPrice.Text);
+                        _bomlvl.ExamCount = Convert.ToInt32(txtExamCount.Text);
+                        _bomlvl.ShopperFee = Convert.ToDecimal(txtShopperFee.Text);
+                        foreach (ListItem item in chkQuestionType.Items)
+                        {
+                            if (item.Selected)
+                            {
+                                if (questiontype != "" && questiontype != null)
+                                {
+                                    questiontype += "," + item.Value;
+                                }
+                                else
+                                {
+                                    questiontype += item.Value;
+                                }
+                            }
+                        }
+                        _bomlvl.QuestionType = questiontype;
+                        foreach (ListItem item in chkExtraPermission.Items)
+                        {
+                            if (item.Selected)
+                            {
+                                if (extrapermission != "" && extrapermission != null)
+                                {
+                                    extrapermission += "," + item.Value;
+                                }
+                                else
+                                {
+                                    extrapermission += item.Value;
+                                }
+                            }
+                        }
+                        _bomlvl.ExtraPermission = extrapermission;
                         _bomlvl.IsActive = true;
                         _bomlvl.IsDelete = false;
                         _bomlvl.CreatedBy = adminId;
@@ -122,9 +191,35 @@ namespace WebAdmin
                 _datatable2 = _bamlvl.SelectMerchantLevelWithID("GetMLevelwithId", mlvlId);
                 if (_datatable2.Rows.Count > 0)
                 {
-                    ViewState["mlvlId"] = _datatable2.Rows[0][0].ToString();
-                    txtMerchantLevel.Text = _datatable2.Rows[0][1].ToString();
-                    txtAnnualFee.Text = _datatable2.Rows[0][2].ToString();
+                    ViewState["mlvlId"] = _datatable2.Rows[0]["MerchantLevelId"].ToString();
+                    txtMerchantLevel.Text = _datatable2.Rows[0]["MerchantLevel"].ToString();
+                    txtPrice.Text = _datatable2.Rows[0]["AnnualFee"].ToString();
+                    txtExamCount.Text = _datatable2.Rows[0]["ExamCount"].ToString();
+                    txtShopperFee.Text = _datatable2.Rows[0]["ShopperFee"].ToString();
+                    string[] qtype = _datatable2.Rows[0]["QuestionType"].ToString().Split(',');
+                    for (int i = 0; i < chkQuestionType.Items.Count; i++)
+                    {
+                        chkQuestionType.Items[i].Selected = false;
+                        for (int x = 0; x < qtype.Length; x++)
+                        {
+                            if (chkQuestionType.Items[i].Value == qtype[x])
+                            {
+                                chkQuestionType.Items[i].Selected = true;
+                            }
+                        }
+                    }
+                    string[] extrapermission = _datatable2.Rows[0]["ExtraPermission"].ToString().Split(',');
+                    for (int i = 0; i < chkExtraPermission.Items.Count; i++)
+                    {
+                        chkExtraPermission.Items[i].Selected = false;
+                        for (int x = 0; x < extrapermission.Length; x++)
+                        {
+                            if (chkExtraPermission.Items[i].Value == extrapermission[x])
+                            {
+                                chkExtraPermission.Items[i].Selected = true;
+                            }
+                        }
+                    }
                     btnAdd.Text = "Update";
                 }
             }
@@ -174,13 +269,10 @@ namespace WebAdmin
             ClearControl();
         }
 
-        private void ClearControl()
+        protected void gvMerchantLevel_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            btnAdd.Text = "Add";
-            ViewState["mlvlId"] = "";
-            ViewState["mlvlId"] = null;
+            gvMerchantLevel.PageIndex = e.NewPageIndex;
             FillgridViewMerchantLevel();
-            Common.ClearControl(Panel1);
         }
 
         protected void ShowMessage(string Message, MessageType type)
@@ -188,10 +280,13 @@ namespace WebAdmin
             ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
         }
 
-        protected void gvMerchantLevel_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        private void ClearControl()
         {
-            gvMerchantLevel.PageIndex = e.NewPageIndex;
+            btnAdd.Text = "Add";
+            ViewState["mlvlId"] = "";
+            ViewState["mlvlId"] = null;
             FillgridViewMerchantLevel();
+            Common.ClearControl(Panel1);
         }
     }
 }

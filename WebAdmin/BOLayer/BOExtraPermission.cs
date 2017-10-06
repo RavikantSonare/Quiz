@@ -5,15 +5,11 @@ using System.Web;
 
 namespace WebAdmin.BOLayer
 {
-    public class BOMerchantLevel
+    public class BOExtraPermission
     {
-        public int MerchantLevelId { get; set; }
-        public string MerchantLevel { get; set; }
-        public decimal AnnualFee { get; set; }
-        public int ExamCount { get; set; }
-        public decimal ShopperFee { get; set; }
-        public string QuestionType { get; set; }
-        public string ExtraPermission { get; set; }
+        public int ExtraPermissionOptId { get; set; }
+        public string ExtraPermissionOpt { get; set; }
+        public bool DefaultPermission { get; set; }
         public bool IsActive { get; set; }
         public bool IsDelete { get; set; }
         public int CreatedBy { get; set; }

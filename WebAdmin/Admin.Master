@@ -63,6 +63,11 @@
                                                     Merchant Fee Rate
                                                 </a>
                                             </li>
+                                            <li id="submenu6li4">
+                                                <a href="AdminMerchantConfig.aspx" aria-controls="settings" role="tab"><span class="subtabarrow"></span>
+                                                    Merchant Config
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
 

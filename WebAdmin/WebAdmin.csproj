@@ -104,6 +104,7 @@
     <Content Include="AdminError.aspx" />
     <Content Include="AdminExamManage.aspx" />
     <Content Include="AdminLogin.aspx" />
+    <Content Include="AdminMerchantConfig.aspx" />
     <Content Include="AdminMerchantFeeRateManage.aspx" />
     <Content Include="AdminMerchantLevelManage.aspx" />
     <Content Include="AdminMerchantManage.aspx" />
@@ -185,6 +186,13 @@
     <Compile Include="AdminLogin.aspx.designer.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminMerchantConfig.aspx.cs">
+      <DependentUpon>AdminMerchantConfig.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminMerchantConfig.aspx.designer.cs">
+      <DependentUpon>AdminMerchantConfig.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminMerchantFeeRateManage.aspx.cs">
       <DependentUpon>AdminMerchantFeeRateManage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -250,6 +258,7 @@
     </Compile>
     <Compile Include="BALayer\BAAdminLogin.cs" />
     <Compile Include="BALayer\BAExamManage.cs" />
+    <Compile Include="BALayer\BAExtraPermission.cs" />
     <Compile Include="BALayer\BAFinanceConfig.cs" />
     <Compile Include="BALayer\BAMerchantFeeRate.cs" />
     <Compile Include="BALayer\BAMerchantLevel.cs" />
@@ -263,6 +272,7 @@
     <Compile Include="BALayer\BAWithDrawManage.cs" />
     <Compile Include="BOLayer\BOAdminLogin.cs" />
     <Compile Include="BOLayer\BOExamManage.cs" />
+    <Compile Include="BOLayer\BOExtraPermission.cs" />
     <Compile Include="BOLayer\BOFinanceConfig.cs" />
     <Compile Include="BOLayer\BOMerchantFeeRate.cs" />
     <Compile Include="BOLayer\BOMerchantLevel.cs" />
@@ -278,6 +288,7 @@
     <Compile Include="ConnectionInfo.cs" />
     <Compile Include="DALayer\DAAdminLogin.cs" />
     <Compile Include="DALayer\DAExamManage.cs" />
+    <Compile Include="DALayer\DAExtraPermission.cs" />
     <Compile Include="DALayer\DAFinanceConfig.cs" />
     <Compile Include="DALayer\DAMerchantFeeRate.cs" />
     <Compile Include="DALayer\DAMerchantLevel.cs" />

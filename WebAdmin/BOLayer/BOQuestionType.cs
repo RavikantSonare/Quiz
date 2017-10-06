@@ -9,6 +9,7 @@ namespace WebAdmin.BOLayer
     {
         public int QuestionTypeId { get; set; }
         public string QuestionType { get; set; }
+        public bool DefaultPermission { get; set; }
         public bool IsActive { get; set; }
         public bool IsDelete { get; set; }
         public int CreatedBy { get; set; }
