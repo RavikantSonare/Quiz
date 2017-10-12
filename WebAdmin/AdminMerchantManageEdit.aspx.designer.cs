@@ -31,15 +31,6 @@ namespace WebAdmin {
         protected global::System.Web.UI.WebControls.TextBox txtMerchantName;
         
         /// <summary>
-        /// txtUserName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserName;
-        
-        /// <summary>
         /// txtTelephone control.
         /// </summary>
         /// <remarks>
@@ -49,13 +40,40 @@ namespace WebAdmin {
         protected global::System.Web.UI.WebControls.TextBox txtTelephone;
         
         /// <summary>
-        /// txtMerchantLevel control.
+        /// txtEmailId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMerchantLevel;
+        protected global::System.Web.UI.WebControls.TextBox txtEmailId;
+        
+        /// <summary>
+        /// txtpassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtpassword;
+        
+        /// <summary>
+        /// drpMerchantLevel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drpMerchantLevel;
+        
+        /// <summary>
+        /// ddlActiveStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlActiveStatus;
         
         /// <summary>
         /// txtStartDate control.
@@ -76,15 +94,6 @@ namespace WebAdmin {
         protected global::System.Web.UI.WebControls.TextBox txtEndDate;
         
         /// <summary>
-        /// lblerror control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblerror;
-        
-        /// <summary>
         /// btnUpdate control.
         /// </summary>
         /// <remarks>
@@ -92,5 +101,14 @@ namespace WebAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpdate;
+        
+        /// <summary>
+        /// lblerror control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblerror;
     }
 }

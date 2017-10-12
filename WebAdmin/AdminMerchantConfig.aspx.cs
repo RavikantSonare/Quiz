@@ -101,7 +101,7 @@ namespace WebAdmin
                 if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
                 {
                     Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    if (!string.IsNullOrEmpty(txtMerchantLevel.Text) && !string.IsNullOrEmpty(txtPrice.Text))
+                    if (validateForm())
                     {
                         _bomlvl.MerchantLevel = txtMerchantLevel.Text;
                         _bomlvl.AnnualFee = Convert.ToDecimal(txtPrice.Text);
@@ -167,9 +167,6 @@ namespace WebAdmin
                         lblerror.InnerText = "Please enter top Merchant level and annual fee";
                         lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
                     }
-                }
-                else
-                {
                 }
             }
             catch (Exception ex)
@@ -271,8 +268,62 @@ namespace WebAdmin
 
         protected void gvMerchantLevel_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvMerchantLevel.PageIndex = e.NewPageIndex;
-            FillgridViewMerchantLevel();
+            try
+            {
+                gvMerchantLevel.PageIndex = e.NewPageIndex;
+                FillgridViewMerchantLevel();
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
+        }
+
+        private bool validateForm()
+        {
+            bool ret = true;
+            if (string.IsNullOrEmpty(txtMerchantLevel.Text))
+            {
+                ret = false;
+                lblerror.InnerText = "Enter merchant level";
+                lblerror.Attributes.Add("Style", "display: block;color: Red;");
+            }
+            else
+            {
+                lblerror.InnerText = "";
+            }
+            if (string.IsNullOrEmpty(txtPrice.Text))
+            {
+                ret = false;
+                lblerror.InnerText = "Enter price";
+                lblerror.Attributes.Add("Style", "display: block;color: Red;");
+            }
+            else
+            {
+                lblerror.InnerText = "";
+            }
+            if (string.IsNullOrEmpty(txtExamCount.Text))
+            {
+                ret = false;
+                lblerror.InnerText = "Enter exam count";
+                lblerror.Attributes.Add("Style", "display: block;color: Red;");
+            }
+            else
+            {
+                lblerror.InnerText = "";
+            }
+            if (string.IsNullOrEmpty(txtShopperFee.Text))
+            {
+                ret = false;
+                lblerror.InnerText = "Enter shopper fee";
+                lblerror.Attributes.Add("Style", "display: block;color: Red;");
+            }
+            else
+            {
+                lblerror.InnerText = "";
+            }
+            return ret;
         }
 
         protected void ShowMessage(string Message, MessageType type)

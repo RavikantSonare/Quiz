@@ -9,6 +9,8 @@ namespace WebAdmin.BOLayer
     {
         public int MerchantId { get; set; }
         public string MerchantName { get; set; }
+        public string EmailId { get; set; }
+        public string Password { get; set; }
         public int CountryId { get; set; }
         public string Country { get; set; }
         public int StateId { get; set; }

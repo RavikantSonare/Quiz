@@ -31,5 +31,10 @@ namespace WebAdmin.BALayer
         {
             return _damermng.UpdateStatus(_bomermng);
         }
+
+        public int UpdateMerchantLevel(BOMerchantManage _bomermng)
+        {
+            return _damermng.UpdateMerchantLevel(_bomermng);
+        }
     }
 }

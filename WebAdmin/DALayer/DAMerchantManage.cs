@@ -67,6 +67,13 @@ namespace WebAdmin.DALayer
                 _sqlconnection.Open();
 
                 _sqlcommnd.Parameters.AddWithValue("@MerchantId", _bomermng.MerchantId);
+                _sqlcommnd.Parameters.AddWithValue("@MerchantName", _bomermng.MerchantName);
+                _sqlcommnd.Parameters.AddWithValue("@Telephone", _bomermng.Telephone);
+                _sqlcommnd.Parameters.AddWithValue("@EmailId", _bomermng.EmailId);
+                _sqlcommnd.Parameters.AddWithValue("@Password", _bomermng.Password);
+                _sqlcommnd.Parameters.AddWithValue("@MerchantLevelId", _bomermng.MerchantLevelId);
+                _sqlcommnd.Parameters.AddWithValue("@ActiveStatus", _bomermng.ActiveStatus);
+                _sqlcommnd.Parameters.AddWithValue("@StartDate", _bomermng.StartDate);
                 _sqlcommnd.Parameters.AddWithValue("@EndDate", _bomermng.EndDate);
                 _sqlcommnd.Parameters.AddWithValue("@UpdatedBy", _bomermng.UpdatedBy);
                 _sqlcommnd.Parameters.AddWithValue("@UpdatedDate", _bomermng.UpdatedDate);
@@ -105,6 +112,43 @@ namespace WebAdmin.DALayer
 
                 _sqlcommnd.Parameters.AddWithValue("@MerchantId", _bomermng.MerchantId);
                 _sqlcommnd.Parameters.AddWithValue("@ActiveStatus", _bomermng.ActiveStatus);
+                _sqlcommnd.Parameters.AddWithValue("@UpdatedBy", _bomermng.UpdatedBy);
+                _sqlcommnd.Parameters.AddWithValue("@UpdatedDate", _bomermng.UpdatedDate);
+                _sqlcommnd.Parameters.AddWithValue("@Event", _bomermng.Event);
+                _sqlcommnd.Parameters.AddWithValue("@returnValue", 0).Direction = System.Data.ParameterDirection.InputOutput;
+
+                try
+                {
+                    _sqlcommnd.ExecuteNonQuery();
+                    returnValue = Convert.ToInt32(_sqlcommnd.Parameters["@returnValue"].Value);
+                }
+                catch (Exception ex)
+                {
+                    Common.LogError(ex);
+                }
+                finally
+                {
+                    _sqlconnection.Close();
+                    _sqlcommnd.Dispose();
+                }
+            }
+            return returnValue;
+        }
+
+        public int UpdateMerchantLevel(BOMerchantManage _bomermng)
+        {
+            int returnValue = default(int);
+            SqlCommand _sqlcommnd;
+            using (SqlConnection _sqlconnection = ConnectionInfo.GetConnection())
+            {
+                _sqlcommnd = new SqlCommand();
+                _sqlcommnd.Connection = _sqlconnection;
+                _sqlcommnd.CommandText = "SP_IUDMerchantManage";
+                _sqlcommnd.CommandType = CommandType.StoredProcedure;
+                _sqlconnection.Open();
+
+                _sqlcommnd.Parameters.AddWithValue("@MerchantId", _bomermng.MerchantId);
+                _sqlcommnd.Parameters.AddWithValue("@MerchantLevelId", _bomermng.MerchantLevelId);
                 _sqlcommnd.Parameters.AddWithValue("@UpdatedBy", _bomermng.UpdatedBy);
                 _sqlcommnd.Parameters.AddWithValue("@UpdatedDate", _bomermng.UpdatedDate);
                 _sqlcommnd.Parameters.AddWithValue("@Event", _bomermng.Event);

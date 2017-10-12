@@ -15,17 +15,22 @@
                             <asp:BoundField HeaderText="Merchant Name" DataField="MerchantName" />
                             <asp:BoundField HeaderText="Country" DataField="Country" />
                             <asp:BoundField HeaderText="Province/State" DataField="State" />
-                            <asp:BoundField HeaderText="Telephone" DataField="Telephone" />
+                            <asp:BoundField HeaderText="Mobile No." DataField="Telephone" />
                             <asp:BoundField HeaderText="Level" DataField="MerchantLevel" />
                             <asp:TemplateField HeaderText="Valid Date">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkbtnvaliddate" runat="server" CommandArgument='<%#Eval("MerchantId") %>' OnClick="lnkbtnvaliddate_Click"><%# Eval("StartDate", "{0:dd/M/yyyy}")%>-<%# Eval("EndDate", "{0:dd/M/yyyy}")%></asp:LinkButton>
+                                    <asp:Label ID="lblvaliddate" runat="server"><%# Eval("StartDate", "{0:dd/M/yyyy}")%>-<%# Eval("EndDate", "{0:dd/M/yyyy}")%></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Active(Default is Actived)">
                                 <ItemTemplate>
                                     <asp:HiddenField ID="hdactive" runat="server" Value='<%#Eval("ActiveStatus") %>' />
                                     <asp:LinkButton ID="lnkbtnactive" runat="server" CommandArgument='<%#Eval("ActiveStatus") %>' OnClick="lnkbtnactive_Click"></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:Button ID="btnmodify" runat="server" Text="Modify" CssClass="btn btn-primary" CommandArgument='<%#Eval("MerchantId") %>' OnClick="btnmodify_Click" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

@@ -670,3 +670,440 @@ Source: .Net SqlClient Data Provider
 TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
 -----------------------------------------------------------
 
+Time: 11/10/2017 07:00:41 AM
+-----------------------------------------------------------
+Message: String was not recognized as a valid Boolean.
+StackTrace:    at System.Boolean.Parse(String value)
+   at System.Convert.ToBoolean(String value)
+   at WebAdmin.AdminMerchantManage.btnmodify_Click(Object sender, EventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 197
+Source: mscorlib
+TargetSite: Boolean Parse(System.String)
+-----------------------------------------------------------
+
+Time: 11/10/2017 09:32:52 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.Common.Decrypt(String cipherText) in D:\Work\Project\WebAdmin\Common.cs:line 143
+   at WebAdmin.AdminMerchantManageEdit.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManageEdit.aspx.cs:line 33
+Source: WebAdmin
+TargetSite: System.String Decrypt(System.String)
+-----------------------------------------------------------
+
+Time: 11/10/2017 09:33:14 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.Common.Decrypt(String cipherText) in D:\Work\Project\WebAdmin\Common.cs:line 143
+   at WebAdmin.AdminMerchantManageEdit.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManageEdit.aspx.cs:line 33
+Source: WebAdmin
+TargetSite: System.String Decrypt(System.String)
+-----------------------------------------------------------
+
+Time: 11/10/2017 11:49:18 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.Common.Decrypt(String cipherText) in D:\Work\Project\WebAdmin\Common.cs:line 143
+   at WebAdmin.AdminMerchantManageEdit.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManageEdit.aspx.cs:line 33
+Source: WebAdmin
+TargetSite: System.String Decrypt(System.String)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:18 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:18 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:18 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:18 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:18 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:18 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:18 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:18 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:18 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:18 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:25 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:25 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:25 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:25 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:25 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:35:26 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:04 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:05 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:05 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:05 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+
+Time: 11/10/2017 02:38:05 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.gvMerchantManage_RowDataBound(Object sender, GridViewRowEventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 149
+Source: WebAdmin
+TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
+-----------------------------------------------------------
+

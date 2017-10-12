@@ -108,7 +108,7 @@
                             <label for="inputPassword" class="control-label col-xs-2">Shopper Fee:</label>
                             <div class="col-xs-5">
                                 <div class="input-group">
-                                    <asp:TextBox ID="txtShopperFee" runat="server" class="form-control" TextMode="Number" min="0"></asp:TextBox>
+                                    <asp:TextBox ID="txtShopperFee" runat="server" class="form-control" TextMode="Number" min="0" Text="0"></asp:TextBox>
                                     <span class="input-group-addon">%</span>
                                 </div>
                             </div>
@@ -137,7 +137,7 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="topCategoryTable mtop">
+                    <div class="topCategoryTable">
                         <asp:GridView ID="gvMerchantLevel" runat="server" class="table" AutoGenerateColumns="false" DataKeyNames="MerchantLevelId" AllowPaging="True" OnPageIndexChanging="gvMerchantLevel_PageIndexChanging">
                             <Columns>
                                 <asp:BoundField HeaderText="Merchant Level" DataField="MerchantLevel" />

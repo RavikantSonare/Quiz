@@ -16,6 +16,8 @@ namespace WebAdmin
         private BOMerchantManage _bommng = new BOMerchantManage();
         private BAMerchantManage _bammng = new BAMerchantManage();
         public enum MessageType { Success, Error, Info, Warning };
+        DataTable _dtlvl = new DataTable();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -83,9 +85,6 @@ namespace WebAdmin
                     _bammng.UpdateStatus(_bommng);
                     FillgridViewMerchantManage();
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
@@ -99,28 +98,16 @@ namespace WebAdmin
             ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
         }
 
-        protected void lnkbtnvaliddate_Click(object sender, EventArgs e)
+        protected void gvMerchantManage_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             try
             {
-                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    LinkButton lnkbtn = sender as LinkButton;
-                    GridViewRow gvrow = lnkbtn.NamingContainer as GridViewRow;
-                    int mid = Convert.ToInt32(gvMerchantManage.DataKeys[gvrow.RowIndex].Value.ToString());
-                    LinkButton ID = (LinkButton)gvrow.FindControl("lnkbtnactive");
-                    bool isactive = Convert.ToBoolean(ID.CommandArgument);
-                    if (isactive == true)
-                    { ShowMessage("Merchant already Active", MessageType.Info); }
-                    else
-                    {
-                        string qid = HttpUtility.UrlEncode(Common.Encrypt(Convert.ToString(mid)));
-                        Response.Redirect("AdminMerchantManageEdit.aspx?mid=" + qid, false);
-                    }
-                }
-                else
-                {
+                    LinkButton lbtAction = (LinkButton)e.Row.FindControl("lnkbtnactive");
+                    HiddenField lblStatus = (HiddenField)e.Row.FindControl("hdactive");
+                    bool active = Convert.ToBoolean(lblStatus.Value);
+                    lbtAction.Text = active ? "Active" : "Inactive";
                 }
             }
             catch (Exception ex)
@@ -128,27 +115,36 @@ namespace WebAdmin
                 Common.LogError(ex);
                 ShowMessage("Some technical error", MessageType.Warning);
             }
-
-        }
-
-        protected void gvMerchantManage_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                LinkButton lbtAction = (LinkButton)e.Row.FindControl("lnkbtnactive");
-                HiddenField lblStatus = (HiddenField)e.Row.FindControl("hdactive");
-                bool active = Convert.ToBoolean(lblStatus.Value);
-                lbtAction.Text = active ? "Active" : "Inactive";
-                //string onClientClick = string.Format("return confirm('Do you want to {0}?')",
-                //                                       active ? "Inactive" : "Active");
-                //lbtAction.OnClientClick = onClientClick;
-            }
         }
 
         protected void gvMerchantManage_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvMerchantManage.PageIndex = e.NewPageIndex;
             FillgridViewMerchantManage();
+        }
+
+        protected void btnmodify_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
+                {
+                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                    Button lnkbtn = sender as Button;
+                    GridViewRow gvrow = lnkbtn.NamingContainer as GridViewRow;
+                    int mid = Convert.ToInt32(gvMerchantManage.DataKeys[gvrow.RowIndex].Value.ToString());
+                    if (mid > 0)
+                    {
+                        string qid = HttpUtility.UrlEncode(Common.Encrypt(Convert.ToString(mid)));
+                        Response.Redirect("AdminMerchantManageEdit.aspx?mid=" + qid, false);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
         }
     }
 }

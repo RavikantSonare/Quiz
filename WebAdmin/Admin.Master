@@ -53,12 +53,12 @@
                                                     Merchant Manage 
                                                 </a>
                                             </li>
-                                            <li class="" id="submenu6li2">
+                                            <li class="" id="submenu6li2" style="display:none;">
                                                 <a href="AdminMerchantLevelManage.aspx" aria-controls="settings" role="tab"><span class="subtabarrow"></span>
                                                     Merchant Level 
                                                 </a>
                                             </li>
-                                            <li id="submenu6li3">
+                                            <li id="submenu6li3" style="display:none;">
                                                 <a href="AdminMerchantFeeRateManage.aspx" aria-controls="settings" role="tab"><span class="subtabarrow"></span>
                                                     Merchant Fee Rate
                                                 </a>
