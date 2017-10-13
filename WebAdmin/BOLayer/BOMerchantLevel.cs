@@ -11,6 +11,7 @@ namespace WebAdmin.BOLayer
         public string MerchantLevel { get; set; }
         public decimal AnnualFee { get; set; }
         public int ExamCount { get; set; }
+        public int StudentCount { get; set; }
         public decimal ShopperFee { get; set; }
         public string QuestionType { get; set; }
         public string ExtraPermission { get; set; }

@@ -66,14 +66,14 @@ namespace WebAdmin
                                                        Price = li.Field<decimal>("Price"),
                                                        MerchantFeeRate = li.Field<int>("MerchantFeeRate"),
                                                        NetAmount = li.Field<decimal>("NetAmount"),
-                                                       OrderStatus = li.Field<bool>("OrderStatus"),
+                                                       OrderStatus = li.Field<string>("OrderStatus"),
                                                        Emailid = li.Field<string>("EmailId")
                                                    }).ToList();
             if (!string.IsNullOrEmpty(txtmerchantName.Text))
             {
                 _bosalestreport = _bosalestreport.Where(mername => mername.MerchantName.ToUpper().Contains(txtmerchantName.Text.ToUpper())).ToList();
             }
-            decimal sum = _bosalestreport.AsEnumerable().Where(row => row.OrderStatus == true).Sum(row => row.NetAmount);
+            decimal sum = _bosalestreport.AsEnumerable().Where(row => row.OrderStatus == "Confirm").Sum(row => row.NetAmount);
             lblconfirmedamount.Text = Convert.ToString(sum);
             gvSalesReport.DataSource = _bosalestreport;
             gvSalesReport.DataBind();
@@ -107,7 +107,7 @@ namespace WebAdmin
                     }
                     else
                     {
-                        _boslsrpt.OrderStatus = true;
+                        _boslsrpt.OrderStatus = "Confirm";
                         _boslsrpt.OrderId = slsrptid;
                         _boslsrpt.UpdatedBy = adminId;
                         _boslsrpt.UpdatedDate = DateTime.UtcNow;
@@ -175,14 +175,14 @@ namespace WebAdmin
                                                            Price = li.Field<decimal>("Price"),
                                                            MerchantFeeRate = li.Field<int>("MerchantFeeRate"),
                                                            NetAmount = li.Field<decimal>("NetAmount"),
-                                                           OrderStatus = li.Field<bool>("OrderStatus"),
+                                                           OrderStatus = li.Field<string>("OrderStatus"),
                                                            Emailid = li.Field<string>("EmailId")
                                                        }).ToList();
                 if (!string.IsNullOrEmpty(txtmerchantName.Text))
                 {
                     _bosalestreport = _bosalestreport.Where(mername => mername.MerchantName.ToUpper().Contains(txtmerchantName.Text.ToUpper())).ToList();
                 }
-                decimal sum = _bosalestreport.AsEnumerable().Where(row => row.OrderStatus == true).Sum(row => row.NetAmount);
+                decimal sum = _bosalestreport.AsEnumerable().Where(row => row.OrderStatus == "Confirm").Sum(row => row.NetAmount);
                 lblconfirmedamount.Text = Convert.ToString(sum);
                 gvSalesReport.DataSource = _bosalestreport;
                 gvSalesReport.DataBind();
@@ -232,6 +232,62 @@ namespace WebAdmin
         {
             gvSalesReport.PageIndex = e.NewPageIndex;
             FillgirdViewSalesReport();
+        }
+
+        protected void btnModify_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
+                {
+                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                    Button lnkbtn = sender as Button;
+                    GridViewRow gvrow = lnkbtn.NamingContainer as GridViewRow;
+                    Button btnModify = (Button)gvrow.FindControl("btnModify");
+                    Label lblStatus = (Label)gvrow.FindControl("lblOrderStatus");
+                    string orderid = btnModify.CommandArgument;
+                    if (!string.IsNullOrEmpty(orderid))
+                    {
+                        ViewState["OrderId"] = orderid;
+                        ddlAction.SelectedValue = lblStatus.Text;
+                        divUpdateStatus.Visible = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
+                {
+                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                    if (ViewState["OrderId"] != null && ViewState["OrderId"] != "")
+                    {
+                        _boslsrpt.OrderStatus = ddlAction.SelectedValue;
+                        _boslsrpt.OrderId = Convert.ToInt32(ViewState["OrderId"]);
+                        _boslsrpt.UpdatedBy = adminId;
+                        _boslsrpt.UpdatedDate = DateTime.UtcNow;
+                        _boslsrpt.Event = "UpdateStatus";
+                        _baslsrpt.Update(_boslsrpt);
+                        ShowMessage("Order confirmed", MessageType.Success);
+                        ViewState["OrderId"] = "";
+                        divUpdateStatus.Visible = false;
+                        FillgirdViewSalesReport();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
         }
     }
 }

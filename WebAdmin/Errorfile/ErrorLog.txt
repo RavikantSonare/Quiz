@@ -1107,3 +1107,92 @@ Source: WebAdmin
 TargetSite: Void gvMerchantManage_RowDataBound(System.Object, System.Web.UI.WebControls.GridViewRowEventArgs)
 -----------------------------------------------------------
 
+Time: 12/10/2017 09:34:20 AM
+-----------------------------------------------------------
+Message: A field or property with the name 'StudentCount' was not found on the selected data source.
+StackTrace:    at System.Web.UI.WebControls.BoundField.TryGetSimplePropertyValue(Object dataItem, Object& data)
+   at System.Web.UI.WebControls.BoundField.GetValue(Control controlContainer)
+   at System.Web.UI.WebControls.BoundField.OnDataBindField(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnDataBinding(EventArgs e)
+   at System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
+   at System.Web.UI.Control.DataBind()
+   at System.Web.UI.Control.DataBindChildren()
+   at System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
+   at System.Web.UI.Control.DataBind()
+   at System.Web.UI.WebControls.GridView.CreateRow(Int32 rowIndex, Int32 dataSourceIndex, DataControlRowType rowType, DataControlRowState rowState, Boolean dataBind, Object dataItem, DataControlField[] fields, TableRowCollection rows, PagedDataSource pagedDataSource)
+   at System.Web.UI.WebControls.GridView.CreateChildControls(IEnumerable dataSource, Boolean dataBinding)
+   at System.Web.UI.WebControls.CompositeDataBoundControl.PerformDataBinding(IEnumerable data)
+   at System.Web.UI.WebControls.GridView.PerformDataBinding(IEnumerable data)
+   at System.Web.UI.WebControls.DataBoundControl.OnDataSourceViewSelectCallback(IEnumerable data)
+   at System.Web.UI.DataSourceView.Select(DataSourceSelectArguments arguments, DataSourceViewSelectCallback callback)
+   at System.Web.UI.WebControls.DataBoundControl.PerformSelect()
+   at System.Web.UI.WebControls.BaseDataBoundControl.DataBind()
+   at System.Web.UI.WebControls.GridView.DataBind()
+   at WebAdmin.AdminMerchantConfig.FillgridViewMerchantLevel() in D:\Work\Project\WebAdmin\AdminMerchantConfig.aspx.cs:line 92
+   at WebAdmin.AdminMerchantConfig.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantConfig.aspx.cs:line 38
+Source: System.Web
+TargetSite: Boolean TryGetSimplePropertyValue(System.Object, System.Object ByRef)
+-----------------------------------------------------------
+
+Time: 12/10/2017 09:35:54 AM
+-----------------------------------------------------------
+Message: A field or property with the name 'StudentCount' was not found on the selected data source.
+StackTrace:    at System.Web.UI.WebControls.BoundField.TryGetSimplePropertyValue(Object dataItem, Object& data)
+   at System.Web.UI.WebControls.BoundField.GetValue(Control controlContainer)
+   at System.Web.UI.WebControls.BoundField.OnDataBindField(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnDataBinding(EventArgs e)
+   at System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
+   at System.Web.UI.Control.DataBind()
+   at System.Web.UI.Control.DataBindChildren()
+   at System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
+   at System.Web.UI.Control.DataBind()
+   at System.Web.UI.WebControls.GridView.CreateRow(Int32 rowIndex, Int32 dataSourceIndex, DataControlRowType rowType, DataControlRowState rowState, Boolean dataBind, Object dataItem, DataControlField[] fields, TableRowCollection rows, PagedDataSource pagedDataSource)
+   at System.Web.UI.WebControls.GridView.CreateChildControls(IEnumerable dataSource, Boolean dataBinding)
+   at System.Web.UI.WebControls.CompositeDataBoundControl.PerformDataBinding(IEnumerable data)
+   at System.Web.UI.WebControls.GridView.PerformDataBinding(IEnumerable data)
+   at System.Web.UI.WebControls.DataBoundControl.OnDataSourceViewSelectCallback(IEnumerable data)
+   at System.Web.UI.DataSourceView.Select(DataSourceSelectArguments arguments, DataSourceViewSelectCallback callback)
+   at System.Web.UI.WebControls.DataBoundControl.PerformSelect()
+   at System.Web.UI.WebControls.BaseDataBoundControl.DataBind()
+   at System.Web.UI.WebControls.GridView.DataBind()
+   at WebAdmin.AdminMerchantConfig.FillgridViewMerchantLevel() in D:\Work\Project\WebAdmin\AdminMerchantConfig.aspx.cs:line 92
+   at WebAdmin.AdminMerchantConfig.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantConfig.aspx.cs:line 38
+Source: System.Web
+TargetSite: Boolean TryGetSimplePropertyValue(System.Object, System.Object ByRef)
+-----------------------------------------------------------
+
+Time: 13/10/2017 09:58:04 AM
+-----------------------------------------------------------
+Message: Specified cast is not valid.
+StackTrace:    at System.Data.DataRowExtensions.UnboxT`1.ValueField(Object value)
+   at System.Data.DataRowExtensions.Field[T](DataRow row, String columnName)
+   at WebAdmin.AdminSalesReport.<>c.<FillgirdViewSalesReport>b__6_0(DataRow li) in D:\Work\Project\WebAdmin\AdminSalesReport.aspx.cs:line 59
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at WebAdmin.AdminSalesReport.FillgirdViewSalesReport() in D:\Work\Project\WebAdmin\AdminSalesReport.aspx.cs:line 58
+   at WebAdmin.AdminSalesReport.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebAdmin\AdminSalesReport.aspx.cs:line 33
+Source: System.Data.DataSetExtensions
+TargetSite: T ValueField(System.Object)
+-----------------------------------------------------------
+
+Time: 13/10/2017 10:24:23 AM
+-----------------------------------------------------------
+Message: String was not recognized as a valid Boolean.
+StackTrace:    at System.Boolean.Parse(String value)
+   at System.Convert.ToBoolean(String value)
+   at WebAdmin.AdminSalesReport.btnSendMail_Click(Object sender, EventArgs e) in D:\Work\Project\WebAdmin\AdminSalesReport.aspx.cs:line 141
+Source: mscorlib
+TargetSite: Boolean Parse(System.String)
+-----------------------------------------------------------
+
+Time: 13/10/2017 10:24:31 AM
+-----------------------------------------------------------
+Message: String was not recognized as a valid Boolean.
+StackTrace:    at System.Boolean.Parse(String value)
+   at System.Convert.ToBoolean(String value)
+   at WebAdmin.AdminSalesReport.btnSendMail_Click(Object sender, EventArgs e) in D:\Work\Project\WebAdmin\AdminSalesReport.aspx.cs:line 141
+Source: mscorlib
+TargetSite: Boolean Parse(System.String)
+-----------------------------------------------------------
+

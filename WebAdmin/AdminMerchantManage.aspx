@@ -9,7 +9,6 @@
         <div class="tab-pane active" id="merchantManager">
             <div class="row">
                 <div class="col-sm-12">
-
                     <asp:GridView ID="gvMerchantManage" runat="server" class="table" AutoGenerateColumns="false" DataKeyNames="MerchantId" OnRowDataBound="gvMerchantManage_RowDataBound" AllowPaging="True" OnPageIndexChanging="gvMerchantManage_PageIndexChanging">
                         <Columns>
                             <asp:BoundField HeaderText="Merchant Name" DataField="MerchantName" />

@@ -46,6 +46,19 @@
                 } else {
                     $('[id$=txtExamCount]').parent().next(".validation").remove(); // remove it
                 }
+                if ($('[id$=txtStudentCount]').val() == "") {
+                    $('[id$=txtStudentCount]').css("border", "1px solid #FF0000");
+                    if ($('[id$=txtStudentCount]').parent().next(".validation").length == 0) // only add if not added
+                    {
+                        $('[id$=txtStudentCount]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please Enter Student Count</div>");
+                    }
+                    $('[id$=txtStudentCount]').focus(function () {
+                        $('[id$=txtStudentCount]').css("border", "1px solid #000000");
+                    });
+                    e.preventDefault();
+                } else {
+                    $('[id$=txtStudentCount]').parent().next(".validation").remove(); // remove it
+                }
                 if ($('[id$=txtShopperFee]').val() == "") {
                     $('[id$=txtShopperFee]').css("border", "1px solid #FF0000");
                     if ($('[id$=txtShopperFee]').parent().next(".validation").length == 0) // only add if not added
@@ -105,6 +118,12 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="inputPassword" class="control-label col-xs-2">Student Count:</label>
+                            <div class="col-xs-5">
+                                <asp:TextBox ID="txtStudentCount" runat="server" class="form-control" TextMode="Number" min="0"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="inputPassword" class="control-label col-xs-2">Shopper Fee:</label>
                             <div class="col-xs-5">
                                 <div class="input-group">
@@ -143,6 +162,7 @@
                                 <asp:BoundField HeaderText="Merchant Level" DataField="MerchantLevel" />
                                 <asp:BoundField HeaderText="Annual Fee" DataField="AnnualFee" />
                                 <asp:BoundField HeaderText="Exam Count" DataField="ExamCount" />
+                                <asp:BoundField HeaderText="Student Count" DataField="StudentCount" />
                                 <asp:BoundField HeaderText="Shopper Fee" DataField="ShopperFee" />
                                 <asp:TemplateField HeaderText="Edit">
                                     <ItemTemplate>

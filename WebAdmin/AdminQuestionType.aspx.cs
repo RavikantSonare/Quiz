@@ -30,7 +30,6 @@ namespace WebAdmin
                     {
                         Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
                         FillgridViewQuestionType();
-                        FillChklistMerchantLevel();
                     }
                 }
                 else
@@ -58,20 +57,6 @@ namespace WebAdmin
             gvQuestiobType.DataBind();
         }
 
-        private void FillChklistMerchantLevel()
-        {
-            BAMerchantLevel _bamlvl = new BALayer.BAMerchantLevel();
-            DataTable _datatable2 = new DataTable();
-            _datatable2 = _bamlvl.GetMerchantLevelList("GETALL");
-            if (_datatable2.Rows.Count > 0)
-            {
-                chkMerchantLevel.DataTextField = "MerchantLevel";
-                chkMerchantLevel.DataValueField = "MerchantLevelId";
-                chkMerchantLevel.DataSource = _datatable2;
-                chkMerchantLevel.DataBind();
-            }
-        }
-
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -89,21 +74,6 @@ namespace WebAdmin
                         _boqtype.CreatedDate = DateTime.UtcNow;
                         _boqtype.UpdateBy = adminId;
                         _boqtype.UpdateDate = DateTime.UtcNow;
-                        foreach (ListItem item in chkMerchantLevel.Items)
-                        {
-                            if (item.Selected)
-                            {
-                                if (merchantlevel != "" && merchantlevel != null)
-                                {
-                                    merchantlevel += "," + item.Value;
-                                }
-                                else
-                                {
-                                    merchantlevel += item.Value;
-                                }
-                            }
-                        }
-                        _boqtype.MerchantLevelId = merchantlevel;
                         if (ViewState["qtypeId"] != null)
                         {
                             _boqtype.QuestionTypeId = Convert.ToInt32(ViewState["qtypeId"]);
@@ -155,17 +125,6 @@ namespace WebAdmin
                     ViewState["qtypeId"] = _datatable2.Rows[0]["QuestionTypeId"].ToString();
                     txtQuestionType.Text = _datatable2.Rows[0]["QuestionType"].ToString();
                     string[] mlevelId = _datatable2.Rows[0]["MerchantLevelId"].ToString().Split(',');
-                    for (int i = 0; i < chkMerchantLevel.Items.Count; i++)
-                    {
-                        chkMerchantLevel.Items[i].Selected = false;
-                        for (int x = 0; x < mlevelId.Length; x++)
-                        {
-                            if (chkMerchantLevel.Items[i].Value == mlevelId[x])
-                            {
-                                chkMerchantLevel.Items[i].Selected = true;
-                            }
-                        }
-                    }
                     btnAdd.Text = "Update";
                 }
             }
@@ -220,7 +179,6 @@ namespace WebAdmin
             btnAdd.Text = "Add";
             ViewState["qtypeId"] = "";
             ViewState["qtypeId"] = null;
-            chkMerchantLevel.ClearSelection();
             FillgridViewQuestionType();
             Common.ClearControl(Panel1);
         }

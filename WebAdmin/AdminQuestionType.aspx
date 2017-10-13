@@ -15,29 +15,6 @@
                     });
                     return false;
                 }
-                var checkBoxList = document.getElementById("<%=chkMerchantLevel.ClientID %>");
-                var checkboxes = checkBoxList.getElementsByTagName("input");
-                var isValid = false;
-                for (var i = 0; i < checkboxes.length; i++) {
-                    if (checkboxes[i].checked) {
-                        isValid = true;
-                        $('[id$=chkMerchantLevel]').css("border", "none");
-                        $('[id$=lblerror]').css("display", "none");
-                        break;
-                    }
-                    else if (i == (checkboxes.length - 1)) {
-
-                        $('[id$=lblerror]').css("display", "block");
-                        $('[id$=lblerror]').html("Please Select Merchant Level");
-                        $('[id$=chkMerchantLevel]').css("border", "1px solid #FF0000");
-                        $('[id$=chkMerchantLevel]').focus(function () {
-                            $('[id$=chkMerchantLevel]').css("border", "1px solid #000000");
-                            $('[id$=lblerror]').css("display", "none");
-                        });
-                        return false;
-                    }
-                }
-
             });
         });
 
@@ -68,12 +45,6 @@
                                 <label for="" class="col-sm-3 control-label">Question Type:</label>
                                 <div class="col-sm-3">
                                     <asp:TextBox ID="txtQuestionType" runat="server" class="form-control" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="col-sm-3 control-label">MerchantLevel:</label>
-                                <div class="col-sm-3">
-                                    <asp:CheckBoxList ID="chkMerchantLevel" runat="server"></asp:CheckBoxList>
                                 </div>
                             </div>
                             <div class="form-group">

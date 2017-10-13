@@ -28,6 +28,7 @@ namespace WebAdmin.DALayer
                 _sqlcommand.Parameters.AddWithValue("@MerchantLevel", _bomerlvl.MerchantLevel);
                 _sqlcommand.Parameters.AddWithValue("@AnnualFee", _bomerlvl.AnnualFee);
                 _sqlcommand.Parameters.AddWithValue("@ExamCount", _bomerlvl.ExamCount);
+                _sqlcommand.Parameters.AddWithValue("@StudentCount", _bomerlvl.StudentCount);
                 _sqlcommand.Parameters.AddWithValue("@ShopperFee", _bomerlvl.ShopperFee);
                 _sqlcommand.Parameters.AddWithValue("@QuestionType", _bomerlvl.QuestionType);
                 _sqlcommand.Parameters.AddWithValue("@ExtraPermission", _bomerlvl.ExtraPermission);

@@ -33,7 +33,6 @@ namespace WebAdmin.DALayer
                 _sqlcommand.Parameters.AddWithValue("@CreatedDate", bqtype.CreatedDate);
                 _sqlcommand.Parameters.AddWithValue("@UpdateBy", bqtype.UpdateBy);
                 _sqlcommand.Parameters.AddWithValue("@UpdateDate", bqtype.UpdateDate);
-                _sqlcommand.Parameters.AddWithValue("@MerchantLevelId", bqtype.MerchantLevelId);
                 _sqlcommand.Parameters.AddWithValue("@Event", bqtype.Event);
                 _sqlcommand.Parameters.AddWithValue("@returnValue", 0).Direction = System.Data.ParameterDirection.InputOutput;
 

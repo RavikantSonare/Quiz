@@ -20,7 +20,7 @@ namespace WebAdmin.BOLayer
         public int FeeRateId { get; set; }
         public int MerchantFeeRate { get; set; }
         public decimal NetAmount { get; set; }
-        public bool OrderStatus { get; set; }
+        public string OrderStatus { get; set; }
         public bool IsActive { get; set; }
         public bool IsDelete { get; set; }
         public int CreatedBy { get; set; }

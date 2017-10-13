@@ -145,10 +145,7 @@
                     $('[id$=txtEndDate]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please ensure that the End Date is greater than or equal to the Start Date.</div>");
                     e.preventDefault(); // prevent form from POST to server
                     focusSet = true;
-                } else {
-                    $('[id$=txtEndDate]').css("border", "1px solid #ccc");
-                    $('[id$=txtEndDate]').parent().next(".validation").remove(); // remove it
-                }
+                } 
             });
         });
 

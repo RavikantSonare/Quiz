@@ -81,7 +81,6 @@ namespace WebAdmin
             drpMerchantLevel.DataValueField = "MerchantLevelId";
             drpMerchantLevel.DataSource = _datatable2;
             drpMerchantLevel.DataBind();
-            ViewState["leveltable"] = _datatable2;
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
@@ -120,6 +119,7 @@ namespace WebAdmin
                 ret = false;
                 lblerror.InnerText = "Enter merchant name";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
             }
             else
             {
@@ -130,6 +130,7 @@ namespace WebAdmin
                 ret = false;
                 lblerror.InnerText = "Enter mobile number";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
             }
             else
             {
@@ -140,6 +141,7 @@ namespace WebAdmin
                 ret = false;
                 lblerror.InnerText = "Enter email id";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
             }
             else
             {
@@ -150,6 +152,7 @@ namespace WebAdmin
                 ret = false;
                 lblerror.InnerText = "Enter password";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
             }
             else
             {
@@ -160,16 +163,40 @@ namespace WebAdmin
                 ret = false;
                 lblerror.InnerText = "Select merchant level";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
             }
             else
             {
                 lblerror.InnerText = "";
             }
-            if (string.IsNullOrEmpty(ddlActiveStatus.SelectedItem.Value))
+            if (ddlActiveStatus.SelectedIndex < 0)
             {
                 ret = false;
                 lblerror.InnerText = "Select status";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
+            }
+            else
+            {
+                lblerror.InnerText = "";
+            }
+            if (string.IsNullOrEmpty(txtStartDate.Text))
+            {
+                ret = false;
+                lblerror.InnerText = "Enter start date";
+                lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
+            }
+            else
+            {
+                lblerror.InnerText = "";
+            }
+            if (string.IsNullOrEmpty(txtEndDate.Text))
+            {
+                ret = false;
+                lblerror.InnerText = "Enter end date";
+                lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
             }
             else
             {

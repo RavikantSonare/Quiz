@@ -16,7 +16,6 @@ namespace WebAdmin.BOLayer
         public DateTime CreatedDate { get; set; }
         public int UpdateBy { get; set; }
         public DateTime UpdateDate { get; set; }
-        public string MerchantLevelId { get; set; }
         public string Event { get; set; }
     }
 }

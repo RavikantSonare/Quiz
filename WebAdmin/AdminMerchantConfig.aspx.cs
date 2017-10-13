@@ -106,6 +106,7 @@ namespace WebAdmin
                         _bomlvl.MerchantLevel = txtMerchantLevel.Text;
                         _bomlvl.AnnualFee = Convert.ToDecimal(txtPrice.Text);
                         _bomlvl.ExamCount = Convert.ToInt32(txtExamCount.Text);
+                        _bomlvl.StudentCount = Convert.ToInt32(txtStudentCount.Text);
                         _bomlvl.ShopperFee = Convert.ToDecimal(txtShopperFee.Text);
                         foreach (ListItem item in chkQuestionType.Items)
                         {
@@ -192,6 +193,7 @@ namespace WebAdmin
                     txtMerchantLevel.Text = _datatable2.Rows[0]["MerchantLevel"].ToString();
                     txtPrice.Text = _datatable2.Rows[0]["AnnualFee"].ToString();
                     txtExamCount.Text = _datatable2.Rows[0]["ExamCount"].ToString();
+                    txtStudentCount.Text = _datatable2.Rows[0]["StudentCount"].ToString();
                     txtShopperFee.Text = _datatable2.Rows[0]["ShopperFee"].ToString();
                     string[] qtype = _datatable2.Rows[0]["QuestionType"].ToString().Split(',');
                     for (int i = 0; i < chkQuestionType.Items.Count; i++)
@@ -288,6 +290,7 @@ namespace WebAdmin
                 ret = false;
                 lblerror.InnerText = "Enter merchant level";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
             }
             else
             {
@@ -298,6 +301,7 @@ namespace WebAdmin
                 ret = false;
                 lblerror.InnerText = "Enter price";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
             }
             else
             {
@@ -308,6 +312,18 @@ namespace WebAdmin
                 ret = false;
                 lblerror.InnerText = "Enter exam count";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
+            }
+            else
+            {
+                lblerror.InnerText = "";
+            }
+            if (string.IsNullOrEmpty(txtStudentCount.Text))
+            {
+                ret = false;
+                lblerror.InnerText = "Enter student count";
+                lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
             }
             else
             {
@@ -318,6 +334,18 @@ namespace WebAdmin
                 ret = false;
                 lblerror.InnerText = "Enter shopper fee";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
+            }
+            else
+            {
+                lblerror.InnerText = "";
+            }
+            if (chkQuestionType.SelectedIndex < 0)
+            {
+                ret = false;
+                lblerror.InnerText = "select at least one extra permission";
+                lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
             }
             else
             {
