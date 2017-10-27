@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainMaster.master.cs" Inherits="Estore.MainMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterLeftsidebar.master.cs" Inherits="Estore.MasterLeftsidebar" %>
 
 <!DOCTYPE html>
 
@@ -10,7 +10,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
 
     <!-- Favicon -->
     <link href="images/apple-icon.png" rel="icon" type="image/png">
@@ -53,10 +52,9 @@
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 clearfix">
                             <div class="irs-log-reg">
                                 <ul class="list-inline">
-                                    <li>
-                                        <a href="http://localhost:60956/MerchantLogin.aspx">
-                                            <%--<div data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="@mdo">Register or Login</div>--%>
-                                        Register or Login</a>
+                                    <li><a href="#">
+                                        <div data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="@mdo">Register or Login</div>
+                                    </a>
                                         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
@@ -68,51 +66,41 @@
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                <div class="irs-login-form">
+                                                                <form class="irs-login-form">
                                                                     <h3>Login <span class="flaticon-padlock"></span></h3>
                                                                     <p>Enter username and password to login:</p>
                                                                     <div class="form-group">
-                                                                        <asp:TextBox ID="txtMerchantemailLogin"
-                                                                            runat="server" placeholder="User Name" CssClass="form-control"></asp:TextBox>
+                                                                        <input type="email" class="form-control" id="email2" placeholder="Email">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <asp:TextBox ID="txtMerchantpwdLogin"
-                                                                            runat="server" placeholder="Password" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                                                                        <input type="password" class="form-control" placeholder="Password">
                                                                     </div>
-                                                                    <label id="lblerror" runat="server" style="display: none; color: #D8000C;"></label>
-                                                                    <asp:Button ID="btnMerchantLogin" runat="server"
-                                                                        Text="Login to account" CssClass="btn btn-default irs-button-styledark" OnClick="btnMerchantLogin_Click" />
-                                                                </div>
+                                                                    <button type="submit" class="btn btn-default irs-button-styledark">Login to account</button>
+                                                                </form>
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <div class="irs-reg-form">
+                                                                <form class="irs-reg-form">
                                                                     <h3>Register <span class="flaticon-key"></span></h3>
                                                                     <p>Join our community today:</p>
                                                                     <div class="form-group">
-                                                                        <asp:TextBox ID="txtMerchantfirstname"
-                                                                            runat="server" placeholder="First Name" CssClass="form-control"></asp:TextBox>
+                                                                        <input type="text" class="form-control" id="exampleInputNamex" placeholder="First Name">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <asp:TextBox ID="txtMerchantlastname"
-                                                                            runat="server" placeholder="Last Name" CssClass="form-control"></asp:TextBox>
+                                                                        <input type="text" class="form-control" id="exampleInputNamexx" placeholder="Last Name">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <asp:TextBox ID="txtMerchantemailRegister"
-                                                                            runat="server" placeholder="Email" CssClass="form-control" TextMode="Email"></asp:TextBox>
+                                                                        <input type="email" class="form-control" id="exampleInputEmailx" placeholder="Email">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <asp:TextBox ID="txtMerchantpwdRegister"
-                                                                            runat="server" placeholder="Password" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                                                                        <input type="password" class="form-control" placeholder="Password">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <asp:TextBox ID="txtMerchantcpwdRegister"
-                                                                            runat="server" placeholder="Repeat password" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                                                                        <input type="password" class="form-control" placeholder="Repeat password">
                                                                     </div>
                                                                     <div class="form-group text-center">
-                                                                        <asp:Button ID="btnMerchantRegister"
-                                                                            runat="server" Text="Sign Me Up" CssClass="btn btn-default irs-button-styledark" />
+                                                                        <button type="submit" class="btn btn-default irs-button-styledark">Sign Me Up</button>
                                                                     </div>
-                                                                </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -132,41 +120,41 @@
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                <div class="irs-login-form">
+                                                                <form class="irs-login-form">
                                                                     <h3>Login <span class="flaticon-padlock"></span></h3>
                                                                     <p>Enter username and password to login:</p>
                                                                     <div class="form-group">
-                                                                        <asp:TextBox ID="txtUseremailLogin" runat="server" CssClass="form-control" placeholder="Email" TextMode="Email"></asp:TextBox>
+                                                                        <input type="email" class="form-control" id="email2" placeholder="Email">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <asp:TextBox ID="txtUserpwdLogin" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password"></asp:TextBox>
+                                                                        <input type="password" class="form-control" placeholder="Password">
                                                                     </div>
-                                                                    <asp:Button ID="btnUserLogin" runat="server" CssClass="btn btn-default irs-pricing-btn" Text="Login to account" />
-                                                                </div>
+                                                                    <button type="submit" class="btn btn-default irs-pricing-btn">Login to account</button>
+                                                                </form>
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <div class="irs-reg-form">
+                                                                <form class="irs-reg-form">
                                                                     <h3>Register <span class="flaticon-key"></span></h3>
                                                                     <p>Join our community today:</p>
                                                                     <div class="form-group">
-                                                                        <asp:TextBox ID="txtUserfirstname" runat="server" placeholder="First Name" CssClass="form-control"></asp:TextBox>
+                                                                        <input type="text" class="form-control" id="exampleInputNamex" placeholder="First Name">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <asp:TextBox ID="txtUserlastname" runat="server" placeholder="Last Name" CssClass="form-control"></asp:TextBox>
+                                                                        <input type="text" class="form-control" id="exampleInputNamexx" placeholder="Last Name">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <asp:TextBox ID="txtUseremailregister" runat="server" placeholder="Email" TextMode="Email" CssClass="form-control"></asp:TextBox>
+                                                                        <input type="email" class="form-control" id="exampleInputEmailx" placeholder="Email">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <asp:TextBox ID="txtUserpwdregister" runat="server" placeholder="Password" TextMode="Password" CssClass="form-control"></asp:TextBox>
+                                                                        <input type="password" class="form-control" placeholder="Password">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <asp:TextBox ID="txtUsercpwdregister" runat="server" placeholder="Repeat password" TextMode="Password" CssClass="form-control"></asp:TextBox>
+                                                                        <input type="password" class="form-control" placeholder="Repeat password">
                                                                     </div>
                                                                     <div class="form-group text-center">
-                                                                        <asp:Button ID="btnUserregister" CssClass="btn btn-default irs-pricing-btn" runat="server" Text="Sign Me Up" />
+                                                                        <button type="submit" class="btn btn-default irs-pricing-btn">Sign Me Up</button>
                                                                     </div>
-                                                                </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -205,9 +193,9 @@
                                         </li>
                                         <li><a href="page-faq.html">Faq</a></li>
                                         <li><a href="page-careers.html">Careers</a></li>
-                                        <li><a href="http://localhost:49225/Default.aspx">
-                                            <%--<div data-toggle="modal" data-target=".bs-example-modal-lg2" data-whatever="@mdo">Student Register or Login</div>--%>
-                                        Student Register or Login</a></li>
+                                        <li><a href="#">
+                                            <div data-toggle="modal" data-target=".bs-example-modal-lg2" data-whatever="@mdo">Student Register or Login</div>
+                                        </a></li>
 
                                         <li><a href="CHECKOUT.html">Check OUT</a></li>
                                     </ul>
@@ -218,8 +206,107 @@
                     </div>
                 </div>
             </div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+
+            <!-- Breadcrumbs Styles -->
+            <section class="irs-ip-breadcrumbs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-lg-offset-3 text-center">
+                            <h1 class="irs-bc-title">Courses</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Breadcrumbs html -->
+            <section class="irs-ip-brdcrumb">
+                <div class="container">
+                    <div class="row"></div>
+                </div>
+            </section>
+
+            <section class="irs-ip-details">
+                <div class="container">
+                    <div class="row clearfix">
+                        <div class="col-sm-12 col-md-8 col-lg-9 clearfix">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-3">
+                            <div class="sidebar irs-sb-courses">
+                                <h4 class="text-center"><i class="fa fa-bars push"></i>All Exam <span class="color">Catagories</span></h4>
+                                <ul>
+
+                                    <li><a href="#">Engineering</a><span class="hover"></span>
+                                        <ul class="sub-menu">
+                                            <li><a href="#">Dashboard Settings<i class="fa fa-angle-left"></i></a><span class="hover"></span></li>
+                                            <li><a href="#">Profile Settings<i class="fa fa-angle-left"></i></a><span class="hover"></span></li>
+                                            <li><a href="#">Manage Menu<i class="fa fa-angle-left"></i></a><span class="hover"></span></li>
+                                            <li><a href="#">User Profiles<i class="fa fa-angle-left"></i></a><span class="hover"></span></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Finance</a><span class="hover"></span>
+                                        <ul class="sub-menu">
+                                            <li><a href="#">CFA<i class="fa fa-angle-left"></i></a><span class="hover"></span></li>
+                                            <li><a href="#">Finra<i class="fa fa-angle-left"></i></a><span class="hover"></span></li>
+                                            <li><a href="#">American Bankers Association<i class="fa fa-angle-left"></i></a><span class="hover"></span></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Healthy & Fitness</a><span class="hover"></span>
+                                        <ul class="sub-menu">
+                                            <li><a href="#">Change Theme<i class="fa fa-angle-left"></i></a><span class="hover"></span>
+                                            </li>
+                                            <li><a href="#">Theme Options<i class="fa fa-angle-left"></i></a><span class="hover"></span></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">IT Certification</a><span class="hover"></span>
+                                        <ul class="sub-menu">
+                                            <li><a href="#">Latest News<i class="fa fa-angle-left"></i></a><span class="hover"></span>
+                                            </li>
+                                            <li><a href="#">Recent Articles<i class="fa fa-angle-left"></i></a><span class="hover"></span></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Medical & Nursing</a><span class="hover"></span></li>
+                                    <li><a href="#"><i class="fa fa-angle-left style2"></i>Goverment</a><span class="hover"></span></li>
+                                    <li><a href="#"><i class="fa fa-angle-left style2"></i>Business</a><span class="hover"></span></li>
+                                </ul>
+                            </div>
+
+                            <div class="irs-sb-lcourses">
+
+                                <div class="irs-sb-bcome-teacher">
+                                    <div class="irs-sb-bct-details text-center">
+                                        <h3>Bundle sales title</h3>
+                                        <a href="#" class="btn btn-lg irs-btn-thm2">Add to Cart</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Media Section -->
+            <section class="irs-social-media">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 col-sm-6 col-md-6 text-right style2">
+                            <h3 class="irs-social-media-ttl">Edu Hub Social Networks:</h3>
+                        </div>
+                        <div class="col-sm-12 col-sm-6 col-md-6">
+                            <div class="irs-sm-details">
+                                <ul class="list-inline">
+                                    <li><a href="#"><span class="flaticon-social-3"></span></a></li>
+                                    <li><a href="#"><span class="flaticon-social-4"></span></a></li>
+                                    <li><a href="#"><span class="flaticon-social-1"></span></a></li>
+                                    <li><a href="#"><span class="flaticon-social-media"></span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- Footer Section -->
             <section class="irs-footer style2">
@@ -315,25 +402,26 @@
             </section>
             <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
         </div>
+        <!-- Wrapper End -->
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/bootsnav.js"></script>
+        <script type="text/javascript" src="js/scrollto.js"></script>
+        <script type="text/javascript" src="js/jquery-scrolltofixed-min.js"></script>
+        <script type="text/javascript" src="js/jquery-SmoothScroll-min.js"></script>
+        <script type="text/javascript" src="js/jquery.counterup.js"></script>
+        <script type="text/javascript" src="js/fancybox.js"></script>
+        <script type="text/javascript" src="js/wow.min.js"></script>
+        <script type="text/javascript" src="js/jquery.masonry.min.js"></script>
+        <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+        <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="js/jquery.fitvids.js"></script>
+        <script type="text/javascript" src="js/css3-animate-it.js"></script>
+        <script type="text/javascript" src="js/swiper.min.js"></script>
+        <script type="text/javascript" src="js/flipclock.min.js"></script>
+        <!-- Custom script for all pages -->
+        <script type="text/javascript" src="js/script.js"></script>
     </form>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootsnav.js"></script>
-    <script type="text/javascript" src="js/scrollto.js"></script>
-    <script type="text/javascript" src="js/jquery-scrolltofixed-min.js"></script>
-    <script type="text/javascript" src="js/jquery-SmoothScroll-min.js"></script>
-    <script type="text/javascript" src="js/jquery.counterup.js"></script>
-    <script type="text/javascript" src="js/fancybox.js"></script>
-    <script type="text/javascript" src="js/wow.min.js"></script>
-    <script type="text/javascript" src="js/jquery.masonry.min.js"></script>
-    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
-    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="js/jquery.fitvids.js"></script>
-    <script type="text/javascript" src="js/css3-animate-it.js"></script>
-    <script type="text/javascript" src="js/swiper.min.js"></script>
-    <script type="text/javascript" src="js/flipclock.min.js"></script>
-    <!-- Custom script for all pages -->
-    <script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
