@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamSimulator", "ExamSimula
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ExamSimulatorSetup", "ExamSimulatorSetup\ExamSimulatorSetup.vdproj", "{1D50EBC2-6428-4BB0-AF44-F197B77AA00A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estore", "Estore\Estore.csproj", "{8E4EE532-BAD7-4644-8CCD-AA9FD7057A89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,14 @@ Global
 		{1D50EBC2-6428-4BB0-AF44-F197B77AA00A}.Debug|x86.ActiveCfg = Debug
 		{1D50EBC2-6428-4BB0-AF44-F197B77AA00A}.Release|Any CPU.ActiveCfg = Release
 		{1D50EBC2-6428-4BB0-AF44-F197B77AA00A}.Release|x86.ActiveCfg = Release
+		{8E4EE532-BAD7-4644-8CCD-AA9FD7057A89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E4EE532-BAD7-4644-8CCD-AA9FD7057A89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E4EE532-BAD7-4644-8CCD-AA9FD7057A89}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8E4EE532-BAD7-4644-8CCD-AA9FD7057A89}.Debug|x86.Build.0 = Debug|Any CPU
+		{8E4EE532-BAD7-4644-8CCD-AA9FD7057A89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E4EE532-BAD7-4644-8CCD-AA9FD7057A89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E4EE532-BAD7-4644-8CCD-AA9FD7057A89}.Release|x86.ActiveCfg = Release|Any CPU
+		{8E4EE532-BAD7-4644-8CCD-AA9FD7057A89}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

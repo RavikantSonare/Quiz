@@ -268,7 +268,7 @@ namespace WebAdmin
                 if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
                 {
                     Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    if (ViewState["OrderId"] != null && ViewState["OrderId"] != "")
+                    if (ViewState["OrderId"] != null && ViewState["OrderId"].ToString() != "")
                     {
                         _boslsrpt.OrderStatus = ddlAction.SelectedValue;
                         _boslsrpt.OrderId = Convert.ToInt32(ViewState["OrderId"]);
