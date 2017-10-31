@@ -15,5 +15,15 @@ namespace WebUser.BALayer
         {
             return _daexmange.SelectExamDetail(v, uid);
         }
+
+        public DataTable SelectExamDetailWithID(string v, int exmid)
+        {
+            return _daexmange.SelectExamDetailWithID(v, exmid);
+        }
+
+        public BOExamManage SelectExamQestionAnswer(string v, int exmid)
+        {
+            return _daexmange.SelectExamQestionAnswer(v, exmid);
+        }
     }
 }

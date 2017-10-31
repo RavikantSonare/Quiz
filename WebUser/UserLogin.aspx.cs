@@ -67,29 +67,33 @@ namespace WebUser
 
         protected void btnTestMode_Click(object sender, EventArgs e)
         {
-            string fileName = string.Empty;
+            //string fileName = string.Empty;
+            //Button btntest = (Button)sender;
+            //string val = btntest.CommandArgument;
+            //if (btntest.CommandArgument == "300-120")
+            //{
+            //    fileName = "Cisco-300-120.docx";
+            //}
+            //else if (btntest.CommandArgument == "302-120")
+            //{
+            //    fileName = "Cisco-302-120.docx";// Replace Your Filename with your required filename
+            //}
+            //else
+            //{
+            //    fileName = "Cisco-Math.docx";
+            //}
+
+            //Response.ContentType = "application/octet-stream";
+
+            //Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
+
+            //Response.TransmitFile(Server.MapPath("~/ExamSimulator/" + fileName));//Place "YourFolder" your server folder Here
+
+            //Response.End();
+
             Button btntest = (Button)sender;
-            string val = btntest.CommandArgument;
-            if (btntest.CommandArgument == "300-120")
-            {
-                fileName = "Cisco-300-120.docx";
-            }
-            else if (btntest.CommandArgument == "302-120")
-            {
-                fileName = "Cisco-302-120.docx";// Replace Your Filename with your required filename
-            }
-            else
-            {
-                fileName = "Cisco-Math.docx";
-            }
-
-            Response.ContentType = "application/octet-stream";
-
-            Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
-
-            Response.TransmitFile(Server.MapPath("~/ExamSimulator/" + fileName));//Place "YourFolder" your server folder Here
-
-            Response.End();
+            string val = HttpUtility.UrlEncode(Common.Encrypt(btntest.CommandArgument.Trim()));
+            Response.Redirect("~/OnlineTestBegin.aspx?exmid=" + val + "");
         }
     }
 }

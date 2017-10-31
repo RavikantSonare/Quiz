@@ -35,5 +35,6 @@ namespace WebUser.BOLayer
         public int UpdatedBy { get; set; }
         public DateTime UpdatedDate { get; set; }
         public string Event { get; set; }
+        public List<BOQAManage> QuestionList { get; set; }
     }
 }

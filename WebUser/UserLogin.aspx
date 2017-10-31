@@ -15,9 +15,7 @@
                                 <ItemTemplate>
                                     <asp:HiddenField ID="UserId" runat="server" Value='<%#Eval("UserId")%>' />
                                 </ItemTemplate>
-
                                 <HeaderStyle CssClass="hide"></HeaderStyle>
-
                                 <ItemStyle CssClass="hide"></ItemStyle>
                             </asp:TemplateField>
                             <asp:BoundField HeaderText="Exam Code" DataField="ExamCode" />
@@ -31,7 +29,8 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Real Test Mode">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnTestMode" runat="server" Text="Test Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCode")%>' Visible='<%# !(Convert.ToBoolean(Eval("OnlyTestOnce"))) %>' OnClick="btnTestMode_Click" />
+                                    <%--<asp:Button ID="btnTestMode" runat="server" Text="Test Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCode")%>' Visible='<%# !(Convert.ToBoolean(Eval("OnlyTestOnce"))) %>' OnClick="btnTestMode_Click" />--%>
+                                    <asp:Button ID="btnTestMode" runat="server" Text="Test Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnTestMode_Click" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

@@ -17,7 +17,7 @@ namespace WebUser
     {
         public static string Select = "---Select---";
         public static string All = "All";
-        public static string EncryptionKey = "PROJECT63QUIZ17";
+        public static string EncryptionKey = "PROJECTQUIZ0238";
 
         public static string MessageBox(int returnValue)
         {
