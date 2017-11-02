@@ -1196,3 +1196,13 @@ Source: mscorlib
 TargetSite: Boolean Parse(System.String)
 -----------------------------------------------------------
 
+Time: 01/11/2017 12:01:07 PM
+-----------------------------------------------------------
+Message: Column 'MerchantLevelId' does not belong to table .
+StackTrace:    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at WebAdmin.AdminQuestionType.lnkbtnEdit_Click(Object sender, EventArgs e) in D:\Work\Project\WebAdmin\AdminQuestionType.aspx.cs:line 127
+Source: System.Data
+TargetSite: System.Data.DataColumn GetDataColumn(System.String)
+-----------------------------------------------------------
+

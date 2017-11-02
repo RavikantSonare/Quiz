@@ -21,10 +21,15 @@ namespace WebUser
                     BOUser _bouserDetail = (BOUser)Session["UserDetail"];
                     if (!IsPostBack)
                     {
-                        if (Request.QueryString["exmid"] != null)
+                        if (Request.QueryString["exmid"] != null && Request.QueryString["tstmd"] != null)
                         {
                             string examid = Common.Decrypt(HttpUtility.UrlDecode(Request.QueryString["exmid"]));
+                            ViewState["Mode"] = Request.QueryString["tstmd"];
                             GetExamDetail(examid);
+                        }
+                        else
+                        {
+                            Response.Redirect("UserLogin.aspx");
                         }
                     }
                 }
@@ -48,8 +53,6 @@ namespace WebUser
             {
                 dlexamdetail.DataSource = _datatable;
                 dlexamdetail.DataBind();
-                //lblExamName.Text = _datatable.Rows[0]["ExamCode"].ToString();
-                //btnreadytobegin.CommandArgument = _datatable.Rows[0]["ExamCodeId"].ToString();
             }
         }
 
@@ -57,7 +60,7 @@ namespace WebUser
         {
             Button btntest = (Button)sender;
             string val = HttpUtility.UrlEncode(Common.Encrypt(btntest.CommandArgument.Trim()));
-            Response.Redirect("~/OnlineTestStart.aspx?exmid=" + val + "");
+            Response.Redirect("~/OnlineTestStart.aspx?exmid=" + val + "&tstmd=" + ViewState["Mode"].ToString());
         }
     }
 }

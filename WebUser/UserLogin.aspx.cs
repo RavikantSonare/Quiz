@@ -93,7 +93,14 @@ namespace WebUser
 
             Button btntest = (Button)sender;
             string val = HttpUtility.UrlEncode(Common.Encrypt(btntest.CommandArgument.Trim()));
-            Response.Redirect("~/OnlineTestBegin.aspx?exmid=" + val + "");
+            Response.Redirect("~/OnlineTestBegin.aspx?exmid=" + val + "&tstmd=TM");
+        }
+
+        protected void btnStudyNow_Click(object sender, EventArgs e)
+        {
+            Button btntest = (Button)sender;
+            string val = HttpUtility.UrlEncode(Common.Encrypt(btntest.CommandArgument.Trim()));
+            Response.Redirect("~/OnlineTestBegin.aspx?exmid=" + val + "&tstmd=SM");
         }
     }
 }

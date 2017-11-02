@@ -66,7 +66,6 @@ namespace WebAdmin
                     Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
                     if (!string.IsNullOrEmpty(txtQuestionType.Text))
                     {
-                        string merchantlevel = string.Empty;
                         _boqtype.QuestionType = txtQuestionType.Text;
                         _boqtype.IsActive = true;
                         _boqtype.IsDelete = false;
@@ -124,7 +123,6 @@ namespace WebAdmin
                 {
                     ViewState["qtypeId"] = _datatable2.Rows[0]["QuestionTypeId"].ToString();
                     txtQuestionType.Text = _datatable2.Rows[0]["QuestionType"].ToString();
-                    string[] mlevelId = _datatable2.Rows[0]["MerchantLevelId"].ToString().Split(',');
                     btnAdd.Text = "Update";
                 }
             }
