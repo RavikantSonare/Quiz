@@ -100,6 +100,19 @@ namespace WebUser
             }
         }
 
+        protected void DataList1_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item)
+            {
+                RadioButtonList RadioButtonList1 = (RadioButtonList)e.Item.FindControl("RadioButtonList1");
+                int QuestionID = Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "QAId"));
+                RadioButtonList1.DataSource = _examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionID)).FirstOrDefault().AnswerList;
+                RadioButtonList1.DataTextField = "Answer";
+                RadioButtonList1.DataValueField = "AnswerId";
+                //RadioButtonList1.Items.FindByValue((e.Item.FindControl("lblShipper") as Label).Text).Selected = true;
+            }
+        }
+
         private void showQuestionNo(int qno)
         {
             try
@@ -124,17 +137,17 @@ namespace WebUser
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-            if (TimeAllSecondes > 0)
-            {
-                TimeAllSecondes = TimeAllSecondes - 1;
-            }
+            //if (TimeAllSecondes > 0)
+            //{
+            //    TimeAllSecondes = TimeAllSecondes - 1;
+            //}
 
-            TimeSpan time_Span = TimeSpan.FromSeconds(TimeAllSecondes);
-            hh = time_Span.Hours;
-            mm = time_Span.Minutes;
-            ss = time_Span.Seconds;
+            //TimeSpan time_Span = TimeSpan.FromSeconds(TimeAllSecondes);
+            //hh = time_Span.Hours;
+            //mm = time_Span.Minutes;
+            //ss = time_Span.Seconds;
 
-            Label2.Text = "  " + hh + ":" + mm + ":" + ss;
+            //Label2.Text = "  " + hh + ":" + mm + ":" + ss;
         }
     }
 }

@@ -66,7 +66,7 @@
                 <asp:Timer ID="Timer1" runat="server" Interval="1000" OnTick="Timer1_Tick"></asp:Timer>
             </div>
         </div>
-        <asp:DataList ID="dlquesanswer" runat="server" RepeatLayout="Flow">
+        <asp:DataList ID="dlquesanswer" runat="server" RepeatLayout="Flow" DataKeyField="QAId" OnItemDataBound="DataList1_ItemDataBound">
             <ItemTemplate>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="border: 1px solid #808080; min-height: 400px">
                     <asp:HiddenField ID="hfQuestionId" runat="server" Value='<%#Eval("QAId")%>' />
@@ -74,9 +74,11 @@
                         <asp:Label ID="lblQuestion" runat="server" Text='<%#Eval("Question")%>'></asp:Label>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 20px">
-                        <asp:RadioButtonList ID="rdbtnAnswerOption" CssClass="radioboxlist" runat="server" DataSource='<%#Eval("AnswerList")%>' DataTextField="Answer" DataValueField="AnswerId" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString() == "1" ? true : false %>'>
+                        <%-- <asp:RadioButtonList ID="rdbtnAnswerOption" CssClass="radioboxlist" runat="server" DataSource='<%#Eval("AnswerList")%>' DataTextField="Answer" DataValueField="AnswerId" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString() == "1" ? true : false %>'>
                         </asp:RadioButtonList>
-                        <asp:CheckBoxList ID="chkbtnAnswerOption" CssClass="radioboxlist" runat="server" DataSource='<%#Eval("AnswerList")%>' DataTextField="Answer" DataValueField="AnswerId" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString() == "2" ? true : false %>'></asp:CheckBoxList>
+                        <asp:CheckBoxList ID="chkbtnAnswerOption" CssClass="radioboxlist" runat="server" DataSource='<%#Eval("AnswerList")%>' DataTextField="Answer" DataValueField="AnswerId" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString() == "2" ? true : false %>'></asp:CheckBoxList>--%>
+                        <asp:RadioButtonList ID="RadioButtonList1" CssClass="radioboxlist" runat="server" RepeatLayout="Flow">
+                        </asp:RadioButtonList>
                     </div>
                 </div>
             </ItemTemplate>
