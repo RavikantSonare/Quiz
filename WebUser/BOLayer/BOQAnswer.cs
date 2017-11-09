@@ -27,5 +27,7 @@ namespace WebUser.BOLayer
 
         public DateTime UpdatedDate { get; set; }
         public string Event { get; set; }
+
+        public bool UserAnswer { get; set; }
     }
 }

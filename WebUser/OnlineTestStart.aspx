@@ -54,7 +54,7 @@
                 <asp:Label ID="lblTotalQuestion" runat="server"></asp:Label>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="text-align: right">
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                         <asp:Label ID="lblTime" runat="server" Text="Time:"></asp:Label>
                         <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
@@ -63,23 +63,27 @@
                         <asp:AsyncPostBackTrigger ControlID="Timer1" />
                     </Triggers>
                 </asp:UpdatePanel>
-                <asp:Timer ID="Timer1" runat="server" Interval="1000" OnTick="Timer1_Tick"></asp:Timer>
+                <asp:Timer ID="Timer1" runat="server" Interval="1000" OnTick="Timer1_Tick"></asp:Timer>--%>
             </div>
         </div>
         <asp:DataList ID="dlquesanswer" runat="server" RepeatLayout="Flow" DataKeyField="QAId" OnItemDataBound="DataList1_ItemDataBound">
             <ItemTemplate>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="border: 1px solid #808080; min-height: 400px">
-                    <asp:HiddenField ID="hfQuestionId" runat="server" Value='<%#Eval("QAId")%>' />
-                    <div style="margin-top: 20px;">
-                        <asp:Label ID="lblQuestion" runat="server" Text='<%#Eval("Question")%>'></asp:Label>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 20px">
-                        <%-- <asp:RadioButtonList ID="rdbtnAnswerOption" CssClass="radioboxlist" runat="server" DataSource='<%#Eval("AnswerList")%>' DataTextField="Answer" DataValueField="AnswerId" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString() == "1" ? true : false %>'>
-                        </asp:RadioButtonList>
-                        <asp:CheckBoxList ID="chkbtnAnswerOption" CssClass="radioboxlist" runat="server" DataSource='<%#Eval("AnswerList")%>' DataTextField="Answer" DataValueField="AnswerId" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString() == "2" ? true : false %>'></asp:CheckBoxList>--%>
-                        <asp:RadioButtonList ID="RadioButtonList1" CssClass="radioboxlist" runat="server" RepeatLayout="Flow">
-                        </asp:RadioButtonList>
-                    </div>
+                    <asp:Panel ID="Panel1" runat="server" Enabled='<%# Eval("Event").ToString() != "SM" ? true : false %>'>
+                        <asp:HiddenField ID="hfTestMode" runat="server" Value='<%#Eval("Event")%>' />
+                        <div class="mtop10">
+                            <asp:Label ID="lblQuestion" runat="server" Text='<%#Eval("Question")%>'></asp:Label>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <asp:RadioButtonList ID="rdbtnAnswerList" CssClass="radioboxlist" runat="server" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString() == "1" ? true : false %>' CommandArguments='<%#Eval("QAId")%>' OnSelectedIndexChanged="rdbtnAnswerList_SelectedIndexChanged"></asp:RadioButtonList>
+                            <asp:CheckBoxList ID="chkboxAnswerList" CssClass="radioboxlist" runat="server" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString() == "2" ? true : false %>' CommandArguments='<%#Eval("QAId")%>' OnSelectedIndexChanged="chkboxAnswerList_SelectedIndexChanged"></asp:CheckBoxList>
+                        </div>
+                        <asp:Panel ID="Panel2" runat="server" Visible='<%# Eval("Event").ToString() == "SM" ? true : false %>'>
+                            <div class="mtop10 clearfix">
+                                <asp:Label ID="lbldescription" runat="server" Text='<%#Eval("Explanation")%>'></asp:Label>
+                            </div>
+                        </asp:Panel>
+                    </asp:Panel>
                 </div>
             </ItemTemplate>
         </asp:DataList>

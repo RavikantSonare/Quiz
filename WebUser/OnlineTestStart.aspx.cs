@@ -13,12 +13,26 @@ namespace WebUser
     public partial class OnlineTestStart : System.Web.UI.Page
     {
         #region Global Variables
-        static int currentQuestionIndex = 0;
-        BOExamManage _examqueanslist = new BOExamManage();
+        // public int currentQuestionIndex;
+        static BOExamManage _examqueanslist = new BOExamManage();
         #endregion
 
         static int hh, mm, ss;
         static double TimeAllSecondes = 3600;
+
+        private int currentQuestionIndex
+        {
+            get
+            {
+                if (ViewState["i"] == null)
+                    return 0;
+                return (int)ViewState["i"];
+            }
+            set
+            {
+                ViewState["i"] = value;
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,20 +40,19 @@ namespace WebUser
             {
                 if (Session["UserDetail"] != null)
                 {
-                    BOUser _bouserDetail = (BOUser)Session["UserDetail"];
-                    if (Request.QueryString["exmid"] != null && Request.QueryString["tstmd"] != null)
-                    {
-                        string examid = Common.Decrypt(HttpUtility.UrlDecode(Request.QueryString["exmid"]));
-                        _examqueanslist = GetEQAList(examid, Request.QueryString["tstmd"]);
-                        GetExamDetail(_examqueanslist);
-                    }
-                    else
-                    {
-                        Response.Redirect("UserLogin.aspx");
-                    }
                     if (!IsPostBack)
                     {
-
+                        BOUser _bouserDetail = (BOUser)Session["UserDetail"];
+                        if (Request.QueryString["exmid"] != null && Request.QueryString["tstmd"] != null)
+                        {
+                            string examid = Common.Decrypt(HttpUtility.UrlDecode(Request.QueryString["exmid"]));
+                            _examqueanslist = GetEQAList(examid, Request.QueryString["tstmd"]);
+                            GetExamDetail(_examqueanslist);
+                        }
+                        else
+                        {
+                            Response.Redirect("UserLogin.aspx");
+                        }
                     }
                 }
                 else
@@ -79,7 +92,7 @@ namespace WebUser
         {
             BAExamManage _baexmmng = new BAExamManage();
             var list = _baexmmng.SelectExamQestionAnswer("GetEQAWithQId", Convert.ToInt32(examid));
-            list.Event = mode.ToString();
+            list.QuestionList.ForEach(e => e.Event = mode.ToString());
             return list;
         }
 
@@ -104,12 +117,21 @@ namespace WebUser
         {
             if (e.Item.ItemType == ListItemType.Item)
             {
-                RadioButtonList RadioButtonList1 = (RadioButtonList)e.Item.FindControl("RadioButtonList1");
+                HiddenField hfTestMode = (HiddenField)e.Item.FindControl("hfTestMode");
+                RadioButtonList rdbtnAnswerList = (RadioButtonList)e.Item.FindControl("rdbtnAnswerList");
+                CheckBoxList chkboxAnswerList = (CheckBoxList)e.Item.FindControl("chkboxAnswerList");
                 int QuestionID = Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "QAId"));
-                RadioButtonList1.DataSource = _examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionID)).FirstOrDefault().AnswerList;
-                RadioButtonList1.DataTextField = "Answer";
-                RadioButtonList1.DataValueField = "AnswerId";
-                //RadioButtonList1.Items.FindByValue((e.Item.FindControl("lblShipper") as Label).Text).Selected = true;
+                var listanswer = _examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionID)).FirstOrDefault().AnswerList;
+                for (int i = 0; i < listanswer.Count; i++)
+                {
+                    ListItem item = new ListItem();
+                    item.Text = listanswer[i].Answer;
+                    item.Value = listanswer[i].AnswerId.ToString();
+                    if (hfTestMode.Value == "SM")
+                        item.Selected = Convert.ToBoolean(listanswer[i].RightAnswer.Equals("1") ? true : false);
+                    rdbtnAnswerList.Items.Add(item);
+                    chkboxAnswerList.Items.Add(item);
+                }
             }
         }
 
@@ -132,6 +154,28 @@ namespace WebUser
             catch
             {
 
+            }
+        }
+
+        protected void rdbtnAnswerList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RadioButtonList chklst = (RadioButtonList)sender;
+            string commandArguments = chklst.Attributes["commandArguments"].ToString();
+            string value = chklst.SelectedItem.Value;
+            _examqueanslist.QuestionList.Where(q => q.QAId.Equals(commandArguments)).FirstOrDefault().AnswerList.Where(f => f.Answer.Equals(value)).FirstOrDefault().UserAnswer = true;
+        }
+
+        protected void chkboxAnswerList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckBoxList chklst = (CheckBoxList)sender;
+            string commandArguments = chklst.Attributes["commandArguments"].ToString();
+            for (int i = 0; i < chklst.Items.Count; i++)
+            {
+                if (chklst.Items[i].Selected == true)// getting selected value from CheckBox List  
+                {
+                    string value = chklst.Items[i].Value;
+                    _examqueanslist.QuestionList.Where(q => q.QAId == Convert.ToUInt32(commandArguments)).FirstOrDefault().AnswerList.Where(f => f.AnswerId == Convert.ToUInt32(value)).FirstOrDefault().UserAnswer = true;
+                }
             }
         }
 
