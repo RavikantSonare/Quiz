@@ -40,6 +40,27 @@
             color: #083C64;
         }
     </style>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //Attach click event of button
+            $("#btnRight").click(function (e) {
+                //Pass the value from Listbox1 to Listbox2
+                $("#Listbox1 > option:selected").each(function () {
+                    $(this).remove().appendTo("#Listbox2");
+                });
+                e.preventDefault();
+            });
+            //Attach click event of button
+            $("#btnleft").click(function (e) {
+                //Pass the value from Listbox2 to Listbox1
+                $("#Listbox2 > option:selected").each(function () {
+                    $(this).remove().appendTo("#Listbox1");
+                });
+                e.preventDefault();
+            });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -77,6 +98,39 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <asp:RadioButtonList ID="rdbtnAnswerList" CssClass="radioboxlist" runat="server" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString() == "1" ? true : false %>' CommandArguments='<%#Eval("QAId")%>' OnSelectedIndexChanged="rdbtnAnswerList_SelectedIndexChanged"></asp:RadioButtonList>
                             <asp:CheckBoxList ID="chkboxAnswerList" CssClass="radioboxlist" runat="server" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString() == "2" ? true : false %>' CommandArguments='<%#Eval("QAId")%>' OnSelectedIndexChanged="chkboxAnswerList_SelectedIndexChanged"></asp:CheckBoxList>
+                            <asp:Panel ID="pnlDragDrop" runat="server" Visible='<%# Eval("QuestionTypeId").ToString() == "4" ? true : false %>'>
+                                <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+                                <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+                                <table align="center">
+                                    <tr>
+                                        <td>
+                                            <asp:ListBox ID="lbDrag" runat="server" Height="169px" Width="121px" SelectionMode="Multiple"></asp:ListBox>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <asp:Button ID="btn1" runat="server" Text=">" Width="45px" OnClick="btn1_Click" CommandArguments='<%#Eval("QAId")%>' />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <asp:Button ID="btn3" runat="server" Text="<" Width="45px" OnClick="btn3_Click" CommandArguments='<%#Eval("QAId")%>' />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <asp:ListBox ID="lbDrop" runat="server" Height="169px" Width="121px" SelectionMode="Multiple"></asp:ListBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <asp:Label ID="lbltxt" runat="server" ForeColor="Red"></asp:Label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </asp:Panel>
                         </div>
                         <asp:Panel ID="Panel2" runat="server" Visible='<%# Eval("Event").ToString() == "SM" ? true : false %>'>
                             <div class="mtop10 clearfix">

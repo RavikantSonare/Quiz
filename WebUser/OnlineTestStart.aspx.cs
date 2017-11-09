@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -34,6 +35,8 @@ namespace WebUser
             }
         }
 
+        ArrayList arraylist1 = new ArrayList();
+        ArrayList arraylist2 = new ArrayList();
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -120,6 +123,8 @@ namespace WebUser
                 HiddenField hfTestMode = (HiddenField)e.Item.FindControl("hfTestMode");
                 RadioButtonList rdbtnAnswerList = (RadioButtonList)e.Item.FindControl("rdbtnAnswerList");
                 CheckBoxList chkboxAnswerList = (CheckBoxList)e.Item.FindControl("chkboxAnswerList");
+                ListBox lbDrag = (ListBox)e.Item.FindControl("lbDrag");
+                ListBox lbDrop = (ListBox)e.Item.FindControl("lbDrop");
                 int QuestionID = Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "QAId"));
                 var listanswer = _examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionID)).FirstOrDefault().AnswerList;
                 for (int i = 0; i < listanswer.Count; i++)
@@ -128,9 +133,23 @@ namespace WebUser
                     item.Text = listanswer[i].Answer;
                     item.Value = listanswer[i].AnswerId.ToString();
                     if (hfTestMode.Value == "SM")
+                    {
                         item.Selected = Convert.ToBoolean(listanswer[i].RightAnswer.Equals("1") ? true : false);
+                    }
+                    else if (hfTestMode.Value == "TM")
+                    {
+                        item.Selected = Convert.ToBoolean(listanswer[i].UserAnswer);
+                    }
                     rdbtnAnswerList.Items.Add(item);
                     chkboxAnswerList.Items.Add(item);
+                    if (item.Selected)
+                    {
+                        lbDrop.Items.Add(item);
+                    }
+                    else 
+                    {
+                        lbDrag.Items.Add(item);
+                    }
                 }
             }
         }
@@ -161,8 +180,14 @@ namespace WebUser
         {
             RadioButtonList chklst = (RadioButtonList)sender;
             string commandArguments = chklst.Attributes["commandArguments"].ToString();
-            string value = chklst.SelectedItem.Value;
-            _examqueanslist.QuestionList.Where(q => q.QAId.Equals(commandArguments)).FirstOrDefault().AnswerList.Where(f => f.Answer.Equals(value)).FirstOrDefault().UserAnswer = true;
+            for (int i = 0; i < chklst.Items.Count; i++)
+            {
+                if (chklst.Items[i].Selected == true)
+                {
+                    string value = chklst.Items[i].Value;
+                    _examqueanslist.QuestionList.Where(q => q.QAId == Convert.ToUInt32(commandArguments)).FirstOrDefault().AnswerList.Where(f => f.AnswerId == Convert.ToUInt32(value)).FirstOrDefault().UserAnswer = true;
+                }
+            }
         }
 
         protected void chkboxAnswerList_SelectedIndexChanged(object sender, EventArgs e)
@@ -171,7 +196,7 @@ namespace WebUser
             string commandArguments = chklst.Attributes["commandArguments"].ToString();
             for (int i = 0; i < chklst.Items.Count; i++)
             {
-                if (chklst.Items[i].Selected == true)// getting selected value from CheckBox List  
+                if (chklst.Items[i].Selected == true)
                 {
                     string value = chklst.Items[i].Value;
                     _examqueanslist.QuestionList.Where(q => q.QAId == Convert.ToUInt32(commandArguments)).FirstOrDefault().AnswerList.Where(f => f.AnswerId == Convert.ToUInt32(value)).FirstOrDefault().UserAnswer = true;
@@ -192,6 +217,101 @@ namespace WebUser
             //ss = time_Span.Seconds;
 
             //Label2.Text = "  " + hh + ":" + mm + ":" + ss;
+        }
+
+        protected void lbDrag_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBox chklst = (ListBox)sender;
+            string commandArguments = chklst.Attributes["commandArguments"].ToString();
+            for (int i = 0; i < chklst.Items.Count; i++)
+            {
+                if (chklst.Items[i].Selected == true)
+                {
+                    string value = chklst.Items[i].Value;
+                    _examqueanslist.QuestionList.Where(q => q.QAId == Convert.ToUInt32(commandArguments)).FirstOrDefault().AnswerList.Where(f => f.AnswerId == Convert.ToUInt32(value)).FirstOrDefault().UserAnswer = true;
+                }
+            }
+        }
+
+        protected void btn1_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            DataListItem item = (DataListItem)btn.NamingContainer;
+            ListBox list1 = (ListBox)item.FindControl("lbDrag");
+            ListBox list2 = (ListBox)item.FindControl("lbDrop");
+            Label lbltxt = (Label)item.FindControl("lbltxt");
+            string commandArguments = btn.Attributes["commandArguments"].ToString();
+            lbltxt.Visible = false;
+            if (list1.SelectedIndex >= 0)
+            {
+                for (int i = 0; i < list1.Items.Count; i++)
+                {
+                    if (list1.Items[i].Selected)
+                    {
+                        if (!arraylist1.Contains(list1.Items[i]))
+                        {
+                            arraylist1.Add(list1.Items[i]);
+                        }
+                        _examqueanslist.QuestionList.Where(q => q.QAId == Convert.ToUInt32(commandArguments)).FirstOrDefault().AnswerList.Where(f => f.AnswerId == Convert.ToUInt32((list1.Items[i].Value))).FirstOrDefault().UserAnswer = true;
+                    }
+
+                }
+                for (int i = 0; i < arraylist1.Count; i++)
+                {
+                    if (!list2.Items.Contains(((ListItem)arraylist1[i])))
+                    {
+                        list2.Items.Add(((ListItem)arraylist1[i]));
+                    }
+                    list1.Items.Remove(((ListItem)arraylist1[i]));
+                }
+                list2.SelectedIndex = -1;
+            }
+            else
+            {
+                lbltxt.Visible = true;
+                lbltxt.Text = "Please select atleast one in Listbox1 to move";
+            }
+        }
+
+        protected void btn3_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            DataListItem item = (DataListItem)btn.NamingContainer;
+            ListBox list1 = (ListBox)item.FindControl("lbDrag");
+            ListBox list2 = (ListBox)item.FindControl("lbDrop");
+            Label lbltxt = (Label)item.FindControl("lbltxt");
+            string commandArguments = btn.Attributes["commandArguments"].ToString();
+            lbltxt.Visible = false;
+            if (list2.SelectedIndex >= 0)
+            {
+                for (int i = 0; i < list2.Items.Count; i++)
+                {
+                    if (list2.Items[i].Selected)
+                    {
+                        if (!arraylist2.Contains(list2.Items[i]))
+                        {
+                            arraylist2.Add(list2.Items[i]);
+                        }
+                        _examqueanslist.QuestionList.Where(q => q.QAId == Convert.ToUInt32(commandArguments)).FirstOrDefault().AnswerList.Where(f => f.AnswerId == Convert.ToUInt32((list2.Items[i].Value))).FirstOrDefault().UserAnswer = false;
+                    }
+
+                }
+                for (int i = 0; i < arraylist2.Count; i++)
+                {
+                    if (!list1.Items.Contains(((ListItem)arraylist2[i])))
+                    {
+                        list1.Items.Add(((ListItem)arraylist2[i]));
+                    }
+                    list2.Items.Remove(((ListItem)arraylist2[i]));
+                }
+                list1.SelectedIndex = -1;
+            }
+            else
+            {
+                lbltxt.Visible = true;
+                lbltxt.Text = "Please select atleast one in Listbox2 to move";
+            }
+
         }
     }
 }
