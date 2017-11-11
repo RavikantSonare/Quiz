@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using WebUser.BOLayer;
 using WebUser.BALayer;
+using System.Web.Services;
 
 namespace WebUser
 {
@@ -19,7 +20,7 @@ namespace WebUser
         #endregion
 
         static int hh, mm, ss;
-        static double TimeAllSecondes = 3600;
+        static double TimeAllSecondes;
 
         private int currentQuestionIndex
         {
@@ -51,6 +52,7 @@ namespace WebUser
                             string examid = Common.Decrypt(HttpUtility.UrlDecode(Request.QueryString["exmid"]));
                             _examqueanslist = GetEQAList(examid, Request.QueryString["tstmd"]);
                             GetExamDetail(_examqueanslist);
+                            TimeAllSecondes = Convert.ToDouble(_examqueanslist.TestTime);
                         }
                         else
                         {
@@ -120,12 +122,14 @@ namespace WebUser
         {
             if (e.Item.ItemType == ListItemType.Item)
             {
+                int QuestionID = Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "QAId"));
                 HiddenField hfTestMode = (HiddenField)e.Item.FindControl("hfTestMode");
                 RadioButtonList rdbtnAnswerList = (RadioButtonList)e.Item.FindControl("rdbtnAnswerList");
                 CheckBoxList chkboxAnswerList = (CheckBoxList)e.Item.FindControl("chkboxAnswerList");
                 ListBox lbDrag = (ListBox)e.Item.FindControl("lbDrag");
                 ListBox lbDrop = (ListBox)e.Item.FindControl("lbDrop");
-                int QuestionID = Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "QAId"));
+                ImageMap imgHotSpot = (ImageMap)e.Item.FindControl("imgHotSpot");
+                imgHotSpot.ImageUrl = "http://quizmerchant.mobi96.org/resource/" + _examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionID)).FirstOrDefault().Resource;
                 var listanswer = _examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionID)).FirstOrDefault().AnswerList;
                 for (int i = 0; i < listanswer.Count; i++)
                 {
@@ -146,12 +150,44 @@ namespace WebUser
                     {
                         lbDrop.Items.Add(item);
                     }
-                    else 
+                    else
                     {
                         lbDrag.Items.Add(item);
                     }
+                    if (_examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionID)).FirstOrDefault().QuestionTypeId == 5)
+                    { ArrangeMapHotSpots(imgHotSpot, item, QuestionID); }
                 }
             }
+        }
+
+        protected void ArrangeMapHotSpots(ImageMap imgmap, ListItem item, int QuestionID)
+        {
+            //PlaceHolder2.Controls.Add(new Literal
+            //{
+            //    Text = @"<area shape=""rect"" id='imageMapMachineNumber" + item.Value + "' href='http://www.w3schools.com/TAGS/sun.htm' coords='" + item.Text.ToString() + "'></area>"
+            //});
+            RectangleHotSpot hotSpot;
+            //DataTable ImageMapDT = EzdrojeDB.ImageMapCoordinates(voivodshipId); // get data form DB   
+            //foreach (DataRow dr in ImageMapDT.Rows)
+            //{
+            // string[] val = item.Text.ToString().Split(',');
+            string[] leftright = item.Text.ToString().Split(',');
+            hotSpot = new RectangleHotSpot();
+            hotSpot.HotSpotMode = HotSpotMode.Navigate;
+            hotSpot.AlternateText = "alt_text";
+            hotSpot.Left = Convert.ToInt32(leftright[0]);
+            hotSpot.Right = Convert.ToInt32(leftright[2]);
+            hotSpot.Top = Convert.ToInt32(leftright[1]);
+            hotSpot.Bottom = Convert.ToInt32(leftright[3]);
+            hotSpot.NavigateUrl = "javascript:setCordinator(" + QuestionID + "," + item.Value.ToString() + ");";
+            imgmap.HotSpots.Add(hotSpot);
+            // }
+        }
+
+        [WebMethod]
+        public static void setCordinator(string QuestionID, string AnswerId)
+        {
+            _examqueanslist.QuestionList.Where(q => q.QAId == Convert.ToUInt32(QuestionID)).FirstOrDefault().AnswerList.Where(f => f.AnswerId == Convert.ToUInt32(AnswerId)).FirstOrDefault().UserAnswer = true;
         }
 
         private void showQuestionNo(int qno)
@@ -206,17 +242,20 @@ namespace WebUser
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-            //if (TimeAllSecondes > 0)
-            //{
-            //    TimeAllSecondes = TimeAllSecondes - 1;
-            //}
+            if (TimeAllSecondes > 0)
+            {
+                TimeAllSecondes = TimeAllSecondes - 1;
+            }
 
-            //TimeSpan time_Span = TimeSpan.FromSeconds(TimeAllSecondes);
-            //hh = time_Span.Hours;
-            //mm = time_Span.Minutes;
-            //ss = time_Span.Seconds;
-
-            //Label2.Text = "  " + hh + ":" + mm + ":" + ss;
+            TimeSpan time_Span = TimeSpan.FromSeconds(TimeAllSecondes);
+            hh = time_Span.Hours;
+            mm = time_Span.Minutes;
+            ss = time_Span.Seconds;
+            Label2.Text = "  " + hh + ":" + mm + ":" + ss;
+            if (Timer1.Interval <= 0)
+            {
+                Label2.Text = "TimeOut!";
+            }
         }
 
         protected void lbDrag_SelectedIndexChanged(object sender, EventArgs e)

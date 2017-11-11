@@ -94,6 +94,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resource\canvasimage.png" />
+    <Content Include="resource\drpdownimage.png" />
+    <Content Include="resource\enewspaper.png" />
+    <Content Include="js\jquery.maphilight.min.js" />
+    <Content Include="js\jquery.min.js" />
     <Content Include="OnlineTestBegin.aspx" />
     <Content Include="OnlineTestStart.aspx" />
     <Content Include="packages.config" />
@@ -106,6 +111,7 @@
     <Content Include="ExamSimulator\Cisco-302-120.docx" />
     <Content Include="ExamSimulator\Cisco-300-120.docx" />
     <Content Include="ExamSimulator\ExamSimulator.zip" />
+    <Content Include="resource\Windows-10-Settings-App.png" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

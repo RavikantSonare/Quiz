@@ -60,7 +60,7 @@ namespace WebUser.DAlayer
                 return _datatable;
             }
         }
-       
+
         internal BOExamManage SelectExamQestionAnswer(string txtevent, int examid)
         {
             using (SqlConnection _sqlcon = ConnectionInfo.GetConnection())
@@ -98,10 +98,15 @@ namespace WebUser.DAlayer
                                              {
                                                  QAId = li.Field<int>("QAId"),
                                                  QuestionTypeId = li.Field<int>("QuestionTypeId"),
+                                                 QuestionType = li.Field<string>("QuestionType"),
                                                  Score = li.Field<decimal>("Score"),
                                                  Question = li.Field<string>("Question"),
                                                  NoofAnswer = li.Field<int>("NoofAnswer"),
                                                  Explanation = li.Field<string>("Explanation"),
+                                                 Resource = li.Field<string>("Resource"),
+                                                 Exhibit = li.Field<string>("Exhibit"),
+                                                 Topology = li.Field<string>("Topology"),
+                                                 Scenario = li.Field<string>("Scenario"),
                                                  AnswerList = GetAnswerList(li.Field<int>("QAId"))
                                              }).GroupBy(ques => ques.QAId)
                                               .Select(group => group.First()).ToList();

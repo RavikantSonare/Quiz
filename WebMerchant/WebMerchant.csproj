@@ -134,6 +134,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Merchant.Master" />
+    <Content Include="resource\canvasimage.png" />
+    <Content Include="resource\drpdownimage.png" />
+    <Content Include="resource\enewspaper.png" />
+    <Content Include="resource\exhibit2.jpg" />
+    <Content Include="resource\exhibit3.png" />
+    <Content Include="resource\scenario1.jpg" />
+    <Content Include="resource\scenario2.png" />
+    <Content Include="resource\topology.png" />
+    <Content Include="resource\topology2.png" />
+    <Content Include="resource\Windows-10-Settings-App.png" />
     <Content Include="WebForm1.aspx" />
     <Content Include="WebForm2.aspx" />
     <None Include="Properties\PublishProfiles\QuizMerchant.pubxml" />
