@@ -10,16 +10,7 @@
 namespace WebUser {
     
     
-    public partial class OnlineTestStart {
-        
-        /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+    public partial class OnlineTestReport {
         
         /// <summary>
         /// lblExamCode control.
@@ -31,93 +22,93 @@ namespace WebUser {
         protected global::System.Web.UI.WebControls.Label lblExamCode;
         
         /// <summary>
-        /// lblOutofTotalQuestion control.
+        /// lblResultMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOutofTotalQuestion;
+        protected global::System.Web.UI.WebControls.Label lblResultMsg;
         
         /// <summary>
-        /// lblTotalQuestion control.
+        /// lblExamName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalQuestion;
+        protected global::System.Web.UI.WebControls.Label lblExamName;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// lbldatehead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.Label lbldatehead;
         
         /// <summary>
-        /// lblTime control.
+        /// lbldate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTime;
+        protected global::System.Web.UI.WebControls.Label lbldate;
         
         /// <summary>
-        /// Label2 control.
+        /// lbltimehead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lbltimehead;
         
         /// <summary>
-        /// Timer1 control.
+        /// lbltime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.Timer Timer1;
+        protected global::System.Web.UI.WebControls.Label lbltime;
         
         /// <summary>
-        /// dlquesanswer control.
+        /// lblpassingscorehead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlquesanswer;
+        protected global::System.Web.UI.WebControls.Label lblpassingscorehead;
         
         /// <summary>
-        /// btnprevious control.
+        /// lblpassingscore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnprevious;
+        protected global::System.Web.UI.WebControls.Label lblpassingscore;
         
         /// <summary>
-        /// btnnext control.
+        /// lblyourscorehead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnnext;
+        protected global::System.Web.UI.WebControls.Label lblyourscorehead;
         
         /// <summary>
-        /// btnEndExam control.
+        /// lblyourscore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEndExam;
+        protected global::System.Web.UI.WebControls.Label lblyourscore;
     }
 }

@@ -83,6 +83,7 @@ namespace WebUser.DAlayer
                                               {
                                                   ExamCodeId = li.Field<int>("ExamCodeId"),
                                                   ExamCode = li.Field<string>("ExamCode"),
+                                                  ExamTitle = li.Field<string>("ExamTitle"),
                                                   TestTime = li.Field<int>("TestTime"),
                                                   QuestionList = GetQuestionList()
                                               }).FirstOrDefault();

@@ -103,3 +103,43 @@ Source: System.Data.DataSetExtensions
 TargetSite: T ValueField(System.Object)
 -----------------------------------------------------------
 
+Time: 13/11/2017 01:16:32 PM
+-----------------------------------------------------------
+Message: Cannot redirect after HTTP headers have been sent.
+StackTrace:    at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at WebUser.User.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebUser\User.Master.cs:line 26
+Source: System.Web
+TargetSite: Void Redirect(System.String, Boolean, Boolean)
+-----------------------------------------------------------
+
+Time: 13/11/2017 01:24:39 PM
+-----------------------------------------------------------
+Message: Cannot redirect after HTTP headers have been sent.
+StackTrace:    at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at WebUser.User.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebUser\User.Master.cs:line 26
+Source: System.Web
+TargetSite: Void Redirect(System.String, Boolean, Boolean)
+-----------------------------------------------------------
+
+Time: 13/11/2017 01:26:12 PM
+-----------------------------------------------------------
+Message: Cannot redirect after HTTP headers have been sent.
+StackTrace:    at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at WebUser.User.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebUser\User.Master.cs:line 26
+Source: System.Web
+TargetSite: Void Redirect(System.String, Boolean, Boolean)
+-----------------------------------------------------------
+
+Time: 13/11/2017 01:27:05 PM
+-----------------------------------------------------------
+Message: Cannot redirect after HTTP headers have been sent.
+StackTrace:    at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at WebUser.User.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebUser\User.Master.cs:line 26
+Source: System.Web
+TargetSite: Void Redirect(System.String, Boolean, Boolean)
+-----------------------------------------------------------
+

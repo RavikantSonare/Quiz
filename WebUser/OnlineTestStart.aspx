@@ -1,45 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="OnlineTestStart.aspx.cs" Inherits="WebUser.OnlineTestStart" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .outer {
-            /*outline: 1px solid #eee;*/
-            display: table;
-            width: 100%;
-        }
-
-            .outer > div {
-                display: table-cell;
-                vertical-align: middle !important;
-                text-align: center;
-                margin-top: 30px;
-            }
-
-        .radioboxlist radioboxlistStyle {
-            font-size: x-large;
-            padding-right: 20px;
-        }
-
-        .radioboxlist label {
-            color: #3E3928;
-            padding-left: 6px;
-            padding-right: 16px;
-            padding-top: 2px;
-            padding-bottom: 2px;
-            white-space: nowrap;
-            clear: left;
-            margin-right: 10px;
-            margin-left: 10px;
-        }
-
-            .radioboxlist label:hover {
-                color: #083C64;
-            }
-
-        input:checked + label {
-            color: #083C64;
-        }
-    </style>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
         $(function () {
@@ -61,21 +22,26 @@
             });
         });
     </script>
+    <style>
+        .btn.btn-square {
+            border-radius: 0;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--<asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>--%>
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 outer" style="min-height: 100px; background-color: #083C64; color: white; font-size: large">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="text-align: left">Exam:<asp:Label ID="lblExamCode" runat="server"></asp:Label></div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="col-lg-12 outer" style="min-height: 100px; background-color: #083C64; color: white; font-size: large">
+            <div class="col-lg-4" style="text-align: left">Exam:<asp:Label ID="lblExamCode" runat="server"></asp:Label></div>
+            <div class="col-lg-4">
                 Question:
                 <asp:Label ID="lblOutofTotalQuestion" runat="server"></asp:Label>
                 /
                 <asp:Label ID="lblTotalQuestion" runat="server"></asp:Label>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="text-align: right">
+            <div class="col-lg-4" style="text-align: right">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                         <asp:Label ID="lblTime" runat="server" Text="Time:"></asp:Label>
@@ -90,7 +56,7 @@
         </div>
         <asp:DataList ID="dlquesanswer" runat="server" RepeatLayout="Flow" DataKeyField="QAId" OnItemDataBound="DataList1_ItemDataBound">
             <ItemTemplate>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="border: 1px solid #808080; min-height: 400px">
+                <div class="col-lg-12" style="border: 1px solid #808080; min-height: 400px">
                     <asp:Panel ID="Panel1" runat="server" Enabled='<%# Eval("Event").ToString() != "SM" ? true : false %>'>
                         <asp:HiddenField ID="hfTestMode" runat="server" Value='<%#Eval("Event")%>' />
                         <div class="mtop10">
@@ -102,7 +68,7 @@
                         <div class="mtop10">
                             <asp:Image ID="imgETS" runat="server" Visible='<%#Eval("Exhibit") == DBNull.Value ||Eval("Topology") == DBNull.Value ||Eval("Scenario") == DBNull.Value ? false : true %>' ImageUrl='<%#String.Format("http://quizmerchant.mobi96.org/resource/{0}{1}{2}",Eval("Exhibit"),Eval("Topology"),Eval("Scenario"))%>' />
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-lg-12">
                             <asp:RadioButtonList ID="rdbtnAnswerList" CssClass="radioboxlist" runat="server" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString()=="1" || Eval("QuestionTypeId").ToString()== "3" || Eval("QuestionTypeId").ToString()== "6" ? true : false %>' CommandArguments='<%#Eval("QAId")%>' OnSelectedIndexChanged="rdbtnAnswerList_SelectedIndexChanged"></asp:RadioButtonList>
                             <asp:CheckBoxList ID="chkboxAnswerList" CssClass="radioboxlist" runat="server" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString() == "2" ? true : false %>' CommandArguments='<%#Eval("QAId")%>' OnSelectedIndexChanged="chkboxAnswerList_SelectedIndexChanged"></asp:CheckBoxList>
                             <asp:Panel ID="pnlDragDrop" runat="server" Visible='<%# Eval("QuestionTypeId").ToString() == "4" ? true : false %>'>
@@ -142,15 +108,6 @@
                                 <asp:ImageMap ID="imgHotSpot" runat="server" CssClass="map">
                                 </asp:ImageMap>
                             </asp:Panel>
-                            <%-- <div>
-                                <img src="enewspaper.png" usemap="#enewspaper" class="map">
-                                <map name="enewspaper">
-                                    <area shape="rect" coords="0,112,119,453" />
-                                    <area shape="rect" coords="119,235,410,453" />
-                                    <area shape="rect" coords="411,232,490,453" />
-                                    <area shape="rect" coords="122,112,490,230" />
-                                </map>
-                            </div>--%>
                         </div>
                         <asp:Panel ID="Panel2" runat="server" Visible='<%# Eval("Event").ToString() == "SM" ? true : false %>'>
                             <div class="mtop10 clearfix">
@@ -160,30 +117,23 @@
                     </asp:Panel>
                 </div>
             </ItemTemplate>
+            <FooterTemplate>
+                <asp:Label Visible='<%#bool.Parse((dlquesanswer.Items.Count==0).ToString())%>'
+                    runat="server" ID="lblNoRecord" Text="No qestion found!"></asp:Label>
+            </FooterTemplate>
         </asp:DataList>
-        <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
-        <%--<div class="MapParent">
-            <img class="ImageMap map" src="canvasimage.png" usemap="#imagemap" />
-            <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
-            <map name="imagemap">
-               
-            </map>
-            <div id="map">
-                <div id="overlay"></div>
-                <img src="http://www.w3schools.com/TAGS/planets.gif" alt="Planets" usemap="#planetmap" class="map" />
+        <div class="col-lg-6" style="margin-top: 20px">
+            <div class="col-lg-4">
+                <asp:Button ID="btnprevious" runat="server" Text="Previous" CssClass="btn bg-primary btn-block btn-square" OnClick="btnprevious_Click" />
             </div>
-            <map name="planetmap">
-                <area shape="rect" coords="0,0,82,126" alt="Sun" href="http://www.w3schools.com/TAGS/sun.htm" />
-                <area shape="circle" coords="90,58,3" alt="Mercury" href="http://www.w3schools.com/TAGS/mercur.htm" />
-                <area shape="circle" coords="124,58,8" alt="Venus" href="http://www.w3schools.com/TAGS/venus.htm" />
-
-            </map>
-        </div>--%>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="text-align: left; margin-top: 20px">
-            <asp:Button ID="btnprevious" runat="server" Text="Previous" CssClass="btn bg-primary" OnClick="btnprevious_Click" />
+            <div class="col-lg-4">
+                <asp:Button ID="btnnext" runat="server" Text="Next" CssClass="btn bg-primary btn-block btn-square" OnClick="btnnext_Click" />
+            </div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="text-align: right; margin-top: 20px">
-            <asp:Button ID="btnnext" runat="server" Text="Next" CssClass="btn bg-primary" OnClick="btnnext_Click" />
+        <div class="col-lg-6 " style="margin-top: 20px">
+            <div class="col-lg-4 pull-right">
+                <asp:Button ID="btnEndExam" runat="server" Text="End Exam" CssClass="btn bg-primary btn-block btn-square" OnClick="btnEndExam_Click" />
+            </div>
         </div>
     </div>
 

@@ -52,7 +52,6 @@ namespace WebUser
                             string examid = Common.Decrypt(HttpUtility.UrlDecode(Request.QueryString["exmid"]));
                             _examqueanslist = GetEQAList(examid, Request.QueryString["tstmd"]);
                             GetExamDetail(_examqueanslist);
-                            TimeAllSecondes = Convert.ToDouble(_examqueanslist.TestTime);
                         }
                         else
                         {
@@ -97,8 +96,18 @@ namespace WebUser
         {
             BAExamManage _baexmmng = new BAExamManage();
             var list = _baexmmng.SelectExamQestionAnswer("GetEQAWithQId", Convert.ToInt32(examid));
-            list.QuestionList.ForEach(e => e.Event = mode.ToString());
-            return list;
+            if (list != null)
+            {
+                list.QuestionList.ForEach(e => e.Event = mode.ToString());
+                return list;
+            }
+            else
+            {
+                btnprevious.Enabled = false;
+                btnnext.Enabled = false;
+                btnEndExam.Enabled = false;
+                return null;
+            }
         }
 
         private void GetExamDetail(BOExamManage _exmlist)
@@ -110,9 +119,12 @@ namespace WebUser
                 dlquesanswer.DataSource = _exmlist.QuestionList.Skip(currentQuestionIndex).Take(1);
                 dlquesanswer.DataBind();
                 showQuestionNo(currentQuestionIndex + 1);
+                TimeAllSecondes = Convert.ToDouble(_examqueanslist.TestTime) * 60;
             }
             else
             {
+                lblExamCode.Text = "No question found!";
+                lblExamCode.ForeColor = System.Drawing.Color.Red;
                 btnprevious.Enabled = false;
                 btnnext.Enabled = false;
             }
@@ -252,9 +264,11 @@ namespace WebUser
             mm = time_Span.Minutes;
             ss = time_Span.Seconds;
             Label2.Text = "  " + hh + ":" + mm + ":" + ss;
-            if (Timer1.Interval <= 0)
+            if (time_Span == TimeSpan.Zero)
             {
-                Label2.Text = "TimeOut!";
+                // ScriptManager.RegisterStartupScript(this, GetType(), "InvokeButton", "invokeButtonClick();", true);
+                btnEndExam_Click(btnEndExam, null);
+                // Response.Redirect("UserLogin.aspx");
             }
         }
 
@@ -351,6 +365,23 @@ namespace WebUser
                 lbltxt.Text = "Please select atleast one in Listbox2 to move";
             }
 
+        }
+
+        protected void btnEndExam_Click(object sender, EventArgs e)
+        {
+            if (_examqueanslist != null)
+            {
+                foreach (var item in _examqueanslist.QuestionList)
+                {
+                    var QuetionOrignalAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(a => a.RightAnswer.Equals("1"));
+                    var QuetionUserAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true));
+
+                    //bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
+                    //_list.Where(q => q.QuestionNo.Equals(item.QuestionNo)).FirstOrDefault().userResult = a;
+                }
+                Session["ExamList"] = _examqueanslist;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Your time end now!');window.location ='OnlineTestReport.aspx';", true);
+            }
         }
     }
 }

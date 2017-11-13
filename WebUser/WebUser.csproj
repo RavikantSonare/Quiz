@@ -94,6 +94,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="OnlineTestReport.aspx" />
+    <Content Include="ProgressGreen.jpg" />
     <Content Include="resource\canvasimage.png" />
     <Content Include="resource\drpdownimage.png" />
     <Content Include="resource\enewspaper.png" />
@@ -160,6 +162,13 @@
     </Compile>
     <Compile Include="OnlineTestBegin.aspx.designer.cs">
       <DependentUpon>OnlineTestBegin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineTestReport.aspx.cs">
+      <DependentUpon>OnlineTestReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineTestReport.aspx.designer.cs">
+      <DependentUpon>OnlineTestReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="OnlineTestStart.aspx.cs">
       <DependentUpon>OnlineTestStart.aspx</DependentUpon>

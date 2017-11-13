@@ -183,3 +183,42 @@ li.dash a {
     display: inline-block;
     color: red !important;
 }
+
+/* Online Exam Page Header*/
+.outer {
+    /*outline: 1px solid #eee;*/
+    display: table;
+    width: 100%;
+}
+
+    .outer > div {
+        display: table-cell;
+        vertical-align: middle !important;
+        text-align: center;
+        margin-top: 30px;
+    }
+/* Online Exam Page Radion and checkbox highlight*/
+.radioboxlist radioboxlistStyle {
+    font-size: x-large;
+    padding-right: 20px;
+}
+
+.radioboxlist label {
+    color: #3E3928;
+    padding-left: 6px;
+    padding-right: 16px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    white-space: nowrap;
+    clear: left;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+    .radioboxlist label:hover {
+        color: #083C64;
+    }
+
+input:checked + label {
+    color: #083C64;
+}
