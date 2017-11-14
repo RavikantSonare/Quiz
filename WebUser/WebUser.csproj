@@ -95,7 +95,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="OnlineTestReport.aspx" />
-    <Content Include="ProgressGreen.jpg" />
     <Content Include="resource\canvasimage.png" />
     <Content Include="resource\drpdownimage.png" />
     <Content Include="resource\enewspaper.png" />

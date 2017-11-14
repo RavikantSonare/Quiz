@@ -16,6 +16,7 @@ namespace WebUser.BOLayer
         public string ExamCode { get; set; }
         public bool Result { get; set; }
         public decimal Score { get; set; }
+        public decimal OutofScore { get; set; }
         public bool AllowPrint { get; set; }
         public int DigitalCertificateId { get; set; }
         public int CertificationNo { get; set; }

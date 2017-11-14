@@ -879,3 +879,13 @@ Source: System.Web
 TargetSite: Void set_SelectedValue(System.String)
 -----------------------------------------------------------
 
+Time: 14/11/2017 11:42:17 AM
+-----------------------------------------------------------
+Message: 'ddlExamCode' has a SelectedValue which is invalid because it does not exist in the list of items.
+Parameter name: value
+StackTrace:    at System.Web.UI.WebControls.ListControl.set_SelectedValue(String value)
+   at WebMerchant.MerchantManageQA.lbtnEdit_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 278
+Source: System.Web
+TargetSite: Void set_SelectedValue(System.String)
+-----------------------------------------------------------
+

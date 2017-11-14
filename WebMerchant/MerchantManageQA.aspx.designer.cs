@@ -256,24 +256,6 @@ namespace WebMerchant {
         protected global::System.Web.UI.WebControls.Panel pnlVacant;
         
         /// <summary>
-        /// ddlVacantAnswerOption control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVacantAnswerOption;
-        
-        /// <summary>
-        /// rfvddlVacantAnswerOption control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvddlVacantAnswerOption;
-        
-        /// <summary>
         /// ctrlPlaceholderVacant control.
         /// </summary>
         /// <remarks>
@@ -283,22 +265,13 @@ namespace WebMerchant {
         protected global::System.Web.UI.WebControls.PlaceHolder ctrlPlaceholderVacant;
         
         /// <summary>
-        /// lboxVacantAnswer control.
+        /// btnAddAnswerVacant control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lboxVacantAnswer;
-        
-        /// <summary>
-        /// rfvlboxVacantAnswer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvlboxVacantAnswer;
+        protected global::System.Web.UI.WebControls.Button btnAddAnswerVacant;
         
         /// <summary>
         /// btnVacantExhibit control.

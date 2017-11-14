@@ -59,6 +59,7 @@ namespace WebMerchant
                     {
                         ctrlPlaceholderTextBox.Controls.Clear();
                         ctrlPlaceholderMulti.Controls.Clear();
+                        ctrlPlaceholderVacant.Controls.Clear();
                         Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
                         FillddlExamCode(MerchantId);
                         FillrbtnListQuestiontype(_bomerchantDetail.MerchantLevelId);
@@ -324,9 +325,9 @@ namespace WebMerchant
                         pnlMultiSelect.Visible = false;
                         pnlDragdrop.Visible = false;
                         pnlHotspot.Visible = false;
-                        ddlVacantAnswerOption.Text = _datatable4.Rows[0][5].ToString();
-                        ddlVacantAnswerOption.Enabled = false;
-                        lboxVacantAnswer.Items.Clear();
+                        //ddlVacantAnswerOption.Text = _datatable4.Rows[0][5].ToString();
+                        //ddlVacantAnswerOption.Enabled = false;
+                        //lboxVacantAnswer.Items.Clear();
                         int[] arrVacantAnswerID = new int[Convert.ToInt32(_datatable4.Rows[0][5])];
                         for (int loopcnt = 1; loopcnt <= Convert.ToInt32(_datatable4.Rows[0][5].ToString()); loopcnt++)
                         {
@@ -353,11 +354,11 @@ namespace WebMerchant
                             Label lblvalidaclose = new Label();
                             lblvalidaclose.Text = "</div></div>";
                             ctrlPlaceholderVacant.Controls.Add(lblvalidaclose);
-                            lboxVacantAnswer.Items.Add(new ListItem("Option " + Convert.ToChar(64 + loopcnt), loopcnt.ToString()));
+                            // lboxVacantAnswer.Items.Add(new ListItem("Option " + Convert.ToChar(64 + loopcnt), loopcnt.ToString()));
                             string valueans = _datatable4.Rows[loopcnt - 1][10].ToString();
                             if (valueans.Trim() == "1")
                             {
-                                lboxVacantAnswer.Items[loopcnt - 1].Selected = true;
+                                //  lboxVacantAnswer.Items[loopcnt - 1].Selected = true;
                             }
                         }
                         ViewState["arrVacantAnswerID"] = arrVacantAnswerID;
@@ -526,6 +527,7 @@ namespace WebMerchant
             {
                 ctrlPlaceholderTextBox.Controls.Clear();
                 ctrlPlaceholderMulti.Controls.Clear();
+                ctrlPlaceholderVacant.Controls.Clear();
                 prevVaile.Value = Convert.ToString(2);
                 for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
                 {
@@ -541,6 +543,7 @@ namespace WebMerchant
             {
                 ctrlPlaceholderTextBox.Controls.Clear();
                 ctrlPlaceholderMulti.Controls.Clear();
+                ctrlPlaceholderVacant.Controls.Clear();
                 prevVaile.Value = Convert.ToString(4);
                 for (int loopcnt = 1; loopcnt <= 4; loopcnt++)
                 {
@@ -555,6 +558,14 @@ namespace WebMerchant
 
             else if (ddlQuestionType.SelectedItem.Value == "3")
             {
+                ctrlPlaceholderTextBox.Controls.Clear();
+                ctrlPlaceholderMulti.Controls.Clear();
+                ctrlPlaceholderVacant.Controls.Clear();
+                prevVaile.Value = Convert.ToString(2);
+                for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
+                {
+                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderVacant");
+                }
                 pnlVacant.Visible = true;
                 pnlMultiSelect.Visible = false;
                 pnlSingleSelect.Visible = false;
@@ -674,33 +685,33 @@ namespace WebMerchant
 
         protected void ddlVacantAnswerOption_SelectedIndexChanged(object sender, EventArgs e)
         {
-            prevVaile.Value = ddlVacantAnswerOption.SelectedValue.Trim();
-            lboxVacantAnswer.Items.Clear();
-            for (int loopcnt = 1; loopcnt <= Convert.ToInt32(ddlVacantAnswerOption.SelectedValue.Trim()); loopcnt++)
-            {
-                Label lblOpen = new Label();
-                lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Option " + Convert.ToChar(64 + loopcnt) + "</label><div class='col-sm-4'>";
-                ctrlPlaceholderVacant.Controls.Add(lblOpen);
-                TextBox tb = new TextBox();
-                tb.ID = "tb" + loopcnt;
-                tb.CssClass = "form-control";
-                tb.EnableViewState = true;
-                ctrlPlaceholderVacant.Controls.Add(tb);
-                Label lblClose = new Label();
-                lblClose.Text = "</div><div class='col-sm-4'>";
-                ctrlPlaceholderVacant.Controls.Add(lblClose);
-                RequiredFieldValidator rfv = new RequiredFieldValidator();
-                rfv.ID = "rfv" + loopcnt;
-                rfv.ControlToValidate = "tb" + loopcnt;
-                rfv.ValidationGroup = "vacant";
-                rfv.ForeColor = System.Drawing.Color.Red;
-                rfv.ErrorMessage = "Please Enter Option " + Convert.ToChar(64 + loopcnt);
-                ctrlPlaceholderVacant.Controls.Add(rfv);
-                Label lblvalidaclose = new Label();
-                lblvalidaclose.Text = "</div></div>";
-                ctrlPlaceholderVacant.Controls.Add(lblvalidaclose);
-                lboxVacantAnswer.Items.Add(new ListItem("Option " + Convert.ToChar(64 + loopcnt), loopcnt.ToString()));
-            }
+            //prevVaile.Value = ddlVacantAnswerOption.SelectedValue.Trim();
+            //lboxVacantAnswer.Items.Clear();
+            //for (int loopcnt = 1; loopcnt <= Convert.ToInt32(ddlVacantAnswerOption.SelectedValue.Trim()); loopcnt++)
+            //{
+            //    Label lblOpen = new Label();
+            //    lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Option " + Convert.ToChar(64 + loopcnt) + "</label><div class='col-sm-4'>";
+            //    ctrlPlaceholderVacant.Controls.Add(lblOpen);
+            //    TextBox tb = new TextBox();
+            //    tb.ID = "tb" + loopcnt;
+            //    tb.CssClass = "form-control";
+            //    tb.EnableViewState = true;
+            //    ctrlPlaceholderVacant.Controls.Add(tb);
+            //    Label lblClose = new Label();
+            //    lblClose.Text = "</div><div class='col-sm-4'>";
+            //    ctrlPlaceholderVacant.Controls.Add(lblClose);
+            //    RequiredFieldValidator rfv = new RequiredFieldValidator();
+            //    rfv.ID = "rfv" + loopcnt;
+            //    rfv.ControlToValidate = "tb" + loopcnt;
+            //    rfv.ValidationGroup = "vacant";
+            //    rfv.ForeColor = System.Drawing.Color.Red;
+            //    rfv.ErrorMessage = "Please Enter Option " + Convert.ToChar(64 + loopcnt);
+            //    ctrlPlaceholderVacant.Controls.Add(rfv);
+            //    Label lblvalidaclose = new Label();
+            //    lblvalidaclose.Text = "</div></div>";
+            //    ctrlPlaceholderVacant.Controls.Add(lblvalidaclose);
+            //    lboxVacantAnswer.Items.Add(new ListItem("Option " + Convert.ToChar(64 + loopcnt), loopcnt.ToString()));
+            //}
         }
 
         protected void btnVacantAdd_Click(object sender, EventArgs e)
@@ -711,7 +722,7 @@ namespace WebMerchant
                 {
                     Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
                     int qusvalu = default(int);
-                    qusvalu = AddQuestion(ddlVacantAnswerOption.SelectedItem.Value);
+                    //   qusvalu = AddQuestion(ddlVacantAnswerOption.SelectedItem.Value);
                     if (qusvalu == 2)
                     {
                         int[] array = (ViewState["arrVacantAnswerID"]) as int[];
@@ -723,14 +734,14 @@ namespace WebMerchant
                                 _boqans.AnswerId = array[loopcnt - 1];
                                 _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
                             }
-                            if (lboxVacantAnswer.SelectedIndex == loopcnt - 1)
-                            {
-                                _boqans.RightAnswer = "1";
-                            }
-                            else
-                            {
-                                _boqans.RightAnswer = "0";
-                            }
+                            //if (lboxVacantAnswer.SelectedIndex == loopcnt - 1)
+                            //{
+                            //    _boqans.RightAnswer = "1";
+                            //}
+                            //else
+                            //{
+                            //    _boqans.RightAnswer = "0";
+                            //}
                             _boqans.IsActive = true;
                             _boqans.IsDelete = false;
                             _boqans.CreatedBy = MerchantId;
@@ -754,11 +765,11 @@ namespace WebMerchant
                             {
                                 _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
                             }
-                            if (lboxVacantAnswer.SelectedIndex == loopcnt - 1)
-                            {
-                                _boqans.RightAnswer = "1";
-                            }
-                            else { _boqans.RightAnswer = "0"; }
+                            //if (lboxVacantAnswer.SelectedIndex == loopcnt - 1)
+                            //{
+                            //    _boqans.RightAnswer = "1";
+                            //}
+                            //else { _boqans.RightAnswer = "0"; }
                             _boqans.IsActive = true;
                             _boqans.IsDelete = false;
                             _boqans.CreatedBy = MerchantId;
@@ -809,14 +820,14 @@ namespace WebMerchant
                                     _boqans.AnswerId = array[loopcnt - 1];
                                     _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
                                 }
-                                if (lboxVacantAnswer.SelectedIndex == loopcnt - 1)
-                                {
-                                    _boqans.RightAnswer = "1";
-                                }
-                                else
-                                {
-                                    _boqans.RightAnswer = "0";
-                                }
+                                //if (lboxVacantAnswer.SelectedIndex == loopcnt - 1)
+                                //{
+                                //    _boqans.RightAnswer = "1";
+                                //}
+                                //else
+                                //{
+                                //    _boqans.RightAnswer = "0";
+                                //}
                                 _boqans.IsActive = true;
                                 _boqans.IsDelete = false;
                                 _boqans.CreatedBy = MerchantId;
@@ -894,7 +905,7 @@ namespace WebMerchant
         protected void ddlDragdropMatchs_SelectedIndexChanged(object sender, EventArgs e)
         {
             prevVaile.Value = ddlDragdropMatchs.SelectedValue.Trim();
-            lboxVacantAnswer.Items.Clear();
+            // lboxVacantAnswer.Items.Clear();
             for (int loopcnt = 1; loopcnt <= Convert.ToInt32(ddlDragdropMatchs.SelectedValue.Trim()); loopcnt++)
             {
                 Label lblOpen1 = new Label();
@@ -1151,7 +1162,7 @@ namespace WebMerchant
             lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Option " + Convert.ToChar(64 + loopcnt);
             ctrlPlaceholderTextBox.Controls.Add(lblOpen);
 
-            if (qtype == 1)
+            if (qtype == 1 || qtype == 3)
             {
                 RadioButton rdbtn = new RadioButton();
                 rdbtn.ID = loopcnt.ToString();

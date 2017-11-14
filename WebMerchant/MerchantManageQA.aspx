@@ -163,7 +163,7 @@
                                 </div>
                             </asp:Panel>
                             <asp:Panel ID="pnlVacant" runat="server" Visible="false">
-                                <div class="form-group">
+                                <%--   <div class="form-group">
                                     <label for="" class="col-sm-3 control-label">No. of Answer</label>
                                     <div class="col-sm-4">
                                         <asp:DropDownList ID="ddlVacantAnswerOption" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlVacantAnswerOption_SelectedIndexChanged" ValidationGroup="vacant">
@@ -181,9 +181,9 @@
                                     <div class="col-sm-4">
                                         <asp:RequiredFieldValidator ID="rfvddlVacantAnswerOption" runat="server" ErrorMessage="Please select no of answer" ControlToValidate="ddlVacantAnswerOption" ForeColor="Red" ValidationGroup="vacant" InitialValue="0"></asp:RequiredFieldValidator>
                                     </div>
-                                </div>
+                                </div>--%>
                                 <asp:PlaceHolder runat="server" ID="ctrlPlaceholderVacant"></asp:PlaceHolder>
-                                <div class="form-group">
+                                <%--   <div class="form-group">
                                     <label for="" class="col-sm-3 control-label">Right Answer</label>
                                     <div class="col-sm-4">
                                         <asp:ListBox ID="lboxVacantAnswer" runat="server" CssClass="form-control"></asp:ListBox>
@@ -192,9 +192,12 @@
                                         <asp:RequiredFieldValidator ID="rfvlboxVacantAnswer" runat="server" InitialValue="" ControlToValidate="lboxVacantAnswer" ErrorMessage="Atleast one answer required" Text="Atleast one answer required" ValidationGroup="vacant" ForeColor="Red"> 
                                         </asp:RequiredFieldValidator>
                                     </div>
-                                </div>
+                                </div>--%>
                                 <div class="form-group">
-                                    <div class="col-sm-offset-3 col-sm-5" style="display: none;">
+                                    <div class="col-sm-3">
+                                        <asp:Button ID="btnAddAnswerVacant" runat="server" Text="Add Answer" CssClass="btn btn-default" />
+                                    </div>
+                                    <div class="col-sm-5" style="display: none;">
                                         <asp:Button ID="btnVacantExhibit" runat="server" class="btn btn-default" Text="Exhibit" />
                                         <asp:Button ID="btnVacantTopology" runat="server" class="btn btn-default" Text="Topology" />
                                         <asp:Button ID="btnVacantScenario" runat="server" class="btn btn-default" Text="Scenario" />

@@ -143,3 +143,55 @@ Source: System.Web
 TargetSite: Void Redirect(System.String, Boolean, Boolean)
 -----------------------------------------------------------
 
+Time: 14/11/2017 07:05:32 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at ASP.userlogin_aspx.__DataBinding__control26(Object sender, EventArgs e) in d:\Work\Project\WebUser\UserLogin.aspx:line 31
+   at System.Web.UI.Control.OnDataBinding(EventArgs e)
+   at System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
+   at System.Web.UI.Control.DataBind()
+   at System.Web.UI.Control.DataBindChildren()
+   at System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
+   at System.Web.UI.Control.DataBind()
+   at System.Web.UI.Control.DataBindChildren()
+   at System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
+   at System.Web.UI.Control.DataBind()
+   at System.Web.UI.WebControls.GridView.CreateRow(Int32 rowIndex, Int32 dataSourceIndex, DataControlRowType rowType, DataControlRowState rowState, Boolean dataBind, Object dataItem, DataControlField[] fields, TableRowCollection rows, PagedDataSource pagedDataSource)
+   at System.Web.UI.WebControls.GridView.CreateChildControls(IEnumerable dataSource, Boolean dataBinding)
+   at System.Web.UI.WebControls.CompositeDataBoundControl.PerformDataBinding(IEnumerable data)
+   at System.Web.UI.WebControls.GridView.PerformDataBinding(IEnumerable data)
+   at System.Web.UI.WebControls.DataBoundControl.OnDataSourceViewSelectCallback(IEnumerable data)
+   at System.Web.UI.DataSourceView.Select(DataSourceSelectArguments arguments, DataSourceViewSelectCallback callback)
+   at System.Web.UI.WebControls.DataBoundControl.PerformSelect()
+   at System.Web.UI.WebControls.BaseDataBoundControl.DataBind()
+   at System.Web.UI.WebControls.GridView.DataBind()
+   at WebUser.UserLogin.FillgirdViewExamDetail(Int32 uid) in D:\Work\Project\WebUser\UserLogin.aspx.cs:line 56
+   at WebUser.UserLogin.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebUser\UserLogin.aspx.cs:line 29
+Source: App_Web_ggb1xgyd
+TargetSite: Void __DataBinding__control26(System.Object, System.EventArgs)
+-----------------------------------------------------------
+
+Time: 14/11/2017 01:21:28 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebUser.OnlineTestReport.InserExamReport(BOExamManage _boexammanage) in D:\Work\Project\WebUser\OnlineTestReport.aspx.cs:line 79
+Source: WebUser
+TargetSite: Void InserExamReport(WebUser.BOLayer.BOExamManage)
+-----------------------------------------------------------
+
+Time: 14/11/2017 01:23:37 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebUser.OnlineTestReport.InserExamReport(BOExamManage _boexammanage) in D:\Work\Project\WebUser\OnlineTestReport.aspx.cs:line 79
+Source: WebUser
+TargetSite: Void InserExamReport(WebUser.BOLayer.BOExamManage)
+-----------------------------------------------------------
+
+Time: 14/11/2017 01:27:18 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebUser.OnlineTestReport.InserExamReport(BOExamManage _boexammanage) in D:\Work\Project\WebUser\OnlineTestReport.aspx.cs:line 78
+Source: WebUser
+TargetSite: Void InserExamReport(WebUser.BOLayer.BOExamManage)
+-----------------------------------------------------------
+

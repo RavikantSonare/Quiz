@@ -84,6 +84,7 @@ namespace WebUser.DAlayer
                                                   ExamCodeId = li.Field<int>("ExamCodeId"),
                                                   ExamCode = li.Field<string>("ExamCode"),
                                                   ExamTitle = li.Field<string>("ExamTitle"),
+                                                  PassingPercentage = li.Field<decimal>("PassingPercentage"),
                                                   TestTime = li.Field<int>("TestTime"),
                                                   QuestionList = GetQuestionList()
                                               }).FirstOrDefault();

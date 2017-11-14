@@ -48,15 +48,9 @@
             </div>
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
-                <div class="progress skill-bar">
-                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                        <span class="skill"><i class="val">70%</i></span>
-                    </div>
+                <div class="progress skill-bar" id="pbpassingvalue" runat="server">
                 </div>
-                <div class="progress skill-bar">
-                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100">
-                        <span class="skill"><i class="val">0%</i></span>
-                    </div>
+                <div class="progress skill-bar" id="pbresultvalue" runat="server">
                 </div>
             </div>
             <div class="col-lg-3"></div>

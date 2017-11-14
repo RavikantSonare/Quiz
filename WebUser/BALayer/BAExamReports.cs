@@ -15,5 +15,10 @@ namespace WebUser.BALayer
         {
             return _daexmrpt.SelectExamReport(v, uid);
         }
+
+        internal int Insert(BOExamReports _boexrport)
+        {
+            return _daexmrpt.IUDReports(_boexrport);
+        }
     }
 }

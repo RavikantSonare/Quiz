@@ -199,6 +199,7 @@ namespace WebUser
         [WebMethod]
         public static void setCordinator(string QuestionID, string AnswerId)
         {
+            _examqueanslist.QuestionList.Where(q => q.QAId == Convert.ToUInt32(QuestionID)).FirstOrDefault().AnswerList.ToList().ForEach(u => u.UserAnswer = false);
             _examqueanslist.QuestionList.Where(q => q.QAId == Convert.ToUInt32(QuestionID)).FirstOrDefault().AnswerList.Where(f => f.AnswerId == Convert.ToUInt32(AnswerId)).FirstOrDefault().UserAnswer = true;
         }
 
@@ -228,6 +229,7 @@ namespace WebUser
         {
             RadioButtonList chklst = (RadioButtonList)sender;
             string commandArguments = chklst.Attributes["commandArguments"].ToString();
+            _examqueanslist.QuestionList.Where(q => q.QAId == Convert.ToUInt32(commandArguments)).FirstOrDefault().AnswerList.ToList().ForEach(u => u.UserAnswer = false);
             for (int i = 0; i < chklst.Items.Count; i++)
             {
                 if (chklst.Items[i].Selected == true)
@@ -244,11 +246,8 @@ namespace WebUser
             string commandArguments = chklst.Attributes["commandArguments"].ToString();
             for (int i = 0; i < chklst.Items.Count; i++)
             {
-                if (chklst.Items[i].Selected == true)
-                {
-                    string value = chklst.Items[i].Value;
-                    _examqueanslist.QuestionList.Where(q => q.QAId == Convert.ToUInt32(commandArguments)).FirstOrDefault().AnswerList.Where(f => f.AnswerId == Convert.ToUInt32(value)).FirstOrDefault().UserAnswer = true;
-                }
+                string value = chklst.Items[i].Value;
+                _examqueanslist.QuestionList.Where(q => q.QAId == Convert.ToUInt32(commandArguments)).FirstOrDefault().AnswerList.Where(f => f.AnswerId == Convert.ToUInt32(value)).FirstOrDefault().UserAnswer = chklst.Items[i].Selected;
             }
         }
 
@@ -373,15 +372,33 @@ namespace WebUser
             {
                 foreach (var item in _examqueanslist.QuestionList)
                 {
-                    var QuetionOrignalAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(a => a.RightAnswer.Equals("1"));
-                    var QuetionUserAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true));
+                    var QuetionOrignalAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(ans => ans.RightAnswer.Equals("1")).ToList();
+                    var QuetionUserAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true)).ToList();
 
-                    //bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
-                    //_list.Where(q => q.QuestionNo.Equals(item.QuestionNo)).FirstOrDefault().userResult = a;
+                    bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
+                    _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().UserResult = a;
                 }
                 Session["ExamList"] = _examqueanslist;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Your time end now!');window.location ='OnlineTestReport.aspx';", true);
+                Response.Redirect("OnlineTestReport.aspx");
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Your time end now!');window.location ='OnlineTestReport.aspx';", true);
             }
+        }
+
+        private bool CheckUserAnswer(List<BOQAnswer> list1, List<BOQAnswer> list2)
+        {
+            if (list1.Count != list2.Count)
+                return false;
+
+            for (int i = 0; i < list1.Count; i++)
+            {
+                var data = list2.Where(z => z.AnswerId == list1[i].AnswerId).FirstOrDefault();
+                if (data == null)
+                    return false;
+                bool flag = Convert.ToBoolean(list1[i].RightAnswer.Equals("1") ? true : false);
+                if (flag != list2[i].UserAnswer)
+                    return false;
+            }
+            return true;
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Threading;
 using WebUser.BOLayer;
+using WebUser.BALayer;
 
 namespace WebUser
 {
@@ -15,28 +16,104 @@ namespace WebUser
         #region Global Variables
         // public int currentQuestionIndex;
         static BOExamManage _examqueanslist = new BOExamManage();
+        BOUser _bouserDetail;
+        double resultScore;
+        double passingSocre;
+        double totalScore;
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["UserDetail"] != null)
             {
-                BOUser _bouserDetail = (BOUser)Session["UserDetail"];
+                _bouserDetail = (BOUser)Session["UserDetail"];
                 if (Session["ExamList"] != null)
                 {
                     _examqueanslist = (BOExamManage)Session["ExamList"];
                     lblExamCode.Text = _examqueanslist.ExamCode;
-                    lblResultMsg.Text = "Congratulation!! You has passed the " + _examqueanslist.ExamTitle + " exam";
-                    lblResultMsg.ForeColor = System.Drawing.Color.Green;
                     lblExamName.Text = _examqueanslist.ExamTitle;
+                    passingSocre = ((_examqueanslist.QuestionList.Count() * 100) * Convert.ToDouble(_examqueanslist.PassingPercentage)) / 100;
+                    resultScore = _examqueanslist.QuestionList.Where(ur => ur.UserResult == true).Count() * 100;
+                    totalScore = _examqueanslist.QuestionList.Count() * 100;
+                    lblpassingscore.Text = Convert.ToString(passingSocre) + "/" + (totalScore);
+                    lblyourscore.Text = Convert.ToString(resultScore) + " / " + (totalScore);
+                    //lblpbpassingvalue.Text = Convert.ToString(passingSocre);
+                    // lblpbresultvalue.Text = Convert.ToString(_examqueanslist.QuestionList.Where(ur => ur.UserResult == true).Count() * 100);
+                    string htmlpassingvalue = "<div class='progress-bar progress-bar-primary' role='progressbar' aria-valuenow='" + Convert.ToString(passingSocre / (totalScore / 100)) + "' aria-valuemin='0' aria-valuemax='100'><span class='skill'><i class='val'>" + Convert.ToString(passingSocre) + "</i></span></div>";
+                    pbpassingvalue.InnerHtml = htmlpassingvalue;
+                    string htmlresultvalue = string.Empty;
+                    if (resultScore >= passingSocre)
+                    {
+                        lblResultMsg.Text = "Congratulation!! You has passed the " + _examqueanslist.ExamTitle + " exam";
+                        lblResultMsg.ForeColor = System.Drawing.Color.Green;
+                        htmlresultvalue = "<div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='" + Convert.ToString(resultScore / (totalScore / 100)) + "' aria-valuemin='0' aria-valuemax='100'><span class='skill'><i class='val'>" + Convert.ToString(resultScore) + "</i></span></div>";
+                    }
+                    else
+                    {
+                        lblResultMsg.Text = "Sorry!! You has failed the " + _examqueanslist.ExamTitle + " exam";
+                        lblResultMsg.ForeColor = System.Drawing.Color.Red;
+                        htmlresultvalue = "<div class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='" + Convert.ToString(resultScore / (totalScore / 100)) + "' aria-valuemin='0' aria-valuemax='100'><span class='skill'><i class='val'>" + Convert.ToString(resultScore) + "</i></span></div>";
+                    }
+                    pbresultvalue.InnerHtml = htmlresultvalue;
                     lbldate.Text = DateTime.Now.ToShortDateString();
                     lbltime.Text = DateTime.Now.ToShortTimeString();
+                    Session.Remove("ExamList");
+                    InserExamReport(_examqueanslist);
+                }
+                else
+                {
+                    Response.Redirect("UserLogin.aspx");
                 }
             }
         }
         protected void LoadData(object sender, EventArgs e)
         {
             Thread.Sleep(6000);
+        }
+
+        private void InserExamReport(BOExamManage _boexammanage)
+        {
+            try
+            {
+                if (_boexammanage != null)
+                {
+                    BOExamReports _boexrport = new BOExamReports();
+                    BAExamReports _baexrport = new BAExamReports();
+                    _boexrport.UserId = _bouserDetail.UserId;
+                    _boexrport.CategoryId = 1;
+                    _boexrport.ExamId = _boexammanage.ExamCodeId;
+                    if (resultScore >= passingSocre)
+                    {
+                        _boexrport.Result = true;
+                    }
+                    else
+                    {
+                        _boexrport.Result = false;
+                    }
+                    _boexrport.Score = Convert.ToDecimal(resultScore);
+                    _boexrport.OutofScore = Convert.ToDecimal(totalScore);
+                    _boexrport.AllowPrint = true;
+                    _boexrport.DigitalCertificateId = 1;
+                    var rnd = new Random(DateTime.Now.Millisecond);
+                    int ticks = rnd.Next(0, 3000);
+                    _boexrport.CertificationNo = ticks;
+                    _boexrport.ExamGivenDate = DateTime.UtcNow;
+                    _boexrport.MerchantId = _bouserDetail.MerchantId;
+                    _boexrport.IsActive = true;
+                    _boexrport.IsDelete = false;
+                    _boexrport.CreatedBy = _bouserDetail.UserId;
+                    _boexrport.CreatedDate = DateTime.UtcNow;
+                    _boexrport.UpdatedBy = _bouserDetail.UserId;
+                    _boexrport.UpdatedDate = DateTime.UtcNow;
+                    _boexrport.Event = "Insert";
+                    _baexrport.Insert(_boexrport);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+            }
         }
     }
 }
