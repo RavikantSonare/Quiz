@@ -102,5 +102,12 @@ namespace WebUser
             string val = HttpUtility.UrlEncode(Common.Encrypt(btntest.CommandArgument.Trim()));
             Response.Redirect("~/OnlineTestBegin.aspx?exmid=" + val + "&tstmd=SM");
         }
+
+        protected void btnTestOnce_Click(object sender, EventArgs e)
+        {
+            Button btntest = (Button)sender;
+            string val = HttpUtility.UrlEncode(Common.Encrypt(btntest.CommandArgument.Trim()));
+            Response.Redirect("~/OnlineTestBegin.aspx?exmid=" + val + "&tstmd=TO");
+        }
     }
 }

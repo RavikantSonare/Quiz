@@ -91,7 +91,7 @@
         <div class="messagealert" id="alert_container">
         </div>
         <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/jquery.maphilight.min.js"></script>
+        <script src="js/jquery.maphilight.js"></script>
         <script type="text/javascript">
             $(function () {
                 $('.map').maphilight();

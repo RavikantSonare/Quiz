@@ -152,7 +152,7 @@ namespace WebUser
                     {
                         item.Selected = Convert.ToBoolean(listanswer[i].RightAnswer.Equals("1") ? true : false);
                     }
-                    else if (hfTestMode.Value == "TM")
+                    else if (hfTestMode.Value == "TM" || hfTestMode.Value == "TO")
                     {
                         item.Selected = Convert.ToBoolean(listanswer[i].UserAnswer);
                     }
@@ -174,26 +174,18 @@ namespace WebUser
 
         protected void ArrangeMapHotSpots(ImageMap imgmap, ListItem item, int QuestionID)
         {
-            //PlaceHolder2.Controls.Add(new Literal
-            //{
-            //    Text = @"<area shape=""rect"" id='imageMapMachineNumber" + item.Value + "' href='http://www.w3schools.com/TAGS/sun.htm' coords='" + item.Text.ToString() + "'></area>"
-            //});
             RectangleHotSpot hotSpot;
-            //DataTable ImageMapDT = EzdrojeDB.ImageMapCoordinates(voivodshipId); // get data form DB   
-            //foreach (DataRow dr in ImageMapDT.Rows)
-            //{
-            // string[] val = item.Text.ToString().Split(',');
             string[] leftright = item.Text.ToString().Split(',');
             hotSpot = new RectangleHotSpot();
             hotSpot.HotSpotMode = HotSpotMode.Navigate;
-            hotSpot.AlternateText = "alt_text";
+            hotSpot.AlternateText = item.Value.ToString();
             hotSpot.Left = Convert.ToInt32(leftright[0]);
             hotSpot.Right = Convert.ToInt32(leftright[2]);
             hotSpot.Top = Convert.ToInt32(leftright[1]);
             hotSpot.Bottom = Convert.ToInt32(leftright[3]);
             hotSpot.NavigateUrl = "javascript:setCordinator(" + QuestionID + "," + item.Value.ToString() + ");";
             imgmap.HotSpots.Add(hotSpot);
-            // }
+
         }
 
         [WebMethod]
@@ -370,17 +362,20 @@ namespace WebUser
         {
             if (_examqueanslist != null)
             {
-                foreach (var item in _examqueanslist.QuestionList)
+                if (_examqueanslist.QuestionList != null)
                 {
-                    var QuetionOrignalAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(ans => ans.RightAnswer.Equals("1")).ToList();
-                    var QuetionUserAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true)).ToList();
+                    foreach (var item in _examqueanslist.QuestionList)
+                    {
+                        var QuetionOrignalAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(ans => ans.RightAnswer.Equals("1")).ToList();
+                        var QuetionUserAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true)).ToList();
 
-                    bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
-                    _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().UserResult = a;
+                        bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
+                        _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().UserResult = a;
+                    }
+                    Session["ExamList"] = _examqueanslist;
+                    Response.Redirect("OnlineTestReport.aspx");
+                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Your time end now!');window.location ='OnlineTestReport.aspx';", true);
                 }
-                Session["ExamList"] = _examqueanslist;
-                Response.Redirect("OnlineTestReport.aspx");
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Your time end now!');window.location ='OnlineTestReport.aspx';", true);
             }
         }
 

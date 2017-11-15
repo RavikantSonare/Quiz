@@ -128,5 +128,50 @@ namespace WebUser.DAlayer
                                             .ToList();
             return _answerlist;
         }
+
+        internal int IUD(BOExamManage _boexmmng)
+        {
+            int returnvalue = default(int);
+            using (SqlConnection _sqlcon = ConnectionInfo.GetConnection())
+            {
+                _sqlcommond = new SqlCommand();
+                _sqlcommond.CommandText = "SP_IUDExamManage";
+                _sqlcommond.CommandType = CommandType.StoredProcedure;
+                _sqlcommond.Connection = _sqlcon;
+
+                _sqlcon.Open();
+
+                _sqlcommond.Parameters.AddWithValue("@ExamCodeId", _boexmmng.ExamCodeId);
+                _sqlcommond.Parameters.AddWithValue("@UpdatedBy", _boexmmng.UpdatedBy);
+                _sqlcommond.Parameters.AddWithValue("@UpdatedDate", _boexmmng.UpdatedDate);
+                _sqlcommond.Parameters.AddWithValue("@OnlyTestOnce", _boexmmng.OnlyTestOnce);
+                _sqlcommond.Parameters.AddWithValue("@Event", _boexmmng.Event);
+                _sqlcommond.Parameters.AddWithValue("@returnValue", 0).Direction = System.Data.ParameterDirection.InputOutput;
+
+                try
+                {
+                    _sqlcommond.ExecuteNonQuery();
+                    returnvalue = Convert.ToInt32(_sqlcommond.Parameters["@returnValue"].Value);
+                }
+                catch (SqlException sqlex)
+                {
+                    Common.LogError(sqlex);
+                }
+                catch (StackOverflowException stackex)
+                {
+                    Common.LogError(stackex);
+                }
+                catch (Exception ex)
+                {
+                    Common.LogError(ex);
+                }
+                finally
+                {
+                    _sqlcon.Close();
+                    _sqlcommond.Dispose();
+                }
+            }
+            return returnvalue;
+        }
     }
 }

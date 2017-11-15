@@ -58,7 +58,11 @@ namespace WebUser
                     lbldate.Text = DateTime.Now.ToShortDateString();
                     lbltime.Text = DateTime.Now.ToShortTimeString();
                     Session.Remove("ExamList");
-                    InserExamReport(_examqueanslist);
+                    if (_examqueanslist.QuestionList.FirstOrDefault().Event == "TO")
+                    {
+                        UpdateExamManage(_examqueanslist);
+                        InserExamReport(_examqueanslist);
+                    }
                 }
                 else
                 {
@@ -114,6 +118,18 @@ namespace WebUser
             {
                 Common.LogError(ex);
             }
+        }
+
+        private void UpdateExamManage(BOExamManage _boexammanage)
+        {
+            BOExamManage _boexmnge = new BOExamManage();
+            BAExamManage _baexmmng = new BAExamManage();
+            _boexmnge.ExamCodeId = _boexammanage.ExamCodeId;
+            _boexmnge.OnlyTestOnce = false;
+            _boexmnge.UpdatedBy = _bouserDetail.UserId;
+            _boexmnge.UpdatedDate = DateTime.UtcNow;
+            _boexmnge.Event = "UpdateByUser";
+            _baexmmng.IUD(_boexmnge);
         }
     }
 }

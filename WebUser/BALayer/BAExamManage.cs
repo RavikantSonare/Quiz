@@ -25,5 +25,10 @@ namespace WebUser.BALayer
         {
             return _daexmange.SelectExamQestionAnswer(v, exmid);
         }
+
+        internal int IUD(BOExamManage _boexammanage)
+        {
+            return _daexmange.IUD(_boexammanage);
+        }
     }
 }

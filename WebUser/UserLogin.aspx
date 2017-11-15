@@ -38,7 +38,7 @@
                             <asp:TemplateField HeaderText="Test Once">
                                 <ItemTemplate>
                                     <%--<asp:Button ID="btnTestMode" runat="server" Text="Test Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCode")%>' Visible='<%# !(Convert.ToBoolean(Eval("OnlyTestOnce"))) %>' OnClick="btnTestMode_Click" />--%>
-                                    <asp:Button ID="btnTestOnce" runat="server" Text="Do Real Test" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnTestMode_Click" Enabled='<%# Eval("QuestionCount").ToString() != "0" ? true : false %>' />
+                                    <asp:Button ID="btnTestOnce" runat="server" Text="Do Real Test" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnTestOnce_Click" Enabled='<%# Eval("QuestionCount").ToString() != "0" ? true : false %>' Visible='<%# Eval("OnlyTestOnce")%>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -58,7 +58,7 @@
                             <asp:BoundField HeaderText="Category" DataField="SecondCategoryName" />
                             <asp:BoundField HeaderText="Score" DataField="Score" />
                             <asp:BoundField HeaderText="Pass/Fail" DataField="Result" />
-                           <%-- <asp:TemplateField HeaderText="Question Print">
+                            <%-- <asp:TemplateField HeaderText="Question Print">
                                 <ItemTemplate>
                                     <asp:Button ID="btnPrint" runat="server" Text="Print" class="btn btn-default" Visible='<%# (Convert.ToBoolean(Eval("AllowPrint"))) %>' />
                                 </ItemTemplate>

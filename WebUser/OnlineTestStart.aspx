@@ -141,6 +141,23 @@
         function setCordinator(QuestionID, AnswerId) {
             PageMethods.setCordinator(QuestionID, AnswerId);
         }
-
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('area').click(function (event) {
+                var map = document.getElementById('ImageMapContentPlaceHolder1_dlquesanswer_imgHotSpot_0');
+                var areas = map.getElementsByTagName('area');
+                for (var i = 0; i < areas.length; i++) {
+                    var area = areas[i];
+                    var id = area.alt;
+                    var data = $('#' + id).data('maphilight') || {};
+                    if (area.alt == $(this)[0].alt)
+                        data.fillColor = '0000ff'; // Sample color           
+                    else data.fillColor = 'ff0000'; // Sample color           
+                    $($(this)[0].alt).data('maphilight', data).trigger('alwaysOn.maphilight');
+                }
+            });
+            $('.map').maphilight({ strokeColor: '808080', strokeWidth: 0, fill: 'ff0000', fillColor: 'ff0000', alwaysOn: true });
+        });
     </script>
 </asp:Content>
