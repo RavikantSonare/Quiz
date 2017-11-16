@@ -135,25 +135,25 @@ namespace ExamSimulator
                     string _imgbtnshow = string.Empty;
                     List<string> ImageTypeList = new List<string>() { "Refer to the exhibit", "Refer to the topology", "Refer to the Scenario" };
 
-                    //Get the Input File Name and Extension
-                    string fileName = Path.GetFileNameWithoutExtension(filelist.Path);
-                    string fileExtension = ".docx"; //Path.GetExtension(filelist.Path);
+                    ////Get the Input File Name and Extension
+                    //string fileName = Path.GetFileNameWithoutExtension(filelist.Path);
+                    //string fileExtension = ".docx"; //Path.GetExtension(filelist.Path);
 
-                    //Build the File Path for the original (input) and the decrypted (output) file
-                    string input = filelist.Path;
-                    string output = fileName + "_dec" + fileExtension;
+                    ////Build the File Path for the original (input) and the decrypted (output) file
+                    //string input = filelist.Path;
+                    //string output = fileName + "_dec" + fileExtension;
 
-                    if (!Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output))
-                    {
-                        File.Delete(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
-                    }
-                    // File.Copy(input, System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
-                    //Save the Input File, Decrypt it and save the decrypted file in output path.
-                    //FileUpload1.SaveAs(input);
-                    this.Decrypt(input, System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
-                    Document document = new Document(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
+                    //if (!Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output))
+                    //{
+                    //    File.Delete(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
+                    //}
+                    //// File.Copy(input, System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
+                    ////Save the Input File, Decrypt it and save the decrypted file in output path.
+                    ////FileUpload1.SaveAs(input);
+                    //this.Decrypt(input, System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
+                    //Document document = new Document(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
 
-                    // Document document = new Document(filelist.Path);
+                    Document document = new Document(filelist.Path);
                     int index = 1;
                     foreach (Spire.Doc.Section section in document.Sections)
                     {

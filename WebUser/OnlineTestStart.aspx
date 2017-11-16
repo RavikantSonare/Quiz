@@ -77,7 +77,7 @@
                                 <table align="center">
                                     <tr>
                                         <td>
-                                            <asp:ListBox ID="lbDrag" runat="server" Height="169px" Width="121px" SelectionMode="Multiple"></asp:ListBox>
+                                            <asp:ListBox ID="lbDrag" runat="server" Height="200px" Width="250px" SelectionMode="Multiple"></asp:ListBox>
                                         </td>
                                         <td>
                                             <table>
@@ -94,7 +94,7 @@
                                             </table>
                                         </td>
                                         <td>
-                                            <asp:ListBox ID="lbDrop" runat="server" Height="169px" Width="121px" SelectionMode="Multiple"></asp:ListBox>
+                                            <asp:ListBox ID="lbDrop" runat="server" Height="200px" Width="250px" SelectionMode="Multiple"></asp:ListBox>
                                         </td>
                                     </tr>
                                     <tr>

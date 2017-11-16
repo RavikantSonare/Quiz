@@ -889,3 +889,26 @@ Source: System.Web
 TargetSite: Void set_SelectedValue(System.String)
 -----------------------------------------------------------
 
+Time: 16/11/2017 06:37:28 AM
+-----------------------------------------------------------
+Message: Failed to load viewstate.  The control tree into which viewstate is being loaded must match the control tree that was used to save viewstate during the previous request.  For example, when adding controls dynamically, the controls added during a post-back must match the type and position of the controls added during the initial request.
+StackTrace:    at System.Web.UI.Control.LoadViewStateRecursive(Object savedState)
+   at System.Web.UI.Control.AddedControl(Control control, Int32 index)
+   at System.Web.UI.ControlCollection.Add(Control child)
+   at WebMerchant.MerchantManageQA.lbtnEdit_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 531
+Source: System.Web
+TargetSite: Void LoadViewStateRecursive(System.Object)
+-----------------------------------------------------------
+
+Time: 16/11/2017 11:34:54 AM
+-----------------------------------------------------------
+Message: Input string was not in a correct format.
+StackTrace:    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.String.System.IConvertible.ToInt32(IFormatProvider provider)
+   at System.Convert.ToInt32(Object value)
+   at WebMerchant.MerchantManageQA.AddQuestion(String noofanswer) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 159
+Source: mscorlib
+TargetSite: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
+-----------------------------------------------------------
+

@@ -38,6 +38,12 @@ namespace WebMerchant
                 { plchldrname = "ctrlPlaceholderTextBox"; }
                 else if (Session["Qtypevalue"].ToString() == "2")
                 { plchldrname = "ctrlPlaceholderMulti"; }
+                else if (Session["Qtypevalue"].ToString() == "3")
+                { plchldrname = "ctrlPlaceholderVacant"; }
+                else if (Session["Qtypevalue"].ToString() == "4")
+                { plchldrname = "ctrlPlaceholderDragdrop"; }
+                else if (Session["Qtypevalue"].ToString() == "6")
+                { plchldrname = "ctrlPlaceholderScenario"; }
                 foreach (string key in keysQ)
                 {
                     int txtId = Convert.ToInt16(key.Substring(28));
@@ -60,6 +66,8 @@ namespace WebMerchant
                         ctrlPlaceholderTextBox.Controls.Clear();
                         ctrlPlaceholderMulti.Controls.Clear();
                         ctrlPlaceholderVacant.Controls.Clear();
+                        ctrlPlaceholderDragdrop.Controls.Clear();
+                        ctrlPlaceholderScenario.Controls.Clear();
                         Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
                         FillddlExamCode(MerchantId);
                         FillrbtnListQuestiontype(_bomerchantDetail.MerchantLevelId);
@@ -189,11 +197,11 @@ namespace WebMerchant
                             }
                             if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
                             {
-                                _boqans.RightAnswer = "1";
+                                _boqans.RightAnswer = true;
                             }
                             else
                             {
-                                _boqans.RightAnswer = "0";
+                                _boqans.RightAnswer = false;
                             }
                             _boqans.IsActive = true;
                             _boqans.IsDelete = false;
@@ -208,8 +216,6 @@ namespace WebMerchant
                             }
                         }
                         ShowMessage("Question updated successfully", MessageType.Success);
-                        btnAddAnswerSingle.Visible = true;
-                        btnAddAnswerMulti.Visible = true;
                     }
                     else
                     {
@@ -222,9 +228,12 @@ namespace WebMerchant
                             }
                             if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
                             {
-                                _boqans.RightAnswer = "1";
+                                _boqans.RightAnswer = true;
                             }
-                            else { _boqans.RightAnswer = "0"; }
+                            else
+                            {
+                                _boqans.RightAnswer = false;
+                            }
                             _boqans.IsActive = true;
                             _boqans.IsDelete = false;
                             _boqans.CreatedBy = MerchantId;
@@ -249,15 +258,356 @@ namespace WebMerchant
             }
         }
 
+        protected void btnMultiAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
+                {
+                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                    int qusvalu = default(int);
+                    qusvalu = AddQuestion(prevVaile.Value);
+                    if (qusvalu == 2)
+                    {
+                        int[] arrayMulti = (ViewState["arrMultiAnswerID"]) as int[];
+                        for (int loopcnt = 1; loopcnt <= arrayMulti.Length; loopcnt++)
+                        {
+                            _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
+                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                            {
+                                _boqans.AnswerId = arrayMulti[loopcnt - 1];
+                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                            }
+                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
+                            {
+                                _boqans.RightAnswer = true;
+                            }
+                            else
+                            {
+                                _boqans.RightAnswer = false;
+                            }
+                            _boqans.IsActive = true;
+                            _boqans.IsDelete = false;
+                            _boqans.CreatedBy = MerchantId;
+                            _boqans.CreatedDate = DateTime.UtcNow;
+                            _boqans.UpdatedBy = MerchantId;
+                            _boqans.UpdatedDate = DateTime.UtcNow;
+                            _boqans.Event = "Update";
+                            if (_baqans.Insert(_boqans) == 1)
+                            {
+                                string success = "Success";
+                            }
+                        }
+                        ShowMessage("Question updated successfully", MessageType.Success);
+                    }
+                    else
+                    {
+                        for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
+                        {
+                            _boqans.QuestionId = qusvalu;
+                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                            {
+                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                            }
+                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
+                            {
+                                _boqans.RightAnswer = true;
+                            }
+                            else
+                            {
+                                _boqans.RightAnswer = false;
+                            }
+                            _boqans.IsActive = true;
+                            _boqans.IsDelete = false;
+                            _boqans.CreatedBy = MerchantId;
+                            _boqans.CreatedDate = DateTime.UtcNow;
+                            _boqans.UpdatedBy = MerchantId;
+                            _boqans.UpdatedDate = DateTime.UtcNow;
+                            _boqans.Event = "Insert";
+                            if (_baqans.Insert(_boqans) == 1)
+                            {
+                                string success = "Success";
+                            }
+                        }
+                        ShowMessage("Question added successfully", MessageType.Success);
+                    }
+                    ClearControl();
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
+        }
+
+        protected void btnVacantAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
+                {
+                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                    int qusvalu = default(int);
+                    qusvalu = AddQuestion(prevVaile.Value);
+                    if (qusvalu == 2)
+                    {
+                        int[] array = (ViewState["arrVacantAnswerID"]) as int[];
+                        for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
+                        {
+                            _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
+                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                            {
+                                _boqans.AnswerId = array[loopcnt - 1];
+                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                            }
+                            if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
+                            {
+                                _boqans.RightAnswer = true;
+                            }
+                            else
+                            {
+                                _boqans.RightAnswer = false;
+                            }
+                            _boqans.IsActive = true;
+                            _boqans.IsDelete = false;
+                            _boqans.CreatedBy = MerchantId;
+                            _boqans.CreatedDate = DateTime.UtcNow;
+                            _boqans.UpdatedBy = MerchantId;
+                            _boqans.UpdatedDate = DateTime.UtcNow;
+                            _boqans.Event = "Update";
+                            if (_baqans.Update(_boqans) == 2)
+                            {
+                                string success = "Success";
+                            }
+                        }
+                        ShowMessage("Question updated successfully", MessageType.Success);
+                    }
+                    else
+                    {
+                        for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
+                        {
+                            _boqans.QuestionId = qusvalu;
+                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                            {
+                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                            }
+                            if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
+                            {
+                                _boqans.RightAnswer = true;
+                            }
+                            else
+                            {
+                                _boqans.RightAnswer = false;
+                            }
+                            _boqans.IsActive = true;
+                            _boqans.IsDelete = false;
+                            _boqans.CreatedBy = MerchantId;
+                            _boqans.CreatedDate = DateTime.UtcNow;
+                            _boqans.UpdatedBy = MerchantId;
+                            _boqans.UpdatedDate = DateTime.UtcNow;
+                            _boqans.Event = "Insert";
+                            if (_baqans.Insert(_boqans) == 1)
+                            {
+                                string success = "Success";
+                            }
+                        }
+                        ShowMessage("Question added successfully", MessageType.Success);
+                    }
+                    ClearControl();
+                }
+                else
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
+        }
+
+        protected void btnDragdropAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
+                {
+                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                    int qusvalu = default(int);
+                    qusvalu = AddQuestion(prevVaile.Value);
+                    if (qusvalu == 2)
+                    {
+                        int[] arrayDragdrop = (ViewState["arrDragdropAnswerID"]) as int[];
+                        for (int loopcnt = 1; loopcnt <= arrayDragdrop.Length; loopcnt++)
+                        {
+                            _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
+                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                            {
+                                _boqans.AnswerId = arrayDragdrop[loopcnt - 1];
+                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                            }
+                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
+                            {
+                                _boqans.RightAnswer = true;
+                            }
+                            else
+                            {
+                                _boqans.RightAnswer = false;
+                            }
+                            _boqans.IsActive = true;
+                            _boqans.IsDelete = false;
+                            _boqans.CreatedBy = MerchantId;
+                            _boqans.CreatedDate = DateTime.UtcNow;
+                            _boqans.UpdatedBy = MerchantId;
+                            _boqans.UpdatedDate = DateTime.UtcNow;
+                            _boqans.Event = "Update";
+                            if (_baqans.Insert(_boqans) == 1)
+                            {
+                                string success = "Success";
+                            }
+                        }
+                        ShowMessage("Question updated successfully", MessageType.Success);
+                    }
+                    else
+                    {
+                        for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
+                        {
+                            _boqans.QuestionId = qusvalu;
+                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                            {
+                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                            }
+                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
+                            {
+                                _boqans.RightAnswer = true;
+                            }
+                            else
+                            {
+                                _boqans.RightAnswer = false;
+                            }
+                            _boqans.IsActive = true;
+                            _boqans.IsDelete = false;
+                            _boqans.CreatedBy = MerchantId;
+                            _boqans.CreatedDate = DateTime.UtcNow;
+                            _boqans.UpdatedBy = MerchantId;
+                            _boqans.UpdatedDate = DateTime.UtcNow;
+                            _boqans.Event = "Insert";
+                            if (_baqans.Insert(_boqans) == 1)
+                            {
+                                string success = "Success";
+                            }
+                        }
+                        ShowMessage("Question added successfully", MessageType.Success);
+                    }
+                    ClearControl();
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
+        }
+
+        protected void btnScenarioAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
+                {
+                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                    int qusvalu = default(int);
+                    qusvalu = AddQuestion(prevVaile.Value);
+                    if (qusvalu == 2)
+                    {
+                        int[] array = (ViewState["arrScenarioAnswerID"]) as int[];
+                        for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
+                        {
+                            _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
+                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                            {
+                                _boqans.AnswerId = array[loopcnt - 1];
+                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                            }
+                            if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
+                            {
+                                _boqans.RightAnswer = true;
+                            }
+                            else
+                            {
+                                _boqans.RightAnswer = false;
+                            }
+                            _boqans.IsActive = true;
+                            _boqans.IsDelete = false;
+                            _boqans.CreatedBy = MerchantId;
+                            _boqans.CreatedDate = DateTime.UtcNow;
+                            _boqans.UpdatedBy = MerchantId;
+                            _boqans.UpdatedDate = DateTime.UtcNow;
+                            _boqans.Event = "Update";
+                            if (_baqans.Update(_boqans) == 2)
+                            {
+                                string success = "Success";
+                            }
+                        }
+                        ShowMessage("Question updated successfully", MessageType.Success);
+                    }
+                    else
+                    {
+                        for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
+                        {
+                            _boqans.QuestionId = qusvalu;
+                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                            {
+                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                            }
+                            if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
+                            {
+                                _boqans.RightAnswer = true;
+                            }
+                            else
+                            {
+                                _boqans.RightAnswer = false;
+                            }
+                            _boqans.IsActive = true;
+                            _boqans.IsDelete = false;
+                            _boqans.CreatedBy = MerchantId;
+                            _boqans.CreatedDate = DateTime.UtcNow;
+                            _boqans.UpdatedBy = MerchantId;
+                            _boqans.UpdatedDate = DateTime.UtcNow;
+                            _boqans.Event = "Insert";
+                            if (_baqans.Insert(_boqans) == 1)
+                            {
+                                string success = "Success";
+                            }
+                        }
+                        ShowMessage("Question added successfully", MessageType.Success);
+                    }
+                    ClearControl();
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
+
+        }
+
         private void ClearControl()
         {
+            btnAddAnswerSingle.Visible = true;
+            btnAddAnswerMulti.Visible = true;
+            btnAddAnswerVacant.Visible = true;
+            btnAddAnswerDragDrop.Visible = true;
+            btnAddAnswerScenario.Visible = true;
             FillgridViewQAManage(MerchantId);
             Common.ClearControl(Panel1);
             txtQuestion.Text = txtExplanation.Text = "";
-            ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = null;
-            ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = "";
-            btnAdd.Text = btnMultiAdd.Text = btnVacantAdd.Text = btnDragdropAdd.Text = btnHotspotAdd.Text = "Add";
-            pnlSingleSelect.Visible = pnlMultiSelect.Visible = pnlVacant.Visible = pnlHotspot.Visible = pnlDragdrop.Visible = false;
+            ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = null;
+            ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = "";
+            btnAdd.Text = btnMultiAdd.Text = btnVacantAdd.Text = btnDragdropAdd.Text = btnHotspotAdd.Text = btnScenarioAdd.Text = "Add";
+            pnlSingleSelect.Visible = pnlMultiSelect.Visible = pnlVacant.Visible = pnlDragdrop.Visible = pnlHotspot.Visible = pnlScenario.Visible = false;
         }
 
         protected void lbtnEdit_Click(object sender, EventArgs e)
@@ -266,8 +616,14 @@ namespace WebMerchant
             {
                 ctrlPlaceholderTextBox.Controls.Clear();
                 ctrlPlaceholderMulti.Controls.Clear();
+                ctrlPlaceholderVacant.Controls.Clear();
+                ctrlPlaceholderDragdrop.Controls.Clear();
+                ctrlPlaceholderScenario.Controls.Clear();
                 btnAddAnswerSingle.Visible = false;
                 btnAddAnswerMulti.Visible = false;
+                btnAddAnswerVacant.Visible = false;
+                btnAddAnswerDragDrop.Visible = false;
+                btnAddAnswerScenario.Visible = false;
                 LinkButton lnkbtn = sender as LinkButton;
                 GridViewRow gvrow = lnkbtn.NamingContainer as GridViewRow;
                 int _QAId = Convert.ToInt32(gvQuestionManage.DataKeys[gvrow.RowIndex].Value.ToString());
@@ -282,19 +638,20 @@ namespace WebMerchant
                     ddlQuestionType.Enabled = false;
                     txtScore.Text = _datatable4.Rows[0][3].ToString();
                     hftxtquestion.Value = _datatable4.Rows[0][4].ToString();
-                    if (_datatable4.Rows[0][2].ToString().Equals("1") || _datatable4.Rows[0][2].ToString().Equals("6"))
+                    if (_datatable4.Rows[0][2].ToString().Equals("1"))
                     {
                         pnlSingleSelect.Visible = true;
-                        pnlVacant.Visible = false;
                         pnlMultiSelect.Visible = false;
+                        pnlVacant.Visible = false;
                         pnlDragdrop.Visible = false;
                         pnlHotspot.Visible = false;
+                        pnlScenario.Visible = false;
                         prevVaile.Value = _datatable4.Rows[0][5].ToString();
                         int[] arrAnswerID = new int[Convert.ToInt32(_datatable4.Rows[0][5])];
                         for (int loopcnt = 1; loopcnt <= Convert.ToInt32(_datatable4.Rows[0][5].ToString()); loopcnt++)
                         {
                             arrAnswerID[loopcnt - 1] = Convert.ToInt32(_datatable4.Rows[loopcnt - 1][8]);
-                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox", _datatable4.Rows[loopcnt - 1][9].ToString(), _datatable4.Rows[loopcnt - 1][10].ToString());
+                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
                         }
                         ViewState["arrAnswerID"] = arrAnswerID;
                         hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
@@ -303,16 +660,17 @@ namespace WebMerchant
                     else if (_datatable4.Rows[0][2].ToString().Equals("2"))
                     {
                         pnlMultiSelect.Visible = true;
-                        pnlVacant.Visible = false;
                         pnlSingleSelect.Visible = false;
+                        pnlVacant.Visible = false;
                         pnlDragdrop.Visible = false;
                         pnlHotspot.Visible = false;
+                        pnlScenario.Visible = false;
                         prevVaile.Value = _datatable4.Rows[0][5].ToString();
                         int[] arrMultiAnswerID = new int[Convert.ToInt32(_datatable4.Rows[0][5])];
                         for (int loopcnt = 1; loopcnt <= Convert.ToInt32(_datatable4.Rows[0][5].ToString()); loopcnt++)
                         {
                             arrMultiAnswerID[loopcnt - 1] = Convert.ToInt32(_datatable4.Rows[loopcnt - 1][8]);
-                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderMulti", _datatable4.Rows[loopcnt - 1][9].ToString(), _datatable4.Rows[loopcnt - 1][10].ToString());
+                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderMulti", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
                         }
                         ViewState["arrMultiAnswerID"] = arrMultiAnswerID;
                         hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
@@ -325,41 +683,13 @@ namespace WebMerchant
                         pnlMultiSelect.Visible = false;
                         pnlDragdrop.Visible = false;
                         pnlHotspot.Visible = false;
-                        //ddlVacantAnswerOption.Text = _datatable4.Rows[0][5].ToString();
-                        //ddlVacantAnswerOption.Enabled = false;
-                        //lboxVacantAnswer.Items.Clear();
+                        pnlScenario.Visible = false;
+                        prevVaile.Value = _datatable4.Rows[0][5].ToString();
                         int[] arrVacantAnswerID = new int[Convert.ToInt32(_datatable4.Rows[0][5])];
                         for (int loopcnt = 1; loopcnt <= Convert.ToInt32(_datatable4.Rows[0][5].ToString()); loopcnt++)
                         {
                             arrVacantAnswerID[loopcnt - 1] = Convert.ToInt32(_datatable4.Rows[loopcnt - 1][8]);
-                            Label lblOpen = new Label();
-                            lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Option " + Convert.ToChar(64 + loopcnt) + "</label><div class='col-sm-4'>";
-                            ctrlPlaceholderVacant.Controls.Add(lblOpen);
-                            TextBox tb = new TextBox();
-                            tb.ID = "tb" + loopcnt;
-                            tb.Text = _datatable4.Rows[loopcnt - 1][9].ToString();
-                            tb.CssClass = "form-control";
-                            tb.EnableViewState = true;
-                            ctrlPlaceholderVacant.Controls.Add(tb);
-                            Label lblClose = new Label();
-                            lblClose.Text = "</div><div class='col-sm-4'>";
-                            ctrlPlaceholderVacant.Controls.Add(lblClose);
-                            RequiredFieldValidator rfv = new RequiredFieldValidator();
-                            rfv.ID = "rfv" + loopcnt;
-                            rfv.ControlToValidate = "tb" + loopcnt;
-                            rfv.ValidationGroup = "vacant";
-                            rfv.ForeColor = System.Drawing.Color.Red;
-                            rfv.ErrorMessage = "Please Enter Option " + Convert.ToChar(64 + loopcnt);
-                            ctrlPlaceholderVacant.Controls.Add(rfv);
-                            Label lblvalidaclose = new Label();
-                            lblvalidaclose.Text = "</div></div>";
-                            ctrlPlaceholderVacant.Controls.Add(lblvalidaclose);
-                            // lboxVacantAnswer.Items.Add(new ListItem("Option " + Convert.ToChar(64 + loopcnt), loopcnt.ToString()));
-                            string valueans = _datatable4.Rows[loopcnt - 1][10].ToString();
-                            if (valueans.Trim() == "1")
-                            {
-                                //  lboxVacantAnswer.Items[loopcnt - 1].Selected = true;
-                            }
+                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderVacant", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
                         }
                         ViewState["arrVacantAnswerID"] = arrVacantAnswerID;
                         hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
@@ -368,58 +698,17 @@ namespace WebMerchant
                     else if (_datatable4.Rows[0][2].ToString().Equals("4"))
                     {
                         pnlDragdrop.Visible = true;
-                        pnlVacant.Visible = false;
                         pnlSingleSelect.Visible = false;
                         pnlMultiSelect.Visible = false;
+                        pnlVacant.Visible = false;
                         pnlHotspot.Visible = false;
-                        ddlDragdropMatchs.Text = _datatable4.Rows[0][5].ToString();
-                        ddlDragdropMatchs.Enabled = false;
+                        pnlScenario.Visible = false;
+                        prevVaile.Value = _datatable4.Rows[0][5].ToString();
                         int[] arrDragdropAnswerID = new int[Convert.ToInt32(_datatable4.Rows[0][5])];
                         for (int loopcnt = 1; loopcnt <= Convert.ToInt32(_datatable4.Rows[0][5].ToString()); loopcnt++)
                         {
                             arrDragdropAnswerID[loopcnt - 1] = Convert.ToInt32(_datatable4.Rows[loopcnt - 1][8]);
-
-                            Label lblOpen1 = new Label();
-                            lblOpen1.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Match " + Convert.ToChar(64 + loopcnt) + "</label><div class='col-sm-3'>";
-                            ctrlPlaceholderDragdrop.Controls.Add(lblOpen1);
-                            TextBox tb1 = new TextBox();
-                            tb1.ID = "tb1" + loopcnt;
-                            tb1.Text = _datatable4.Rows[loopcnt - 1][9].ToString();
-                            tb1.CssClass = "form-control";
-                            tb1.EnableViewState = true;
-                            ctrlPlaceholderDragdrop.Controls.Add(tb1);
-                            Label lblClose1 = new Label();
-                            lblClose1.Text = "</div><div class='col-sm-1'>";
-                            ctrlPlaceholderDragdrop.Controls.Add(lblClose1);
-                            RequiredFieldValidator rfv1 = new RequiredFieldValidator();
-                            rfv1.ID = "rfv1" + loopcnt;
-                            rfv1.ControlToValidate = "tb1" + loopcnt;
-                            rfv1.ValidationGroup = "dragdrop";
-                            rfv1.ErrorMessage = "*";
-                            rfv1.Attributes.Add("style", "font-size:21px; color:Red; font-weight:bold;");
-                            ctrlPlaceholderDragdrop.Controls.Add(rfv1);
-                            Label lblOpen2 = new Label();
-                            lblOpen2.Text = "</div><div class='col-sm-3'>";
-                            ctrlPlaceholderDragdrop.Controls.Add(lblOpen2);
-                            TextBox tb2 = new TextBox();
-                            tb2.ID = "tb2" + loopcnt;
-                            tb2.Text = _datatable4.Rows[loopcnt - 1][10].ToString();
-                            tb2.CssClass = "form-control";
-                            tb2.EnableViewState = true;
-                            ctrlPlaceholderDragdrop.Controls.Add(tb2);
-                            Label lblClose2 = new Label();
-                            lblClose2.Text = "</div><div class='col-sm-1'>";
-                            ctrlPlaceholderDragdrop.Controls.Add(lblClose2);
-                            RequiredFieldValidator rfv2 = new RequiredFieldValidator();
-                            rfv2.ID = "rfv2" + loopcnt;
-                            rfv2.ControlToValidate = "tb2" + loopcnt;
-                            rfv2.ValidationGroup = "dragdrop";
-                            rfv2.ErrorMessage = "*";
-                            rfv2.Attributes.Add("style", "font-size:21px; color:Red; font-weight:bold;");
-                            ctrlPlaceholderDragdrop.Controls.Add(rfv2);
-                            Label lblclosediv = new Label();
-                            lblclosediv.Text = "</div></div>";
-                            ctrlPlaceholderDragdrop.Controls.Add(lblclosediv);
+                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderDragdrop", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
                         }
                         ViewState["arrDragdropAnswerID"] = arrDragdropAnswerID;
                         hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
@@ -427,14 +716,34 @@ namespace WebMerchant
                     }
                     else if (_datatable4.Rows[0][2].ToString().Equals("5"))
                     {
-                        pnlVacant.Visible = false;
                         pnlSingleSelect.Visible = false;
                         pnlMultiSelect.Visible = false;
-                        pnlHotspot.Visible = false;
+                        pnlVacant.Visible = false;
                         pnlDragdrop.Visible = false;
+                        pnlHotspot.Visible = false;
+                        pnlScenario.Visible = false;
                         ShowMessage("Can not edit hotspot question", MessageType.Info);
                         //ftxtHotspotExplanation.Text = _datatable4.Rows[0][6].ToString();
                         //btnHotspotAdd.Text = "Update";
+                    }
+                    else if (_datatable4.Rows[0][2].ToString().Equals("6"))
+                    {
+                        pnlScenario.Visible = true;
+                        pnlSingleSelect.Visible = false;
+                        pnlMultiSelect.Visible = false;
+                        pnlVacant.Visible = false;
+                        pnlDragdrop.Visible = false;
+                        pnlHotspot.Visible = false;
+                        prevVaile.Value = _datatable4.Rows[0][5].ToString();
+                        int[] arrScenarioAnswerID = new int[Convert.ToInt32(_datatable4.Rows[0][5])];
+                        for (int loopcnt = 1; loopcnt <= Convert.ToInt32(_datatable4.Rows[0][5].ToString()); loopcnt++)
+                        {
+                            arrScenarioAnswerID[loopcnt - 1] = Convert.ToInt32(_datatable4.Rows[loopcnt - 1][8]);
+                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderScenario", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
+                        }
+                        ViewState["arrScenarioAnswerID"] = arrScenarioAnswerID;
+                        hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
+                        btnScenarioAdd.Text = "Update";
                     }
                 }
             }
@@ -520,14 +829,17 @@ namespace WebMerchant
                 pnlSingleSelect.Visible = false;
                 pnlMultiSelect.Visible = false;
                 pnlVacant.Visible = false;
-                pnlHotspot.Visible = false;
                 pnlDragdrop.Visible = false;
+                pnlHotspot.Visible = false;
+                pnlScenario.Visible = false;
             }
             else if (ddlQuestionType.SelectedItem.Value == "1")
             {
                 ctrlPlaceholderTextBox.Controls.Clear();
                 ctrlPlaceholderMulti.Controls.Clear();
                 ctrlPlaceholderVacant.Controls.Clear();
+                ctrlPlaceholderDragdrop.Controls.Clear();
+                ctrlPlaceholderScenario.Controls.Clear();
                 prevVaile.Value = Convert.ToString(2);
                 for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
                 {
@@ -536,14 +848,17 @@ namespace WebMerchant
                 pnlSingleSelect.Visible = true;
                 pnlMultiSelect.Visible = false;
                 pnlVacant.Visible = false;
-                pnlHotspot.Visible = false;
                 pnlDragdrop.Visible = false;
+                pnlHotspot.Visible = false;
+                pnlScenario.Visible = false;
             }
             else if (ddlQuestionType.SelectedItem.Value == "2")
             {
                 ctrlPlaceholderTextBox.Controls.Clear();
                 ctrlPlaceholderMulti.Controls.Clear();
                 ctrlPlaceholderVacant.Controls.Clear();
+                ctrlPlaceholderDragdrop.Controls.Clear();
+                ctrlPlaceholderScenario.Controls.Clear();
                 prevVaile.Value = Convert.ToString(4);
                 for (int loopcnt = 1; loopcnt <= 4; loopcnt++)
                 {
@@ -552,8 +867,9 @@ namespace WebMerchant
                 pnlMultiSelect.Visible = true;
                 pnlSingleSelect.Visible = false;
                 pnlVacant.Visible = false;
-                pnlHotspot.Visible = false;
                 pnlDragdrop.Visible = false;
+                pnlHotspot.Visible = false;
+                pnlScenario.Visible = false;
             }
 
             else if (ddlQuestionType.SelectedItem.Value == "3")
@@ -561,6 +877,8 @@ namespace WebMerchant
                 ctrlPlaceholderTextBox.Controls.Clear();
                 ctrlPlaceholderMulti.Controls.Clear();
                 ctrlPlaceholderVacant.Controls.Clear();
+                ctrlPlaceholderDragdrop.Controls.Clear();
+                ctrlPlaceholderScenario.Controls.Clear();
                 prevVaile.Value = Convert.ToString(2);
                 for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
                 {
@@ -569,231 +887,56 @@ namespace WebMerchant
                 pnlVacant.Visible = true;
                 pnlMultiSelect.Visible = false;
                 pnlSingleSelect.Visible = false;
-                pnlHotspot.Visible = false;
                 pnlDragdrop.Visible = false;
+                pnlHotspot.Visible = false;
+                pnlScenario.Visible = false;
             }
             else if (ddlQuestionType.SelectedItem.Value == "4")
             {
+                ctrlPlaceholderTextBox.Controls.Clear();
+                ctrlPlaceholderMulti.Controls.Clear();
+                ctrlPlaceholderVacant.Controls.Clear();
+                ctrlPlaceholderDragdrop.Controls.Clear();
+                ctrlPlaceholderScenario.Controls.Clear();
+                prevVaile.Value = Convert.ToString(4);
+                for (int loopcnt = 1; loopcnt <= 4; loopcnt++)
+                {
+                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderDragdrop");
+                }
                 pnlDragdrop.Visible = true;
                 pnlSingleSelect.Visible = false;
                 pnlMultiSelect.Visible = false;
                 pnlVacant.Visible = false;
                 pnlHotspot.Visible = false;
+                pnlScenario.Visible = false;
             }
             else if (ddlQuestionType.SelectedItem.Value == "5")
             {
                 pnlHotspot.Visible = true;
-                pnlVacant.Visible = false;
-                pnlMultiSelect.Visible = false;
                 pnlSingleSelect.Visible = false;
+                pnlMultiSelect.Visible = false;
+                pnlVacant.Visible = false;
                 pnlDragdrop.Visible = false;
+                pnlScenario.Visible = false;
             }
             else if (ddlQuestionType.SelectedItem.Value == "6")
             {
-                pnlSingleSelect.Visible = true;
+                ctrlPlaceholderTextBox.Controls.Clear();
+                ctrlPlaceholderMulti.Controls.Clear();
+                ctrlPlaceholderVacant.Controls.Clear();
+                ctrlPlaceholderDragdrop.Controls.Clear();
+                ctrlPlaceholderScenario.Controls.Clear();
+                prevVaile.Value = Convert.ToString(2);
+                for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
+                {
+                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderScenario");
+                }
+                pnlScenario.Visible = true;
+                pnlSingleSelect.Visible = false;
                 pnlMultiSelect.Visible = false;
                 pnlVacant.Visible = false;
-                pnlHotspot.Visible = false;
                 pnlDragdrop.Visible = false;
-            }
-        }
-
-        protected void btnMultiAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
-                {
-                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    int qusvalu = default(int);
-                    qusvalu = AddQuestion(prevVaile.Value);
-                    if (qusvalu == 2)
-                    {
-                        int[] arrayMulti = (ViewState["arrMultiAnswerID"]) as int[];
-                        for (int loopcnt = 1; loopcnt <= arrayMulti.Length; loopcnt++)
-                        {
-                            _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
-                            {
-                                _boqans.AnswerId = arrayMulti[loopcnt - 1];
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
-                            }
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
-                            {
-                                _boqans.RightAnswer = "1";
-                            }
-                            else
-                            {
-                                _boqans.RightAnswer = "0";
-                            }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Update";
-                            if (_baqans.Insert(_boqans) == 1)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question updated successfully", MessageType.Success);
-                        btnAddAnswerSingle.Visible = true;
-                        btnAddAnswerMulti.Visible = true;
-                    }
-                    else
-                    {
-                        for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
-                        {
-                            _boqans.QuestionId = qusvalu;
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
-                            {
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
-                            }
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
-                            {
-                                _boqans.RightAnswer = "1";
-                            }
-                            else
-                            {
-                                _boqans.RightAnswer = "0";
-                            }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Insert";
-                            if (_baqans.Insert(_boqans) == 1)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question added successfully", MessageType.Success);
-                    }
-                    ClearControl();
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex);
-                ShowMessage("Some technical error", MessageType.Warning);
-            }
-        }
-
-        protected void ddlVacantAnswerOption_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //prevVaile.Value = ddlVacantAnswerOption.SelectedValue.Trim();
-            //lboxVacantAnswer.Items.Clear();
-            //for (int loopcnt = 1; loopcnt <= Convert.ToInt32(ddlVacantAnswerOption.SelectedValue.Trim()); loopcnt++)
-            //{
-            //    Label lblOpen = new Label();
-            //    lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Option " + Convert.ToChar(64 + loopcnt) + "</label><div class='col-sm-4'>";
-            //    ctrlPlaceholderVacant.Controls.Add(lblOpen);
-            //    TextBox tb = new TextBox();
-            //    tb.ID = "tb" + loopcnt;
-            //    tb.CssClass = "form-control";
-            //    tb.EnableViewState = true;
-            //    ctrlPlaceholderVacant.Controls.Add(tb);
-            //    Label lblClose = new Label();
-            //    lblClose.Text = "</div><div class='col-sm-4'>";
-            //    ctrlPlaceholderVacant.Controls.Add(lblClose);
-            //    RequiredFieldValidator rfv = new RequiredFieldValidator();
-            //    rfv.ID = "rfv" + loopcnt;
-            //    rfv.ControlToValidate = "tb" + loopcnt;
-            //    rfv.ValidationGroup = "vacant";
-            //    rfv.ForeColor = System.Drawing.Color.Red;
-            //    rfv.ErrorMessage = "Please Enter Option " + Convert.ToChar(64 + loopcnt);
-            //    ctrlPlaceholderVacant.Controls.Add(rfv);
-            //    Label lblvalidaclose = new Label();
-            //    lblvalidaclose.Text = "</div></div>";
-            //    ctrlPlaceholderVacant.Controls.Add(lblvalidaclose);
-            //    lboxVacantAnswer.Items.Add(new ListItem("Option " + Convert.ToChar(64 + loopcnt), loopcnt.ToString()));
-            //}
-        }
-
-        protected void btnVacantAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
-                {
-                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    int qusvalu = default(int);
-                    //   qusvalu = AddQuestion(ddlVacantAnswerOption.SelectedItem.Value);
-                    if (qusvalu == 2)
-                    {
-                        int[] array = (ViewState["arrVacantAnswerID"]) as int[];
-                        for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
-                        {
-                            _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
-                            {
-                                _boqans.AnswerId = array[loopcnt - 1];
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
-                            }
-                            //if (lboxVacantAnswer.SelectedIndex == loopcnt - 1)
-                            //{
-                            //    _boqans.RightAnswer = "1";
-                            //}
-                            //else
-                            //{
-                            //    _boqans.RightAnswer = "0";
-                            //}
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Update";
-                            if (_baqans.Update(_boqans) == 2)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question updated successfully", MessageType.Success);
-                    }
-                    else
-                    {
-                        for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
-                        {
-                            _boqans.QuestionId = qusvalu;
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
-                            {
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
-                            }
-                            //if (lboxVacantAnswer.SelectedIndex == loopcnt - 1)
-                            //{
-                            //    _boqans.RightAnswer = "1";
-                            //}
-                            //else { _boqans.RightAnswer = "0"; }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Insert";
-                            if (_baqans.Insert(_boqans) == 1)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question added successfully", MessageType.Success);
-                    }
-                    ClearControl();
-                }
-                else
-                {
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex);
-                ShowMessage("Some technical error", MessageType.Warning);
+                pnlHotspot.Visible = false;
             }
         }
 
@@ -846,7 +989,7 @@ namespace WebMerchant
                         {
                             _boqans.QuestionId = qusvalu;
                             _boqans.Answer = txtmaphtml.Text;
-                            _boqans.RightAnswer = ImageUpload(txtimage.Text, hdimage.Value);
+                            _boqans.RightAnswer = true;// ImageUpload(txtimage.Text, hdimage.Value);
                             _boqans.IsActive = true;
                             _boqans.IsDelete = false;
                             _boqans.CreatedBy = MerchantId;
@@ -902,127 +1045,83 @@ namespace WebMerchant
             return image;
         }
 
-        protected void ddlDragdropMatchs_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlVacantAnswerOption_SelectedIndexChanged(object sender, EventArgs e)
         {
-            prevVaile.Value = ddlDragdropMatchs.SelectedValue.Trim();
-            // lboxVacantAnswer.Items.Clear();
-            for (int loopcnt = 1; loopcnt <= Convert.ToInt32(ddlDragdropMatchs.SelectedValue.Trim()); loopcnt++)
-            {
-                Label lblOpen1 = new Label();
-                lblOpen1.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Match " + Convert.ToChar(64 + loopcnt) + "</label><div class='col-sm-3'>";
-                ctrlPlaceholderDragdrop.Controls.Add(lblOpen1);
-                TextBox tb1 = new TextBox();
-                tb1.ID = "tb1" + loopcnt;
-                tb1.CssClass = "form-control";
-                tb1.EnableViewState = true;
-                ctrlPlaceholderDragdrop.Controls.Add(tb1);
-                Label lblClose1 = new Label();
-                lblClose1.Text = "</div><div class='col-sm-1'>";
-                ctrlPlaceholderDragdrop.Controls.Add(lblClose1);
-                RequiredFieldValidator rfv1 = new RequiredFieldValidator();
-                rfv1.ID = "rfv1" + loopcnt;
-                rfv1.ControlToValidate = "tb1" + loopcnt;
-                rfv1.ValidationGroup = "dragdrop";
-                rfv1.ErrorMessage = "*";
-                rfv1.Attributes.Add("style", "font-size:21px; color:Red; font-weight:bold;");
-                ctrlPlaceholderDragdrop.Controls.Add(rfv1);
-                Label lblOpen2 = new Label();
-                lblOpen2.Text = "</div><div class='col-sm-3'>";
-                ctrlPlaceholderDragdrop.Controls.Add(lblOpen2);
-                TextBox tb2 = new TextBox();
-                tb2.ID = "tb2" + loopcnt;
-                tb2.CssClass = "form-control";
-                tb2.EnableViewState = true;
-                ctrlPlaceholderDragdrop.Controls.Add(tb2);
-                Label lblClose2 = new Label();
-                lblClose2.Text = "</div><div class='col-sm-1'>";
-                ctrlPlaceholderDragdrop.Controls.Add(lblClose2);
-                RequiredFieldValidator rfv2 = new RequiredFieldValidator();
-                rfv2.ID = "rfv2" + loopcnt;
-                rfv2.ControlToValidate = "tb2" + loopcnt;
-                rfv2.ValidationGroup = "dragdrop";
-                rfv2.ErrorMessage = "*";
-                rfv2.Attributes.Add("style", "font-size:21px; color:Red; font-weight:bold;");
-                ctrlPlaceholderDragdrop.Controls.Add(rfv2);
-                Label lblclosediv = new Label();
-                lblclosediv.Text = "</div></div>";
-                ctrlPlaceholderDragdrop.Controls.Add(lblclosediv);
-            }
+            //prevVaile.Value = ddlVacantAnswerOption.SelectedValue.Trim();
+            //lboxVacantAnswer.Items.Clear();
+            //for (int loopcnt = 1; loopcnt <= Convert.ToInt32(ddlVacantAnswerOption.SelectedValue.Trim()); loopcnt++)
+            //{
+            //    Label lblOpen = new Label();
+            //    lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Option " + Convert.ToChar(64 + loopcnt) + "</label><div class='col-sm-4'>";
+            //    ctrlPlaceholderVacant.Controls.Add(lblOpen);
+            //    TextBox tb = new TextBox();
+            //    tb.ID = "tb" + loopcnt;
+            //    tb.CssClass = "form-control";
+            //    tb.EnableViewState = true;
+            //    ctrlPlaceholderVacant.Controls.Add(tb);
+            //    Label lblClose = new Label();
+            //    lblClose.Text = "</div><div class='col-sm-4'>";
+            //    ctrlPlaceholderVacant.Controls.Add(lblClose);
+            //    RequiredFieldValidator rfv = new RequiredFieldValidator();
+            //    rfv.ID = "rfv" + loopcnt;
+            //    rfv.ControlToValidate = "tb" + loopcnt;
+            //    rfv.ValidationGroup = "vacant";
+            //    rfv.ForeColor = System.Drawing.Color.Red;
+            //    rfv.ErrorMessage = "Please Enter Option " + Convert.ToChar(64 + loopcnt);
+            //    ctrlPlaceholderVacant.Controls.Add(rfv);
+            //    Label lblvalidaclose = new Label();
+            //    lblvalidaclose.Text = "</div></div>";
+            //    ctrlPlaceholderVacant.Controls.Add(lblvalidaclose);
+            //    lboxVacantAnswer.Items.Add(new ListItem("Option " + Convert.ToChar(64 + loopcnt), loopcnt.ToString()));
+            //}
         }
 
-        protected void btnDragdropAdd_Click(object sender, EventArgs e)
+        protected void ddlDragdropMatchs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
-                {
-                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    int qusvalu = default(int);
-                    qusvalu = AddQuestion(ddlDragdropMatchs.SelectedItem.Value);
-                    if (qusvalu == 2)
-                    {
-                        int[] arrayDragdrop = (ViewState["arrDragdropAnswerID"]) as int[];
-                        for (int loopcnt = 1; loopcnt <= arrayDragdrop.Length; loopcnt++)
-                        {
-                            _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb1" + loopcnt))
-                            {
-                                _boqans.AnswerId = arrayDragdrop[loopcnt - 1];
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb1" + loopcnt].ToString();
-                            }
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb2" + loopcnt))
-                            {
-                                _boqans.RightAnswer = Request.Params["ctl00$ContentPlaceHolder1$tb2" + loopcnt].ToString();
-                            }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Update";
-                            if (_baqans.Insert(_boqans) == 1)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question updated successfully", MessageType.Success);
-                    }
-                    else
-                    {
-                        for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
-                        {
-                            _boqans.QuestionId = qusvalu;
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb1" + loopcnt))
-                            {
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb1" + loopcnt].ToString();
-                            }
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb2" + loopcnt))
-                            {
-                                _boqans.RightAnswer = Request.Params["ctl00$ContentPlaceHolder1$tb2" + loopcnt].ToString();
-                            }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Insert";
-                            if (_baqans.Insert(_boqans) == 1)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question added successfully", MessageType.Success);
-                    }
-                    ClearControl();
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex);
-                ShowMessage("Some technical error", MessageType.Warning);
-            }
+            //prevVaile.Value = ddlDragdropMatchs.SelectedValue.Trim();
+            //// lboxVacantAnswer.Items.Clear();
+            //for (int loopcnt = 1; loopcnt <= Convert.ToInt32(ddlDragdropMatchs.SelectedValue.Trim()); loopcnt++)
+            //{
+            //    Label lblOpen1 = new Label();
+            //    lblOpen1.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Match " + Convert.ToChar(64 + loopcnt) + "</label><div class='col-sm-3'>";
+            //    ctrlPlaceholderDragdrop.Controls.Add(lblOpen1);
+            //    TextBox tb1 = new TextBox();
+            //    tb1.ID = "tb1" + loopcnt;
+            //    tb1.CssClass = "form-control";
+            //    tb1.EnableViewState = true;
+            //    ctrlPlaceholderDragdrop.Controls.Add(tb1);
+            //    Label lblClose1 = new Label();
+            //    lblClose1.Text = "</div><div class='col-sm-1'>";
+            //    ctrlPlaceholderDragdrop.Controls.Add(lblClose1);
+            //    RequiredFieldValidator rfv1 = new RequiredFieldValidator();
+            //    rfv1.ID = "rfv1" + loopcnt;
+            //    rfv1.ControlToValidate = "tb1" + loopcnt;
+            //    rfv1.ValidationGroup = "dragdrop";
+            //    rfv1.ErrorMessage = "*";
+            //    rfv1.Attributes.Add("style", "font-size:21px; color:Red; font-weight:bold;");
+            //    ctrlPlaceholderDragdrop.Controls.Add(rfv1);
+            //    Label lblOpen2 = new Label();
+            //    lblOpen2.Text = "</div><div class='col-sm-3'>";
+            //    ctrlPlaceholderDragdrop.Controls.Add(lblOpen2);
+            //    TextBox tb2 = new TextBox();
+            //    tb2.ID = "tb2" + loopcnt;
+            //    tb2.CssClass = "form-control";
+            //    tb2.EnableViewState = true;
+            //    ctrlPlaceholderDragdrop.Controls.Add(tb2);
+            //    Label lblClose2 = new Label();
+            //    lblClose2.Text = "</div><div class='col-sm-1'>";
+            //    ctrlPlaceholderDragdrop.Controls.Add(lblClose2);
+            //    RequiredFieldValidator rfv2 = new RequiredFieldValidator();
+            //    rfv2.ID = "rfv2" + loopcnt;
+            //    rfv2.ControlToValidate = "tb2" + loopcnt;
+            //    rfv2.ValidationGroup = "dragdrop";
+            //    rfv2.ErrorMessage = "*";
+            //    rfv2.Attributes.Add("style", "font-size:21px; color:Red; font-weight:bold;");
+            //    ctrlPlaceholderDragdrop.Controls.Add(rfv2);
+            //    Label lblclosediv = new Label();
+            //    lblclosediv.Text = "</div></div>";
+            //    ctrlPlaceholderDragdrop.Controls.Add(lblclosediv);
+            //}
         }
 
         protected void ShowMessage(string Message, MessageType type)
@@ -1147,6 +1246,26 @@ namespace WebMerchant
             InitializeDynamicText(Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox", ctrlPlaceholderTextBox);
         }
 
+        protected void btnAddAnswerMulti_Click(object sender, EventArgs e)
+        {
+            InitializeDynamicText(Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderMulti", ctrlPlaceholderMulti);
+        }
+
+        protected void btnAddAnswerVacant_Click(object sender, EventArgs e)
+        {
+            InitializeDynamicText(Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderVacant", ctrlPlaceholderVacant);
+        }
+
+        protected void btnAddAnswerDragDrop_Click(object sender, EventArgs e)
+        {
+            InitializeDynamicText(Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderDragdrop", ctrlPlaceholderDragdrop);
+        }
+
+        protected void btnAddAnswerScenario_Click(object sender, EventArgs e)
+        {
+            InitializeDynamicText(Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderScenario", ctrlPlaceholderScenario);
+        }
+
         private void InitializeDynamicText(int qtype, string plcholdname, PlaceHolder plcholer)
         {
             int index = plcholer.Controls.OfType<TextBox>().ToList().Count + 1;
@@ -1162,7 +1281,7 @@ namespace WebMerchant
             lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Option " + Convert.ToChar(64 + loopcnt);
             ctrlPlaceholderTextBox.Controls.Add(lblOpen);
 
-            if (qtype == 1 || qtype == 3)
+            if (qtype == 1 || qtype == 3 || qtype == 6)
             {
                 RadioButton rdbtn = new RadioButton();
                 rdbtn.ID = loopcnt.ToString();
@@ -1171,7 +1290,7 @@ namespace WebMerchant
                 rdbtn.EnableViewState = true;
                 ctrlPlaceholderTextBox.Controls.Add(rdbtn);
             }
-            else if (qtype == 2)
+            else if (qtype == 2 || qtype == 4)
             {
                 System.Web.UI.WebControls.CheckBox chkmulti = new System.Web.UI.WebControls.CheckBox();
                 chkmulti.ID = loopcnt.ToString();
@@ -1210,12 +1329,7 @@ namespace WebMerchant
             ctrlPlaceholderTextBox.Controls.Add(lblvalidaclose);
         }
 
-        protected void btnAddAnswerMulti_Click(object sender, EventArgs e)
-        {
-            InitializeDynamicText(Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderMulti", ctrlPlaceholderMulti);
-        }
-
-        private void CreateTextBoxQEdit(int loopcnt, int qtype, string placeholder, string tbvalue, string valueans)
+        private void CreateTextBoxQEdit(int loopcnt, int qtype, string placeholder, string tbvalue, bool valueans)
         {
             ContentPlaceHolder cph = (ContentPlaceHolder)this.Master.FindControl("ContentPlaceHolder1");
             PlaceHolder ctrlPlaceholderTextBox = (PlaceHolder)cph.FindControl(placeholder);
@@ -1223,7 +1337,7 @@ namespace WebMerchant
             lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Option " + Convert.ToChar(64 + loopcnt);
             ctrlPlaceholderTextBox.Controls.Add(lblOpen);
 
-            if (qtype == 1)
+            if (qtype == 1 || qtype == 3 || qtype == 6)
             {
                 RadioButton rdbtn = new RadioButton();
                 rdbtn.ID = loopcnt.ToString();
@@ -1231,19 +1345,19 @@ namespace WebMerchant
                 rdbtn.GroupName = "Single";
                 rdbtn.EnableViewState = true;
                 ctrlPlaceholderTextBox.Controls.Add(rdbtn);
-                if (valueans.Trim() == "1")
+                if (valueans)
                 {
                     rdbtn.Checked = true;
                 }
             }
-            else if (qtype == 2)
+            else if (qtype == 2 || qtype == 4)
             {
                 System.Web.UI.WebControls.CheckBox chkmulti = new System.Web.UI.WebControls.CheckBox();
                 chkmulti.ID = loopcnt.ToString();
                 chkmulti.CssClass = "";
                 chkmulti.EnableViewState = true;
                 ctrlPlaceholderTextBox.Controls.Add(chkmulti);
-                if (valueans.Trim() == "1")
+                if (valueans)
                 {
                     chkmulti.Checked = true;
                 }
@@ -1313,7 +1427,7 @@ namespace WebMerchant
                         {
                             _boqans.QuestionId = retqID;
                             _boqans.Answer = e1.Current;
-                            _boqans.RightAnswer = e2.Current.ToString();
+                            _boqans.RightAnswer = true;// e2.Current.ToString();
                             _boqans.IsActive = true;
                             _boqans.IsDelete = false;
                             _boqans.CreatedBy = MerchantId;

@@ -150,7 +150,7 @@ namespace WebUser
                     item.Value = listanswer[i].AnswerId.ToString();
                     if (hfTestMode.Value == "SM")
                     {
-                        item.Selected = Convert.ToBoolean(listanswer[i].RightAnswer.Equals("1") ? true : false);
+                        item.Selected = listanswer[i].RightAnswer;
                     }
                     else if (hfTestMode.Value == "TM" || hfTestMode.Value == "TO")
                     {
@@ -366,7 +366,7 @@ namespace WebUser
                 {
                     foreach (var item in _examqueanslist.QuestionList)
                     {
-                        var QuetionOrignalAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(ans => ans.RightAnswer.Equals("1")).ToList();
+                        var QuetionOrignalAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(ans => ans.RightAnswer.Equals(true)).ToList();
                         var QuetionUserAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true)).ToList();
 
                         bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
@@ -389,8 +389,7 @@ namespace WebUser
                 var data = list2.Where(z => z.AnswerId == list1[i].AnswerId).FirstOrDefault();
                 if (data == null)
                     return false;
-                bool flag = Convert.ToBoolean(list1[i].RightAnswer.Equals("1") ? true : false);
-                if (flag != list2[i].UserAnswer)
+                if (list1[i].RightAnswer != list2[i].UserAnswer)
                     return false;
             }
             return true;

@@ -40,8 +40,8 @@ namespace ExamSimulator
             String[] files = null;
             if (Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\"))
             {
-                //var allowedExtensions = new[] { ".doc", ".docx" };
-                var allowedExtensions = new[] { ".vcee" };
+                var allowedExtensions = new[] { ".doc", ".docx" };
+                // var allowedExtensions = new[] { ".vcee" };
                 var filesss = Directory
                     .GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\")
                     .Where(file => allowedExtensions.Any(file.ToLower().EndsWith))

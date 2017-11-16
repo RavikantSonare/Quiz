@@ -13,7 +13,7 @@ namespace WebMerchant.BOLayer
 
         public int QuestionId { get; set; }
 
-        public string RightAnswer { get; set; }
+        public bool RightAnswer { get; set; }
 
         public bool IsActive { get; set; }
 

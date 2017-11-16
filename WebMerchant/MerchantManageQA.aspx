@@ -4,7 +4,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('[id$=btnAdd], [id$=btnMultiAdd], [id$=btnVacantAdd], [id$=btnHotspotAdd], [id$=btnDragdropAdd]').click(function () {
+            $('[id$=btnAdd], [id$=btnMultiAdd], [id$=btnVacantAdd], [id$=btnHotspotAdd], [id$=btnDragdropAdd],[id$=btnScenarioAdd]').click(function () {
                 if ($('[id$=ddlExamCode]').val() == null) {
                     $('[id$=lblerror]').css("display", "block");
                     $('[id$=lblerror]').html("Please Select Exam ");
@@ -88,10 +88,10 @@
                             <div class="form-group">
                                 <label for="" class="col-sm-3 control-label">Exam Code:</label>
                                 <div class="col-sm-2">
-                                    <asp:DropDownList ID="ddlExamCode" runat="server" class="form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlExamCode" runat="server" CssClass="form-control"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
-                                    <asp:FileUpload ID="FileUpload1" runat="server" class="form-control" />
+                                    <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control" />
                                 </div>
                                 <div class="col-sm-2">
                                     <asp:Button ID="btnImport" runat="server" Text="Import Questions" CssClass="btn btn-default" OnClick="btnImport_Click" />
@@ -109,13 +109,13 @@
                             <div class="form-group">
                                 <label for="" class="col-sm-3 control-label">Score:</label>
                                 <div class="col-sm-2">
-                                    <asp:TextBox ID="txtScore" runat="server" class="form-control" TextMode="Number" min="0" max="100"></asp:TextBox>
+                                    <asp:TextBox ID="txtScore" runat="server" CssClass="form-control" TextMode="Number" min="1" max="100"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="" class="col-sm-3 control-label">Question</label>
                                 <div class="col-sm-9">
-                                    <asp:TextBox ID="txtQuestion" runat="server" class="summernote form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtQuestion" runat="server" CssClass="summernote form-control"></asp:TextBox>
                                     <asp:HiddenField runat="server" ID="prevVaile" />
                                     <asp:HiddenField runat="server" ID="hftxtquestion" />
                                 </div>
@@ -127,16 +127,16 @@
                                         <asp:Button ID="btnAddAnswerSingle" runat="server" Text="Add Answer" CssClass="btn btn-default" OnClick="btnAddAnswerSingle_Click" />
                                     </div>
                                     <div class="col-sm-5">
-                                        <asp:Button ID="btnExhibit" runat="server" class="btn btn-default" Text="Exhibit" />
-                                        <asp:Button ID="btnTopology" runat="server" class="btn btn-default" Text="Topology" />
-                                        <asp:Button ID="btnScenario" runat="server" class="btn btn-default" Text="Scenario" />
+                                        <asp:Button ID="btnExhibit" runat="server" CssClass="btn btn-default" Text="Exhibit" />
+                                        <asp:Button ID="btnTopology" runat="server" CssClass="btn btn-default" Text="Topology" />
+                                        <asp:Button ID="btnScenario" runat="server" CssClass="btn btn-default" Text="Scenario" />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-offset-3">
-                                        <asp:Button ID="btnAdd" runat="server" Text="Add" class="btn btn-default" OnClick="btnAdd_Click" ValidationGroup="single" />
-                                        <asp:Button ID="btnReset" runat="server" Text="Reset" class="btn btn-default" OnClick="btnReset_Click" />
+                                        <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" ValidationGroup="single" />
+                                        <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
                                     </div>
                                 </div>
                             </asp:Panel>
@@ -147,9 +147,9 @@
                                         <asp:Button ID="btnAddAnswerMulti" runat="server" Text="Add Answer" CssClass="btn btn-default" OnClick="btnAddAnswerMulti_Click" />
                                     </div>
                                     <div class="col-sm-5" style="display: none;">
-                                        <asp:Button ID="btnMultiExhibit" runat="server" class="btn btn-default" Text="Exhibit" />
-                                        <asp:Button ID="btnMultiTopology" runat="server" class="btn btn-default" Text="Topology" />
-                                        <asp:Button ID="btnMultiScenario" runat="server" class="btn btn-default" Text="Scenario" />
+                                        <asp:Button ID="btnMultiExhibit" runat="server" CssClass="btn btn-default" Text="Exhibit" />
+                                        <asp:Button ID="btnMultiTopology" runat="server" CssClass="btn btn-default" Text="Topology" />
+                                        <asp:Button ID="btnMultiScenario" runat="server" CssClass="btn btn-default" Text="Scenario" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -157,50 +157,21 @@
                                         <label id="lblMultiError" runat="server" style="display: none; color: #D8000C;"></label>
                                     </div>
                                     <div class="col-sm-offset-3">
-                                        <asp:Button ID="btnMultiAdd" runat="server" Text="Add" class="btn btn-default" OnClick="btnMultiAdd_Click" ValidationGroup="multi" />
-                                        <asp:Button ID="btnMultiReset" runat="server" Text="Reset" class="btn btn-default" OnClick="btnReset_Click" />
+                                        <asp:Button ID="btnMultiAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnMultiAdd_Click" ValidationGroup="multi" />
+                                        <asp:Button ID="btnMultiReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
                                     </div>
                                 </div>
                             </asp:Panel>
                             <asp:Panel ID="pnlVacant" runat="server" Visible="false">
-                                <%--   <div class="form-group">
-                                    <label for="" class="col-sm-3 control-label">No. of Answer</label>
-                                    <div class="col-sm-4">
-                                        <asp:DropDownList ID="ddlVacantAnswerOption" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlVacantAnswerOption_SelectedIndexChanged" ValidationGroup="vacant">
-                                            <asp:ListItem Value="0">Select</asp:ListItem>
-                                            <asp:ListItem Value="1">1</asp:ListItem>
-                                            <asp:ListItem Value="2">2</asp:ListItem>
-                                            <asp:ListItem Value="3">3</asp:ListItem>
-                                            <asp:ListItem Value="4">4</asp:ListItem>
-                                            <asp:ListItem Value="5">5</asp:ListItem>
-                                            <asp:ListItem Value="6">6</asp:ListItem>
-                                            <asp:ListItem Value="7">7</asp:ListItem>
-                                            <asp:ListItem Value="8">8</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <asp:RequiredFieldValidator ID="rfvddlVacantAnswerOption" runat="server" ErrorMessage="Please select no of answer" ControlToValidate="ddlVacantAnswerOption" ForeColor="Red" ValidationGroup="vacant" InitialValue="0"></asp:RequiredFieldValidator>
-                                    </div>
-                                </div>--%>
                                 <asp:PlaceHolder runat="server" ID="ctrlPlaceholderVacant"></asp:PlaceHolder>
-                                <%--   <div class="form-group">
-                                    <label for="" class="col-sm-3 control-label">Right Answer</label>
-                                    <div class="col-sm-4">
-                                        <asp:ListBox ID="lboxVacantAnswer" runat="server" CssClass="form-control"></asp:ListBox>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <asp:RequiredFieldValidator ID="rfvlboxVacantAnswer" runat="server" InitialValue="" ControlToValidate="lboxVacantAnswer" ErrorMessage="Atleast one answer required" Text="Atleast one answer required" ValidationGroup="vacant" ForeColor="Red"> 
-                                        </asp:RequiredFieldValidator>
-                                    </div>
-                                </div>--%>
                                 <div class="form-group">
                                     <div class="col-sm-3">
-                                        <asp:Button ID="btnAddAnswerVacant" runat="server" Text="Add Answer" CssClass="btn btn-default" />
+                                        <asp:Button ID="btnAddAnswerVacant" runat="server" Text="Add Answer" CssClass="btn btn-default" OnClick="btnAddAnswerVacant_Click" />
                                     </div>
                                     <div class="col-sm-5" style="display: none;">
-                                        <asp:Button ID="btnVacantExhibit" runat="server" class="btn btn-default" Text="Exhibit" />
-                                        <asp:Button ID="btnVacantTopology" runat="server" class="btn btn-default" Text="Topology" />
-                                        <asp:Button ID="btnVacantScenario" runat="server" class="btn btn-default" Text="Scenario" />
+                                        <asp:Button ID="btnVacantExhibit" runat="server" CssClass="btn btn-default" Text="Exhibit" />
+                                        <asp:Button ID="btnVacantTopology" runat="server" CssClass="btn btn-default" Text="Topology" />
+                                        <asp:Button ID="btnVacantScenario" runat="server" CssClass="btn btn-default" Text="Scenario" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -208,8 +179,30 @@
                                         <label id="lblVacantError" runat="server" style="display: none; color: #D8000C;"></label>
                                     </div>
                                     <div class="col-sm-offset-3">
-                                        <asp:Button ID="btnVacantAdd" runat="server" Text="Add" class="btn btn-default" OnClick="btnVacantAdd_Click" ValidationGroup="vacant" />
-                                        <asp:Button ID="btnVacantReset" runat="server" Text="Reset" class="btn btn-default" OnClick="btnReset_Click" />
+                                        <asp:Button ID="btnVacantAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnVacantAdd_Click" ValidationGroup="single" />
+                                        <asp:Button ID="btnVacantReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
+                                    </div>
+                                </div>
+                            </asp:Panel>
+                            <asp:Panel ID="pnlDragdrop" runat="server" Visible="false">
+                                <asp:PlaceHolder runat="server" ID="ctrlPlaceholderDragdrop"></asp:PlaceHolder>
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <asp:Button ID="btnAddAnswerDragDrop" runat="server" Text="Add Answer" CssClass="btn btn-default" OnClick="btnAddAnswerDragDrop_Click" />
+                                    </div>
+                                    <div class="col-sm-5" style="display: none;">
+                                        <asp:Button ID="btnDragdropExhibit" runat="server" CssClass="btn btn-default" Text="Exhibit" />
+                                        <asp:Button ID="btnDragdropTopology" runat="server" CssClass="btn btn-default" Text="Topology" />
+                                        <asp:Button ID="btnDragdropScenario" runat="server" CssClass="btn btn-default" Text="Scenario" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <label id="lblDragdropError" runat="server" style="display: none; color: #D8000C;"></label>
+                                    </div>
+                                    <div class="col-sm-offset-3">
+                                        <asp:Button ID="btnDragdropAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnDragdropAdd_Click" ValidationGroup="dragdrop" />
+                                        <asp:Button ID="btnDragdropReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
                                     </div>
                                 </div>
                             </asp:Panel>
@@ -322,52 +315,32 @@
                                         <label id="lblHotspotError" runat="server" style="display: none; color: #D8000C;"></label>
                                     </div>
                                     <div class="col-sm-offset-3">
-                                        <asp:Button ID="btnHotspotAdd" runat="server" Text="Add" class="btn btn-default" OnClick="btnHotspotAdd_Click" />
-                                        <asp:Button ID="btnHotspotReset" runat="server" Text="Reset" class="btn btn-default" OnClick="btnReset_Click" />
+                                        <asp:Button ID="btnHotspotAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnHotspotAdd_Click" />
+                                        <asp:Button ID="btnHotspotReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
                                     </div>
                                 </div>
                                 <script src="img_mapjs/summerHTMLImageMapCreator.js"></script>
                             </asp:Panel>
-                            <asp:Panel ID="pnlDragdrop" runat="server" Visible="false">
+                            <asp:Panel ID="pnlScenario" runat="server" Visible="false">
+                                <asp:PlaceHolder runat="server" ID="ctrlPlaceholderScenario"></asp:PlaceHolder>
                                 <div class="form-group">
-                                    <label for="" class="col-sm-3 control-label">No. of Matches</label>
-                                    <div class="col-sm-4">
-                                        <asp:DropDownList ID="ddlDragdropMatchs" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlDragdropMatchs_SelectedIndexChanged" ValidationGroup="dragdrop">
-                                            <asp:ListItem Value="0">Select</asp:ListItem>
-                                            <asp:ListItem Value="1">1</asp:ListItem>
-                                            <asp:ListItem Value="2">2</asp:ListItem>
-                                            <asp:ListItem Value="3">3</asp:ListItem>
-                                            <asp:ListItem Value="4">4</asp:ListItem>
-                                            <asp:ListItem Value="5">5</asp:ListItem>
-                                            <asp:ListItem Value="6">6</asp:ListItem>
-                                            <asp:ListItem Value="7">7</asp:ListItem>
-                                            <asp:ListItem Value="8">8</asp:ListItem>
-                                            <asp:ListItem Value="9">9</asp:ListItem>
-                                            <asp:ListItem Value="10">10</asp:ListItem>
-                                        </asp:DropDownList>
+                                    <div class="col-sm-3">
+                                        <asp:Button ID="btnAddAnswerScenario" runat="server" Text="Add Answer" CssClass="btn btn-default" OnClick="btnAddAnswerScenario_Click" />
                                     </div>
-                                    <div class="col-sm-4">
-                                        <asp:RequiredFieldValidator ID="rfvddlDragdropMatchs" runat="server" ErrorMessage="Please select no of Match" ControlToValidate="ddlDragdropMatchs" ForeColor="Red" ValidationGroup="dragdrop" InitialValue="0"></asp:RequiredFieldValidator>
-                                    </div>
-                                </div>
-                                <asp:PlaceHolder runat="server" ID="ctrlPlaceholderDragdrop"></asp:PlaceHolder>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-3 col-sm-5" style="display: none;">
-                                        <asp:Button ID="btnDragdropExhibit" runat="server" class="btn btn-default" Text="Exhibit" />
-                                        <asp:Button ID="btnDragdropTopology" runat="server" class="btn btn-default" Text="Topology" />
-                                        <asp:Button ID="btnDragdropScenario" runat="server" class="btn btn-default" Text="Scenario" />
+                                    <div class="col-sm-5" style="display: none;">
+                                        <asp:Button ID="btnScenarioExhibit" runat="server" CssClass="btn btn-default" Text="Exhibit" />
+                                        <asp:Button ID="btnScenarioTopology" runat="server" CssClass="btn btn-default" Text="Topology" />
+                                        <asp:Button ID="btnScenarioScenario" runat="server" CssClass="btn btn-default" Text="Scenario" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <label id="lblDragdropError" runat="server" style="display: none; color: #D8000C;"></label>
-                                    </div>
                                     <div class="col-sm-offset-3">
-                                        <asp:Button ID="btnDragdropAdd" runat="server" Text="Add" class="btn btn-default" OnClick="btnDragdropAdd_Click" ValidationGroup="dragdrop" />
-                                        <asp:Button ID="btnDragdropReset" runat="server" Text="Reset" class="btn btn-default" OnClick="btnReset_Click" />
+                                        <asp:Button ID="btnScenarioAdd" runat="server" Text="Add" CssClass="btn btn-default" ValidationGroup="single" OnClick="btnScenarioAdd_Click" />
+                                        <asp:Button ID="btnScenarioReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
                                     </div>
                                 </div>
                             </asp:Panel>
+
                             <div class="form-group">
                                 <label for="" class="col-sm-3 control-label">Explanation</label>
                                 <div class="col-sm-9">
@@ -383,10 +356,10 @@
                             <div class="form-group">
                                 <label for="" class="col-sm-2 control-label">Exam code:</label>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtSearch" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div class="col-sm-5">
-                                    <asp:Button ID="btnSearch" runat="server" Text="Search" class="btn btn-default" OnClick="btnSearch_Click" />
+                                    <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-default" OnClick="btnSearch_Click" />
                                 </div>
                             </div>
 
@@ -396,7 +369,7 @@
             </div>
             <div class="row">
                 <div class="clearfix col-sm-12 mtop10">
-                    <asp:GridView ID="gvQuestionManage" runat="server" AutoGenerateColumns="false" class="table" DataKeyNames="QAId" AllowPaging="True" OnPageIndexChanging="gvQuestionManage_PageIndexChanging" PageSize="5">
+                    <asp:GridView ID="gvQuestionManage" runat="server" AutoGenerateColumns="false" CssClass="table" DataKeyNames="QAId" AllowPaging="True" OnPageIndexChanging="gvQuestionManage_PageIndexChanging" PageSize="5">
                         <Columns>
                             <asp:TemplateField HeaderText="Question">
                                 <ItemTemplate>
@@ -455,7 +428,6 @@
             </div>
         </div>
     </div>
-
     <style type="text/css">
         .messagealert {
             width: 50%;

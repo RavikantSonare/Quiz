@@ -123,7 +123,7 @@ namespace WebUser.DAlayer
                                            {
                                                AnswerId = li.Field<int>("AnswerId"),
                                                Answer = li.Field<string>("Answer"),
-                                               RightAnswer = li.Field<string>("RightAnswer")
+                                               RightAnswer = li.Field<bool>("RightAnswer")
                                            })
                                             .ToList();
             return _answerlist;

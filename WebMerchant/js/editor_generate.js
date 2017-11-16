@@ -20,7 +20,7 @@ $(function () {
 });
 
 $(document).ready(function () {
-    $('[id$=btnAdd], [id$=btnMultiAdd], [id$=btnVacantAdd], [id$=btnHotspotAdd], [id$=btnDragdropAdd]').click(function () {
+    $('[id$=btnAdd], [id$=btnMultiAdd], [id$=btnVacantAdd], [id$=btnHotspotAdd], [id$=btnDragdropAdd], [id$=btnScenarioAdd]').click(function () {
         var val = $('#ContentPlaceHolder1_txtQuestion').summernote('code');
         $('#ContentPlaceHolder1_hftxtquestion').val(val);
 

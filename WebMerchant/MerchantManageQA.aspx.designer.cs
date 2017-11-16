@@ -328,6 +328,87 @@ namespace WebMerchant {
         protected global::System.Web.UI.WebControls.Button btnVacantReset;
         
         /// <summary>
+        /// pnlDragdrop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDragdrop;
+        
+        /// <summary>
+        /// ctrlPlaceholderDragdrop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder ctrlPlaceholderDragdrop;
+        
+        /// <summary>
+        /// btnAddAnswerDragDrop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddAnswerDragDrop;
+        
+        /// <summary>
+        /// btnDragdropExhibit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDragdropExhibit;
+        
+        /// <summary>
+        /// btnDragdropTopology control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDragdropTopology;
+        
+        /// <summary>
+        /// btnDragdropScenario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDragdropScenario;
+        
+        /// <summary>
+        /// lblDragdropError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDragdropError;
+        
+        /// <summary>
+        /// btnDragdropAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDragdropAdd;
+        
+        /// <summary>
+        /// btnDragdropReset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDragdropReset;
+        
+        /// <summary>
         /// pnlHotspot control.
         /// </summary>
         /// <remarks>
@@ -400,94 +481,76 @@ namespace WebMerchant {
         protected global::System.Web.UI.WebControls.Button btnHotspotReset;
         
         /// <summary>
-        /// pnlDragdrop control.
+        /// pnlScenario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDragdrop;
+        protected global::System.Web.UI.WebControls.Panel pnlScenario;
         
         /// <summary>
-        /// ddlDragdropMatchs control.
+        /// ctrlPlaceholderScenario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDragdropMatchs;
+        protected global::System.Web.UI.WebControls.PlaceHolder ctrlPlaceholderScenario;
         
         /// <summary>
-        /// rfvddlDragdropMatchs control.
+        /// btnAddAnswerScenario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvddlDragdropMatchs;
+        protected global::System.Web.UI.WebControls.Button btnAddAnswerScenario;
         
         /// <summary>
-        /// ctrlPlaceholderDragdrop control.
+        /// btnScenarioExhibit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder ctrlPlaceholderDragdrop;
+        protected global::System.Web.UI.WebControls.Button btnScenarioExhibit;
         
         /// <summary>
-        /// btnDragdropExhibit control.
+        /// btnScenarioTopology control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDragdropExhibit;
+        protected global::System.Web.UI.WebControls.Button btnScenarioTopology;
         
         /// <summary>
-        /// btnDragdropTopology control.
+        /// btnScenarioScenario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDragdropTopology;
+        protected global::System.Web.UI.WebControls.Button btnScenarioScenario;
         
         /// <summary>
-        /// btnDragdropScenario control.
+        /// btnScenarioAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDragdropScenario;
+        protected global::System.Web.UI.WebControls.Button btnScenarioAdd;
         
         /// <summary>
-        /// lblDragdropError control.
+        /// btnScenarioReset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDragdropError;
-        
-        /// <summary>
-        /// btnDragdropAdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDragdropAdd;
-        
-        /// <summary>
-        /// btnDragdropReset control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDragdropReset;
+        protected global::System.Web.UI.WebControls.Button btnScenarioReset;
         
         /// <summary>
         /// hftxtExplanation control.
