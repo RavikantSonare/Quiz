@@ -22,6 +22,7 @@ namespace WebMerchant.BOLayer
         public DateTime CreatedDate { get; set; }
         public int UpdatedBy { get; set; }
         public DateTime UpdatedDate { get; set; }
+        public string Resource { get; set; }
         public string Event { get; set; }
     }
 }

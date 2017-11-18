@@ -208,11 +208,11 @@
                             </asp:Panel>
                             <asp:Panel ID="pnlHotspot" runat="server" Visible="false">
                                 <link href="img_mapjs/main.css" rel="stylesheet" />
-                                <noscript>
+                                <%-- <noscript>
     <div id="noscript">
         Please, enable javascript in your browser
     </div>
-</noscript>
+</noscript>--%>
 
                                 <div id="wrapper">
                                     <header id="header">
@@ -222,13 +222,14 @@
                                                 <li id="load" style="display: none;"><a href="#">load</a></li>
                                                 <li id="from_html" style="display: none;"><a href="#">from html</a></li>
                                                 <li id="rectangle"><a href="#">rectangle</a></li>
-                                                <li id="circle"><a href="#">circle</a></li>
-                                                <li id="polygon"><a href="#">polygon</a></li>
+                                                <li id="circle" style="display: none;"><a href="#">circle</a></li>
+                                                <li id="polygon" style="display: none;"><a href="#">polygon</a></li>
                                                 <li id="edit"><a href="#">edit</a></li>
                                                 <li id="to_html"><a href="#">to html</a></li>
-                                                <li id="preview"><a href="#">preview</a></li>
+                                                <li id="preview" style="display: none;"><a href="#">preview</a></li>
                                                 <li id="clear"><a href="#">clear</a></li>
                                                 <li id="new_image"><a href="#">new image</a></li>
+                                                <li id="show_help" style="display: none;"><a href="#">?</a></li>
                                             </ul>
                                         </nav>
                                         <div id="coords"></div>
@@ -313,6 +314,8 @@
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <label id="lblHotspotError" runat="server" style="display: none; color: #D8000C;"></label>
+                                    </div>
+                                    <div class="col-sm-offset-3" id="divHotspot">
                                     </div>
                                     <div class="col-sm-offset-3">
                                         <asp:Button ID="btnHotspotAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnHotspotAdd_Click" />
@@ -440,4 +443,9 @@
     </style>
     <div class="messagealert" id="alert_container">
     </div>
+    <script>
+        $(document).on("click", "#ContentPlaceHolder1_btnHotspotAdd", function () {
+            $("#preview").trigger("click");
+        });
+    </script>
 </asp:Content>

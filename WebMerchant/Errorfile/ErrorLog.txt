@@ -912,3 +912,15 @@ Source: mscorlib
 TargetSite: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
 -----------------------------------------------------------
 
+Time: 18/11/2017 02:36:27 PM
+-----------------------------------------------------------
+Message: Input string was not in a correct format.
+StackTrace:    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.String.System.IConvertible.ToInt32(IFormatProvider provider)
+   at System.Convert.ToInt32(Object value)
+   at WebMerchant.MerchantManageQA.AddQuestion(String noofanswer) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 160
+Source: mscorlib
+TargetSite: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
+-----------------------------------------------------------
+

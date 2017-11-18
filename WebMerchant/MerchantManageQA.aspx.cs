@@ -154,6 +154,7 @@ namespace WebMerchant
                 _boqamng.CreatedDate = DateTime.UtcNow;
                 _boqamng.UpdatedBy = MerchantId;
                 _boqamng.UpdatedDate = DateTime.UtcNow;
+                _boqamng.Resource = txtimage.Text;
                 if (ViewState["QAId"] != null)
                 {
                     _boqamng.QAId = Convert.ToInt32(ViewState["QAId"]);
@@ -164,7 +165,7 @@ namespace WebMerchant
                 {
                     _boqamng.QAId = 0;
                     _boqamng.Event = "Insert";
-                    revalue = _baqamng.Insert(_boqamng);
+                    revalue = 1;// _baqamng.Insert(_boqamng);
                 }
             }
             catch (Exception ex)
@@ -594,6 +595,88 @@ namespace WebMerchant
 
         }
 
+        protected void btnHotspotAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
+                {
+                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                    if (txtmaphtml.Text != "")
+                    {
+                        string[] AnswerArray = txtmaphtml.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                        // ImageUpload(txtimage.Text, hdimage.Value);
+                        int qusvalu = default(int);
+                        qusvalu = AddQuestion(AnswerArray.Length.ToString());
+                        if (qusvalu == 2)
+                        {
+                            int[] array = (ViewState["arrVacantAnswerID"]) as int[];
+                            for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
+                            {
+                                _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
+                                if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
+                                {
+                                    _boqans.AnswerId = array[loopcnt - 1];
+                                    _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
+                                }
+                                //if (lboxVacantAnswer.SelectedIndex == loopcnt - 1)
+                                //{
+                                //    _boqans.RightAnswer = "1";
+                                //}
+                                //else
+                                //{
+                                //    _boqans.RightAnswer = "0";
+                                //}
+                                _boqans.IsActive = true;
+                                _boqans.IsDelete = false;
+                                _boqans.CreatedBy = MerchantId;
+                                _boqans.CreatedDate = DateTime.UtcNow;
+                                _boqans.UpdatedBy = MerchantId;
+                                _boqans.UpdatedDate = DateTime.UtcNow;
+                                _boqans.Event = "Update";
+                                if (_baqans.Update(_boqans) == 2)
+                                {
+                                    string success = "Success";
+                                }
+                            }
+                            ShowMessage("Question updated successfully", MessageType.Success);
+                        }
+                        else
+                        {
+                            for (int loopcnt = 1; loopcnt <= AnswerArray.Length; loopcnt++)
+                            {
+                                _boqans.QuestionId = qusvalu;
+                                _boqans.Answer = AnswerArray[loopcnt - 1];
+                                _boqans.RightAnswer = true;// ImageUpload(txtimage.Text, hdimage.Value);
+                                _boqans.IsActive = true;
+                                _boqans.IsDelete = false;
+                                _boqans.CreatedBy = MerchantId;
+                                _boqans.CreatedDate = DateTime.UtcNow;
+                                _boqans.UpdatedBy = MerchantId;
+                                _boqans.UpdatedDate = DateTime.UtcNow;
+                                _boqans.Event = "Insert";
+                                //if (_baqans.Insert(_boqans) == 1)
+                                //{
+                                //    string success = "Success";
+                                //}
+                            }
+                            ShowMessage("Question added successfully", MessageType.Success);
+                        }
+                        ClearControl();
+                    }
+                    else
+                    {
+                        ShowMessage("Please map on image and generate html", MessageType.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
+        }
+
         private void ClearControl()
         {
             btnAddAnswerSingle.Visible = true;
@@ -940,88 +1023,10 @@ namespace WebMerchant
             }
         }
 
-        protected void btnHotspotAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
-                {
-                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    string txtmap = txtmaphtml.Text;
-                    if (txtmaphtml.Text != "")
-                    {
-                        int qusvalu = default(int);
-                        qusvalu = AddQuestion("1");
-                        if (qusvalu == 2)
-                        {
-                            int[] array = (ViewState["arrVacantAnswerID"]) as int[];
-                            for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
-                            {
-                                _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                                if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
-                                {
-                                    _boqans.AnswerId = array[loopcnt - 1];
-                                    _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
-                                }
-                                //if (lboxVacantAnswer.SelectedIndex == loopcnt - 1)
-                                //{
-                                //    _boqans.RightAnswer = "1";
-                                //}
-                                //else
-                                //{
-                                //    _boqans.RightAnswer = "0";
-                                //}
-                                _boqans.IsActive = true;
-                                _boqans.IsDelete = false;
-                                _boqans.CreatedBy = MerchantId;
-                                _boqans.CreatedDate = DateTime.UtcNow;
-                                _boqans.UpdatedBy = MerchantId;
-                                _boqans.UpdatedDate = DateTime.UtcNow;
-                                _boqans.Event = "Update";
-                                if (_baqans.Update(_boqans) == 2)
-                                {
-                                    string success = "Success";
-                                }
-                            }
-                            ShowMessage("Question updated successfully", MessageType.Success);
-                        }
-                        else
-                        {
-                            _boqans.QuestionId = qusvalu;
-                            _boqans.Answer = txtmaphtml.Text;
-                            _boqans.RightAnswer = true;// ImageUpload(txtimage.Text, hdimage.Value);
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Insert";
-                            if (_baqans.Insert(_boqans) == 1)
-                            {
-                                string success = "Success";
-                            }
-                            ShowMessage("Question added successfully", MessageType.Success);
-                        }
-                        ClearControl();
-                    }
-                    else
-                    {
-                        ShowMessage("Please map on image and generate html", MessageType.Error);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex);
-                ShowMessage("Some technical error", MessageType.Warning);
-            }
-        }
-
         public string ImageUpload(string imagename, string value)
         {
             string filePath = string.Empty;
-            filePath = HostingEnvironment.MapPath("~/img_map/");
+            filePath = HostingEnvironment.MapPath("~/resource/");
             var image = imagename;
             byte[] data;
             if (hdimage.Value == null || hdimage.Value.Length == 0 || hdimage.Value.Length % 4 != 0

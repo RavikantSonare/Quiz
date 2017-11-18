@@ -465,8 +465,6 @@ var summerHtmlImageMapCreator = (function () {
                 get_image.showLoadIndicator();
                 domElements.img.src = url;
                 state.image.src = url;
-                alert(url);
-                debugger;
                 $('#ContentPlaceHolder1_hdimage').attr('value', url);
 
                 domElements.img.onload = function () {
@@ -614,7 +612,8 @@ var summerHtmlImageMapCreator = (function () {
             },
             getHTMLCode: function (arg) {
                 var html_code = '';
-                var asp_code = '';
+                var arr1 = '';
+                var htmlradio = '';
                 var image = 'img_' + (new Date).getTime() + '.jpg';
                 if (arg) {
                     if (!state.areas.length) {
@@ -622,24 +621,23 @@ var summerHtmlImageMapCreator = (function () {
                     }
                     html_code += utils.encode('<img src="' + state.image.filename + '" alt="" usemap="#map" />') +
                         '<br />' + utils.encode('<map name="map">') + '<br />';
-                    asp_code += '<img src="/img_map/' + image + '" alt="" usemap="#map" />' +
-                       '<map name="map">';
                     utils.foreachReverse(state.areas, function (x) {
                         html_code += '&nbsp;&nbsp;&nbsp;&nbsp;' + utils.encode(x.toHTMLMapElementString()) + '<br />';
-                        asp_code += x.toHTMLMapElementString();
+                        arr1 += x.toCoords() + ";";
+                        htmlradio += '<div class="col-sm-12"><input id="ContentPlaceHolder1_RadioButton1" type="radio" name="ctl00$ContentPlaceHolder1$RadioButton1" value="RadioButton1"><label for="ContentPlaceHolder1_RadioButton1">radio1</label></div>';
                     });
                     html_code += utils.encode('</map>');
-                    asp_code += '</map>';
                 } else {
                     utils.foreachReverse(state.areas, function (x) {
                         html_code += x.toHTMLMapElementString();
-                        asp_code += x.toHTMLMapElementString();
+                        arr1 += x.toCoords() + ";";
+                        htmlradio += '<div class="col-sm-12"><input id="ContentPlaceHolder1_RadioButton1" type="radio" name="ctl00$ContentPlaceHolder1$RadioButton1" value="RadioButton1"><label for="ContentPlaceHolder1_RadioButton1">radio1</label></div>';
                     });
                 }
                 alert(image);
                 debugger;
                 $('#ContentPlaceHolder1_txtimage').attr('value', image);
-                return [html_code, asp_code];
+                return [html_code, arr1, htmlradio];
             }
         };
     })();
@@ -837,6 +835,7 @@ var summerHtmlImageMapCreator = (function () {
     Area.prototype.onStopEditing =
     Area.prototype.toString =
     Area.prototype.toHTMLMapElementString =
+    Area.prototype.toCoords =
     Area.prototype.getCoordsForDisplayingInfo =
     Area.prototype.ABSTRACT_METHOD;
 
@@ -1334,6 +1333,13 @@ var summerHtmlImageMapCreator = (function () {
             + (this._attributes.alt ? ' alt="' + this._attributes.alt + '"' : '')
             + (this._attributes.title ? ' title="' + this._attributes.title + '"' : '')
             + ' />';
+    };
+
+    Rectangle.prototype.toCoords = function () {
+        var x2 = this._coords.x + this._coords.width,
+            y2 = this._coords.y + this._coords.height;
+
+        return this._coords.x + ',' + this._coords.y + ',' + x2 + ',' + y2;
     };
 
     /**
@@ -2289,6 +2295,7 @@ var summerHtmlImageMapCreator = (function () {
             print: function () {
                 content.innerHTML = app.getHTMLCode(true)[0];
                 $('#ContentPlaceHolder1_txtmaphtml').attr('value', app.getHTMLCode(true)[1]);
+                $('#divHotspot').append(app.getHTMLCode(true)[2]);
                 utils.show(block);
             },
             hide: function () {

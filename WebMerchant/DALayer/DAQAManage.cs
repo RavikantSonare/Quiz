@@ -40,6 +40,7 @@ namespace WebMerchant.DALayer
                 _sqlcommand.Parameters.AddWithValue("@CreatedDate", _boqamng.CreatedDate);
                 _sqlcommand.Parameters.AddWithValue("@UpdatedBy", _boqamng.UpdatedBy);
                 _sqlcommand.Parameters.AddWithValue("@UpdatedDate", _boqamng.UpdatedDate);
+                _sqlcommand.Parameters.AddWithValue("@Resource", _boqamng.Resource);
                 _sqlcommand.Parameters.AddWithValue("@Event", _boqamng.Event);
                 _sqlcommand.Parameters.AddWithValue("@returnValue", 0).Direction = System.Data.ParameterDirection.InputOutput;
 
