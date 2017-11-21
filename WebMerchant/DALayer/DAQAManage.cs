@@ -41,6 +41,9 @@ namespace WebMerchant.DALayer
                 _sqlcommand.Parameters.AddWithValue("@UpdatedBy", _boqamng.UpdatedBy);
                 _sqlcommand.Parameters.AddWithValue("@UpdatedDate", _boqamng.UpdatedDate);
                 _sqlcommand.Parameters.AddWithValue("@Resource", _boqamng.Resource);
+                _sqlcommand.Parameters.AddWithValue("@Exhibit", _boqamng.Exhibit);
+                _sqlcommand.Parameters.AddWithValue("@Topology", _boqamng.Topology);
+                _sqlcommand.Parameters.AddWithValue("@Scenario", _boqamng.Scenario);
                 _sqlcommand.Parameters.AddWithValue("@Event", _boqamng.Event);
                 _sqlcommand.Parameters.AddWithValue("@returnValue", 0).Direction = System.Data.ParameterDirection.InputOutput;
 

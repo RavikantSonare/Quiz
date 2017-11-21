@@ -156,17 +156,27 @@ namespace WebUser
                     {
                         item.Selected = Convert.ToBoolean(listanswer[i].UserAnswer);
                     }
-                    rdbtnAnswerList.Items.Add(item);
-                    chkboxAnswerList.Items.Add(item);
-                    if (item.Selected)
+                    int qutype = _examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionID)).FirstOrDefault().QuestionTypeId;
+                    if (qutype == 1 || qutype == 3 || qutype == 6)
                     {
-                        lbDrop.Items.Add(item);
+                        rdbtnAnswerList.Items.Add(item);
                     }
-                    else
+                    else if (qutype == 2)
                     {
-                        lbDrag.Items.Add(item);
+                        chkboxAnswerList.Items.Add(item);
                     }
-                    if (_examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionID)).FirstOrDefault().QuestionTypeId == 5)
+                    else if (qutype == 4)
+                    {
+                        if (item.Selected)
+                        {
+                            lbDrop.Items.Add(item);
+                        }
+                        else
+                        {
+                            lbDrag.Items.Add(item);
+                        }
+                    }
+                    else if (qutype == 5)
                     { ArrangeMapHotSpots(imgHotSpot, item, QuestionID); }
                 }
             }

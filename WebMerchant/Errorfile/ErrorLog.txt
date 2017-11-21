@@ -924,3 +924,23 @@ Source: mscorlib
 TargetSite: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
 -----------------------------------------------------------
 
+Time: 20/11/2017 11:51:18 AM
+-----------------------------------------------------------
+Message: String was not recognized as a valid Boolean.
+StackTrace:    at System.Boolean.Parse(String value)
+   at System.Convert.ToBoolean(String value)
+   at WebMerchant.MerchantManageQA.btnHotspotAdd_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 648
+Source: mscorlib
+TargetSite: Boolean Parse(System.String)
+-----------------------------------------------------------
+
+Time: 21/11/2017 02:25:26 PM
+-----------------------------------------------------------
+Message: Column 'Exhibit' does not belong to table .
+StackTrace:    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at WebMerchant.MerchantManageQA.lbtnEdit_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 884
+Source: System.Data
+TargetSite: System.Data.DataColumn GetDataColumn(System.String)
+-----------------------------------------------------------
+

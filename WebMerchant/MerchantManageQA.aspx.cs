@@ -135,6 +135,125 @@ namespace WebMerchant
             FillgridViewQAManage(MerchantId);
         }
 
+        protected void ddlQuestionType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["Qtypevalue"] = ddlQuestionType.SelectedItem.Value;
+            if (ddlQuestionType.SelectedIndex == 0)
+            {
+                pnlSingleSelect.Visible = false;
+                pnlMultiSelect.Visible = false;
+                pnlVacant.Visible = false;
+                pnlDragdrop.Visible = false;
+                pnlHotspot.Visible = false;
+                pnlScenario.Visible = false;
+            }
+            else if (ddlQuestionType.SelectedItem.Value == "1")
+            {
+                ctrlPlaceholderTextBox.Controls.Clear();
+                ctrlPlaceholderMulti.Controls.Clear();
+                ctrlPlaceholderVacant.Controls.Clear();
+                ctrlPlaceholderDragdrop.Controls.Clear();
+                ctrlPlaceholderScenario.Controls.Clear();
+                prevVaile.Value = Convert.ToString(2);
+                for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
+                {
+                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox");
+                }
+                pnlSingleSelect.Visible = true;
+                pnlMultiSelect.Visible = false;
+                pnlVacant.Visible = false;
+                pnlDragdrop.Visible = false;
+                pnlHotspot.Visible = false;
+                pnlScenario.Visible = false;
+            }
+            else if (ddlQuestionType.SelectedItem.Value == "2")
+            {
+                ctrlPlaceholderTextBox.Controls.Clear();
+                ctrlPlaceholderMulti.Controls.Clear();
+                ctrlPlaceholderVacant.Controls.Clear();
+                ctrlPlaceholderDragdrop.Controls.Clear();
+                ctrlPlaceholderScenario.Controls.Clear();
+                prevVaile.Value = Convert.ToString(4);
+                for (int loopcnt = 1; loopcnt <= 4; loopcnt++)
+                {
+                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderMulti");
+                }
+                pnlMultiSelect.Visible = true;
+                pnlSingleSelect.Visible = false;
+                pnlVacant.Visible = false;
+                pnlDragdrop.Visible = false;
+                pnlHotspot.Visible = false;
+                pnlScenario.Visible = false;
+            }
+
+            else if (ddlQuestionType.SelectedItem.Value == "3")
+            {
+                ctrlPlaceholderTextBox.Controls.Clear();
+                ctrlPlaceholderMulti.Controls.Clear();
+                ctrlPlaceholderVacant.Controls.Clear();
+                ctrlPlaceholderDragdrop.Controls.Clear();
+                ctrlPlaceholderScenario.Controls.Clear();
+                prevVaile.Value = Convert.ToString(2);
+                for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
+                {
+                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderVacant");
+                }
+                pnlVacant.Visible = true;
+                pnlMultiSelect.Visible = false;
+                pnlSingleSelect.Visible = false;
+                pnlDragdrop.Visible = false;
+                pnlHotspot.Visible = false;
+                pnlScenario.Visible = false;
+            }
+            else if (ddlQuestionType.SelectedItem.Value == "4")
+            {
+                ctrlPlaceholderTextBox.Controls.Clear();
+                ctrlPlaceholderMulti.Controls.Clear();
+                ctrlPlaceholderVacant.Controls.Clear();
+                ctrlPlaceholderDragdrop.Controls.Clear();
+                ctrlPlaceholderScenario.Controls.Clear();
+                prevVaile.Value = Convert.ToString(4);
+                for (int loopcnt = 1; loopcnt <= 4; loopcnt++)
+                {
+                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderDragdrop");
+                }
+                pnlDragdrop.Visible = true;
+                pnlSingleSelect.Visible = false;
+                pnlMultiSelect.Visible = false;
+                pnlVacant.Visible = false;
+                pnlHotspot.Visible = false;
+                pnlScenario.Visible = false;
+            }
+            else if (ddlQuestionType.SelectedItem.Value == "5")
+            {
+                pnlHotspot.Visible = true;
+                pnlSingleSelect.Visible = false;
+                pnlMultiSelect.Visible = false;
+                pnlVacant.Visible = false;
+                pnlDragdrop.Visible = false;
+                pnlScenario.Visible = false;
+            }
+            else if (ddlQuestionType.SelectedItem.Value == "6")
+            {
+                ctrlPlaceholderTextBox.Controls.Clear();
+                ctrlPlaceholderMulti.Controls.Clear();
+                ctrlPlaceholderVacant.Controls.Clear();
+                ctrlPlaceholderDragdrop.Controls.Clear();
+                ctrlPlaceholderScenario.Controls.Clear();
+                prevVaile.Value = Convert.ToString(2);
+                for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
+                {
+                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderScenario");
+                }
+                pnlScenario.Visible = true;
+                pnlSingleSelect.Visible = false;
+                pnlMultiSelect.Visible = false;
+                pnlVacant.Visible = false;
+                pnlDragdrop.Visible = false;
+                pnlHotspot.Visible = false;
+            }
+        }
+
         private int AddQuestion(string noofanswer)
         {
             int revalue = default(int);
@@ -155,6 +274,9 @@ namespace WebMerchant
                 _boqamng.UpdatedBy = MerchantId;
                 _boqamng.UpdatedDate = DateTime.UtcNow;
                 _boqamng.Resource = txtimage.Text;
+                _boqamng.Exhibit = FileUploadAppendTimeStamp(fuSingleExhibit, hfExhibit);
+                _boqamng.Topology = FileUploadAppendTimeStamp(fuSingleTopology, hfTopology);
+                _boqamng.Scenario = FileUploadAppendTimeStamp(fuSingleScenario, hfScenario);
                 if (ViewState["QAId"] != null)
                 {
                     _boqamng.QAId = Convert.ToInt32(ViewState["QAId"]);
@@ -165,7 +287,7 @@ namespace WebMerchant
                 {
                     _boqamng.QAId = 0;
                     _boqamng.Event = "Insert";
-                    revalue = 1;// _baqamng.Insert(_boqamng);
+                    revalue = _baqamng.Insert(_boqamng);
                 }
             }
             catch (Exception ex)
@@ -174,6 +296,25 @@ namespace WebMerchant
                 ShowMessage("Some technical error", MessageType.Warning);
             }
             return revalue;
+        }
+
+        public string FileUploadAppendTimeStamp(FileUpload fu, HiddenField hf)
+        {
+            string imagename = string.Empty;
+            if (fu.HasFile)
+            {
+                imagename = string.Concat(
+                Path.GetFileNameWithoutExtension(fu.PostedFile.FileName),
+                DateTime.Now.ToString("yyyyMMddHHmmssfff"),
+                Path.GetExtension(fu.PostedFile.FileName)
+                );
+                fu.PostedFile.SaveAs(Server.MapPath("~/resource/") + imagename);
+            }
+            else if (!string.IsNullOrEmpty(hf.Value))
+            {
+                imagename = hf.Value;
+            }
+            return imagename;
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -605,7 +746,7 @@ namespace WebMerchant
                     if (txtmaphtml.Text != "")
                     {
                         string[] AnswerArray = txtmaphtml.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                        // ImageUpload(txtimage.Text, hdimage.Value);
+                        ImageUpload(txtimage.Text, hdimage.Value);
                         int qusvalu = default(int);
                         qusvalu = AddQuestion(AnswerArray.Length.ToString());
                         if (qusvalu == 2)
@@ -645,9 +786,17 @@ namespace WebMerchant
                         {
                             for (int loopcnt = 1; loopcnt <= AnswerArray.Length; loopcnt++)
                             {
+                                string value = Request.Params["radiobtnrect"];
                                 _boqans.QuestionId = qusvalu;
                                 _boqans.Answer = AnswerArray[loopcnt - 1];
-                                _boqans.RightAnswer = true;// ImageUpload(txtimage.Text, hdimage.Value);
+                                if (value == AnswerArray[loopcnt - 1])
+                                {
+                                    _boqans.RightAnswer = true;
+                                }
+                                else
+                                {
+                                    _boqans.RightAnswer = false;
+                                }
                                 _boqans.IsActive = true;
                                 _boqans.IsDelete = false;
                                 _boqans.CreatedBy = MerchantId;
@@ -655,10 +804,10 @@ namespace WebMerchant
                                 _boqans.UpdatedBy = MerchantId;
                                 _boqans.UpdatedDate = DateTime.UtcNow;
                                 _boqans.Event = "Insert";
-                                //if (_baqans.Insert(_boqans) == 1)
-                                //{
-                                //    string success = "Success";
-                                //}
+                                if (_baqans.Insert(_boqans) == 1)
+                                {
+                                    string success = "Success";
+                                }
                             }
                             ShowMessage("Question added successfully", MessageType.Success);
                         }
@@ -677,20 +826,31 @@ namespace WebMerchant
             }
         }
 
-        private void ClearControl()
+        public string ImageUpload(string imagename, string value)
         {
-            btnAddAnswerSingle.Visible = true;
-            btnAddAnswerMulti.Visible = true;
-            btnAddAnswerVacant.Visible = true;
-            btnAddAnswerDragDrop.Visible = true;
-            btnAddAnswerScenario.Visible = true;
-            FillgridViewQAManage(MerchantId);
-            Common.ClearControl(Panel1);
-            txtQuestion.Text = txtExplanation.Text = "";
-            ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = null;
-            ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = "";
-            btnAdd.Text = btnMultiAdd.Text = btnVacantAdd.Text = btnDragdropAdd.Text = btnHotspotAdd.Text = btnScenarioAdd.Text = "Add";
-            pnlSingleSelect.Visible = pnlMultiSelect.Visible = pnlVacant.Visible = pnlDragdrop.Visible = pnlHotspot.Visible = pnlScenario.Visible = false;
+            string filePath = string.Empty;
+            filePath = HostingEnvironment.MapPath("~/resource/");
+            var image = imagename;
+            byte[] data;
+            if (hdimage.Value == null || hdimage.Value.Length == 0 || hdimage.Value.Length % 4 != 0
+|| hdimage.Value.Contains(" ") || hdimage.Value.Contains("\t") || hdimage.Value.Contains("\r") || hdimage.Value.Contains("\n"))
+            {
+                string valuebase = Regex.Replace(hdimage.Value, "data:image/(png|jpg|gif|jpeg|pjpeg|x-png);base64,", "");
+                data = System.Convert.FromBase64String(valuebase);
+            }
+            else
+            {
+                using (WebClient client = new WebClient())
+                {
+                    data = client.DownloadData(hdimage.Value);
+                }
+            }
+            using (FileStream fs = new FileStream(filePath + image, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+            {
+                fs.Write(data, 0, data.Length);
+                fs.Close();
+            }
+            return image;
         }
 
         protected void lbtnEdit_Click(object sender, EventArgs e)
@@ -721,6 +881,9 @@ namespace WebMerchant
                     ddlQuestionType.Enabled = false;
                     txtScore.Text = _datatable4.Rows[0][3].ToString();
                     hftxtquestion.Value = _datatable4.Rows[0][4].ToString();
+                    hfExhibit.Value = _datatable4.Rows[0]["Exhibit"].ToString();
+                    hfTopology.Value = _datatable4.Rows[0]["Topology"].ToString();
+                    hfScenario.Value = _datatable4.Rows[0]["Scenario"].ToString();
                     if (_datatable4.Rows[0][2].ToString().Equals("1"))
                     {
                         pnlSingleSelect.Visible = true;
@@ -895,357 +1058,6 @@ namespace WebMerchant
             }
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            System.Data.DataTable _datatable3 = new System.Data.DataTable();
-            //_datatable3 = _baqamng.SelectQAmanageListWithSearch("GetQAWMIdandSearch", txtSearch.Text, MerchantId);
-            _datatable3 = _baqamng.SelectQAmanageListWithSearch("GetQAWMId", txtSearch.Text, MerchantId);
-            gvQuestionManage.DataSource = _datatable3;
-            gvQuestionManage.DataBind();
-        }
-
-        protected void ddlQuestionType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Session["Qtypevalue"] = ddlQuestionType.SelectedItem.Value;
-            if (ddlQuestionType.SelectedIndex == 0)
-            {
-                pnlSingleSelect.Visible = false;
-                pnlMultiSelect.Visible = false;
-                pnlVacant.Visible = false;
-                pnlDragdrop.Visible = false;
-                pnlHotspot.Visible = false;
-                pnlScenario.Visible = false;
-            }
-            else if (ddlQuestionType.SelectedItem.Value == "1")
-            {
-                ctrlPlaceholderTextBox.Controls.Clear();
-                ctrlPlaceholderMulti.Controls.Clear();
-                ctrlPlaceholderVacant.Controls.Clear();
-                ctrlPlaceholderDragdrop.Controls.Clear();
-                ctrlPlaceholderScenario.Controls.Clear();
-                prevVaile.Value = Convert.ToString(2);
-                for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
-                {
-                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox");
-                }
-                pnlSingleSelect.Visible = true;
-                pnlMultiSelect.Visible = false;
-                pnlVacant.Visible = false;
-                pnlDragdrop.Visible = false;
-                pnlHotspot.Visible = false;
-                pnlScenario.Visible = false;
-            }
-            else if (ddlQuestionType.SelectedItem.Value == "2")
-            {
-                ctrlPlaceholderTextBox.Controls.Clear();
-                ctrlPlaceholderMulti.Controls.Clear();
-                ctrlPlaceholderVacant.Controls.Clear();
-                ctrlPlaceholderDragdrop.Controls.Clear();
-                ctrlPlaceholderScenario.Controls.Clear();
-                prevVaile.Value = Convert.ToString(4);
-                for (int loopcnt = 1; loopcnt <= 4; loopcnt++)
-                {
-                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderMulti");
-                }
-                pnlMultiSelect.Visible = true;
-                pnlSingleSelect.Visible = false;
-                pnlVacant.Visible = false;
-                pnlDragdrop.Visible = false;
-                pnlHotspot.Visible = false;
-                pnlScenario.Visible = false;
-            }
-
-            else if (ddlQuestionType.SelectedItem.Value == "3")
-            {
-                ctrlPlaceholderTextBox.Controls.Clear();
-                ctrlPlaceholderMulti.Controls.Clear();
-                ctrlPlaceholderVacant.Controls.Clear();
-                ctrlPlaceholderDragdrop.Controls.Clear();
-                ctrlPlaceholderScenario.Controls.Clear();
-                prevVaile.Value = Convert.ToString(2);
-                for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
-                {
-                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderVacant");
-                }
-                pnlVacant.Visible = true;
-                pnlMultiSelect.Visible = false;
-                pnlSingleSelect.Visible = false;
-                pnlDragdrop.Visible = false;
-                pnlHotspot.Visible = false;
-                pnlScenario.Visible = false;
-            }
-            else if (ddlQuestionType.SelectedItem.Value == "4")
-            {
-                ctrlPlaceholderTextBox.Controls.Clear();
-                ctrlPlaceholderMulti.Controls.Clear();
-                ctrlPlaceholderVacant.Controls.Clear();
-                ctrlPlaceholderDragdrop.Controls.Clear();
-                ctrlPlaceholderScenario.Controls.Clear();
-                prevVaile.Value = Convert.ToString(4);
-                for (int loopcnt = 1; loopcnt <= 4; loopcnt++)
-                {
-                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderDragdrop");
-                }
-                pnlDragdrop.Visible = true;
-                pnlSingleSelect.Visible = false;
-                pnlMultiSelect.Visible = false;
-                pnlVacant.Visible = false;
-                pnlHotspot.Visible = false;
-                pnlScenario.Visible = false;
-            }
-            else if (ddlQuestionType.SelectedItem.Value == "5")
-            {
-                pnlHotspot.Visible = true;
-                pnlSingleSelect.Visible = false;
-                pnlMultiSelect.Visible = false;
-                pnlVacant.Visible = false;
-                pnlDragdrop.Visible = false;
-                pnlScenario.Visible = false;
-            }
-            else if (ddlQuestionType.SelectedItem.Value == "6")
-            {
-                ctrlPlaceholderTextBox.Controls.Clear();
-                ctrlPlaceholderMulti.Controls.Clear();
-                ctrlPlaceholderVacant.Controls.Clear();
-                ctrlPlaceholderDragdrop.Controls.Clear();
-                ctrlPlaceholderScenario.Controls.Clear();
-                prevVaile.Value = Convert.ToString(2);
-                for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
-                {
-                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderScenario");
-                }
-                pnlScenario.Visible = true;
-                pnlSingleSelect.Visible = false;
-                pnlMultiSelect.Visible = false;
-                pnlVacant.Visible = false;
-                pnlDragdrop.Visible = false;
-                pnlHotspot.Visible = false;
-            }
-        }
-
-        public string ImageUpload(string imagename, string value)
-        {
-            string filePath = string.Empty;
-            filePath = HostingEnvironment.MapPath("~/resource/");
-            var image = imagename;
-            byte[] data;
-            if (hdimage.Value == null || hdimage.Value.Length == 0 || hdimage.Value.Length % 4 != 0
-|| hdimage.Value.Contains(" ") || hdimage.Value.Contains("\t") || hdimage.Value.Contains("\r") || hdimage.Value.Contains("\n"))
-            {
-                string valuebase = Regex.Replace(hdimage.Value, "data:image/(png|jpg|gif|jpeg|pjpeg|x-png);base64,", "");
-                data = System.Convert.FromBase64String(valuebase);
-            }
-            else
-            {
-                using (WebClient client = new WebClient())
-                {
-                    data = client.DownloadData(hdimage.Value);
-                }
-            }
-            using (FileStream fs = new FileStream(filePath + image, FileMode.CreateNew, FileAccess.Write, FileShare.None))
-            {
-                fs.Write(data, 0, data.Length);
-                fs.Close();
-            }
-            return image;
-        }
-
-        protected void ddlVacantAnswerOption_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //prevVaile.Value = ddlVacantAnswerOption.SelectedValue.Trim();
-            //lboxVacantAnswer.Items.Clear();
-            //for (int loopcnt = 1; loopcnt <= Convert.ToInt32(ddlVacantAnswerOption.SelectedValue.Trim()); loopcnt++)
-            //{
-            //    Label lblOpen = new Label();
-            //    lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Option " + Convert.ToChar(64 + loopcnt) + "</label><div class='col-sm-4'>";
-            //    ctrlPlaceholderVacant.Controls.Add(lblOpen);
-            //    TextBox tb = new TextBox();
-            //    tb.ID = "tb" + loopcnt;
-            //    tb.CssClass = "form-control";
-            //    tb.EnableViewState = true;
-            //    ctrlPlaceholderVacant.Controls.Add(tb);
-            //    Label lblClose = new Label();
-            //    lblClose.Text = "</div><div class='col-sm-4'>";
-            //    ctrlPlaceholderVacant.Controls.Add(lblClose);
-            //    RequiredFieldValidator rfv = new RequiredFieldValidator();
-            //    rfv.ID = "rfv" + loopcnt;
-            //    rfv.ControlToValidate = "tb" + loopcnt;
-            //    rfv.ValidationGroup = "vacant";
-            //    rfv.ForeColor = System.Drawing.Color.Red;
-            //    rfv.ErrorMessage = "Please Enter Option " + Convert.ToChar(64 + loopcnt);
-            //    ctrlPlaceholderVacant.Controls.Add(rfv);
-            //    Label lblvalidaclose = new Label();
-            //    lblvalidaclose.Text = "</div></div>";
-            //    ctrlPlaceholderVacant.Controls.Add(lblvalidaclose);
-            //    lboxVacantAnswer.Items.Add(new ListItem("Option " + Convert.ToChar(64 + loopcnt), loopcnt.ToString()));
-            //}
-        }
-
-        protected void ddlDragdropMatchs_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //prevVaile.Value = ddlDragdropMatchs.SelectedValue.Trim();
-            //// lboxVacantAnswer.Items.Clear();
-            //for (int loopcnt = 1; loopcnt <= Convert.ToInt32(ddlDragdropMatchs.SelectedValue.Trim()); loopcnt++)
-            //{
-            //    Label lblOpen1 = new Label();
-            //    lblOpen1.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Match " + Convert.ToChar(64 + loopcnt) + "</label><div class='col-sm-3'>";
-            //    ctrlPlaceholderDragdrop.Controls.Add(lblOpen1);
-            //    TextBox tb1 = new TextBox();
-            //    tb1.ID = "tb1" + loopcnt;
-            //    tb1.CssClass = "form-control";
-            //    tb1.EnableViewState = true;
-            //    ctrlPlaceholderDragdrop.Controls.Add(tb1);
-            //    Label lblClose1 = new Label();
-            //    lblClose1.Text = "</div><div class='col-sm-1'>";
-            //    ctrlPlaceholderDragdrop.Controls.Add(lblClose1);
-            //    RequiredFieldValidator rfv1 = new RequiredFieldValidator();
-            //    rfv1.ID = "rfv1" + loopcnt;
-            //    rfv1.ControlToValidate = "tb1" + loopcnt;
-            //    rfv1.ValidationGroup = "dragdrop";
-            //    rfv1.ErrorMessage = "*";
-            //    rfv1.Attributes.Add("style", "font-size:21px; color:Red; font-weight:bold;");
-            //    ctrlPlaceholderDragdrop.Controls.Add(rfv1);
-            //    Label lblOpen2 = new Label();
-            //    lblOpen2.Text = "</div><div class='col-sm-3'>";
-            //    ctrlPlaceholderDragdrop.Controls.Add(lblOpen2);
-            //    TextBox tb2 = new TextBox();
-            //    tb2.ID = "tb2" + loopcnt;
-            //    tb2.CssClass = "form-control";
-            //    tb2.EnableViewState = true;
-            //    ctrlPlaceholderDragdrop.Controls.Add(tb2);
-            //    Label lblClose2 = new Label();
-            //    lblClose2.Text = "</div><div class='col-sm-1'>";
-            //    ctrlPlaceholderDragdrop.Controls.Add(lblClose2);
-            //    RequiredFieldValidator rfv2 = new RequiredFieldValidator();
-            //    rfv2.ID = "rfv2" + loopcnt;
-            //    rfv2.ControlToValidate = "tb2" + loopcnt;
-            //    rfv2.ValidationGroup = "dragdrop";
-            //    rfv2.ErrorMessage = "*";
-            //    rfv2.Attributes.Add("style", "font-size:21px; color:Red; font-weight:bold;");
-            //    ctrlPlaceholderDragdrop.Controls.Add(rfv2);
-            //    Label lblclosediv = new Label();
-            //    lblclosediv.Text = "</div></div>";
-            //    ctrlPlaceholderDragdrop.Controls.Add(lblclosediv);
-            //}
-        }
-
-        protected void ShowMessage(string Message, MessageType type)
-        {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
-        }
-
-        protected void btnImport_Click(object sender, EventArgs e)
-        {
-            string filePath = string.Empty;
-            try
-            {
-                if (this.FileUpload1.HasFile)
-                {
-                    filePath = Server.MapPath("~/ExcelUpload/") + Path.GetFileName(FileUpload1.PostedFile.FileName);
-
-                    if (!File.Exists(filePath))
-                    {
-                        FileUpload1.SaveAs(filePath);
-                    }
-
-                    TextExtractor extractor = new TextExtractor(filePath);
-                    string docmunet = extractor.ExtractText();
-                    string[] doc = docmunet.Split('\n');
-
-                    List<propertyClass> objprop = new List<propertyClass>();
-                    List<string> objprop1 = new List<string>();
-                    List<int> objAnswerlist = new List<int>();
-                    List<string> objprop2 = new List<string>() { "A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.", "J." };
-
-                    string tempp = string.Empty;
-                    int questNo = 0;
-                    bool flag = true;
-                    string[] s;
-                    string[] aas = null;
-                    for (int i = 0; i < doc.Count(); i++)
-                    {
-                        string temp = doc[i].Trim();
-                        if (temp != string.Empty)
-                        {
-                            if (temp == "Question")
-                            {
-                                questNo++;
-                            }
-                            else
-                            {
-                                if (objprop2.Contains(temp.Substring(0, 2)))
-                                {
-                                    objprop1.Add(temp.Substring(2).Trim());
-                                }
-                                else
-                                {
-                                    if (temp.Contains("Answer:"))
-                                    {
-                                        s = temp.Split(':');
-                                        aas = Array.ConvertAll(s[1].Split(','), p => p.Trim());
-                                        for (int j = 0; j < objprop1.Count; j++)
-                                        {
-                                            string value = Convert.ToChar(65 + j).ToString();
-                                            if (aas.Contains(value))
-                                                objAnswerlist.Add(1);
-                                            else objAnswerlist.Add(0);
-                                        }
-                                        flag = false;
-                                    }
-                                    else
-                                    {
-                                        tempp += temp + "\n";
-                                    }
-                                }
-                            }
-                        }
-                        if (questNo > 0 && flag == false)
-                        {
-                            int qtype = 1;
-                            if (aas.Length > 1)
-                            {
-                                qtype = 2;
-                            }
-                            objprop.Add(new propertyClass { QuestionNo = questNo, Question = tempp, Answer = objprop1, RightAnswer = objAnswerlist, QuestionType = qtype, NoofAnswer = objprop1.Count, Score = 1 });
-                            tempp = ""; objprop1 = new List<string>(); objAnswerlist = new List<int>();
-                            flag = true;
-                        }
-                    }
-                    if (uploadAndSave(objprop))
-                    {
-                        FillgridViewQAManage(MerchantId);
-                        ShowMessage("Question upload successfully", MessageType.Success);
-                    }
-                    else
-                    {
-                        ShowMessage("Some technical error", MessageType.Warning);
-                    }
-                    // File.Delete(filePath);
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex);
-                ShowMessage("Some technical error", MessageType.Warning);
-            }
-            finally
-            {
-                System.GC.Collect();
-                System.GC.WaitForPendingFinalizers();
-            }
-        }
-
-        private string readFileContent(string path)
-        {
-            string filePath = Server.MapPath("~/ExcelUpload/") + Path.GetFileName(FileUpload1.PostedFile.FileName);
-            FileUpload1.SaveAs(filePath);
-            //string filePath = Server.MapPath("~/ExcelUpload/QuizDemo.docx");
-            TextExtractor extractor = new TextExtractor(filePath);
-            string text = extractor.ExtractText();
-            return text;
-
-        }
-
         protected void btnAddAnswerSingle_Click(object sender, EventArgs e)
         {
             InitializeDynamicText(Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox", ctrlPlaceholderTextBox);
@@ -1400,6 +1212,118 @@ namespace WebMerchant
             ctrlPlaceholderTextBox.Controls.Add(lblvalidaclose);
         }
 
+        protected void btnImport_Click(object sender, EventArgs e)
+        {
+            string filePath = string.Empty;
+            try
+            {
+                if (this.FileUpload1.HasFile)
+                {
+                    filePath = Server.MapPath("~/ExcelUpload/") + Path.GetFileName(FileUpload1.PostedFile.FileName);
+
+                    if (!File.Exists(filePath))
+                    {
+                        FileUpload1.SaveAs(filePath);
+                    }
+
+                    TextExtractor extractor = new TextExtractor(filePath);
+                    string docmunet = extractor.ExtractText();
+                    string[] doc = docmunet.Split('\n');
+
+                    List<propertyClass> objprop = new List<propertyClass>();
+                    List<string> objprop1 = new List<string>();
+                    List<int> objAnswerlist = new List<int>();
+                    List<string> objprop2 = new List<string>() { "A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.", "J." };
+
+                    string tempp = string.Empty;
+                    int questNo = 0;
+                    bool flag = true;
+                    string[] s;
+                    string[] aas = null;
+                    for (int i = 0; i < doc.Count(); i++)
+                    {
+                        string temp = doc[i].Trim();
+                        if (temp != string.Empty)
+                        {
+                            if (temp == "Question")
+                            {
+                                questNo++;
+                            }
+                            else
+                            {
+                                if (objprop2.Contains(temp.Substring(0, 2)))
+                                {
+                                    objprop1.Add(temp.Substring(2).Trim());
+                                }
+                                else
+                                {
+                                    if (temp.Contains("Answer:"))
+                                    {
+                                        s = temp.Split(':');
+                                        aas = Array.ConvertAll(s[1].Split(','), p => p.Trim());
+                                        for (int j = 0; j < objprop1.Count; j++)
+                                        {
+                                            string value = Convert.ToChar(65 + j).ToString();
+                                            if (aas.Contains(value))
+                                                objAnswerlist.Add(1);
+                                            else objAnswerlist.Add(0);
+                                        }
+                                        flag = false;
+                                    }
+                                    else
+                                    {
+                                        tempp += temp + "\n";
+                                    }
+                                }
+                            }
+                        }
+                        if (questNo > 0 && flag == false)
+                        {
+                            int qtype = 1;
+                            if (aas.Length > 1)
+                            {
+                                qtype = 2;
+                            }
+                            objprop.Add(new propertyClass { QuestionNo = questNo, Question = tempp, Answer = objprop1, RightAnswer = objAnswerlist, QuestionType = qtype, NoofAnswer = objprop1.Count, Score = 1 });
+                            tempp = ""; objprop1 = new List<string>(); objAnswerlist = new List<int>();
+                            flag = true;
+                        }
+                    }
+                    if (uploadAndSave(objprop))
+                    {
+                        FillgridViewQAManage(MerchantId);
+                        ShowMessage("Question upload successfully", MessageType.Success);
+                    }
+                    else
+                    {
+                        ShowMessage("Some technical error", MessageType.Warning);
+                    }
+                    // File.Delete(filePath);
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
+            finally
+            {
+                System.GC.Collect();
+                System.GC.WaitForPendingFinalizers();
+            }
+        }
+
+        private string readFileContent(string path)
+        {
+            string filePath = Server.MapPath("~/ExcelUpload/") + Path.GetFileName(FileUpload1.PostedFile.FileName);
+            FileUpload1.SaveAs(filePath);
+            //string filePath = Server.MapPath("~/ExcelUpload/QuizDemo.docx");
+            TextExtractor extractor = new TextExtractor(filePath);
+            string text = extractor.ExtractText();
+            return text;
+
+        }
+
         private bool uploadAndSave(List<propertyClass> diclist)
         {
             bool revalue = false;
@@ -1454,6 +1378,36 @@ namespace WebMerchant
                 ShowMessage("Some technical error", MessageType.Warning);
             }
             return revalue;
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            System.Data.DataTable _datatable3 = new System.Data.DataTable();
+            //_datatable3 = _baqamng.SelectQAmanageListWithSearch("GetQAWMIdandSearch", txtSearch.Text, MerchantId);
+            _datatable3 = _baqamng.SelectQAmanageListWithSearch("GetQAWMId", txtSearch.Text, MerchantId);
+            gvQuestionManage.DataSource = _datatable3;
+            gvQuestionManage.DataBind();
+        }
+
+        private void ClearControl()
+        {
+            btnAddAnswerSingle.Visible = true;
+            btnAddAnswerMulti.Visible = true;
+            btnAddAnswerVacant.Visible = true;
+            btnAddAnswerDragDrop.Visible = true;
+            btnAddAnswerScenario.Visible = true;
+            FillgridViewQAManage(MerchantId);
+            Common.ClearControl(Panel1);
+            txtQuestion.Text = txtExplanation.Text = "";
+            ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = null;
+            ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = "";
+            btnAdd.Text = btnMultiAdd.Text = btnVacantAdd.Text = btnDragdropAdd.Text = btnHotspotAdd.Text = btnScenarioAdd.Text = "Add";
+            pnlSingleSelect.Visible = pnlMultiSelect.Visible = pnlVacant.Visible = pnlDragdrop.Visible = pnlHotspot.Visible = pnlScenario.Visible = false;
+        }
+
+        protected void ShowMessage(string Message, MessageType type)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
         }
     }
 }

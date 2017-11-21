@@ -127,9 +127,18 @@
                                         <asp:Button ID="btnAddAnswerSingle" runat="server" Text="Add Answer" CssClass="btn btn-default" OnClick="btnAddAnswerSingle_Click" />
                                     </div>
                                     <div class="col-sm-5">
-                                        <asp:Button ID="btnExhibit" runat="server" CssClass="btn btn-default" Text="Exhibit" />
-                                        <asp:Button ID="btnTopology" runat="server" CssClass="btn btn-default" Text="Topology" />
-                                        <asp:Button ID="btnScenario" runat="server" CssClass="btn btn-default" Text="Scenario" />
+                                        <label class="btn-bs-file btn btn-default">
+                                            Exhibit
+                                          <asp:FileUpload ID="fuSingleExhibit" runat="server" />
+                                        </label>
+                                        <label class="btn-bs-file btn btn-default">
+                                            Topology
+                                          <asp:FileUpload ID="fuSingleTopology" runat="server" />
+                                        </label>
+                                        <label class="btn-bs-file btn btn-default">
+                                            Scenario
+                                          <asp:FileUpload ID="fuSingleScenario" runat="server" />
+                                        </label>
                                     </div>
                                 </div>
 
@@ -297,12 +306,14 @@
                                             </div>
                                             <b>or</b>
                                         </div>
-                                        <label for="url">type a url</label>
-                                        <span id="url_wrapper">
-                                            <span class="clear_button" title="clear">x</span>
-                                            <input type="text" id="url" />
-                                        </span>
-                                        <button id="button">OK</button>
+                                        <div style="display: none;">
+                                            <label for="url">type a url</label>
+                                            <span id="url_wrapper">
+                                                <span class="clear_button" title="clear">x</span>
+                                                <input type="text" id="url" />
+                                            </span>
+                                        </div>
+                                        <button id="button" class="btn btn-primary">OK</button>
                                     </div>
                                 </div>
 
@@ -347,6 +358,9 @@
                             <div class="form-group">
                                 <label for="" class="col-sm-3 control-label">Explanation</label>
                                 <div class="col-sm-9">
+                                    <asp:HiddenField ID="hfExhibit" runat="server" />
+                                    <asp:HiddenField ID="hfTopology" runat="server" />
+                                    <asp:HiddenField ID="hfScenario" runat="server" />
                                     <asp:HiddenField ID="hftxtExplanation" runat="server" />
                                     <asp:TextBox ID="txtExplanation" runat="server" CssClass="summernote form-control"></asp:TextBox>
                                 </div>

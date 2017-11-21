@@ -613,7 +613,6 @@ var summerHtmlImageMapCreator = (function () {
             getHTMLCode: function (arg) {
                 var html_code = '';
                 var arr1 = '';
-                var htmlradio = '';
                 var image = 'img_' + (new Date).getTime() + '.jpg';
                 if (arg) {
                     if (!state.areas.length) {
@@ -624,20 +623,15 @@ var summerHtmlImageMapCreator = (function () {
                     utils.foreachReverse(state.areas, function (x) {
                         html_code += '&nbsp;&nbsp;&nbsp;&nbsp;' + utils.encode(x.toHTMLMapElementString()) + '<br />';
                         arr1 += x.toCoords() + ";";
-                        htmlradio += '<div class="col-sm-12"><input id="ContentPlaceHolder1_RadioButton1" type="radio" name="ctl00$ContentPlaceHolder1$RadioButton1" value="RadioButton1"><label for="ContentPlaceHolder1_RadioButton1">radio1</label></div>';
                     });
                     html_code += utils.encode('</map>');
                 } else {
                     utils.foreachReverse(state.areas, function (x) {
                         html_code += x.toHTMLMapElementString();
                         arr1 += x.toCoords() + ";";
-                        htmlradio += '<div class="col-sm-12"><input id="ContentPlaceHolder1_RadioButton1" type="radio" name="ctl00$ContentPlaceHolder1$RadioButton1" value="RadioButton1"><label for="ContentPlaceHolder1_RadioButton1">radio1</label></div>';
                     });
                 }
-                alert(image);
-                debugger;
-                $('#ContentPlaceHolder1_txtimage').attr('value', image);
-                return [html_code, arr1, htmlradio];
+                return [html_code, image, arr1];
             }
         };
     })();
@@ -1158,7 +1152,6 @@ var summerHtmlImageMapCreator = (function () {
         newCoords = Rectangle.getNormalizedCoords(newCoords);
 
         this.redraw(newCoords);
-
         return newCoords;
     };
 
@@ -1190,6 +1183,7 @@ var summerHtmlImageMapCreator = (function () {
         app.removeAllEvents()
            .setIsDraw(false)
            .resetNewArea();
+        CreatRadioButton(this._coords.x, this._coords.y, coords.x, coords.y)
     };
 
     /**
@@ -2293,9 +2287,10 @@ var summerHtmlImageMapCreator = (function () {
 
         return {
             print: function () {
-                content.innerHTML = app.getHTMLCode(true)[0];
-                $('#ContentPlaceHolder1_txtmaphtml').attr('value', app.getHTMLCode(true)[1]);
-                $('#divHotspot').append(app.getHTMLCode(true)[2]);
+                var getarr = app.getHTMLCode(true);
+                content.innerHTML = getarr[0];
+                $('#ContentPlaceHolder1_txtimage').attr('value', getarr[1]);
+                $('#ContentPlaceHolder1_txtmaphtml').attr('value', getarr[2]);
                 utils.show(block);
             },
             hide: function () {
@@ -2829,3 +2824,8 @@ var summerHtmlImageMapCreator = (function () {
     })();
 
 })();
+
+
+function CreatRadioButton(x, y, w, h) {
+    $('<div class="col-sm-12"><input type="radio" id=' + x + y + w + h + ' name="radiobtnrect" value=' + x + ',' + y + ',' + w + ',' + h + '>' + x + ',' + y + ',' + w + ',' + h + '</input></div>').appendTo('#divHotspot');
+}

@@ -121,31 +121,31 @@ namespace WebMerchant {
         protected global::System.Web.UI.WebControls.Button btnAddAnswerSingle;
         
         /// <summary>
-        /// btnExhibit control.
+        /// fuSingleExhibit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExhibit;
+        protected global::System.Web.UI.WebControls.FileUpload fuSingleExhibit;
         
         /// <summary>
-        /// btnTopology control.
+        /// fuSingleTopology control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTopology;
+        protected global::System.Web.UI.WebControls.FileUpload fuSingleTopology;
         
         /// <summary>
-        /// btnScenario control.
+        /// fuSingleScenario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnScenario;
+        protected global::System.Web.UI.WebControls.FileUpload fuSingleScenario;
         
         /// <summary>
         /// btnAdd control.
@@ -551,6 +551,33 @@ namespace WebMerchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnScenarioReset;
+        
+        /// <summary>
+        /// hfExhibit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfExhibit;
+        
+        /// <summary>
+        /// hfTopology control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfTopology;
+        
+        /// <summary>
+        /// hfScenario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfScenario;
         
         /// <summary>
         /// hftxtExplanation control.
