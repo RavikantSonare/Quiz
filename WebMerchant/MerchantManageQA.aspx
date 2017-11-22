@@ -122,98 +122,6 @@
                             </div>
                             <asp:Panel ID="pnlSingleSelect" runat="server" Visible="false">
                                 <asp:PlaceHolder runat="server" ID="ctrlPlaceholderTextBox"></asp:PlaceHolder>
-                                <div class="form-group">
-                                    <div class="col-sm-3">
-                                        <asp:Button ID="btnAddAnswerSingle" runat="server" Text="Add Answer" CssClass="btn btn-default" OnClick="btnAddAnswerSingle_Click" />
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <label class="btn-bs-file btn btn-default">
-                                            Exhibit
-                                          <asp:FileUpload ID="fuSingleExhibit" runat="server" />
-                                        </label>
-                                        <label class="btn-bs-file btn btn-default">
-                                            Topology
-                                          <asp:FileUpload ID="fuSingleTopology" runat="server" />
-                                        </label>
-                                        <label class="btn-bs-file btn btn-default">
-                                            Scenario
-                                          <asp:FileUpload ID="fuSingleScenario" runat="server" />
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-sm-offset-3">
-                                        <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" ValidationGroup="single" />
-                                        <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
-                                    </div>
-                                </div>
-                            </asp:Panel>
-                            <asp:Panel ID="pnlMultiSelect" runat="server" Visible="false">
-                                <asp:PlaceHolder runat="server" ID="ctrlPlaceholderMulti"></asp:PlaceHolder>
-                                <div class="form-group">
-                                    <div class="col-sm-3">
-                                        <asp:Button ID="btnAddAnswerMulti" runat="server" Text="Add Answer" CssClass="btn btn-default" OnClick="btnAddAnswerMulti_Click" />
-                                    </div>
-                                    <div class="col-sm-5" style="display: none;">
-                                        <asp:Button ID="btnMultiExhibit" runat="server" CssClass="btn btn-default" Text="Exhibit" />
-                                        <asp:Button ID="btnMultiTopology" runat="server" CssClass="btn btn-default" Text="Topology" />
-                                        <asp:Button ID="btnMultiScenario" runat="server" CssClass="btn btn-default" Text="Scenario" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <label id="lblMultiError" runat="server" style="display: none; color: #D8000C;"></label>
-                                    </div>
-                                    <div class="col-sm-offset-3">
-                                        <asp:Button ID="btnMultiAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnMultiAdd_Click" ValidationGroup="multi" />
-                                        <asp:Button ID="btnMultiReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
-                                    </div>
-                                </div>
-                            </asp:Panel>
-                            <asp:Panel ID="pnlVacant" runat="server" Visible="false">
-                                <asp:PlaceHolder runat="server" ID="ctrlPlaceholderVacant"></asp:PlaceHolder>
-                                <div class="form-group">
-                                    <div class="col-sm-3">
-                                        <asp:Button ID="btnAddAnswerVacant" runat="server" Text="Add Answer" CssClass="btn btn-default" OnClick="btnAddAnswerVacant_Click" />
-                                    </div>
-                                    <div class="col-sm-5" style="display: none;">
-                                        <asp:Button ID="btnVacantExhibit" runat="server" CssClass="btn btn-default" Text="Exhibit" />
-                                        <asp:Button ID="btnVacantTopology" runat="server" CssClass="btn btn-default" Text="Topology" />
-                                        <asp:Button ID="btnVacantScenario" runat="server" CssClass="btn btn-default" Text="Scenario" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <label id="lblVacantError" runat="server" style="display: none; color: #D8000C;"></label>
-                                    </div>
-                                    <div class="col-sm-offset-3">
-                                        <asp:Button ID="btnVacantAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnVacantAdd_Click" ValidationGroup="single" />
-                                        <asp:Button ID="btnVacantReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
-                                    </div>
-                                </div>
-                            </asp:Panel>
-                            <asp:Panel ID="pnlDragdrop" runat="server" Visible="false">
-                                <asp:PlaceHolder runat="server" ID="ctrlPlaceholderDragdrop"></asp:PlaceHolder>
-                                <div class="form-group">
-                                    <div class="col-sm-3">
-                                        <asp:Button ID="btnAddAnswerDragDrop" runat="server" Text="Add Answer" CssClass="btn btn-default" OnClick="btnAddAnswerDragDrop_Click" />
-                                    </div>
-                                    <div class="col-sm-5" style="display: none;">
-                                        <asp:Button ID="btnDragdropExhibit" runat="server" CssClass="btn btn-default" Text="Exhibit" />
-                                        <asp:Button ID="btnDragdropTopology" runat="server" CssClass="btn btn-default" Text="Topology" />
-                                        <asp:Button ID="btnDragdropScenario" runat="server" CssClass="btn btn-default" Text="Scenario" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <label id="lblDragdropError" runat="server" style="display: none; color: #D8000C;"></label>
-                                    </div>
-                                    <div class="col-sm-offset-3">
-                                        <asp:Button ID="btnDragdropAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnDragdropAdd_Click" ValidationGroup="dragdrop" />
-                                        <asp:Button ID="btnDragdropReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
-                                    </div>
-                                </div>
                             </asp:Panel>
                             <asp:Panel ID="pnlHotspot" runat="server" Visible="false">
                                 <link href="img_mapjs/main.css" rel="stylesheet" />
@@ -323,38 +231,36 @@
                                     <span class="close_button" title="close"></span>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <label id="lblHotspotError" runat="server" style="display: none; color: #D8000C;"></label>
-                                    </div>
                                     <div class="col-sm-offset-3" id="divHotspot">
-                                    </div>
-                                    <div class="col-sm-offset-3">
-                                        <asp:Button ID="btnHotspotAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnHotspotAdd_Click" />
-                                        <asp:Button ID="btnHotspotReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
                                     </div>
                                 </div>
                                 <script src="img_mapjs/summerHTMLImageMapCreator.js"></script>
                             </asp:Panel>
-                            <asp:Panel ID="pnlScenario" runat="server" Visible="false">
-                                <asp:PlaceHolder runat="server" ID="ctrlPlaceholderScenario"></asp:PlaceHolder>
+                            <asp:Panel ID="pnladdAnswertxtbox" runat="server" Visible="false">
                                 <div class="form-group">
-                                    <div class="col-sm-3">
-                                        <asp:Button ID="btnAddAnswerScenario" runat="server" Text="Add Answer" CssClass="btn btn-default" OnClick="btnAddAnswerScenario_Click" />
-                                    </div>
-                                    <div class="col-sm-5" style="display: none;">
-                                        <asp:Button ID="btnScenarioExhibit" runat="server" CssClass="btn btn-default" Text="Exhibit" />
-                                        <asp:Button ID="btnScenarioTopology" runat="server" CssClass="btn btn-default" Text="Topology" />
-                                        <asp:Button ID="btnScenarioScenario" runat="server" CssClass="btn btn-default" Text="Scenario" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-3">
-                                        <asp:Button ID="btnScenarioAdd" runat="server" Text="Add" CssClass="btn btn-default" ValidationGroup="single" OnClick="btnScenarioAdd_Click" />
-                                        <asp:Button ID="btnScenarioReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
+                                    <div class="col-sm-offset-3 col-sm-3">
+                                        <asp:Button ID="btnAddAnswerSingle" runat="server" Text="Add Answer" CssClass="btn btn-default" OnClick="btnAddAnswerSingle_Click" />
                                     </div>
                                 </div>
                             </asp:Panel>
-
+                            <asp:Panel ID="pnlETS" runat="server">
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-5">
+                                        <label class="btn-bs-file btn btn-default">
+                                            Exhibit
+                                          <asp:FileUpload ID="fuSingleExhibit" runat="server" />
+                                        </label>
+                                        <label class="btn-bs-file btn btn-default">
+                                            Topology
+                                          <asp:FileUpload ID="fuSingleTopology" runat="server" />
+                                        </label>
+                                        <label class="btn-bs-file btn btn-default">
+                                            Scenario
+                                          <asp:FileUpload ID="fuSingleScenario" runat="server" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </asp:Panel>
                             <div class="form-group">
                                 <label for="" class="col-sm-3 control-label">Explanation</label>
                                 <div class="col-sm-9">
@@ -363,6 +269,12 @@
                                     <asp:HiddenField ID="hfScenario" runat="server" />
                                     <asp:HiddenField ID="hftxtExplanation" runat="server" />
                                     <asp:TextBox ID="txtExplanation" runat="server" CssClass="summernote form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3">
+                                    <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" ValidationGroup="single" />
+                                    <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -385,8 +297,8 @@
                 </asp:Panel>
             </div>
             <div class="row">
-                <div class="clearfix col-sm-12 mtop10">
-                    <asp:GridView ID="gvQuestionManage" runat="server" AutoGenerateColumns="false" CssClass="table" DataKeyNames="QAId" AllowPaging="True" OnPageIndexChanging="gvQuestionManage_PageIndexChanging" PageSize="5">
+                <div class="clearfix col-sm-12 mtop10" style="max-height: 400px; overflow-y: scroll;">
+                    <asp:GridView ID="gvQuestionManage" runat="server" AutoGenerateColumns="false" CssClass="table" DataKeyNames="QAId" OnPageIndexChanging="gvQuestionManage_PageIndexChanging">
                         <Columns>
                             <asp:TemplateField HeaderText="Question">
                                 <ItemTemplate>
@@ -458,7 +370,7 @@
     <div class="messagealert" id="alert_container">
     </div>
     <script>
-        $(document).on("click", "#ContentPlaceHolder1_btnHotspotAdd", function () {
+        $(document).on("click", "#ContentPlaceHolder1_btnAdd", function () {
             $("#preview").trigger("click");
         });
     </script>

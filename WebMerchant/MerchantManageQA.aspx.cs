@@ -14,7 +14,6 @@ using WebMerchant.BOLayer;
 using WebMerchant.BALayer;
 using System.Data.OleDb;
 using System.Data.SqlClient;
-//using Microsoft.Office.Interop.Word;
 using Code7248.word_reader;
 namespace WebMerchant
 {
@@ -33,21 +32,10 @@ namespace WebMerchant
             List<string> keysQ = Request.Form.AllKeys.Where(key => key.Contains("tb")).ToList();
             if (keysQ.Count > 0)
             {
-                string plchldrname = string.Empty;
-                if (Session["Qtypevalue"].ToString() == "1")
-                { plchldrname = "ctrlPlaceholderTextBox"; }
-                else if (Session["Qtypevalue"].ToString() == "2")
-                { plchldrname = "ctrlPlaceholderMulti"; }
-                else if (Session["Qtypevalue"].ToString() == "3")
-                { plchldrname = "ctrlPlaceholderVacant"; }
-                else if (Session["Qtypevalue"].ToString() == "4")
-                { plchldrname = "ctrlPlaceholderDragdrop"; }
-                else if (Session["Qtypevalue"].ToString() == "6")
-                { plchldrname = "ctrlPlaceholderScenario"; }
                 foreach (string key in keysQ)
                 {
                     int txtId = Convert.ToInt16(key.Substring(28));
-                    this.CreateTextBoxQ(txtId, Convert.ToInt32(Session["Qtypevalue"]), plchldrname);
+                    this.CreateTextBoxQ(txtId, Convert.ToInt32(Session["Qtypevalue"]), "ctrlPlaceholderTextBox");
                     txtId++;
                 }
             }
@@ -64,10 +52,6 @@ namespace WebMerchant
                     if (!Page.IsPostBack)
                     {
                         ctrlPlaceholderTextBox.Controls.Clear();
-                        ctrlPlaceholderMulti.Controls.Clear();
-                        ctrlPlaceholderVacant.Controls.Clear();
-                        ctrlPlaceholderDragdrop.Controls.Clear();
-                        ctrlPlaceholderScenario.Controls.Clear();
                         Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
                         FillddlExamCode(MerchantId);
                         FillrbtnListQuestiontype(_bomerchantDetail.MerchantLevelId);
@@ -138,119 +122,81 @@ namespace WebMerchant
         protected void ddlQuestionType_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session["Qtypevalue"] = ddlQuestionType.SelectedItem.Value;
+            ctrlPlaceholderTextBox.Controls.Clear();
             if (ddlQuestionType.SelectedIndex == 0)
             {
                 pnlSingleSelect.Visible = false;
-                pnlMultiSelect.Visible = false;
-                pnlVacant.Visible = false;
-                pnlDragdrop.Visible = false;
                 pnlHotspot.Visible = false;
-                pnlScenario.Visible = false;
+                pnladdAnswertxtbox.Visible = false;
+                pnlETS.Visible = false;
             }
             else if (ddlQuestionType.SelectedItem.Value == "1")
             {
-                ctrlPlaceholderTextBox.Controls.Clear();
-                ctrlPlaceholderMulti.Controls.Clear();
-                ctrlPlaceholderVacant.Controls.Clear();
-                ctrlPlaceholderDragdrop.Controls.Clear();
-                ctrlPlaceholderScenario.Controls.Clear();
                 prevVaile.Value = Convert.ToString(2);
                 for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
                 {
                     this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox");
                 }
                 pnlSingleSelect.Visible = true;
-                pnlMultiSelect.Visible = false;
-                pnlVacant.Visible = false;
-                pnlDragdrop.Visible = false;
                 pnlHotspot.Visible = false;
-                pnlScenario.Visible = false;
+                pnladdAnswertxtbox.Visible = true;
+                pnlETS.Visible = true;
             }
             else if (ddlQuestionType.SelectedItem.Value == "2")
             {
-                ctrlPlaceholderTextBox.Controls.Clear();
-                ctrlPlaceholderMulti.Controls.Clear();
-                ctrlPlaceholderVacant.Controls.Clear();
-                ctrlPlaceholderDragdrop.Controls.Clear();
-                ctrlPlaceholderScenario.Controls.Clear();
                 prevVaile.Value = Convert.ToString(4);
                 for (int loopcnt = 1; loopcnt <= 4; loopcnt++)
                 {
-                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderMulti");
+                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox");
                 }
-                pnlMultiSelect.Visible = true;
-                pnlSingleSelect.Visible = false;
-                pnlVacant.Visible = false;
-                pnlDragdrop.Visible = false;
+                pnlSingleSelect.Visible = true;
                 pnlHotspot.Visible = false;
-                pnlScenario.Visible = false;
+                pnladdAnswertxtbox.Visible = true;
+                pnlETS.Visible = true;
             }
 
             else if (ddlQuestionType.SelectedItem.Value == "3")
             {
-                ctrlPlaceholderTextBox.Controls.Clear();
-                ctrlPlaceholderMulti.Controls.Clear();
-                ctrlPlaceholderVacant.Controls.Clear();
-                ctrlPlaceholderDragdrop.Controls.Clear();
-                ctrlPlaceholderScenario.Controls.Clear();
                 prevVaile.Value = Convert.ToString(2);
                 for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
                 {
-                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderVacant");
+                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox");
                 }
-                pnlVacant.Visible = true;
-                pnlMultiSelect.Visible = false;
-                pnlSingleSelect.Visible = false;
-                pnlDragdrop.Visible = false;
+                pnlSingleSelect.Visible = true;
                 pnlHotspot.Visible = false;
-                pnlScenario.Visible = false;
+                pnladdAnswertxtbox.Visible = true;
+                pnlETS.Visible = true;
             }
             else if (ddlQuestionType.SelectedItem.Value == "4")
             {
-                ctrlPlaceholderTextBox.Controls.Clear();
-                ctrlPlaceholderMulti.Controls.Clear();
-                ctrlPlaceholderVacant.Controls.Clear();
-                ctrlPlaceholderDragdrop.Controls.Clear();
-                ctrlPlaceholderScenario.Controls.Clear();
                 prevVaile.Value = Convert.ToString(4);
                 for (int loopcnt = 1; loopcnt <= 4; loopcnt++)
                 {
-                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderDragdrop");
+                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox");
                 }
-                pnlDragdrop.Visible = true;
-                pnlSingleSelect.Visible = false;
-                pnlMultiSelect.Visible = false;
-                pnlVacant.Visible = false;
+                pnlSingleSelect.Visible = true;
                 pnlHotspot.Visible = false;
-                pnlScenario.Visible = false;
+                pnladdAnswertxtbox.Visible = true;
+                pnlETS.Visible = true;
             }
             else if (ddlQuestionType.SelectedItem.Value == "5")
             {
                 pnlHotspot.Visible = true;
                 pnlSingleSelect.Visible = false;
-                pnlMultiSelect.Visible = false;
-                pnlVacant.Visible = false;
-                pnlDragdrop.Visible = false;
-                pnlScenario.Visible = false;
+                pnladdAnswertxtbox.Visible = false;
+                pnlETS.Visible = false;
             }
             else if (ddlQuestionType.SelectedItem.Value == "6")
             {
-                ctrlPlaceholderTextBox.Controls.Clear();
-                ctrlPlaceholderMulti.Controls.Clear();
-                ctrlPlaceholderVacant.Controls.Clear();
-                ctrlPlaceholderDragdrop.Controls.Clear();
-                ctrlPlaceholderScenario.Controls.Clear();
                 prevVaile.Value = Convert.ToString(2);
                 for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
                 {
-                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderScenario");
+                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox");
                 }
-                pnlScenario.Visible = true;
-                pnlSingleSelect.Visible = false;
-                pnlMultiSelect.Visible = false;
-                pnlVacant.Visible = false;
-                pnlDragdrop.Visible = false;
+                pnlSingleSelect.Visible = true;
                 pnlHotspot.Visible = false;
+                pnladdAnswertxtbox.Visible = true;
+                pnlETS.Visible = true;
             }
         }
 
@@ -317,6 +263,413 @@ namespace WebMerchant
             return imagename;
         }
 
+        private void AddSingleAnswer(int qusvalu)
+        {
+            if (qusvalu == 2)
+            {
+                int[] array = (ViewState["arrAnswerID"]) as int[];
+                for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
+                {
+                    _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    {
+                        _boqans.AnswerId = array[loopcnt - 1];
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                    }
+                    if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
+                    {
+                        _boqans.RightAnswer = true;
+                    }
+                    else
+                    {
+                        _boqans.RightAnswer = false;
+                    }
+                    _boqans.IsActive = true;
+                    _boqans.IsDelete = false;
+                    _boqans.CreatedBy = MerchantId;
+                    _boqans.CreatedDate = DateTime.UtcNow;
+                    _boqans.UpdatedBy = MerchantId;
+                    _boqans.UpdatedDate = DateTime.UtcNow;
+                    _boqans.Event = "Update";
+                    if (_baqans.Update(_boqans) == 2)
+                    {
+                        string success = "Success";
+                    }
+                }
+                ShowMessage("Question updated successfully", MessageType.Success);
+            }
+            else
+            {
+                for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
+                {
+                    _boqans.QuestionId = qusvalu;
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    {
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                    }
+                    if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
+                    {
+                        _boqans.RightAnswer = true;
+                    }
+                    else
+                    {
+                        _boqans.RightAnswer = false;
+                    }
+                    _boqans.IsActive = true;
+                    _boqans.IsDelete = false;
+                    _boqans.CreatedBy = MerchantId;
+                    _boqans.CreatedDate = DateTime.UtcNow;
+                    _boqans.UpdatedBy = MerchantId;
+                    _boqans.UpdatedDate = DateTime.UtcNow;
+                    _boqans.Event = "Insert";
+                    if (_baqans.Insert(_boqans) == 1)
+                    {
+                        string success = "Success";
+                    }
+                }
+                ShowMessage("Question added successfully", MessageType.Success);
+            }
+        }
+
+        private void AddMultiAnswer(int qusvalu)
+        {
+            if (qusvalu == 2)
+            {
+                int[] arrayMulti = (ViewState["arrMultiAnswerID"]) as int[];
+                for (int loopcnt = 1; loopcnt <= arrayMulti.Length; loopcnt++)
+                {
+                    _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    {
+                        _boqans.AnswerId = arrayMulti[loopcnt - 1];
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                    }
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
+                    {
+                        _boqans.RightAnswer = true;
+                    }
+                    else
+                    {
+                        _boqans.RightAnswer = false;
+                    }
+                    _boqans.IsActive = true;
+                    _boqans.IsDelete = false;
+                    _boqans.CreatedBy = MerchantId;
+                    _boqans.CreatedDate = DateTime.UtcNow;
+                    _boqans.UpdatedBy = MerchantId;
+                    _boqans.UpdatedDate = DateTime.UtcNow;
+                    _boqans.Event = "Update";
+                    if (_baqans.Insert(_boqans) == 1)
+                    {
+                        string success = "Success";
+                    }
+                }
+                ShowMessage("Question updated successfully", MessageType.Success);
+            }
+            else
+            {
+                for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
+                {
+                    _boqans.QuestionId = qusvalu;
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    {
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                    }
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
+                    {
+                        _boqans.RightAnswer = true;
+                    }
+                    else
+                    {
+                        _boqans.RightAnswer = false;
+                    }
+                    _boqans.IsActive = true;
+                    _boqans.IsDelete = false;
+                    _boqans.CreatedBy = MerchantId;
+                    _boqans.CreatedDate = DateTime.UtcNow;
+                    _boqans.UpdatedBy = MerchantId;
+                    _boqans.UpdatedDate = DateTime.UtcNow;
+                    _boqans.Event = "Insert";
+                    if (_baqans.Insert(_boqans) == 1)
+                    {
+                        string success = "Success";
+                    }
+                }
+                ShowMessage("Question added successfully", MessageType.Success);
+            }
+        }
+
+        private void AddVacantAnswer(int qusvalu)
+        {
+            if (qusvalu == 2)
+            {
+                int[] array = (ViewState["arrVacantAnswerID"]) as int[];
+                for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
+                {
+                    _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    {
+                        _boqans.AnswerId = array[loopcnt - 1];
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                    }
+                    if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
+                    {
+                        _boqans.RightAnswer = true;
+                    }
+                    else
+                    {
+                        _boqans.RightAnswer = false;
+                    }
+                    _boqans.IsActive = true;
+                    _boqans.IsDelete = false;
+                    _boqans.CreatedBy = MerchantId;
+                    _boqans.CreatedDate = DateTime.UtcNow;
+                    _boqans.UpdatedBy = MerchantId;
+                    _boqans.UpdatedDate = DateTime.UtcNow;
+                    _boqans.Event = "Update";
+                    if (_baqans.Update(_boqans) == 2)
+                    {
+                        string success = "Success";
+                    }
+                }
+                ShowMessage("Question updated successfully", MessageType.Success);
+            }
+            else
+            {
+                for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
+                {
+                    _boqans.QuestionId = qusvalu;
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    {
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                    }
+                    if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
+                    {
+                        _boqans.RightAnswer = true;
+                    }
+                    else
+                    {
+                        _boqans.RightAnswer = false;
+                    }
+                    _boqans.IsActive = true;
+                    _boqans.IsDelete = false;
+                    _boqans.CreatedBy = MerchantId;
+                    _boqans.CreatedDate = DateTime.UtcNow;
+                    _boqans.UpdatedBy = MerchantId;
+                    _boqans.UpdatedDate = DateTime.UtcNow;
+                    _boqans.Event = "Insert";
+                    if (_baqans.Insert(_boqans) == 1)
+                    {
+                        string success = "Success";
+                    }
+                }
+                ShowMessage("Question added successfully", MessageType.Success);
+            }
+        }
+
+        private void AddDragdropAnswer(int qusvalu)
+        {
+            if (qusvalu == 2)
+            {
+                int[] arrayDragdrop = (ViewState["arrDragdropAnswerID"]) as int[];
+                for (int loopcnt = 1; loopcnt <= arrayDragdrop.Length; loopcnt++)
+                {
+                    _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    {
+                        _boqans.AnswerId = arrayDragdrop[loopcnt - 1];
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                    }
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
+                    {
+                        _boqans.RightAnswer = true;
+                    }
+                    else
+                    {
+                        _boqans.RightAnswer = false;
+                    }
+                    _boqans.IsActive = true;
+                    _boqans.IsDelete = false;
+                    _boqans.CreatedBy = MerchantId;
+                    _boqans.CreatedDate = DateTime.UtcNow;
+                    _boqans.UpdatedBy = MerchantId;
+                    _boqans.UpdatedDate = DateTime.UtcNow;
+                    _boqans.Event = "Update";
+                    if (_baqans.Insert(_boqans) == 1)
+                    {
+                        string success = "Success";
+                    }
+                }
+                ShowMessage("Question updated successfully", MessageType.Success);
+            }
+            else
+            {
+                for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
+                {
+                    _boqans.QuestionId = qusvalu;
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    {
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                    }
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
+                    {
+                        _boqans.RightAnswer = true;
+                    }
+                    else
+                    {
+                        _boqans.RightAnswer = false;
+                    }
+                    _boqans.IsActive = true;
+                    _boqans.IsDelete = false;
+                    _boqans.CreatedBy = MerchantId;
+                    _boqans.CreatedDate = DateTime.UtcNow;
+                    _boqans.UpdatedBy = MerchantId;
+                    _boqans.UpdatedDate = DateTime.UtcNow;
+                    _boqans.Event = "Insert";
+                    if (_baqans.Insert(_boqans) == 1)
+                    {
+                        string success = "Success";
+                    }
+                }
+                ShowMessage("Question added successfully", MessageType.Success);
+            }
+        }
+
+        private void AddHotspotAnswer(int qusvalu)
+        {
+            string[] AnswerArray = txtmaphtml.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+            if (qusvalu == 2)
+            {
+                int[] array = (ViewState["arrVacantAnswerID"]) as int[];
+                for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
+                {
+                    _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
+                    {
+                        _boqans.AnswerId = array[loopcnt - 1];
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
+                    }
+                    //if (lboxVacantAnswer.SelectedIndex == loopcnt - 1)
+                    //{
+                    //    _boqans.RightAnswer = "1";
+                    //}
+                    //else
+                    //{
+                    //    _boqans.RightAnswer = "0";
+                    //}
+                    _boqans.IsActive = true;
+                    _boqans.IsDelete = false;
+                    _boqans.CreatedBy = MerchantId;
+                    _boqans.CreatedDate = DateTime.UtcNow;
+                    _boqans.UpdatedBy = MerchantId;
+                    _boqans.UpdatedDate = DateTime.UtcNow;
+                    _boqans.Event = "Update";
+                    if (_baqans.Update(_boqans) == 2)
+                    {
+                        string success = "Success";
+                    }
+                }
+                ShowMessage("Question updated successfully", MessageType.Success);
+            }
+            else
+            {
+                for (int loopcnt = 1; loopcnt <= AnswerArray.Length; loopcnt++)
+                {
+                    string value = Request.Params["radiobtnrect"];
+                    _boqans.QuestionId = qusvalu;
+                    _boqans.Answer = AnswerArray[loopcnt - 1];
+                    if (value == AnswerArray[loopcnt - 1])
+                    {
+                        _boqans.RightAnswer = true;
+                    }
+                    else
+                    {
+                        _boqans.RightAnswer = false;
+                    }
+                    _boqans.IsActive = true;
+                    _boqans.IsDelete = false;
+                    _boqans.CreatedBy = MerchantId;
+                    _boqans.CreatedDate = DateTime.UtcNow;
+                    _boqans.UpdatedBy = MerchantId;
+                    _boqans.UpdatedDate = DateTime.UtcNow;
+                    _boqans.Event = "Insert";
+                    if (_baqans.Insert(_boqans) == 1)
+                    {
+                        string success = "Success";
+                    }
+                }
+                ShowMessage("Question added successfully", MessageType.Success);
+            }
+        }
+
+        private void AddScenarioAnswer(int qusvalu)
+        {
+            if (qusvalu == 2)
+            {
+                int[] array = (ViewState["arrScenarioAnswerID"]) as int[];
+                for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
+                {
+                    _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    {
+                        _boqans.AnswerId = array[loopcnt - 1];
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                    }
+                    if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
+                    {
+                        _boqans.RightAnswer = true;
+                    }
+                    else
+                    {
+                        _boqans.RightAnswer = false;
+                    }
+                    _boqans.IsActive = true;
+                    _boqans.IsDelete = false;
+                    _boqans.CreatedBy = MerchantId;
+                    _boqans.CreatedDate = DateTime.UtcNow;
+                    _boqans.UpdatedBy = MerchantId;
+                    _boqans.UpdatedDate = DateTime.UtcNow;
+                    _boqans.Event = "Update";
+                    if (_baqans.Update(_boqans) == 2)
+                    {
+                        string success = "Success";
+                    }
+                }
+                ShowMessage("Question updated successfully", MessageType.Success);
+            }
+            else
+            {
+                for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
+                {
+                    _boqans.QuestionId = qusvalu;
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    {
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                    }
+                    if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
+                    {
+                        _boqans.RightAnswer = true;
+                    }
+                    else
+                    {
+                        _boqans.RightAnswer = false;
+                    }
+                    _boqans.IsActive = true;
+                    _boqans.IsDelete = false;
+                    _boqans.CreatedBy = MerchantId;
+                    _boqans.CreatedDate = DateTime.UtcNow;
+                    _boqans.UpdatedBy = MerchantId;
+                    _boqans.UpdatedDate = DateTime.UtcNow;
+                    _boqans.Event = "Insert";
+                    if (_baqans.Insert(_boqans) == 1)
+                    {
+                        string success = "Success";
+                    }
+                }
+                ShowMessage("Question added successfully", MessageType.Success);
+            }
+        }
+
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -325,498 +678,42 @@ namespace WebMerchant
                 {
                     Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
                     int qusvalu = default(int);
-                    qusvalu = AddQuestion(prevVaile.Value);
-                    if (qusvalu == 2)
+                    if (Session["Qtypevalue"].ToString() == "1")
                     {
-                        int[] array = (ViewState["arrAnswerID"]) as int[];
-                        for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
-                        {
-                            _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
-                            {
-                                _boqans.AnswerId = array[loopcnt - 1];
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
-                            }
-                            if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
-                            {
-                                _boqans.RightAnswer = true;
-                            }
-                            else
-                            {
-                                _boqans.RightAnswer = false;
-                            }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Update";
-                            if (_baqans.Update(_boqans) == 2)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question updated successfully", MessageType.Success);
+                        qusvalu = AddQuestion(prevVaile.Value);
+                        AddSingleAnswer(qusvalu);
                     }
-                    else
+                    else if (Session["Qtypevalue"].ToString() == "2")
                     {
-                        for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
+                        qusvalu = AddQuestion(prevVaile.Value);
+                        AddMultiAnswer(qusvalu);
+                    }
+                    else if (Session["Qtypevalue"].ToString() == "3")
+                    {
+                        qusvalu = AddQuestion(prevVaile.Value);
+                        AddVacantAnswer(qusvalu);
+                    }
+                    else if (Session["Qtypevalue"].ToString() == "4")
+                    {
+                        qusvalu = AddQuestion(prevVaile.Value);
+                        AddDragdropAnswer(qusvalu);
+                    }
+                    else if (Session["Qtypevalue"].ToString() == "5")
+                    {
+                        if (txtmaphtml.Text != "")
                         {
-                            _boqans.QuestionId = qusvalu;
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
-                            {
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
-                            }
-                            if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
-                            {
-                                _boqans.RightAnswer = true;
-                            }
-                            else
-                            {
-                                _boqans.RightAnswer = false;
-                            }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Insert";
-                            if (_baqans.Insert(_boqans) == 1)
-                            {
-                                string success = "Success";
-                            }
+                            string[] AnswerArray = txtmaphtml.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                            ImageUpload(txtimage.Text, hdimage.Value);
+                            qusvalu = AddQuestion(AnswerArray.Length.ToString());
+                            AddHotspotAnswer(qusvalu);
                         }
-                        ShowMessage("Question added successfully", MessageType.Success);
+                    }
+                    else if (Session["Qtypevalue"].ToString() == "6")
+                    {
+                        qusvalu = AddQuestion(prevVaile.Value);
+                        AddScenarioAnswer(qusvalu);
                     }
                     ClearControl();
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex);
-                ShowMessage("Some technical error", MessageType.Warning);
-            }
-        }
-
-        protected void btnMultiAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
-                {
-                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    int qusvalu = default(int);
-                    qusvalu = AddQuestion(prevVaile.Value);
-                    if (qusvalu == 2)
-                    {
-                        int[] arrayMulti = (ViewState["arrMultiAnswerID"]) as int[];
-                        for (int loopcnt = 1; loopcnt <= arrayMulti.Length; loopcnt++)
-                        {
-                            _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
-                            {
-                                _boqans.AnswerId = arrayMulti[loopcnt - 1];
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
-                            }
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
-                            {
-                                _boqans.RightAnswer = true;
-                            }
-                            else
-                            {
-                                _boqans.RightAnswer = false;
-                            }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Update";
-                            if (_baqans.Insert(_boqans) == 1)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question updated successfully", MessageType.Success);
-                    }
-                    else
-                    {
-                        for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
-                        {
-                            _boqans.QuestionId = qusvalu;
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
-                            {
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
-                            }
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
-                            {
-                                _boqans.RightAnswer = true;
-                            }
-                            else
-                            {
-                                _boqans.RightAnswer = false;
-                            }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Insert";
-                            if (_baqans.Insert(_boqans) == 1)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question added successfully", MessageType.Success);
-                    }
-                    ClearControl();
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex);
-                ShowMessage("Some technical error", MessageType.Warning);
-            }
-        }
-
-        protected void btnVacantAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
-                {
-                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    int qusvalu = default(int);
-                    qusvalu = AddQuestion(prevVaile.Value);
-                    if (qusvalu == 2)
-                    {
-                        int[] array = (ViewState["arrVacantAnswerID"]) as int[];
-                        for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
-                        {
-                            _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
-                            {
-                                _boqans.AnswerId = array[loopcnt - 1];
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
-                            }
-                            if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
-                            {
-                                _boqans.RightAnswer = true;
-                            }
-                            else
-                            {
-                                _boqans.RightAnswer = false;
-                            }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Update";
-                            if (_baqans.Update(_boqans) == 2)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question updated successfully", MessageType.Success);
-                    }
-                    else
-                    {
-                        for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
-                        {
-                            _boqans.QuestionId = qusvalu;
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
-                            {
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
-                            }
-                            if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
-                            {
-                                _boqans.RightAnswer = true;
-                            }
-                            else
-                            {
-                                _boqans.RightAnswer = false;
-                            }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Insert";
-                            if (_baqans.Insert(_boqans) == 1)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question added successfully", MessageType.Success);
-                    }
-                    ClearControl();
-                }
-                else
-                {
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex);
-                ShowMessage("Some technical error", MessageType.Warning);
-            }
-        }
-
-        protected void btnDragdropAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
-                {
-                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    int qusvalu = default(int);
-                    qusvalu = AddQuestion(prevVaile.Value);
-                    if (qusvalu == 2)
-                    {
-                        int[] arrayDragdrop = (ViewState["arrDragdropAnswerID"]) as int[];
-                        for (int loopcnt = 1; loopcnt <= arrayDragdrop.Length; loopcnt++)
-                        {
-                            _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
-                            {
-                                _boqans.AnswerId = arrayDragdrop[loopcnt - 1];
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
-                            }
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
-                            {
-                                _boqans.RightAnswer = true;
-                            }
-                            else
-                            {
-                                _boqans.RightAnswer = false;
-                            }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Update";
-                            if (_baqans.Insert(_boqans) == 1)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question updated successfully", MessageType.Success);
-                    }
-                    else
-                    {
-                        for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
-                        {
-                            _boqans.QuestionId = qusvalu;
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
-                            {
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
-                            }
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
-                            {
-                                _boqans.RightAnswer = true;
-                            }
-                            else
-                            {
-                                _boqans.RightAnswer = false;
-                            }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Insert";
-                            if (_baqans.Insert(_boqans) == 1)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question added successfully", MessageType.Success);
-                    }
-                    ClearControl();
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex);
-                ShowMessage("Some technical error", MessageType.Warning);
-            }
-        }
-
-        protected void btnScenarioAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
-                {
-                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    int qusvalu = default(int);
-                    qusvalu = AddQuestion(prevVaile.Value);
-                    if (qusvalu == 2)
-                    {
-                        int[] array = (ViewState["arrScenarioAnswerID"]) as int[];
-                        for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
-                        {
-                            _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
-                            {
-                                _boqans.AnswerId = array[loopcnt - 1];
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
-                            }
-                            if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
-                            {
-                                _boqans.RightAnswer = true;
-                            }
-                            else
-                            {
-                                _boqans.RightAnswer = false;
-                            }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Update";
-                            if (_baqans.Update(_boqans) == 2)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question updated successfully", MessageType.Success);
-                    }
-                    else
-                    {
-                        for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
-                        {
-                            _boqans.QuestionId = qusvalu;
-                            if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
-                            {
-                                _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
-                            }
-                            if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
-                            {
-                                _boqans.RightAnswer = true;
-                            }
-                            else
-                            {
-                                _boqans.RightAnswer = false;
-                            }
-                            _boqans.IsActive = true;
-                            _boqans.IsDelete = false;
-                            _boqans.CreatedBy = MerchantId;
-                            _boqans.CreatedDate = DateTime.UtcNow;
-                            _boqans.UpdatedBy = MerchantId;
-                            _boqans.UpdatedDate = DateTime.UtcNow;
-                            _boqans.Event = "Insert";
-                            if (_baqans.Insert(_boqans) == 1)
-                            {
-                                string success = "Success";
-                            }
-                        }
-                        ShowMessage("Question added successfully", MessageType.Success);
-                    }
-                    ClearControl();
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex);
-                ShowMessage("Some technical error", MessageType.Warning);
-            }
-
-        }
-
-        protected void btnHotspotAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
-                {
-                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    if (txtmaphtml.Text != "")
-                    {
-                        string[] AnswerArray = txtmaphtml.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                        ImageUpload(txtimage.Text, hdimage.Value);
-                        int qusvalu = default(int);
-                        qusvalu = AddQuestion(AnswerArray.Length.ToString());
-                        if (qusvalu == 2)
-                        {
-                            int[] array = (ViewState["arrVacantAnswerID"]) as int[];
-                            for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
-                            {
-                                _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                                if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
-                                {
-                                    _boqans.AnswerId = array[loopcnt - 1];
-                                    _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
-                                }
-                                //if (lboxVacantAnswer.SelectedIndex == loopcnt - 1)
-                                //{
-                                //    _boqans.RightAnswer = "1";
-                                //}
-                                //else
-                                //{
-                                //    _boqans.RightAnswer = "0";
-                                //}
-                                _boqans.IsActive = true;
-                                _boqans.IsDelete = false;
-                                _boqans.CreatedBy = MerchantId;
-                                _boqans.CreatedDate = DateTime.UtcNow;
-                                _boqans.UpdatedBy = MerchantId;
-                                _boqans.UpdatedDate = DateTime.UtcNow;
-                                _boqans.Event = "Update";
-                                if (_baqans.Update(_boqans) == 2)
-                                {
-                                    string success = "Success";
-                                }
-                            }
-                            ShowMessage("Question updated successfully", MessageType.Success);
-                        }
-                        else
-                        {
-                            for (int loopcnt = 1; loopcnt <= AnswerArray.Length; loopcnt++)
-                            {
-                                string value = Request.Params["radiobtnrect"];
-                                _boqans.QuestionId = qusvalu;
-                                _boqans.Answer = AnswerArray[loopcnt - 1];
-                                if (value == AnswerArray[loopcnt - 1])
-                                {
-                                    _boqans.RightAnswer = true;
-                                }
-                                else
-                                {
-                                    _boqans.RightAnswer = false;
-                                }
-                                _boqans.IsActive = true;
-                                _boqans.IsDelete = false;
-                                _boqans.CreatedBy = MerchantId;
-                                _boqans.CreatedDate = DateTime.UtcNow;
-                                _boqans.UpdatedBy = MerchantId;
-                                _boqans.UpdatedDate = DateTime.UtcNow;
-                                _boqans.Event = "Insert";
-                                if (_baqans.Insert(_boqans) == 1)
-                                {
-                                    string success = "Success";
-                                }
-                            }
-                            ShowMessage("Question added successfully", MessageType.Success);
-                        }
-                        ClearControl();
-                    }
-                    else
-                    {
-                        ShowMessage("Please map on image and generate html", MessageType.Error);
-                    }
                 }
             }
             catch (Exception ex)
@@ -858,15 +755,7 @@ namespace WebMerchant
             try
             {
                 ctrlPlaceholderTextBox.Controls.Clear();
-                ctrlPlaceholderMulti.Controls.Clear();
-                ctrlPlaceholderVacant.Controls.Clear();
-                ctrlPlaceholderDragdrop.Controls.Clear();
-                ctrlPlaceholderScenario.Controls.Clear();
                 btnAddAnswerSingle.Visible = false;
-                btnAddAnswerMulti.Visible = false;
-                btnAddAnswerVacant.Visible = false;
-                btnAddAnswerDragDrop.Visible = false;
-                btnAddAnswerScenario.Visible = false;
                 LinkButton lnkbtn = sender as LinkButton;
                 GridViewRow gvrow = lnkbtn.NamingContainer as GridViewRow;
                 int _QAId = Convert.ToInt32(gvQuestionManage.DataKeys[gvrow.RowIndex].Value.ToString());
@@ -887,11 +776,7 @@ namespace WebMerchant
                     if (_datatable4.Rows[0][2].ToString().Equals("1"))
                     {
                         pnlSingleSelect.Visible = true;
-                        pnlMultiSelect.Visible = false;
-                        pnlVacant.Visible = false;
-                        pnlDragdrop.Visible = false;
                         pnlHotspot.Visible = false;
-                        pnlScenario.Visible = false;
                         prevVaile.Value = _datatable4.Rows[0][5].ToString();
                         int[] arrAnswerID = new int[Convert.ToInt32(_datatable4.Rows[0][5])];
                         for (int loopcnt = 1; loopcnt <= Convert.ToInt32(_datatable4.Rows[0][5].ToString()); loopcnt++)
@@ -901,96 +786,72 @@ namespace WebMerchant
                         }
                         ViewState["arrAnswerID"] = arrAnswerID;
                         hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
-                        btnAdd.Text = "Update";
                     }
                     else if (_datatable4.Rows[0][2].ToString().Equals("2"))
                     {
-                        pnlMultiSelect.Visible = true;
-                        pnlSingleSelect.Visible = false;
-                        pnlVacant.Visible = false;
-                        pnlDragdrop.Visible = false;
+                        pnlSingleSelect.Visible = true;
                         pnlHotspot.Visible = false;
-                        pnlScenario.Visible = false;
                         prevVaile.Value = _datatable4.Rows[0][5].ToString();
                         int[] arrMultiAnswerID = new int[Convert.ToInt32(_datatable4.Rows[0][5])];
                         for (int loopcnt = 1; loopcnt <= Convert.ToInt32(_datatable4.Rows[0][5].ToString()); loopcnt++)
                         {
                             arrMultiAnswerID[loopcnt - 1] = Convert.ToInt32(_datatable4.Rows[loopcnt - 1][8]);
-                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderMulti", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
+                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
                         }
                         ViewState["arrMultiAnswerID"] = arrMultiAnswerID;
                         hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
-                        btnMultiAdd.Text = "Update";
                     }
                     else if (_datatable4.Rows[0][2].ToString().Equals("3"))
                     {
-                        pnlVacant.Visible = true;
-                        pnlSingleSelect.Visible = false;
-                        pnlMultiSelect.Visible = false;
-                        pnlDragdrop.Visible = false;
+                        pnlSingleSelect.Visible = true;
                         pnlHotspot.Visible = false;
-                        pnlScenario.Visible = false;
                         prevVaile.Value = _datatable4.Rows[0][5].ToString();
                         int[] arrVacantAnswerID = new int[Convert.ToInt32(_datatable4.Rows[0][5])];
                         for (int loopcnt = 1; loopcnt <= Convert.ToInt32(_datatable4.Rows[0][5].ToString()); loopcnt++)
                         {
                             arrVacantAnswerID[loopcnt - 1] = Convert.ToInt32(_datatable4.Rows[loopcnt - 1][8]);
-                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderVacant", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
+                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
                         }
                         ViewState["arrVacantAnswerID"] = arrVacantAnswerID;
                         hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
-                        btnVacantAdd.Text = "Update";
                     }
                     else if (_datatable4.Rows[0][2].ToString().Equals("4"))
                     {
-                        pnlDragdrop.Visible = true;
-                        pnlSingleSelect.Visible = false;
-                        pnlMultiSelect.Visible = false;
-                        pnlVacant.Visible = false;
+                        pnlSingleSelect.Visible = true;
                         pnlHotspot.Visible = false;
-                        pnlScenario.Visible = false;
                         prevVaile.Value = _datatable4.Rows[0][5].ToString();
                         int[] arrDragdropAnswerID = new int[Convert.ToInt32(_datatable4.Rows[0][5])];
                         for (int loopcnt = 1; loopcnt <= Convert.ToInt32(_datatable4.Rows[0][5].ToString()); loopcnt++)
                         {
                             arrDragdropAnswerID[loopcnt - 1] = Convert.ToInt32(_datatable4.Rows[loopcnt - 1][8]);
-                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderDragdrop", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
+                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
                         }
                         ViewState["arrDragdropAnswerID"] = arrDragdropAnswerID;
                         hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
-                        btnDragdropAdd.Text = "Update";
                     }
                     else if (_datatable4.Rows[0][2].ToString().Equals("5"))
                     {
                         pnlSingleSelect.Visible = false;
-                        pnlMultiSelect.Visible = false;
-                        pnlVacant.Visible = false;
-                        pnlDragdrop.Visible = false;
                         pnlHotspot.Visible = false;
-                        pnlScenario.Visible = false;
                         ShowMessage("Can not edit hotspot question", MessageType.Info);
                         //ftxtHotspotExplanation.Text = _datatable4.Rows[0][6].ToString();
                         //btnHotspotAdd.Text = "Update";
                     }
                     else if (_datatable4.Rows[0][2].ToString().Equals("6"))
                     {
-                        pnlScenario.Visible = true;
-                        pnlSingleSelect.Visible = false;
-                        pnlMultiSelect.Visible = false;
-                        pnlVacant.Visible = false;
-                        pnlDragdrop.Visible = false;
+                        pnlSingleSelect.Visible = true;
                         pnlHotspot.Visible = false;
                         prevVaile.Value = _datatable4.Rows[0][5].ToString();
                         int[] arrScenarioAnswerID = new int[Convert.ToInt32(_datatable4.Rows[0][5])];
                         for (int loopcnt = 1; loopcnt <= Convert.ToInt32(_datatable4.Rows[0][5].ToString()); loopcnt++)
                         {
                             arrScenarioAnswerID[loopcnt - 1] = Convert.ToInt32(_datatable4.Rows[loopcnt - 1][8]);
-                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderScenario", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
+                            CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
                         }
                         ViewState["arrScenarioAnswerID"] = arrScenarioAnswerID;
                         hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
-                        btnScenarioAdd.Text = "Update";
                     }
+                    btnAdd.Text = "Update";
                 }
             }
             catch (Exception ex)
@@ -1061,26 +922,6 @@ namespace WebMerchant
         protected void btnAddAnswerSingle_Click(object sender, EventArgs e)
         {
             InitializeDynamicText(Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox", ctrlPlaceholderTextBox);
-        }
-
-        protected void btnAddAnswerMulti_Click(object sender, EventArgs e)
-        {
-            InitializeDynamicText(Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderMulti", ctrlPlaceholderMulti);
-        }
-
-        protected void btnAddAnswerVacant_Click(object sender, EventArgs e)
-        {
-            InitializeDynamicText(Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderVacant", ctrlPlaceholderVacant);
-        }
-
-        protected void btnAddAnswerDragDrop_Click(object sender, EventArgs e)
-        {
-            InitializeDynamicText(Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderDragdrop", ctrlPlaceholderDragdrop);
-        }
-
-        protected void btnAddAnswerScenario_Click(object sender, EventArgs e)
-        {
-            InitializeDynamicText(Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderScenario", ctrlPlaceholderScenario);
         }
 
         private void InitializeDynamicText(int qtype, string plcholdname, PlaceHolder plcholer)
@@ -1392,17 +1233,14 @@ namespace WebMerchant
         private void ClearControl()
         {
             btnAddAnswerSingle.Visible = true;
-            btnAddAnswerMulti.Visible = true;
-            btnAddAnswerVacant.Visible = true;
-            btnAddAnswerDragDrop.Visible = true;
-            btnAddAnswerScenario.Visible = true;
             FillgridViewQAManage(MerchantId);
             Common.ClearControl(Panel1);
-            txtQuestion.Text = txtExplanation.Text = "";
+            txtQuestion.Text = txtExplanation.Text = hftxtquestion.Value = hftxtExplanation.Value = "";
             ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = null;
             ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = "";
-            btnAdd.Text = btnMultiAdd.Text = btnVacantAdd.Text = btnDragdropAdd.Text = btnHotspotAdd.Text = btnScenarioAdd.Text = "Add";
-            pnlSingleSelect.Visible = pnlMultiSelect.Visible = pnlVacant.Visible = pnlDragdrop.Visible = pnlHotspot.Visible = pnlScenario.Visible = false;
+            btnAdd.Text = "Add";
+            pnlSingleSelect.Visible = pnlHotspot.Visible = pnladdAnswertxtbox.Visible = false;
+            pnlETS.Visible = true;
         }
 
         protected void ShowMessage(string Message, MessageType type)
