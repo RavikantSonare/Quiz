@@ -14,7 +14,13 @@ using WebMerchant.BOLayer;
 using WebMerchant.BALayer;
 using System.Data.OleDb;
 using System.Data.SqlClient;
-using Code7248.word_reader;
+using Spire.Doc;
+using Spire.Doc.Documents;
+using Spire.Doc.Fields;
+using System.Security.Principal;
+using System.Security.AccessControl;
+using System.Security.Cryptography;
+
 namespace WebMerchant
 {
     public partial class MerchantManageQA : System.Web.UI.Page
@@ -926,7 +932,7 @@ namespace WebMerchant
 
         private void InitializeDynamicText(int qtype, string plcholdname, PlaceHolder plcholer)
         {
-            int index = plcholer.Controls.OfType<TextBox>().ToList().Count + 1;
+            int index = plcholer.Controls.OfType<System.Web.UI.WebControls.TextBox>().ToList().Count + 1;
             this.CreateTextBoxQ(index, qtype, plcholdname);
             prevVaile.Value = Convert.ToString(index);
         }
@@ -960,7 +966,7 @@ namespace WebMerchant
             lblop.Text = "</label><div class='col-sm-8'>";
             ctrlPlaceholderTextBox.Controls.Add(lblop);
 
-            TextBox tb = new TextBox();
+            System.Web.UI.WebControls.TextBox tb = new System.Web.UI.WebControls.TextBox();
             tb.ID = "tb" + loopcnt;
             tb.CssClass = "summernote form-control";
             tb.EnableViewState = true;
@@ -1024,7 +1030,7 @@ namespace WebMerchant
             lblop.Text = "</label><div class='col-sm-8'>";
             ctrlPlaceholderTextBox.Controls.Add(lblop);
 
-            TextBox tb = new TextBox();
+            System.Web.UI.WebControls.TextBox tb = new System.Web.UI.WebControls.TextBox();
             tb.ID = "tb" + loopcnt;
             tb.Text = tbvalue;
             tb.CssClass = "summernote form-control";
@@ -1055,6 +1061,7 @@ namespace WebMerchant
 
         protected void btnImport_Click(object sender, EventArgs e)
         {
+            List<Questions> _quetionList = new List<Questions>();
             string filePath = string.Empty;
             try
             {
@@ -1066,80 +1073,244 @@ namespace WebMerchant
                     {
                         FileUpload1.SaveAs(filePath);
                     }
+                    List<Answerlist> _answerlist = new List<Answerlist>();
+                    List<RightAnswer> _rightAnswerlist = new List<RightAnswer>();
+                    List<QuestionTypelist> _questionTypeList = new List<QuestionTypelist>();
+                    //{ "Question(Single Choice)", "Question(Multi Choice)", "Question(Vacant)", "Question(Drag & Drop)", "Question(Hotspot)", "Question(Scenario)" };
+                    _questionTypeList.Add(new QuestionTypelist { QuestionTypeId = 1, QuestionType = "Question(Single Choice)" });
+                    _questionTypeList.Add(new QuestionTypelist { QuestionTypeId = 2, QuestionType = "Question(Multi Choice)" });
+                    _questionTypeList.Add(new QuestionTypelist { QuestionTypeId = 3, QuestionType = "Question(Vacant)" });
+                    _questionTypeList.Add(new QuestionTypelist { QuestionTypeId = 4, QuestionType = "Question(Drag & Drop)" });
+                    _questionTypeList.Add(new QuestionTypelist { QuestionTypeId = 5, QuestionType = "Question(Hotspot)" });
+                    _questionTypeList.Add(new QuestionTypelist { QuestionTypeId = 6, QuestionType = "Question(Scenario)" });
 
-                    TextExtractor extractor = new TextExtractor(filePath);
-                    string docmunet = extractor.ExtractText();
-                    string[] doc = docmunet.Split('\n');
+                    List<QuestionTypelist> _questionTypeList1 = new List<QuestionTypelist>();
+                    List<string> AnswerCharList = new List<string>() { "A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.", "J." };
+                    string CommanStrflag = "Q", QuestionStr = string.Empty, AnswerStr = string.Empty, RightAnswerStr = string.Empty, ExpStr = string.Empty;
+                    string resourceimg = string.Empty, exhabitimg = string.Empty, topologyimg = string.Empty, scanarioimg = string.Empty;
+                    int DoneQueStatus = 0, questionNo = 0;
+                    string[] aas = null; string CurrrentStr = string.Empty;
 
-                    List<propertyClass> objprop = new List<propertyClass>();
-                    List<string> objprop1 = new List<string>();
-                    List<int> objAnswerlist = new List<int>();
-                    List<string> objprop2 = new List<string>() { "A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.", "J." };
+                    string _imgbtnshow = string.Empty;
+                    List<string> ImageTypeList = new List<string>() { "Refer to the exhibit", "Refer to the topology", "Refer to the Scenario" };
 
-                    string tempp = string.Empty;
-                    int questNo = 0;
-                    bool flag = true;
-                    string[] s;
-                    string[] aas = null;
-                    for (int i = 0; i < doc.Count(); i++)
+
+                    Document document = new Document(filePath);
+                    int index = 1;
+                    foreach (Spire.Doc.Section section in document.Sections)
                     {
-                        string temp = doc[i].Trim();
-                        if (temp != string.Empty)
+                        foreach (Spire.Doc.Documents.Paragraph paragraph in section.Paragraphs)
                         {
-                            if (temp == "Question")
+                            DoneQueStatus++;
+                            foreach (DocumentObject docObject in paragraph.ChildObjects)
                             {
-                                questNo++;
-                            }
-                            else
-                            {
-                                if (objprop2.Contains(temp.Substring(0, 2)))
+                                CurrrentStr = paragraph.Text.Trim();
+                                if (String.IsNullOrEmpty(CurrrentStr))
                                 {
-                                    objprop1.Add(temp.Substring(2).Trim());
-                                }
-                                else
-                                {
-                                    if (temp.Contains("Answer:"))
+                                    if (docObject.DocumentObjectType == DocumentObjectType.Picture)
                                     {
-                                        s = temp.Split(':');
-                                        aas = Array.ConvertAll(s[1].Split(','), p => p.Trim());
-                                        for (int j = 0; j < objprop1.Count; j++)
+                                        string docname = System.IO.Path.GetFileNameWithoutExtension(filePath);
+                                        DocPicture pic = docObject as DocPicture;
+                                        string filename = System.AppDomain.CurrentDomain.BaseDirectory + "resource\\";
+                                        bool exists = System.IO.Directory.Exists(filename);
+                                        if (!exists)
                                         {
-                                            string value = Convert.ToChar(65 + j).ToString();
-                                            if (aas.Contains(value))
-                                                objAnswerlist.Add(1);
-                                            else objAnswerlist.Add(0);
+                                            DirectoryInfo di = System.IO.Directory.CreateDirectory(filename);
                                         }
-                                        flag = false;
-                                    }
-                                    else
-                                    {
-                                        tempp += temp + "\n";
+                                        else
+                                        {
+                                            //Console.WriteLine("The Folder already exists");
+                                        }
+                                        DirectoryInfo dInfo = new DirectoryInfo(filename);
+                                        DirectorySecurity dSecurity = dInfo.GetAccessControl();
+                                        dSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
+                                        dInfo.SetAccessControl(dSecurity);
+
+                                        String imgName = String.Format(docname + "-Question" + questionNo + "-{0}.png", index);
+                                        imgName = string.Concat(Path.GetFileNameWithoutExtension(imgName), DateTime.Now.ToString("yyyyMMddHHmmssfff"), Path.GetExtension(imgName));
+                                        if (_imgbtnshow == "")
+                                        {
+                                            resourceimg = imgName;
+                                        }
+                                        else if (_imgbtnshow == "Refer to the exhibit")
+                                        {
+                                            exhabitimg = imgName;
+                                        }
+                                        else if (_imgbtnshow == "Refer to the topology")
+                                        {
+                                            topologyimg = imgName;
+                                        }
+                                        else if (_imgbtnshow == "Refer to the Scenario")
+                                        {
+                                            scanarioimg = imgName;
+                                        }
+                                        //Save Image
+                                        if (!File.Exists(imgName))
+                                        {
+                                            pic.Image.Save(filename + imgName, System.Drawing.Imaging.ImageFormat.Png);
+                                        }
+                                        index++;
                                     }
                                 }
+
+                                if (!String.IsNullOrEmpty(CurrrentStr))
+                                {
+                                    var objval = _questionTypeList.Where(a => a.QuestionType.Contains(CurrrentStr)).FirstOrDefault();
+                                    if (objval != null)
+                                    {
+                                        CommanStrflag = "Q";
+                                        _questionTypeList1.Add(new QuestionTypelist { QuestionTypeId = objval.QuestionTypeId, QuestionType = objval.QuestionType });
+                                        if (questionNo == 0)
+                                            questionNo++;
+                                    }
+                                    if (ImageTypeList.Contains(CurrrentStr))
+                                    {
+                                        CommanStrflag = "IN";
+                                    }
+
+                                    if (AnswerCharList.Contains(CurrrentStr.Substring(0, 2)))
+                                        CommanStrflag = "A";
+
+                                    if (CurrrentStr.Contains("Answer:"))
+                                        CommanStrflag = "RA";
+
+                                    if (CurrrentStr.Contains("Explanation:"))
+                                        CommanStrflag = "E";
+                                }
+                                switch (CommanStrflag)
+                                {
+                                    case "Q":
+                                        if (!_questionTypeList.Any(a => a.QuestionType.Contains(CurrrentStr)))
+                                        {
+                                            QuestionStr += CurrrentStr + "\n";
+                                        }
+                                        break;
+                                    case "IN":
+                                        _imgbtnshow = CurrrentStr;
+                                        CommanStrflag = "";
+                                        break;
+                                    case "RA":
+                                        RightAnswerStr += CurrrentStr;
+                                        if (RightAnswerStr.Contains("Answer:"))
+                                        {
+                                            var s = RightAnswerStr.Split(':');
+                                            aas = Array.ConvertAll(s[1].Split(','), p => p.Trim());
+                                            for (int j = 0; j < _answerlist.Count; j++)
+                                            {
+                                                string value = Convert.ToChar(65 + j).ToString();
+                                                if (aas.Contains(value))
+                                                {
+                                                    _rightAnswerlist.Add(new RightAnswer { Rightanswer = true });
+                                                }
+                                                else _rightAnswerlist.Add(new RightAnswer { Rightanswer = false });
+                                            }
+                                        }
+                                        break;
+                                    case "A":
+                                        _answerlist.Add(new Answerlist { Answer = CurrrentStr.Substring(2).Trim(), QuestionNo = questionNo });
+                                        break;
+                                    case "E":
+                                        ExpStr += CurrrentStr + "\n";
+                                        break;
+                                }
+                                break;
                             }
-                        }
-                        if (questNo > 0 && flag == false)
-                        {
-                            int qtype = 1;
-                            if (aas.Length > 1)
+                            if (paragraph.ChildObjects.Count == 0 && CurrrentStr != null)
                             {
-                                qtype = 2;
+
+                                _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = _questionTypeList1, NoofAnswer = _answerlist.Count, Score = 1, Explaination = ExpStr, RightAnswerString = RightAnswerStr, Resource = resourceimg, Exhibit = exhabitimg, Topology = topologyimg, Scenario = scanarioimg });
+                                CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty; resourceimg = string.Empty; exhabitimg = string.Empty; topologyimg = string.Empty; scanarioimg = string.Empty; CurrrentStr = string.Empty;
+                                _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<RightAnswer>(); _questionTypeList1 = new List<QuestionTypelist>(); _imgbtnshow = string.Empty;
+                                questionNo++; index = 1;
                             }
-                            objprop.Add(new propertyClass { QuestionNo = questNo, Question = tempp, Answer = objprop1, RightAnswer = objAnswerlist, QuestionType = qtype, NoofAnswer = objprop1.Count, Score = 1 });
-                            tempp = ""; objprop1 = new List<string>(); objAnswerlist = new List<int>();
-                            flag = true;
                         }
+                        if (uploadAndSave(_quetionList))
+                        {
+                            FillgridViewQAManage(MerchantId);
+                            ShowMessage("Question upload successfully", MessageType.Success);
+                        }
+                        else
+                        {
+                            ShowMessage("Some technical error", MessageType.Warning);
+                        }
+
+
+                        //TextExtractor extractor = new TextExtractor(filePath);
+                        //string docmunet = extractor.ExtractText();
+                        //string[] doc = docmunet.Split('\n');
+
+                        //List<QuestionManage> objqstmng = new List<QuestionManage>();
+                        //List<string> objAnswer = new List<string>();
+                        //List<int> objAnswerlist = new List<int>();
+                        //List<string> QuestionTypeList = new List<string>() { "Question(Single Choice)", "Question(Multi Choice)", "Question(Vacant)", "Question(Drag & Drop)", "Question(Hotspot)", "Question(Scenario)" };
+                        //List<string> AnswerCharList = new List<string>() { "A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.", "J." };
+
+                        //string tempp = string.Empty;
+
+                        //int questNo = 0;
+                        //bool flag = true;
+                        //string[] s;
+                        //string[] aas = null;
+                        //for (int i = 0; i < doc.Count(); i++)
+                        //{
+                        //    string temp = doc[i].Trim();
+                        //    if (temp != string.Empty)
+                        //    {
+                        //        if (temp == "Question")
+                        //        {
+                        //            questNo++;
+                        //        }
+                        //        else
+                        //        {
+                        //            if (AnswerCharList.Contains(temp.Substring(0, 2)))
+                        //            {
+                        //                objAnswer.Add(temp.Substring(2).Trim());
+                        //            }
+                        //            else
+                        //            {
+                        //                if (temp.Contains("Answer:"))
+                        //                {
+                        //                    s = temp.Split(':');
+                        //                    aas = Array.ConvertAll(s[1].Split(','), p => p.Trim());
+                        //                    for (int j = 0; j < objAnswer.Count; j++)
+                        //                    {
+                        //                        string value = Convert.ToChar(65 + j).ToString();
+                        //                        if (aas.Contains(value))
+                        //                            objAnswerlist.Add(1);
+                        //                        else objAnswerlist.Add(0);
+                        //                    }
+                        //                    flag = false;
+                        //                }
+                        //                else
+                        //                {
+                        //                    tempp += temp + "\n";
+                        //                }
+                        //            }
+                        //        }
+                        //    }
+                        //    if (questNo > 0 && flag == false)
+                        //    {
+                        //        int qtype = 1;
+                        //        if (aas.Length > 1)
+                        //        {
+                        //            qtype = 2;
+                        //        }
+                        //        objqstmng.Add(new QuestionManage { QuestionNo = questNo, Question = tempp, Answer = objAnswer, RightAnswer = objAnswerlist, QuestionType = qtype, NoofAnswer = objAnswer.Count, Score = 1 });
+                        //        tempp = ""; objAnswer = new List<string>(); objAnswerlist = new List<int>();
+                        //        flag = true;
+                        //    }
+                        //}
+                        //if (uploadAndSave(objqstmng))
+                        //{
+                        //    FillgridViewQAManage(MerchantId);
+                        //    ShowMessage("Question upload successfully", MessageType.Success);
+                        //}
+                        //else
+                        //{
+                        //    ShowMessage("Some technical error", MessageType.Warning);
+                        //}
+                        //// File.Delete(filePath);
                     }
-                    if (uploadAndSave(objprop))
-                    {
-                        FillgridViewQAManage(MerchantId);
-                        ShowMessage("Question upload successfully", MessageType.Success);
-                    }
-                    else
-                    {
-                        ShowMessage("Some technical error", MessageType.Warning);
-                    }
-                    // File.Delete(filePath);
                 }
             }
             catch (Exception ex)
@@ -1154,33 +1325,27 @@ namespace WebMerchant
             }
         }
 
-        private string readFileContent(string path)
-        {
-            string filePath = Server.MapPath("~/ExcelUpload/") + Path.GetFileName(FileUpload1.PostedFile.FileName);
-            FileUpload1.SaveAs(filePath);
-            //string filePath = Server.MapPath("~/ExcelUpload/QuizDemo.docx");
-            TextExtractor extractor = new TextExtractor(filePath);
-            string text = extractor.ExtractText();
-            return text;
-
-        }
-
-        private bool uploadAndSave(List<propertyClass> diclist)
+        private bool uploadAndSave(List<Questions> diclist)
         {
             bool revalue = false;
             int retqID = default(int);
             try
             {
-                foreach (var item in diclist)
+                //foreach (var item in diclist)
+                for (var x = 0; x < diclist.Count; x++)
                 {
                     _boqamng.ExamCodeId = Convert.ToInt32(ddlExamCode.SelectedItem.Value);
                     _boqamng.ExamCode = ddlExamCode.SelectedItem.Text;
-                    _boqamng.QuestionTypeId = item.QuestionType;
-                    _boqamng.Score = item.Score;
-                    _boqamng.Question = item.Question;
-                    _boqamng.NoofAnswer = item.NoofAnswer;
-                    _boqamng.Explanation = "";
+                    _boqamng.QuestionTypeId = diclist[x].QuestionType.FirstOrDefault().QuestionTypeId;
+                    _boqamng.Score = diclist[x].Score;
+                    _boqamng.Question = diclist[x].Question;
+                    _boqamng.NoofAnswer = diclist[x].NoofAnswer;
+                    _boqamng.Explanation = diclist[x].Explaination;
                     _boqamng.MerchantId = MerchantId;
+                    _boqamng.Resource = diclist[x].Resource;
+                    _boqamng.Exhibit = diclist[x].Exhibit;
+                    _boqamng.Topology = diclist[x].Topology;
+                    _boqamng.Scenario = diclist[x].Scenario;
                     _boqamng.IsActive = true;
                     _boqamng.IsDelete = false;
                     _boqamng.CreatedBy = MerchantId;
@@ -1190,14 +1355,14 @@ namespace WebMerchant
                     _boqamng.QAId = 0;
                     _boqamng.Event = "Insert";
                     retqID = _baqamng.Insert(_boqamng);
-                    using (var e1 = item.Answer.GetEnumerator())
-                    using (var e2 = item.RightAnswer.GetEnumerator())
+                    using (var e1 = diclist[x].Answerlist.GetEnumerator())
+                    using (var e2 = diclist[x].RightAnswerlist.GetEnumerator())
                     {
                         while (e1.MoveNext() && e2.MoveNext())
                         {
                             _boqans.QuestionId = retqID;
-                            _boqans.Answer = e1.Current;
-                            _boqans.RightAnswer = true;// e2.Current.ToString();
+                            _boqans.Answer = e1.Current.Answer;
+                            _boqans.RightAnswer = e2.Current.Rightanswer;
                             _boqans.IsActive = true;
                             _boqans.IsDelete = false;
                             _boqans.CreatedBy = MerchantId;
@@ -1249,13 +1414,48 @@ namespace WebMerchant
         }
     }
 }
-class propertyClass
+//class QuestionManage
+//{
+//    public int QuestionNo { get; set; }
+//    public string Question { get; set; }
+//    public List<string> Answer { get; set; }
+//    public List<int> RightAnswer { get; set; }
+//    public int QuestionType { get; set; }
+//    public int NoofAnswer { get; set; }
+//    public decimal Score { get; set; }
+//}
+
+[Serializable]
+class Questions
 {
     public int QuestionNo { get; set; }
     public string Question { get; set; }
-    public List<string> Answer { get; set; }
-    public List<int> RightAnswer { get; set; }
-    public int QuestionType { get; set; }
+    public List<Answerlist> Answerlist { get; set; }
+    public List<RightAnswer> RightAnswerlist { get; set; }
+    public List<QuestionTypelist> QuestionType { get; set; }
     public int NoofAnswer { get; set; }
     public decimal Score { get; set; }
+    public string Explaination { get; set; }
+    public string RightAnswerString { get; set; }
+    public string Resource { get; set; }
+    public string Exhibit { get; set; }
+    public string Topology { get; set; }
+    public string Scenario { get; set; }
 }
+
+[Serializable]
+class Answerlist
+{
+    public string Answer { get; set; }
+    public int QuestionNo { get; set; }
+}
+
+[Serializable]
+class QuestionTypelist
+{
+    public int QuestionTypeId { get; set; }
+    public string QuestionType { get; set; }
+}
+
+[Serializable]
+class RightAnswer { public bool Rightanswer { get; set; } }

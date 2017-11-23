@@ -944,3 +944,151 @@ Source: System.Data
 TargetSite: System.Data.DataColumn GetDataColumn(System.String)
 -----------------------------------------------------------
 
+Time: 23/11/2017 09:28:01 AM
+-----------------------------------------------------------
+Message: Could not load file or assembly 'Spire.License, Version=1.3.2.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+StackTrace:    at Spire.Doc.Document.ᜀ()
+   at Spire.Doc.Document..ctor()
+   at Spire.Doc.Document..ctor(String fileName)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1089
+Source: Spire.Doc
+TargetSite: Void ᜀ()
+-----------------------------------------------------------
+
+Time: 23/11/2017 09:29:31 AM
+-----------------------------------------------------------
+Message: Could not load file or assembly 'Spire.License, Version=1.3.2.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+StackTrace:    at Spire.Doc.Document.ᜀ()
+   at Spire.Doc.Document..ctor()
+   at Spire.Doc.Document..ctor(String fileName)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1089
+Source: Spire.Doc
+TargetSite: Void ᜀ()
+-----------------------------------------------------------
+
+Time: 23/11/2017 11:05:30 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebMerchant.MerchantManageQA.uploadAndSave(List`1 diclist) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1324
+Source: WebMerchant
+TargetSite: Boolean uploadAndSave(System.Collections.Generic.List`1[Questions])
+-----------------------------------------------------------
+
+Time: 23/11/2017 11:06:50 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebMerchant.MerchantManageQA.uploadAndSave(List`1 diclist) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1324
+Source: WebMerchant
+TargetSite: Boolean uploadAndSave(System.Collections.Generic.List`1[Questions])
+-----------------------------------------------------------
+
+Time: 23/11/2017 12:55:00 PM
+-----------------------------------------------------------
+Message: A generic error occurred in GDI+.
+StackTrace:    at System.Drawing.Image.Save(String filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
+   at System.Drawing.Image.Save(String filename, ImageFormat format)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1150
+Source: System.Drawing
+TargetSite: Void Save(System.String, System.Drawing.Imaging.ImageCodecInfo, System.Drawing.Imaging.EncoderParameters)
+-----------------------------------------------------------
+
+Time: 23/11/2017 12:56:38 PM
+-----------------------------------------------------------
+Message: A generic error occurred in GDI+.
+StackTrace:    at System.Drawing.Image.Save(String filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
+   at System.Drawing.Image.Save(String filename, ImageFormat format)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1150
+Source: System.Drawing
+TargetSite: Void Save(System.String, System.Drawing.Imaging.ImageCodecInfo, System.Drawing.Imaging.EncoderParameters)
+-----------------------------------------------------------
+
+Time: 23/11/2017 12:57:31 PM
+-----------------------------------------------------------
+Message: A generic error occurred in GDI+.
+StackTrace:    at System.Drawing.Image.Save(String filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
+   at System.Drawing.Image.Save(String filename, ImageFormat format)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1150
+Source: System.Drawing
+TargetSite: Void Save(System.String, System.Drawing.Imaging.ImageCodecInfo, System.Drawing.Imaging.EncoderParameters)
+-----------------------------------------------------------
+
+Time: 23/11/2017 12:57:50 PM
+-----------------------------------------------------------
+Message: A generic error occurred in GDI+.
+StackTrace:    at System.Drawing.Image.Save(String filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
+   at System.Drawing.Image.Save(String filename, ImageFormat format)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1150
+Source: System.Drawing
+TargetSite: Void Save(System.String, System.Drawing.Imaging.ImageCodecInfo, System.Drawing.Imaging.EncoderParameters)
+-----------------------------------------------------------
+
+Time: 23/11/2017 12:58:07 PM
+-----------------------------------------------------------
+Message: A generic error occurred in GDI+.
+StackTrace:    at System.Drawing.Image.Save(String filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
+   at System.Drawing.Image.Save(String filename, ImageFormat format)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1150
+Source: System.Drawing
+TargetSite: Void Save(System.String, System.Drawing.Imaging.ImageCodecInfo, System.Drawing.Imaging.EncoderParameters)
+-----------------------------------------------------------
+
+Time: 23/11/2017 12:58:47 PM
+-----------------------------------------------------------
+Message: A generic error occurred in GDI+.
+StackTrace:    at System.Drawing.Image.Save(String filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
+   at System.Drawing.Image.Save(String filename, ImageFormat format)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1150
+Source: System.Drawing
+TargetSite: Void Save(System.String, System.Drawing.Imaging.ImageCodecInfo, System.Drawing.Imaging.EncoderParameters)
+-----------------------------------------------------------
+
+Time: 23/11/2017 12:59:50 PM
+-----------------------------------------------------------
+Message: A generic error occurred in GDI+.
+StackTrace:    at System.Drawing.Image.Save(String filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
+   at System.Drawing.Image.Save(String filename, ImageFormat format)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1150
+Source: System.Drawing
+TargetSite: Void Save(System.String, System.Drawing.Imaging.ImageCodecInfo, System.Drawing.Imaging.EncoderParameters)
+-----------------------------------------------------------
+
+Time: 23/11/2017 01:00:45 PM
+-----------------------------------------------------------
+Message: A generic error occurred in GDI+.
+StackTrace:    at System.Drawing.Image.Save(String filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
+   at System.Drawing.Image.Save(String filename, ImageFormat format)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1150
+Source: System.Drawing
+TargetSite: Void Save(System.String, System.Drawing.Imaging.ImageCodecInfo, System.Drawing.Imaging.EncoderParameters)
+-----------------------------------------------------------
+
+Time: 23/11/2017 02:07:34 PM
+-----------------------------------------------------------
+Message: A generic error occurred in GDI+.
+StackTrace:    at System.Drawing.Image.Save(String filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
+   at System.Drawing.Image.Save(String filename, ImageFormat format)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1150
+Source: System.Drawing
+TargetSite: Void Save(System.String, System.Drawing.Imaging.ImageCodecInfo, System.Drawing.Imaging.EncoderParameters)
+-----------------------------------------------------------
+
+Time: 23/11/2017 02:07:45 PM
+-----------------------------------------------------------
+Message: A generic error occurred in GDI+.
+StackTrace:    at System.Drawing.Image.Save(String filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
+   at System.Drawing.Image.Save(String filename, ImageFormat format)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1150
+Source: System.Drawing
+TargetSite: Void Save(System.String, System.Drawing.Imaging.ImageCodecInfo, System.Drawing.Imaging.EncoderParameters)
+-----------------------------------------------------------
+
+Time: 23/11/2017 02:13:58 PM
+-----------------------------------------------------------
+Message: A generic error occurred in GDI+.
+StackTrace:    at System.Drawing.Image.Save(String filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
+   at System.Drawing.Image.Save(String filename, ImageFormat format)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1150
+Source: System.Drawing
+TargetSite: Void Save(System.String, System.Drawing.Imaging.ImageCodecInfo, System.Drawing.Imaging.EncoderParameters)
+-----------------------------------------------------------
+
