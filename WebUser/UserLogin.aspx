@@ -30,7 +30,6 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Real Test Mode">
                                 <ItemTemplate>
-                                    <asp:Button ID="Button1" runat="server" Text="Button" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="Button1_Click" />
                                     <%--<asp:Button ID="btnTestMode" runat="server" Text="Test Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCode")%>' Visible='<%# !(Convert.ToBoolean(Eval("OnlyTestOnce"))) %>' OnClick="btnTestMode_Click" />--%>
                                     <asp:Button ID="btnTestMode" runat="server" Text="Test Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnTestMode_Click" Enabled='<%# Eval("QuestionCount").ToString() != "0" ? true : false %>' />
                                     <asp:Label ID="lblemptymsg" runat="server" Text="Question not available" ForeColor="Red" Visible='<%# Eval("QuestionCount").ToString() == "0" ? true : false %>' />
@@ -40,6 +39,11 @@
                                 <ItemTemplate>
                                     <%--<asp:Button ID="btnTestMode" runat="server" Text="Test Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCode")%>' Visible='<%# !(Convert.ToBoolean(Eval("OnlyTestOnce"))) %>' OnClick="btnTestMode_Click" />--%>
                                     <asp:Button ID="btnTestOnce" runat="server" Text="Do Real Test" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnTestOnce_Click" Enabled='<%# Eval("QuestionCount").ToString() != "0" ? true : false %>' Visible='<%# Eval("OnlyTestOnce")%>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Download">
+                                <ItemTemplate>
+                                    <asp:Button ID="btnDownload" runat="server" Text="Download" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnDownload_Click" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

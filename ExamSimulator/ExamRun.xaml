@@ -155,7 +155,13 @@
             </Setter>
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="Question(Single Choice)">
+                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="1">
+                    <Setter Property="RadioButton.Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="3">
+                    <Setter Property="RadioButton.Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="6">
                     <Setter Property="RadioButton.Visibility" Value="Visible"/>
                 </DataTrigger>
                 <DataTrigger  Binding ="{Binding ElementName=txtUserAnswer, Path=Text}"  Value="True">
@@ -258,7 +264,7 @@
             </Setter>
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="Question(Multi Choice)">
+                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="2">
                     <Setter Property="CheckBox.Visibility" Value="Visible"/>
                 </DataTrigger>
                 <DataTrigger  Binding ="{Binding ElementName=txtUserAnswer, Path=Text}"  Value="True">
@@ -270,7 +276,7 @@
         <Style x:Key="griddragdrop" TargetType="{x:Type Grid}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="Question(Drag &amp; Drop)">
+                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="4">
                     <Setter Property="CheckBox.Visibility" Value="Visible"/>
                 </DataTrigger>
             </Style.Triggers>
@@ -279,7 +285,7 @@
         <Style x:Key="canvasHotspot" TargetType="{x:Type Canvas}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="Question(Hotspot)">
+                <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="5">
                     <Setter Property="CheckBox.Visibility" Value="Visible"/>
                 </DataTrigger>
             </Style.Triggers>
@@ -405,23 +411,24 @@
                     </Grid>
                 </StackPanel>
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
-                    <ListBox  x:Name="listQuestion" ItemsSource="{Binding _list}" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
+                    <ListBox  x:Name="listQuestion" ItemsSource="{Binding QuestionList}" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock  Name="txtQuestion" Text="{Binding Question}" Tag="{Binding QuestionType}" Style="{StaticResource wpfStyle1}"/>
+                                    <Label Content="{Binding QuestionType}" />
+                                    <TextBlock  Name="txtQuestion" Text="{Binding Question}" Tag="{Binding QuestionTypeId}" Style="{StaticResource wpfStyle1}"/>
                                     <Button Name="btnExhibit" HorizontalAlignment="Center" CommandParameter="{Binding Image}"  Tag="{Binding ImageBtnShow}" Style="{StaticResource btnexhibit}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnExhibit_Click"/>
-                                    <ListBox  x:Name="list" ItemsSource="{Binding Answerlist}" Width="auto" BorderThickness="0" IsEnabled="{Binding ExamMode}" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
+                                    <ListBox  x:Name="list" ItemsSource="{Binding AnswerList}" Width="auto" BorderThickness="0" IsEnabled="{Binding ExamMode}" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <TextBox Name="txtUserAnswer" Text="{Binding UserAnwer}" Visibility="Collapsed" />
-                                                    <RadioButton x:Name="rbtnanswer" Style="{StaticResource rbtnanswer}" Tag="{Binding Answer}" TabIndex="{Binding QuestionNo}"  GroupName="Answer" Click="RadioButton_Checked">
+                                                    <TextBox Name="txtUserAnswer" Text="{Binding UserAnswer}" Visibility="Collapsed" />
+                                                    <RadioButton x:Name="rbtnanswer" Style="{StaticResource rbtnanswer}" Tag="{Binding Answer}" TabIndex="{Binding QuestionId}"  GroupName="Answer" Click="RadioButton_Checked">
                                                         <RadioButton.Content>
                                                             <ContentPresenter Content="{Binding Answer}"/>
                                                         </RadioButton.Content>
                                                     </RadioButton>
-                                                    <CheckBox x:Name="chkanswer" Style="{StaticResource chkanswer}" Tag="{Binding Answer}" TabIndex="{Binding QuestionNo}" Click="Checkbox_checked" >
+                                                    <CheckBox x:Name="chkanswer" Style="{StaticResource chkanswer}" Tag="{Binding Answer}" TabIndex="{Binding QuestionId}" Click="Checkbox_checked" >
                                                         <CheckBox.Content>
                                                             <ContentPresenter Content="{Binding Answer}"/>
                                                         </CheckBox.Content>
@@ -438,7 +445,7 @@
                                             <ColumnDefinition Width="1*"></ColumnDefinition>
                                             <ColumnDefinition Width="1*"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
-                                        <ListBox ItemsSource="{Binding Answerlist}" Grid.Row="0" Grid.Column="0" x:Name="lbDrag" Drop="lbDrag_Drop" AllowDrop="True" PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown" IsEnabled="{Binding ExamMode}">
+                                        <ListBox ItemsSource="{Binding AnswerList}" Grid.Row="0" Grid.Column="0" x:Name="lbDrag" Drop="lbDrag_Drop" AllowDrop="True" PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown" IsEnabled="{Binding ExamMode}">
                                             <ListBox.ItemContainerStyle>
                                                 <Style TargetType="{x:Type ListBoxItem}">
                                                     <Setter Property="Height" Value="30" />
@@ -452,7 +459,7 @@
                                                         <Label.Style>
                                                             <Style TargetType="{x:Type Label}">
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding ="{Binding Path=UserAnwer}" Value="True">
+                                                                    <DataTrigger Binding ="{Binding Path=UserAnswer}" Value="True">
                                                                         <Setter Property="Visibility" Value="Collapsed"/>
                                                                     </DataTrigger>
                                                                 </Style.Triggers>
@@ -462,11 +469,11 @@
                                                 </DataTemplate>
                                             </ListBox.ItemTemplate>
                                         </ListBox>
-                                        <ListBox ItemsSource="{Binding Answerlist}" Grid.Row="1" Grid.Column="1" x:Name="lbDrop" Drop="lbDrop_Drop" AllowDrop="True" PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown" IsEnabled="{Binding ExamMode}">
+                                        <ListBox ItemsSource="{Binding AnswerList}" Grid.Row="1" Grid.Column="1" x:Name="lbDrop" Drop="lbDrop_Drop" AllowDrop="True" PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown" IsEnabled="{Binding ExamMode}">
                                             <ListBox.ItemContainerStyle>
                                                 <Style TargetType="{x:Type ListBoxItem}">
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding ="{Binding Path=UserAnwer}" Value="True">
+                                                        <DataTrigger Binding ="{Binding Path=UserAnswer}" Value="True">
                                                             <Setter Property="Height" Value="30" />
                                                             <Setter Property="BorderThickness" Value="1" />
                                                             <Setter Property="BorderBrush" Value="Gray" />
@@ -480,7 +487,7 @@
                                                         <Label.Style>
                                                             <Style TargetType="{x:Type Label}">
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding ="{Binding Path=UserAnwer}" Value="False">
+                                                                    <DataTrigger Binding ="{Binding Path=UserAnswer}" Value="False">
                                                                         <Setter Property="Visibility" Value="Collapsed"/>
                                                                     </DataTrigger>
                                                                 </Style.Triggers>
@@ -492,8 +499,8 @@
                                         </ListBox>
                                     </Grid>
                                     <Canvas Style="{StaticResource canvasHotspot}" Height="{Binding ActualHeight, ElementName=canvas_image}">
-                                        <Image Source="{Binding Image}" Name="canvas_image" />
-                                        <ItemsControl ItemsSource="{Binding Answerlist}" IsEnabled="{Binding ExamMode}">
+                                        <Image Source="{Binding Resource}" Name="canvas_image" />
+                                        <ItemsControl ItemsSource="{Binding AnswerList}" IsEnabled="{Binding ExamMode}">
                                             <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
                                                     <Canvas Name="hotspot" IsItemsHost="True"/>
@@ -506,8 +513,8 @@
                                                             <RowDefinition Height="Auto" />
                                                             <RowDefinition Height="Auto" />
                                                         </Grid.RowDefinitions>
-                                                        <TextBox Name="txtUserAnswerPath" Text="{Binding UserAnwer}" Visibility="Collapsed" />
-                                                        <Path Name="pathcanvas" Style="{StaticResource Pathcanvas}" Stroke="Goldenrod" StrokeThickness="2" Cursor="Hand" Tag="{Binding Answer}" ToolTip="{Binding QuestionNo}"  MouseLeftButtonUp="Rectangle_MouseLeftButtonup">
+                                                        <TextBox Name="txtUserAnswerPath" Text="{Binding UserAnswer}" Visibility="Collapsed" />
+                                                        <Path Name="pathcanvas" Style="{StaticResource Pathcanvas}" Stroke="Goldenrod" StrokeThickness="2" Cursor="Hand" Tag="{Binding Answer}" ToolTip="{Binding QuestionId}"  MouseLeftButtonUp="Rectangle_MouseLeftButtonup">
                                                             <!--MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"-->
                                                             <Path.Data>
                                                                 <GeometryGroup>

@@ -26,6 +26,11 @@ namespace WebUser.BALayer
             return _daexmange.SelectExamQestionAnswer(v, exmid);
         }
 
+        public BOExamManage SelectExamQestionAnswerbase64(string v, int exmid)
+        {
+            return _daexmange.SelectExamQestionAnswerbase64(v, exmid);
+        }
+
         internal int IUD(BOExamManage _boexammanage)
         {
             return _daexmange.IUD(_boexammanage);

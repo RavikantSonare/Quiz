@@ -114,7 +114,7 @@ namespace WebUser
             Response.Redirect("~/OnlineTestBegin.aspx?exmid=" + val + "&tstmd=TO");
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btnDownload_Click(object sender, EventArgs e)
         {
             Button btntest = (Button)sender;
             var list = _baexmmng.SelectExamQestionAnswer("GetEQAWithQId", Convert.ToInt32(btntest.CommandArgument.Trim()));

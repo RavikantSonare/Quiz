@@ -1092,3 +1092,11 @@ Source: System.Drawing
 TargetSite: Void Save(System.String, System.Drawing.Imaging.ImageCodecInfo, System.Drawing.Imaging.EncoderParameters)
 -----------------------------------------------------------
 
+Time: 27/11/2017 11:39:26 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebMerchant.MerchantManageQA.uploadAndSave(List`1 diclist) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1339
+Source: WebMerchant
+TargetSite: Boolean uploadAndSave(System.Collections.Generic.List`1[Questions])
+-----------------------------------------------------------
+

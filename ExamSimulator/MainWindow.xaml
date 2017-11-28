@@ -166,7 +166,7 @@
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button x:Name="btnDownload" Content="Download" CommandParameter="{Binding ExamCode}" Click="btnDownload_Click" Style="{StaticResource BaseButtonStyle}"/>
+                                            <Button x:Name="btnDownload" Content="Download" CommandParameter="{Binding ExamCodeId}" Click="btnDownload_Click" Style="{StaticResource BaseButtonStyle}"/>
                                             <Label Content=" - "  />
                                             <Button x:Name="btnExamCode" Content="{Binding ExamCode}" IsEnabled="{Binding IsActive}" CommandParameter="{Binding Path}" Tag="{Binding Title}" Style="{StaticResource LinkButton}" Click="btnExamCode_Click"/>
                                         </StackPanel>

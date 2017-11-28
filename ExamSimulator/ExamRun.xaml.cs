@@ -15,6 +15,9 @@ using Spire.Doc.Fields;
 using System.Security.Principal;
 using System.Security.AccessControl;
 using System.Security.Cryptography;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using ExamSimulator.BOLayer;
 
 namespace ExamSimulator
 {
@@ -24,8 +27,9 @@ namespace ExamSimulator
     public partial class ExamRun : System.Windows.Controls.Page
     {
         #region Global Variables
+        BOExamManage _examqueanslist = new BOExamManage();
         int currentQuestionIndex = 0;
-        List<Questions> _list = new List<Questions>();
+        BOExamManage _list = new BOExamManage();
         // TodoItem filelist = (TodoItem)Application.Current.Properties["test"];
         TodoItem filelist = new TodoItem();
         DispatcherTimer _timer;
@@ -74,19 +78,19 @@ namespace ExamSimulator
             }
         }
 
-        private void BindQuestionlist(List<Questions> _qestlist)
+        private void BindQuestionlist(BOExamManage _qestlist)
         {
             if (flagMark)
             {
-                listQuestion.ItemsSource = _qestlist.Where(f => f.Mark).Skip(currentQuestionIndex).Take(1);
-                listQuestionMark.ItemsSource = _qestlist.Where(f => f.Mark).Skip(currentQuestionIndex).Take(1);
-                showQuestionNo(currentQuestionIndex + 1, _qestlist.Where(f => f.Mark).ToList().Count);
+                //listQuestion.ItemsSource = _qestlist.Where(f => f.Mark).Skip(currentQuestionIndex).Take(1);
+                //listQuestionMark.ItemsSource = _qestlist.Where(f => f.Mark).Skip(currentQuestionIndex).Take(1);
+                //showQuestionNo(currentQuestionIndex + 1, _qestlist.Where(f => f.Mark).ToList().Count);
             }
             else
             {
-                listQuestion.ItemsSource = _qestlist.Skip(currentQuestionIndex).Take(1);
-                listQuestionMark.ItemsSource = _qestlist.Skip(currentQuestionIndex).Take(1);
-                showQuestionNo(currentQuestionIndex + 1, _qestlist.Count);
+                listQuestion.ItemsSource = _qestlist.QuestionList.Skip(currentQuestionIndex).Take(1);
+                listQuestionMark.ItemsSource = _qestlist.QuestionList.Skip(currentQuestionIndex).Take(1);
+                showQuestionNo(currentQuestionIndex + 1, _qestlist.QuestionList.Count);
             }
         }
 
@@ -117,7 +121,7 @@ namespace ExamSimulator
         }
 
         List<Questions> _quetionList = new List<Questions>();
-        private List<Questions> bindQuestionListboxToList()
+        private BOExamManage bindQuestionListboxToList()
         {
             try
             {
@@ -135,170 +139,179 @@ namespace ExamSimulator
                     string _imgbtnshow = string.Empty;
                     List<string> ImageTypeList = new List<string>() { "Refer to the exhibit", "Refer to the topology", "Refer to the Scenario" };
 
-                    ////Get the Input File Name and Extension
-                    //string fileName = Path.GetFileNameWithoutExtension(filelist.Path);
-                    //string fileExtension = ".docx"; //Path.GetExtension(filelist.Path);
+                    string fileName = Path.GetFileNameWithoutExtension(filelist.Path);
+                    string fileExtension = ".json";
 
-                    ////Build the File Path for the original (input) and the decrypted (output) file
-                    //string input = filelist.Path;
-                    //string output = fileName + "_dec" + fileExtension;
+                    string input = filelist.Path;
+                    string output = fileName + fileExtension;
 
-                    //if (!Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output))
-                    //{
-                    //    File.Delete(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
-                    //}
-                    //// File.Copy(input, System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
-                    ////Save the Input File, Decrypt it and save the decrypted file in output path.
-                    ////FileUpload1.SaveAs(input);
-                    //this.Decrypt(input, System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
+                    if (!Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output))
+                    {
+                        File.Delete(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
+                    }
+                    this.Decrypt(input, System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
+                    var json = File.ReadAllText(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
+                    _examqueanslist = JsonConvert.DeserializeObject<BOExamManage>(json);
+                    if (filelist.Mode == "SM")
+                    {
+                        _examqueanslist.QuestionList.ForEach(e => e.ExamMode = false);
+                        // _examqueanslist.QuestionList.Where(q => q.ExamMode.Equals(false)).FirstOrDefault().AnswerList.Where(a => a.RightAnswer.Equals(true)).ToList().ForEach(r => r.UserAnswer = true);
+                    }
+                    else
+                    {
+                        _examqueanslist.QuestionList.ForEach(e => e.ExamMode = true);
+                    }
+                    // listQuestion.ItemsSource = _examqueanslist.QuestionList.Skip(1).Take(1);
+
+
                     //Document document = new Document(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\" + output);
 
-                    Document document = new Document(filelist.Path);
-                    int index = 1;
-                    foreach (Spire.Doc.Section section in document.Sections)
-                    {
-                        //Get Each Paragraph of Section
-                        foreach (Spire.Doc.Documents.Paragraph paragraph in section.Paragraphs)
-                        {
-                            //paragraph.ChildObjects.Clear();
-                            //Get Each Document Object of Paragraph Items
-                            DoneQueStatus++;
-                            foreach (DocumentObject docObject in paragraph.ChildObjects)
-                            {
-                                CurrrentStr = paragraph.Text.Trim();
-                                if (String.IsNullOrEmpty(CurrrentStr))
-                                {
-                                    if (docObject.DocumentObjectType == DocumentObjectType.Picture)
-                                    {
-                                        string docname = System.IO.Path.GetFileNameWithoutExtension(filelist.Path);
-                                        DocPicture pic = docObject as DocPicture;
-                                        string filename = System.AppDomain.CurrentDomain.BaseDirectory + "ExamImage\\";
-                                        bool exists = System.IO.Directory.Exists(filename);
-                                        if (!exists)
-                                        {
-                                            DirectoryInfo di = System.IO.Directory.CreateDirectory(filename);
-                                        }
-                                        else
-                                        {
-                                            //Console.WriteLine("The Folder already exists");
-                                        }
-                                        DirectoryInfo dInfo = new DirectoryInfo(filename);
-                                        DirectorySecurity dSecurity = dInfo.GetAccessControl();
-                                        dSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
-                                        dInfo.SetAccessControl(dSecurity);
+                    ////  Document document = new Document(filelist.Path);
+                    //int index = 1;
+                    //foreach (Spire.Doc.Section section in document.Sections)
+                    //{
+                    //    //Get Each Paragraph of Section
+                    //    foreach (Spire.Doc.Documents.Paragraph paragraph in section.Paragraphs)
+                    //    {
+                    //        //paragraph.ChildObjects.Clear();
+                    //        //Get Each Document Object of Paragraph Items
+                    //        DoneQueStatus++;
+                    //        foreach (DocumentObject docObject in paragraph.ChildObjects)
+                    //        {
+                    //            CurrrentStr = paragraph.Text.Trim();
+                    //            if (String.IsNullOrEmpty(CurrrentStr))
+                    //            {
+                    //                if (docObject.DocumentObjectType == DocumentObjectType.Picture)
+                    //                {
+                    //                    string docname = System.IO.Path.GetFileNameWithoutExtension(filelist.Path);
+                    //                    DocPicture pic = docObject as DocPicture;
+                    //                    string filename = System.AppDomain.CurrentDomain.BaseDirectory + "ExamImage\\";
+                    //                    bool exists = System.IO.Directory.Exists(filename);
+                    //                    if (!exists)
+                    //                    {
+                    //                        DirectoryInfo di = System.IO.Directory.CreateDirectory(filename);
+                    //                    }
+                    //                    else
+                    //                    {
+                    //                        //Console.WriteLine("The Folder already exists");
+                    //                    }
+                    //                    DirectoryInfo dInfo = new DirectoryInfo(filename);
+                    //                    DirectorySecurity dSecurity = dInfo.GetAccessControl();
+                    //                    dSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
+                    //                    dInfo.SetAccessControl(dSecurity);
 
-                                        String imgName = String.Format(filename + docname + "-Question" + questionNo + "-{0}.png", index);
-                                        QuestionImageStr = imgName;
-                                        //Save Image
-                                        if (!File.Exists(imgName))
-                                        {
-                                            pic.Image.Save(imgName, System.Drawing.Imaging.ImageFormat.Png);
-                                        }
-                                        index++;
-                                    }
-                                }
+                    //                    String imgName = String.Format(filename + docname + "-Question" + questionNo + "-{0}.png", index);
+                    //                    QuestionImageStr = imgName;
+                    //                    //Save Image
+                    //                    if (!File.Exists(imgName))
+                    //                    {
+                    //                        pic.Image.Save(imgName, System.Drawing.Imaging.ImageFormat.Png);
+                    //                    }
+                    //                    index++;
+                    //                }
+                    //            }
 
-                                if (!String.IsNullOrEmpty(CurrrentStr))
-                                {
-                                    if (QuestionTypeList.Contains(CurrrentStr))
-                                    {
-                                        CommanStrflag = "Q";
-                                        qtype = CurrrentStr;
-                                        if (questionNo == 0)
-                                            questionNo++;
-                                    }
-                                    if (ImageTypeList.Contains(CurrrentStr))
-                                    {
-                                        CommanStrflag = "IN";
-                                    }
+                    //            if (!String.IsNullOrEmpty(CurrrentStr))
+                    //            {
+                    //                if (QuestionTypeList.Contains(CurrrentStr))
+                    //                {
+                    //                    CommanStrflag = "Q";
+                    //                    qtype = CurrrentStr;
+                    //                    if (questionNo == 0)
+                    //                        questionNo++;
+                    //                }
+                    //                if (ImageTypeList.Contains(CurrrentStr))
+                    //                {
+                    //                    CommanStrflag = "IN";
+                    //                }
 
-                                    if (AnswerCharList.Contains(CurrrentStr.Substring(0, 2)))
-                                        CommanStrflag = "A";
+                    //                if (AnswerCharList.Contains(CurrrentStr.Substring(0, 2)))
+                    //                    CommanStrflag = "A";
 
-                                    if (CurrrentStr.Contains("Answer:"))
-                                        CommanStrflag = "RA";
+                    //                if (CurrrentStr.Contains("Answer:"))
+                    //                    CommanStrflag = "RA";
 
-                                    if (CurrrentStr.Contains("Explanation:"))
-                                        CommanStrflag = "E";
-                                }
-                                switch (CommanStrflag)
-                                {
-                                    case "Q":
-                                        if (!QuestionTypeList.Contains(CurrrentStr))
-                                        {
-                                            QuestionStr += CurrrentStr + "\n";
-                                        }
-                                        break;
-                                    case "IN":
-                                        _imgbtnshow = CurrrentStr;
-                                        CommanStrflag = "";
-                                        break;
-                                    case "RA":
-                                        RightAnswerStr += CurrrentStr;
-                                        if (RightAnswerStr.Contains("Answer:"))
-                                        {
-                                            var s = RightAnswerStr.Split(':');
-                                            aas = Array.ConvertAll(s[1].Split(','), p => p.Trim());
-                                            for (int j = 0; j < _answerlist.Count; j++)
-                                            {
-                                                string value = Convert.ToChar(65 + j).ToString();
-                                                if (aas.Contains(value))
-                                                {
-                                                    _rightAnswerlist.Add(new RightAnswer { Rightanswer = true });
-                                                    if (filelist != null && filelist.Mode == "SM")
-                                                    {
-                                                        btnCorrectAnswer.Visibility = Visibility.Visible;
-                                                        _answerlist[j].UserAnwer = true;
-                                                    }
-                                                }
-                                                else _rightAnswerlist.Add(new RightAnswer { Rightanswer = false });
-                                            }
-                                        }
-                                        break;
-                                    case "A":
-                                        _answerlist.Add(new Answerlist { Answer = CurrrentStr.Substring(2).Trim(), QuestionNo = questionNo });
-                                        break;
-                                    case "E":
-                                        ExpStr += CurrrentStr + "\n";
-                                        break;
-                                }
-                                //if (filePath.Length == section.Paragraphs.Count + 2 || DoneQueStatus >= 2)
-                                //{
-                                //    int qtype = 1; bool mode = true; bool ureslut = false;
-                                //    if (aas.Length > 1)
-                                //    {
-                                //        qtype = 2;
-                                //    }
-                                //    if (filelist != null && filelist.Mode == "SM")
-                                //    { mode = false; ureslut = true; }
-                                //    _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
-                                //    CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty;
-                                //    _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
-                                //    questionNo++;
-                                //}
-                                //DoneQueStatus = 0;
-                                break;
-                            }
-                            if (paragraph.ChildObjects.Count == 0 && CurrrentStr != null)
-                            {
-                                bool mode = true; bool ureslut = false;
+                    //                if (CurrrentStr.Contains("Explanation:"))
+                    //                    CommanStrflag = "E";
+                    //            }
+                    //            switch (CommanStrflag)
+                    //            {
+                    //                case "Q":
+                    //                    if (!QuestionTypeList.Contains(CurrrentStr))
+                    //                    {
+                    //                        QuestionStr += CurrrentStr + "\n";
+                    //                    }
+                    //                    break;
+                    //                case "IN":
+                    //                    _imgbtnshow = CurrrentStr;
+                    //                    CommanStrflag = "";
+                    //                    break;
+                    //                case "RA":
+                    //                    RightAnswerStr += CurrrentStr;
+                    //                    if (RightAnswerStr.Contains("Answer:"))
+                    //                    {
+                    //                        var s = RightAnswerStr.Split(':');
+                    //                        aas = Array.ConvertAll(s[1].Split(','), p => p.Trim());
+                    //                        for (int j = 0; j < _answerlist.Count; j++)
+                    //                        {
+                    //                            string value = Convert.ToChar(65 + j).ToString();
+                    //                            if (aas.Contains(value))
+                    //                            {
+                    //                                _rightAnswerlist.Add(new RightAnswer { Rightanswer = true });
+                    //                                if (filelist != null && filelist.Mode == "SM")
+                    //                                {
+                    //                                    btnCorrectAnswer.Visibility = Visibility.Visible;
+                    //                                    _answerlist[j].UserAnwer = true;
+                    //                                }
+                    //                            }
+                    //                            else _rightAnswerlist.Add(new RightAnswer { Rightanswer = false });
+                    //                        }
+                    //                    }
+                    //                    break;
+                    //                case "A":
+                    //                    _answerlist.Add(new Answerlist { Answer = CurrrentStr.Substring(2).Trim(), QuestionNo = questionNo });
+                    //                    break;
+                    //                case "E":
+                    //                    ExpStr += CurrrentStr + "\n";
+                    //                    break;
+                    //            }
+                    //            //if (filePath.Length == section.Paragraphs.Count + 2 || DoneQueStatus >= 2)
+                    //            //{
+                    //            //    int qtype = 1; bool mode = true; bool ureslut = false;
+                    //            //    if (aas.Length > 1)
+                    //            //    {
+                    //            //        qtype = 2;
+                    //            //    }
+                    //            //    if (filelist != null && filelist.Mode == "SM")
+                    //            //    { mode = false; ureslut = true; }
+                    //            //    _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false });
+                    //            //    CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty;
+                    //            //    _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>();
+                    //            //    questionNo++;
+                    //            //}
+                    //            //DoneQueStatus = 0;
+                    //            break;
+                    //        }
+                    //        if (paragraph.ChildObjects.Count == 0 && CurrrentStr != null)
+                    //        {
+                    //            bool mode = true; bool ureslut = false;
 
-                                if (filelist != null && filelist.Mode == "SM")
-                                { mode = false; ureslut = true; }
-                                _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Image = QuestionImageStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false, ImageBtnShow = _imgbtnshow, RightAnswerString = RightAnswerStr });
-                                CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty; QuestionImageStr = string.Empty; CurrrentStr = string.Empty;
-                                _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>(); _imgbtnshow = string.Empty;
-                                questionNo++; index = 1;
-                            }
-                        }
-                    }
+                    //            if (filelist != null && filelist.Mode == "SM")
+                    //            { mode = false; ureslut = true; }
+                    //            _quetionList.Add(new Questions { QuestionNo = questionNo, Question = QuestionStr, Image = QuestionImageStr, Answerlist = _answerlist, RightAnswerlist = _rightAnswerlist, QuestionType = qtype, NoofAnswer = _answerlist.Count, Score = 1, userResult = ureslut, Explaination = ExpStr, ExamMode = mode, Mark = false, ImageBtnShow = _imgbtnshow, RightAnswerString = RightAnswerStr });
+                    //            CommanStrflag = "Q"; QuestionStr = string.Empty; AnswerStr = string.Empty; RightAnswerStr = string.Empty; ExpStr = string.Empty; QuestionImageStr = string.Empty; CurrrentStr = string.Empty;
+                    //            _answerlist = new List<Answerlist>(); _rightAnswerlist = new List<ExamSimulator.RightAnswer>(); _imgbtnshow = string.Empty;
+                    //            questionNo++; index = 1;
+                    //        }
+                    //    }
+                    //}
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            return _quetionList;
+            return _examqueanslist;
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
@@ -307,29 +320,29 @@ namespace ExamSimulator
             {
                 if (flagMark)
                 {
-                    if (_list.Where(f => f.Mark).ToList().Count - 1 > currentQuestionIndex)
-                    {
-                        currentQuestionIndex++;
-                        btnPrevious.IsEnabled = true;
-                        BindQuestionlist(_list);
-                        showQuestionNo(currentQuestionIndex + 1, _list.Where(f => f.Mark).ToList().Count);
-                    }
-                    if (_list.Where(f => f.Mark).ToList().Count - 1 == currentQuestionIndex)
-                    {
-                        btnPrevious.IsEnabled = true;
-                        btnNext.IsEnabled = false;
-                    }
+                    //if (_list.Where(f => f.Mark).ToList().Count - 1 > currentQuestionIndex)
+                    //{
+                    //    currentQuestionIndex++;
+                    //    btnPrevious.IsEnabled = true;
+                    //    BindQuestionlist(_list);
+                    //    showQuestionNo(currentQuestionIndex + 1, _list.Where(f => f.Mark).ToList().Count);
+                    //}
+                    //if (_list.Where(f => f.Mark).ToList().Count - 1 == currentQuestionIndex)
+                    //{
+                    //    btnPrevious.IsEnabled = true;
+                    //    btnNext.IsEnabled = false;
+                    //}
                 }
                 else
                 {
-                    if (_list.Count - 1 > currentQuestionIndex)
+                    if (_list.QuestionList.Count - 1 > currentQuestionIndex)
                     {
                         currentQuestionIndex++;
                         btnPrevious.IsEnabled = true;
                         BindQuestionlist(_list);
-                        showQuestionNo(currentQuestionIndex + 1, _list.Count);
+                        showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Count);
                     }
-                    if (_list.Count - 1 == currentQuestionIndex)
+                    if (_list.QuestionList.Count - 1 == currentQuestionIndex)
                     {
                         btnPrevious.IsEnabled = true;
                         btnNext.IsEnabled = false;
@@ -348,18 +361,18 @@ namespace ExamSimulator
             {
                 if (flagMark)
                 {
-                    if (currentQuestionIndex > 0)
-                    {
-                        currentQuestionIndex--;
-                        btnNext.IsEnabled = true;
-                        BindQuestionlist(_list);
-                        showQuestionNo(currentQuestionIndex + 1, _list.Where(f => f.Mark).ToList().Count);
-                    }
-                    if (currentQuestionIndex == 0)
-                    {
-                        btnNext.IsEnabled = true;
-                        btnPrevious.IsEnabled = false;
-                    }
+                    //if (currentQuestionIndex > 0)
+                    //{
+                    //    currentQuestionIndex--;
+                    //    btnNext.IsEnabled = true;
+                    //    BindQuestionlist(_list);
+                    //    showQuestionNo(currentQuestionIndex + 1, _list.Where(f => f.Mark).ToList().Count);
+                    //}
+                    //if (currentQuestionIndex == 0)
+                    //{
+                    //    btnNext.IsEnabled = true;
+                    //    btnPrevious.IsEnabled = false;
+                    //}
                 }
                 else
                 {
@@ -368,7 +381,7 @@ namespace ExamSimulator
                         currentQuestionIndex--;
                         btnNext.IsEnabled = true;
                         BindQuestionlist(_list);
-                        showQuestionNo(currentQuestionIndex + 1, _list.Count);
+                        showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Count);
                     }
                     if (currentQuestionIndex == 0)
                     {
@@ -403,25 +416,9 @@ namespace ExamSimulator
                 var button = sender as RadioButton;
                 var QuestionNo = Convert.ToInt32(button.TabIndex);
                 var UserAns = button.Tag.ToString();
-                _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.ToList().ForEach(n => n.UserAnwer = false);
-                _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.Where(f => f.Answer.Equals(UserAns)).FirstOrDefault().UserAnwer = true;
+                _list.QuestionList.Where(q => q.QAId.Equals(QuestionNo)).FirstOrDefault().AnswerList.ToList().ForEach(n => n.UserAnswer = false);
+                _list.QuestionList.Where(q => q.QAId.Equals(QuestionNo)).FirstOrDefault().AnswerList.Where(f => f.Answer.Equals(UserAns)).FirstOrDefault().UserAnswer = true;
 
-                //var QuetionOrignalAns = _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().RightAnswerlist;
-                //var QuetionUserAns = _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.ToList();
-                //int i = 0;
-                //foreach (var item in QuetionOrignalAns.ToList())
-                //{
-                //    if (item.Rightanswer == QuetionUserAns[i].UserAnwer && item.Rightanswer)
-                //    {
-                //        _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().userResult = true;
-                //        break;
-                //    }
-                //    else
-                //    {
-                //        _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().userResult = false;
-                //    }
-                //    i++;
-                //}
             }
             catch
             {
@@ -436,8 +433,7 @@ namespace ExamSimulator
                 var button = sender as CheckBox;
                 var QuestionNo = Convert.ToInt32(button.TabIndex);
                 var UserAns = button.Tag.ToString();
-                //  _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.ToList().ForEach(n => n.UserAnwer = false);
-                _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.Where(f => f.Answer.Equals(UserAns)).FirstOrDefault().UserAnwer = button.IsChecked.Value;
+                _list.QuestionList.Where(q => q.QAId.Equals(QuestionNo)).FirstOrDefault().AnswerList.Where(f => f.Answer.Equals(UserAns)).FirstOrDefault().UserAnswer = button.IsChecked.Value;
             }
             catch
             {
@@ -451,7 +447,7 @@ namespace ExamSimulator
             {
                 var button = sender as CheckBox;
                 var QuestionNo = Convert.ToInt32(button.TabIndex);
-                _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Mark = Convert.ToBoolean(button.IsChecked);
+                //  _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Mark = Convert.ToBoolean(button.IsChecked);
             }
             catch
             {
@@ -463,15 +459,15 @@ namespace ExamSimulator
         {
             try
             {
-                foreach (var item in _list)
+                foreach (var item in _list.QuestionList)
                 {
-                    var QuetionOrignalAns = _list.Where(q => q.QuestionNo.Equals(item.QuestionNo)).FirstOrDefault().RightAnswerlist;
-                    var QuetionUserAns = _list.Where(q => q.QuestionNo.Equals(item.QuestionNo)).FirstOrDefault().Answerlist.ToList();//.Select(a => new { a.UserAnwer}).ToList();
+                    var QuetionOrignalAns = _list.QuestionList.Where(q => q.QAId.Equals(item.QAId)).FirstOrDefault().AnswerList.Where(ans => ans.RightAnswer.Equals(true)).ToList();
+                    var QuetionUserAns = _list.QuestionList.Where(q => q.QAId.Equals(item.QAId)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true)).ToList();
 
                     bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
-                    _list.Where(q => q.QuestionNo.Equals(item.QuestionNo)).FirstOrDefault().userResult = a;
+                    _list.QuestionList.Where(q => q.QAId.Equals(item.QAId)).FirstOrDefault().UserResult = a;
                 }
-                NavigationService.Navigate(new ExamReport(_list.Where(z => z.userResult == true).Count(), _list.Count()));
+                NavigationService.Navigate(new ExamReport(_list.QuestionList.Where(z => z.UserResult == true).Count(), _list.QuestionList.Count()));
             }
             catch
             {
@@ -479,18 +475,34 @@ namespace ExamSimulator
             }
         }
 
-        private bool CheckUserAnswer(List<RightAnswer> list1, List<Answerlist> list2)
+        private bool CheckUserAnswer(List<BOQAnswer> list1, List<BOQAnswer> list2)
         {
             if (list1.Count != list2.Count)
                 return false;
 
             for (int i = 0; i < list1.Count; i++)
             {
-                if (list1[i].Rightanswer != list2[i].UserAnwer)
+                var data = list2.Where(z => z.AnswerId == list1[i].AnswerId).FirstOrDefault();
+                if (data == null)
+                    return false;
+                if (list1[i].RightAnswer != list2[i].UserAnswer)
                     return false;
             }
             return true;
         }
+
+        //private bool CheckUserAnswer(List<RightAnswer> list1, List<Answerlist> list2)
+        //{
+        //    if (list1.Count != list2.Count)
+        //        return false;
+
+        //    for (int i = 0; i < list1.Count; i++)
+        //    {
+        //        if (list1[i].Rightanswer != list2[i].UserAnwer)
+        //            return false;
+        //    }
+        //    return true;
+        //}
 
         private void btnReviewMarkExam_Click(object sender, RoutedEventArgs e)
         {
@@ -539,9 +551,9 @@ namespace ExamSimulator
         {
             try
             {
-                Answerlist droppedData = e.Data.GetData(typeof(Answerlist)) as Answerlist;
-                var obj = _list.Where(q => q.QuestionNo.Equals(droppedData.QuestionNo)).FirstOrDefault().Answerlist.Where(f => f.Answer.Equals(droppedData.Answer)).FirstOrDefault();
-                obj.UserAnwer = true; obj.OrderingList = OrderingListNo;
+                BOQAnswer droppedData = e.Data.GetData(typeof(BOQAnswer)) as BOQAnswer;
+                var obj = _list.QuestionList.Where(q => q.QAId.Equals(droppedData.QuestionId)).FirstOrDefault().AnswerList.Where(f => f.Answer.Equals(droppedData.Answer)).FirstOrDefault();
+                obj.UserAnswer = true; obj.OrderingList = OrderingListNo;
                 OrderingListNo++;
                 foreach (var item in listQuestion.Items)
                 {
@@ -567,9 +579,9 @@ namespace ExamSimulator
         {
             try
             {
-                Answerlist droppedData = e.Data.GetData(typeof(Answerlist)) as Answerlist;
-                var obj = _list.Where(q => q.QuestionNo.Equals(droppedData.QuestionNo)).FirstOrDefault().Answerlist.Where(f => f.Answer.Equals(droppedData.Answer)).FirstOrDefault();
-                obj.UserAnwer = false; obj.OrderingList = OrderingListNo;
+                BOQAnswer droppedData = e.Data.GetData(typeof(BOQAnswer)) as BOQAnswer;
+                var obj = _list.QuestionList.Where(q => q.QAId.Equals(droppedData.QuestionId)).FirstOrDefault().AnswerList.Where(f => f.Answer.Equals(droppedData.Answer)).FirstOrDefault();
+                obj.UserAnswer = false; obj.OrderingList = OrderingListNo;
                 OrderingListNo--;
                 foreach (var item in listQuestion.Items)
                 {
@@ -703,7 +715,7 @@ namespace ExamSimulator
             rect.Opacity = .35d;
             var QuestionNo = Convert.ToInt32(rect.ToolTip);
             var UserAns = rect.Tag.ToString();
-            _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Answerlist.Where(f => f.Answer.Equals(UserAns)).FirstOrDefault().UserAnwer = true;
+            _list.QuestionList.Where(q => q.QAId.Equals(QuestionNo)).FirstOrDefault().AnswerList.Where(f => f.Answer.Equals(UserAns)).FirstOrDefault().UserAnswer = true;
         }
 
         private void btnPauseTimer_Click(object sender, RoutedEventArgs e)

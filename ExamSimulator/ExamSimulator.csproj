@@ -58,6 +58,10 @@
     <ApplicationIcon>q.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Spire.Doc">
       <HintPath>C:\Users\mobiweb\Downloads\spire.doc_6.0.8\BIN\NET4.0\Spire.Doc.dll</HintPath>
     </Reference>
@@ -93,6 +97,8 @@
     </ApplicationDefinition>
     <Compile Include="BALayer\BAExamManage.cs" />
     <Compile Include="BOLayer\BOExamManage.cs" />
+    <Compile Include="BOLayer\BOQAManage.cs" />
+    <Compile Include="BOLayer\BOQAnswer.cs" />
     <Compile Include="BOLayer\SecondCategoryList.cs" />
     <Compile Include="DALayer\DAExamManage.cs" />
     <Compile Include="ExhibitImage.xaml.cs">
@@ -203,11 +209,8 @@
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="bin\Debug\Examfile\Cisco-300-120_enc.docx" />
-    <None Include="bin\Debug\Examfile\Cisco-300-120_enc.vcee" />
     <None Include="bin\Debug\Examfile\Cisco-302-120_enc.docx" />
-    <None Include="bin\Debug\Examfile\Cisco-302-120_enc.vcee" />
     <None Include="bin\Debug\Examfile\Cisco-Math_enc.docx" />
-    <None Include="bin\Debug\Examfile\Cisco-Math_enc.vcee" />
     <None Include="bin\Debug\Examfile\ExamSimulator.zip" />
     <None Include="bin\Debug\Examfile\Cisco-Math.docx" />
     <None Include="Examfile\Document.docx" />
@@ -216,6 +219,7 @@
     <None Include="Examfile\Document5.docx" />
     <None Include="Examfile\QuizDemo.docx" />
     <None Include="Examfile\QuizDemo13.docx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -279,6 +283,9 @@
       <Progid>ExamFIle</Progid>
       <DefaultIcon>q.ico</DefaultIcon>
     </FileAssociation>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

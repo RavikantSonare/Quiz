@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Net;
 using WebUser.BOLayer;
 using WebUser.BALayer;
 
@@ -127,6 +129,75 @@ namespace WebUser.DAlayer
                                            })
                                             .ToList();
             return _answerlist;
+        }
+
+        internal BOExamManage SelectExamQestionAnswerbase64(string txtevent, int examid)
+        {
+            using (SqlConnection _sqlcon = ConnectionInfo.GetConnection())
+            {
+                _sqlcommond = new SqlCommand();
+                _sqlcommond.CommandText = "SP_GetExamQuestionAnswer";
+                _sqlcommond.Connection = _sqlcon;
+                _sqlcommond.CommandType = CommandType.StoredProcedure;
+
+                _sqlcommond.Parameters.AddWithValue("@ExamCodeId", examid);
+                _sqlcommond.Parameters.AddWithValue("@Event", txtevent);
+
+                _sqlcon.Open();
+                _sqldataadapter = new SqlDataAdapter(_sqlcommond);
+
+                _datatable = new DataTable();
+                _sqldataadapter.Fill(_datatable);
+                BOExamManage _boexmmnglist = (from li in _datatable.AsEnumerable()
+                                              select new BOExamManage
+                                              {
+                                                  ExamCodeId = li.Field<int>("ExamCodeId"),
+                                                  ExamCode = li.Field<string>("ExamCode"),
+                                                  ExamTitle = li.Field<string>("ExamTitle"),
+                                                  PassingPercentage = li.Field<decimal>("PassingPercentage"),
+                                                  TestTime = li.Field<int>("TestTime"),
+                                                  QuestionList = GetQuestionListbase64()
+                                              }).FirstOrDefault();
+                _sqlcon.Close();
+                return _boexmmnglist;
+            }
+        }
+
+        private List<BOQAManage> GetQuestionListbase64()
+        {
+            List<BOQAManage> _qustionlist = (from li in _datatable.AsEnumerable()
+                                             select new BOQAManage
+                                             {
+                                                 QAId = li.Field<int>("QAId"),
+                                                 QuestionTypeId = li.Field<int>("QuestionTypeId"),
+                                                 QuestionType = li.Field<string>("QuestionType"),
+                                                 Score = li.Field<decimal>("Score"),
+                                                 Question = li.Field<string>("Question"),
+                                                 NoofAnswer = li.Field<int>("NoofAnswer"),
+                                                 Explanation = li.Field<string>("Explanation"),
+                                                 Resource = imagebase64(li.Field<string>("Resource")),
+                                                 Exhibit = imagebase64(li.Field<string>("Exhibit")),
+                                                 Topology = imagebase64(li.Field<string>("Topology")),
+                                                 Scenario = imagebase64(li.Field<string>("Scenario")),
+                                                 AnswerList = GetAnswerList(li.Field<int>("QAId"))
+                                             }).GroupBy(ques => ques.QAId)
+                                              .Select(group => group.First()).ToList();
+            return _qustionlist;
+        }
+
+        public string imagebase64(string imagename)
+        {
+            string base64String = string.Empty;
+            if (imagename != null && imagename != "")
+            {
+                using (WebClient webClient = new WebClient())
+                {
+                    byte[] imageBytes = webClient.DownloadData("http://quizmerchant.mobi96.org/resource/" + imagename);
+                    base64String = Convert.ToBase64String(imageBytes, 0, imageBytes.Length);
+                }
+                return base64String;
+            }
+            else return base64String;
         }
 
         internal int IUD(BOExamManage _boexmmng)
