@@ -117,7 +117,7 @@ namespace WebUser
         protected void btnDownload_Click(object sender, EventArgs e)
         {
             Button btntest = (Button)sender;
-            var list = _baexmmng.SelectExamQestionAnswer("GetEQAWithQId", Convert.ToInt32(btntest.CommandArgument.Trim()));
+            var list = _baexmmng.SelectExamQestionAnswerbase64("GetEQAWithQId", Convert.ToInt32(btntest.CommandArgument.Trim()));
             string strserialize = JsonConvert.SerializeObject(list);
             string path = Server.MapPath("~/ExamSimulator/");
             string filename = list.ExamCode + ".json";
@@ -134,13 +134,13 @@ namespace WebUser
             string output = Server.MapPath("~/ExamSimulator/") + fileName + ".vcee";
 
             //Save the Input File, Encrypt it and save the encrypted file in output path.
-            this.Encrypt(input, output);
+           // this.Encrypt(input, output);
 
             //Download the Encrypted File.
             Response.ContentType = "application/octet-stream";
             Response.Clear();
-            Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(output));
-            Response.WriteFile(output);
+            Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(input));
+            Response.WriteFile(input);
             Response.Flush();
 
             //Delete the original (input) and the encrypted (output) file.

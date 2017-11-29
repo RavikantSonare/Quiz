@@ -175,18 +175,24 @@ namespace WebUser.DAlayer
                                                  Question = li.Field<string>("Question"),
                                                  NoofAnswer = li.Field<int>("NoofAnswer"),
                                                  Explanation = li.Field<string>("Explanation"),
-                                                 Resource = imagebase64(li.Field<string>("Resource")),
-                                                 Exhibit = imagebase64(li.Field<string>("Exhibit")),
-                                                 Topology = imagebase64(li.Field<string>("Topology")),
-                                                 Scenario = imagebase64(li.Field<string>("Scenario")),
+                                                 Resource = li.Field<string>("Resource") != "" ? imagebase64(li.Field<string>("Resource")) : "",
+                                                 Exhibit = li.Field<string>("Exhibit") != "" ? imagebase64(li.Field<string>("Exhibit")) : "",//imagebase64(li.Field<string>("Exhibit")),
+                                                 Topology = li.Field<string>("Topology") != "" ? imagebase64(li.Field<string>("Topology")) : "",//imagebase64(li.Field<string>("Topology")),
+                                                 Scenario = li.Field<string>("Scenario") != "" ? imagebase64(li.Field<string>("Scenario")) : "",//imagebase64(li.Field<string>("Scenario")),
                                                  AnswerList = GetAnswerList(li.Field<int>("QAId"))
                                              }).GroupBy(ques => ques.QAId)
                                               .Select(group => group.First()).ToList();
             return _qustionlist;
         }
 
+        public static string tempvalue;
         public string imagebase64(string imagename)
         {
+            if (tempvalue == imagename)
+            {
+                return "";
+            }
+            tempvalue = imagename;
             string base64String = string.Empty;
             if (imagename != null && imagename != "")
             {

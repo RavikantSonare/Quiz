@@ -20,5 +20,10 @@ namespace ExamSimulator.BALayer
         {
             return _daexmange.SelectExamQestionAnswer(v, exmid);
         }
+
+        public BOExamManage SelectExamQestionAnswerbase64(string v, int exmid)
+        {
+            return _daexmange.SelectExamQestionAnswerbase64(v, exmid);
+        }
     }
 }

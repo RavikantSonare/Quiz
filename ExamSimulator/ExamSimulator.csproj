@@ -208,11 +208,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.manifest" />
-    <None Include="bin\Debug\Examfile\Cisco-300-120_enc.docx" />
-    <None Include="bin\Debug\Examfile\Cisco-302-120_enc.docx" />
-    <None Include="bin\Debug\Examfile\Cisco-Math_enc.docx" />
-    <None Include="bin\Debug\Examfile\ExamSimulator.zip" />
-    <None Include="bin\Debug\Examfile\Cisco-Math.docx" />
     <None Include="Examfile\Document.docx" />
     <None Include="Examfile\Document2.docx" />
     <None Include="Examfile\Document3.docx" />
@@ -271,6 +266,7 @@
     <Resource Include="bin\Debug\Input\ExamListFilePath.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\Debug\Examfile\" />
     <Folder Include="bin\Debug\ExamReadfile\" />
   </ItemGroup>
   <ItemGroup>

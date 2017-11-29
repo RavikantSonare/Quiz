@@ -99,7 +99,6 @@ namespace WebUser
             if (list != null)
             {
                 list.QuestionList.ForEach(e => e.Event = mode.ToString());
-                // list.QuestionList.ToList().Select(q => q.IsActive.Equals(false)).FirstOrDefault().AnswerList.Where(a => a.RightAnswer.Equals(true)).ToList().ForEach(r => r.UserAnswer = true);
                 return list;
             }
             else

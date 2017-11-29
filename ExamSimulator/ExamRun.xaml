@@ -10,10 +10,12 @@
     <Page.Resources>
         <Style x:Key="wpfStyle1" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="14"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
 
         <Style x:Key="wpfStyle2" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="13"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="Margin" Value="15,10,0,0"/>
             <Style.Triggers>
                 <DataTrigger  Binding ="{Binding ElementName=list, Path=IsEnabled}"  Value="True">
@@ -23,12 +25,19 @@
         </Style>
 
         <Style x:Key="btnexhibit" TargetType="{x:Type Button}">
-            <Setter Property="Visibility" Value="Collapsed" />
+            <Setter Property="Visibility" Value="Visible" />
+            <Setter Property="Content" Value="Exhibit"/>
             <Style.Triggers>
-                <DataTrigger  Binding ="{Binding ElementName=btnExhibit, Path=Tag}"  Value="Refer to the exhibit">
+                <DataTrigger Binding ="{Binding ElementName=btnExhibit, Path=Tag}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding ="{Binding ElementName=btnExhibit, Path=Tag}" Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <!--<DataTrigger  Binding ="{Binding ElementName=btnExhibit, Path=Tag}"  Value="Refer to the exhibit">
                     <Setter Property="CheckBox.Visibility" Value="Visible"/>
                     <Setter Property="Content" Value="Exhibit"/>
-                </DataTrigger>
+                </DataTrigger>-->
                 <DataTrigger  Binding ="{Binding ElementName=btnExhibit, Path=Tag}"  Value="Refer to the topology">
                     <Setter Property="CheckBox.Visibility" Value="Visible"/>
                     <Setter Property="Content" Value="Topology"/>
@@ -381,11 +390,11 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <ListBox  x:Name="listQuestionMark" ItemsSource="{Binding _list}" Width="auto" BorderThickness="0" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
+                            <ListBox  x:Name="listQuestionMark" ItemsSource="{Binding QuestionList}" Width="auto" BorderThickness="0" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <CheckBox x:Name="chkMark" IsChecked="{Binding Mark}" Content="Mark" TabIndex="{Binding QuestionNo}" Click="checkMark_click" HorizontalAlignment="Left" />
+                                            <CheckBox x:Name="chkMark" IsChecked="{Binding Mark}" Content="Mark" TabIndex="{Binding QAId}" Click="checkMark_click" HorizontalAlignment="Left" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
@@ -417,7 +426,7 @@
                                 <StackPanel>
                                     <Label Content="{Binding QuestionType}" />
                                     <TextBlock  Name="txtQuestion" Text="{Binding Question}" Tag="{Binding QuestionTypeId}" Style="{StaticResource wpfStyle1}"/>
-                                    <Button Name="btnExhibit" HorizontalAlignment="Center" CommandParameter="{Binding Image}"  Tag="{Binding ImageBtnShow}" Style="{StaticResource btnexhibit}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnExhibit_Click"/>
+                                    <Button Name="btnExhibit" HorizontalAlignment="Center" CommandParameter="{Binding Exhibit}"  Tag="{Binding Exhibit}" Style="{StaticResource btnexhibit}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnExhibit_Click"/>
                                     <ListBox  x:Name="list" ItemsSource="{Binding AnswerList}" Width="auto" BorderThickness="0" IsEnabled="{Binding ExamMode}" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
@@ -515,24 +524,22 @@
                                                         </Grid.RowDefinitions>
                                                         <TextBox Name="txtUserAnswerPath" Text="{Binding UserAnswer}" Visibility="Collapsed" />
                                                         <Path Name="pathcanvas" Style="{StaticResource Pathcanvas}" Stroke="Goldenrod" StrokeThickness="2" Cursor="Hand" Tag="{Binding Answer}" ToolTip="{Binding QuestionId}"  MouseLeftButtonUp="Rectangle_MouseLeftButtonup">
-                                                            <!--MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"-->
                                                             <Path.Data>
                                                                 <GeometryGroup>
                                                                     <RectangleGeometry Rect="{Binding Answer}"/>
                                                                 </GeometryGroup>
                                                             </Path.Data>
-
                                                         </Path>
                                                     </Grid>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
                                     </Canvas>
-                                    <TextBlock  Text="{Binding Explaination}" Style="{StaticResource wpfStyle2}" Visibility="Collapsed"/>
+                                    <TextBlock  Text="{Binding Explanation}" Style="{StaticResource wpfStyle2}" Visibility="Collapsed"/>
                                     <Border Name="brdrCorrectAnswer" BorderBrush="Black" BorderThickness="1" Margin="0,10,0,0" Visibility="Collapsed">
                                         <StackPanel>
-                                            <TextBlock Name="txtRightAnswerString" Text="{Binding RightAnswerString}" Style="{StaticResource wpfStyle2}"/>
-                                            <TextBlock Name="txtExplanation" Text="{Binding Explaination}" Style="{StaticResource wpfStyle2}"/>
+                                            <TextBlock Name="txtRightAnswerString" Text="{Binding RightAnswer}" Style="{StaticResource wpfStyle2}" Visibility="Collapsed"/>
+                                            <TextBlock Name="txtExplanation" Text="{Binding Explanation, StringFormat=Explanation : {0}}" Style="{StaticResource wpfStyle2}"/>
                                         </StackPanel>
                                     </Border>
                                 </StackPanel>

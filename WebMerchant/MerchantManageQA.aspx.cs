@@ -706,13 +706,13 @@ namespace WebMerchant
                     }
                     else if (Session["Qtypevalue"].ToString() == "5")
                     {
-                        if (txtmaphtml.Text != "")
-                        {
-                            string[] AnswerArray = txtmaphtml.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                            ImageUpload(txtimage.Text, hdimage.Value);
-                            qusvalu = AddQuestion(AnswerArray.Length.ToString());
-                            AddHotspotAnswer(qusvalu);
-                        }
+                        //if (txtmaphtml.Text != "")
+                        //{
+                        //    string[] AnswerArray = txtmaphtml.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                        //    ImageUpload(txtimage.Text, hdimage.Value);
+                        //    qusvalu = AddQuestion(AnswerArray.Length.ToString());
+                        //    AddHotspotAnswer(qusvalu);
+                        //}
                     }
                     else if (Session["Qtypevalue"].ToString() == "6")
                     {

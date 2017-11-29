@@ -82,9 +82,9 @@ namespace ExamSimulator
         {
             if (flagMark)
             {
-                //listQuestion.ItemsSource = _qestlist.Where(f => f.Mark).Skip(currentQuestionIndex).Take(1);
-                //listQuestionMark.ItemsSource = _qestlist.Where(f => f.Mark).Skip(currentQuestionIndex).Take(1);
-                //showQuestionNo(currentQuestionIndex + 1, _qestlist.Where(f => f.Mark).ToList().Count);
+                listQuestion.ItemsSource = _qestlist.QuestionList.Where(f => f.Mark).Skip(currentQuestionIndex).Take(1);
+                listQuestionMark.ItemsSource = _qestlist.QuestionList.Where(f => f.Mark).Skip(currentQuestionIndex).Take(1);
+                showQuestionNo(currentQuestionIndex + 1, _qestlist.QuestionList.Where(f => f.Mark).ToList().Count);
             }
             else
             {
@@ -154,8 +154,9 @@ namespace ExamSimulator
                     _examqueanslist = JsonConvert.DeserializeObject<BOExamManage>(json);
                     if (filelist.Mode == "SM")
                     {
+                        btnCorrectAnswer.Visibility = Visibility.Visible;
                         _examqueanslist.QuestionList.ForEach(e => e.ExamMode = false);
-                        // _examqueanslist.QuestionList.Where(q => q.ExamMode.Equals(false)).FirstOrDefault().AnswerList.Where(a => a.RightAnswer.Equals(true)).ToList().ForEach(r => r.UserAnswer = true);
+                        _examqueanslist.QuestionList.Where(q => q.IsActive.Equals(false)).ToList().ForEach(b => b.AnswerList.Where(a => a.RightAnswer.Equals(true)).ToList().ForEach(r => r.UserAnswer = true));
                     }
                     else
                     {
@@ -320,18 +321,18 @@ namespace ExamSimulator
             {
                 if (flagMark)
                 {
-                    //if (_list.Where(f => f.Mark).ToList().Count - 1 > currentQuestionIndex)
-                    //{
-                    //    currentQuestionIndex++;
-                    //    btnPrevious.IsEnabled = true;
-                    //    BindQuestionlist(_list);
-                    //    showQuestionNo(currentQuestionIndex + 1, _list.Where(f => f.Mark).ToList().Count);
-                    //}
-                    //if (_list.Where(f => f.Mark).ToList().Count - 1 == currentQuestionIndex)
-                    //{
-                    //    btnPrevious.IsEnabled = true;
-                    //    btnNext.IsEnabled = false;
-                    //}
+                    if (_list.QuestionList.Where(f => f.Mark).ToList().Count - 1 > currentQuestionIndex)
+                    {
+                        currentQuestionIndex++;
+                        btnPrevious.IsEnabled = true;
+                        BindQuestionlist(_list);
+                        showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Where(f => f.Mark).ToList().Count);
+                    }
+                    if (_list.QuestionList.Where(f => f.Mark).ToList().Count - 1 == currentQuestionIndex)
+                    {
+                        btnPrevious.IsEnabled = true;
+                        btnNext.IsEnabled = false;
+                    }
                 }
                 else
                 {
@@ -361,18 +362,18 @@ namespace ExamSimulator
             {
                 if (flagMark)
                 {
-                    //if (currentQuestionIndex > 0)
-                    //{
-                    //    currentQuestionIndex--;
-                    //    btnNext.IsEnabled = true;
-                    //    BindQuestionlist(_list);
-                    //    showQuestionNo(currentQuestionIndex + 1, _list.Where(f => f.Mark).ToList().Count);
-                    //}
-                    //if (currentQuestionIndex == 0)
-                    //{
-                    //    btnNext.IsEnabled = true;
-                    //    btnPrevious.IsEnabled = false;
-                    //}
+                    if (currentQuestionIndex > 0)
+                    {
+                        currentQuestionIndex--;
+                        btnNext.IsEnabled = true;
+                        BindQuestionlist(_list);
+                        showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Where(f => f.Mark).ToList().Count);
+                    }
+                    if (currentQuestionIndex == 0)
+                    {
+                        btnNext.IsEnabled = true;
+                        btnPrevious.IsEnabled = false;
+                    }
                 }
                 else
                 {
@@ -447,7 +448,7 @@ namespace ExamSimulator
             {
                 var button = sender as CheckBox;
                 var QuestionNo = Convert.ToInt32(button.TabIndex);
-                //  _list.Where(q => q.QuestionNo.Equals(QuestionNo)).FirstOrDefault().Mark = Convert.ToBoolean(button.IsChecked);
+                _list.QuestionList.Where(q => q.QAId.Equals(QuestionNo)).FirstOrDefault().Mark = Convert.ToBoolean(button.IsChecked);
             }
             catch
             {
@@ -508,11 +509,12 @@ namespace ExamSimulator
         {
             flagMark = true;
             currentQuestionIndex = 0;
-            // _list = _list.Where(q => q.Mark.Equals(true)).ToList();
+            //_list = _list.QuestionList.Where(q => q.Mark.Equals(true)).ToList();
+            _list.QuestionList.Where(q => q.Mark.Equals(true)).ToList();
             BindQuestionlist(_list);
             btnPrevious.IsEnabled = false;
             btnNext.IsEnabled = true;
-            //  showQuestionNo(currentQuestionIndex + 1, _list.Count);
+            showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Count);
         }
 
         private void btnCorrectAnswer_Click(object sender, RoutedEventArgs e)
