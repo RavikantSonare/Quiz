@@ -51,7 +51,6 @@ namespace WebAdmin
         private void FillgridViewSecondCategory()
         {
             DataTable _datatable1 = new DataTable();
-            //_datatable1 = _bascat.SelectSecondCatgoryList("GETALL");
             _datatable1 = _bascat.SelectSecondCatgorywithSearch("GETALL", txtSearch.Text);
             gvSecondCategory.DataSource = _datatable1;
             gvSecondCategory.DataBind();
@@ -168,9 +167,6 @@ namespace WebAdmin
                         ShowMessage("Can not delete category because used in another entity", MessageType.Info);
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
@@ -193,7 +189,6 @@ namespace WebAdmin
         {
             DataTable _datatable4 = new DataTable();
             _datatable4 = _bascat.SelectSecondCatgorywithSearch("GETALL", txtSearch.Text);
-            //_datatable4 = _bascat.SelectSecondCatgorywithSearch("GETALLwithSearch", txtSearch.Text);
             gvSecondCategory.DataSource = _datatable4;
             gvSecondCategory.DataBind();
         }
@@ -223,7 +218,7 @@ namespace WebAdmin
             {
                 lblerror.InnerText = "";
             }
-            if (ddlTopCategory.SelectedIndex != -1)
+            if (ddlTopCategory.Items.Count == 0)
             {
                 ret = false;
                 lblerror.InnerText = "Select top category";

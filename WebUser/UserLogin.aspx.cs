@@ -134,7 +134,7 @@ namespace WebUser
             string output = Server.MapPath("~/ExamSimulator/") + fileName + ".vcee";
 
             //Save the Input File, Encrypt it and save the encrypted file in output path.
-           // this.Encrypt(input, output);
+            // this.Encrypt(input, output);
 
             //Download the Encrypted File.
             Response.ContentType = "application/octet-stream";
@@ -168,7 +168,7 @@ namespace WebUser
 
         private void Encrypt(string inputFilePath, string outputfilePath)
         {
-            string EncryptionKey = "MAKV2SPBNI99212";
+            string EncryptionKey = "PROJECTQUIZMW238";
             using (Aes encryptor = Aes.Create())
             {
                 Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });

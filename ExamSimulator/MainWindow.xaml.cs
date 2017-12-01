@@ -49,7 +49,7 @@ namespace ExamSimulator
                     .GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\")
                     .Where(file => allowedExtensions.Any(file.ToLower().EndsWith))
                     .ToList();
-                files = filesss.ToArray(); //Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\", "*.docx", SearchOption.AllDirectories);
+                files = filesss.ToArray();
             }
             if (files != null)
             {
@@ -81,14 +81,14 @@ namespace ExamSimulator
 
         private void TriggerClose(object sender, RoutedEventArgs e)
         {
-            System.IO.DirectoryInfo di = new DirectoryInfo(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\");
-            if (di.GetFiles().Any())
-            {
-                foreach (FileInfo file in di.GetFiles())
-                {
-                    file.Delete();
-                }
-            }
+            //System.IO.DirectoryInfo di = new DirectoryInfo(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\");
+            //if (di.GetFiles().Any())
+            //{
+            //    foreach (FileInfo file in di.GetFiles())
+            //    {
+            //        file.Delete();
+            //    }
+            //}
             Application.Current.Shutdown();
         }
 
@@ -133,27 +133,6 @@ namespace ExamSimulator
             //Delete the original (input) and the encrypted (output) file.
             File.Delete(input);
             //File.Delete(output);
-
-
-            //string fileName = string.Empty;
-            //Button button = sender as Button;
-            //var Examcode = Convert.ToString(button.CommandParameter);
-            //if (Examcode == "300-120")
-            //{
-            //    fileName = "Cisco-300-120.docx";
-            //}
-            //else if (Examcode == "302-120")
-            //{
-            //    fileName = "Cisco-302-120.docx";// Replace Your Filename with your required filename
-            //}
-            //else
-            //{
-            //    fileName = "Cisco-Math.docx";
-            //}
-            //WebClient webClient = new WebClient();
-            //webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(wc_DownloadProgressChanged);
-            //webClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(client_DownloadFileCompleted);
-            //webClient.DownloadFileAsync(new Uri("http://quizuser.mobi96.org/ExamSimulator/" + fileName), @"D:\Work\Project\ExamSimulator\bin\Debug\Examfile\" + fileName);
         }
 
         public void wc_DownloadProgressChanged(Object sender, DownloadProgressChangedEventArgs e)
@@ -189,7 +168,7 @@ namespace ExamSimulator
 
         private void Encrypt(string inputFilePath, string outputfilePath)
         {
-            string EncryptionKey = "MAKV2SPBNI99212";
+            string EncryptionKey = "PROJECTQUIZMW238";
             using (Aes encryptor = Aes.Create())
             {
                 Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });

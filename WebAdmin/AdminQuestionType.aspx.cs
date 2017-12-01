@@ -98,9 +98,6 @@ namespace WebAdmin
                         lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
@@ -159,9 +156,6 @@ namespace WebAdmin
                     {
                         ShowMessage("Can not delete question type because used in another entity", MessageType.Info);
                     }
-                }
-                else
-                {
                 }
             }
             catch (Exception ex)

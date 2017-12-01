@@ -33,20 +33,16 @@
                         $('[id$=lblerror]').css("display", "none");
                     });
                     return false;
+                } if (!ValidateEmail($('[id$=txtUserName]').val())) {
+                    $('[id$=lblerror]').css("display", "block");
+                    $('[id$=lblerror]').html("Please Enter Valid Email Id");
+                    $('[id$=txtUserName]').css("border", "1px solid #FF0000");
+                    $('[id$=txtUserName]').focus(function () {
+                        $('[id$=txtUserName]').css("border", "1px solid #000000");
+                        $('[id$=lblerror]').css("display", "none");
+                    });
+                    return false;
                 }
-                //if ($('[id$=txtUserName]').val() != "") {
-                //    var regex = new RegExp(/^[0-9a-zA-Z_@./#&$\_]+$/);
-                //    if (!regex.test($('[id$=txtUserName]').val())) {
-                //        $('[id$=lblerror]').css("display", "block");
-                //        $('[id$=lblerror]').html("Some special character not allow");
-                //        $('[id$=txtUserName]').css("border", "1px solid #FF0000");
-                //        $('[id$=txtUserName]').focus(function () {
-                //            $('[id$=txtUserName]').css("border", "1px solid #000000");
-                //            $('[id$=lblerror]').css("display", "none");
-                //        });
-                //        return false;
-                //    }
-                //}
                 if ($('[id$=txtPassword]').val() == "") {
                     $('[id$=lblerror]').css("display", "block");
                     $('[id$=lblerror]').html("Please Enter Password");
@@ -57,19 +53,6 @@
                     });
                     return false;
                 }
-                //if ($('[id$=txtPassword]').val() != "") {
-                //    var regex = new RegExp(/^[0-9a-zA-Z_@./#&$\_]+$/);
-                //    if (!regex.test($('[id$=txtPassword]').val())) {
-                //        $('[id$=lblerror]').css("display", "block");
-                //        $('[id$=lblerror]').html("Some special character not allow");
-                //        $('[id$=txtPassword]').css("border", "1px solid #FF0000");
-                //        $('[id$=txtPassword]').focus(function () {
-                //            $('[id$=txtPassword]').css("border", "1px solid #000000");
-                //            $('[id$=lblerror]').css("display", "none");
-                //        });
-                //        return false;
-                //    }
-                //}
                 if ($('[id$=ddlCategory]').val() == null) {
                     $('[id$=lblerror]').css("display", "block");
                     $('[id$=lblerror]').html("Please Select Category");
@@ -161,6 +144,11 @@
             }
             return true;
         }
+
+        function ValidateEmail(email) {
+            var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+            return expr.test(email);
+        };
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -171,10 +159,9 @@
             <div class="tab-pane active" id="myUser">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h5>Add User</h5>
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <label for="" class="col-sm-3 control-label">User Name/Real Name:</label>
+                                <label for="" class="col-sm-3 control-label">Email Id (User Name):</label>
                                 <div class="col-sm-3">
                                     <asp:TextBox ID="txtUserName" runat="server" class="form-control" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
                                 </div>

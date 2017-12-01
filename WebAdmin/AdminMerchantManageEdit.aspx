@@ -166,7 +166,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Merchant Manage Edit</h2>
+    <h2>Merchant Manage</h2>
     <hr />
     <asp:Panel ID="pnlMerchant" runat="server">
         <form class="form-horizontal">

@@ -62,15 +62,6 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Spire.Doc">
-      <HintPath>C:\Users\mobiweb\Downloads\spire.doc_6.0.8\BIN\NET4.0\Spire.Doc.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.License">
-      <HintPath>C:\Users\mobiweb\Downloads\spire.doc_6.0.8\BIN\NET4.0\Spire.License.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Pdf">
-      <HintPath>C:\Users\mobiweb\Downloads\spire.doc_6.0.8\BIN\NET4.0\Spire.Pdf.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -100,6 +91,7 @@
     <Compile Include="BOLayer\BOQAManage.cs" />
     <Compile Include="BOLayer\BOQAnswer.cs" />
     <Compile Include="BOLayer\SecondCategoryList.cs" />
+    <Compile Include="Common.cs" />
     <Compile Include="DALayer\DAExamManage.cs" />
     <Compile Include="ExhibitImage.xaml.cs">
       <DependentUpon>ExhibitImage.xaml</DependentUpon>
@@ -110,12 +102,20 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="HtmlConverter\HtmlCssParser.cs" />
+    <Compile Include="HtmlConverter\HtmlFromXamlConverter.cs" />
+    <Compile Include="HtmlConverter\HtmlLexicalAnalyzer.cs" />
+    <Compile Include="HtmlConverter\HtmlParser.cs" />
+    <Compile Include="HtmlConverter\HtmlSchema.cs" />
+    <Compile Include="HtmlConverter\HtmlTokenType.cs" />
+    <Compile Include="HtmlConverter\HtmlToXamlConverter.cs" />
     <Compile Include="MyProgessBar.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MyProgessBar.Designer.cs">
       <DependentUpon>MyProgessBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="RichTextBlockSample.cs" />
     <Compile Include="test2.xaml.cs">
       <DependentUpon>test2.xaml</DependentUpon>
     </Compile>

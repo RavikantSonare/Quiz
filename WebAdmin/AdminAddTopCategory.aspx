@@ -85,35 +85,6 @@
                                 <h2>Record not found...</h2>
                             </EmptyDataTemplate>
                         </asp:GridView>
-                        <%-- <asp:ListView ID="ListView1" runat="server" OnPagePropertiesChanging="ListView1_PagePropertiesChanging">
-                            <LayoutTemplate>
-                                <table>
-                                    <tr>
-                                        <th>Category Name</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                    <tr runat="server" id="itemPlaceholder"></tr>
-                                </table>
-                            </LayoutTemplate>
-                            <ItemTemplate>
-                                <tr>
-                                    <th><%#Eval("TopCategoryName")%></th>
-                                    <th>
-                                        <asp:LinkButton ID="lnkbtnEdit" runat="server">Edit</asp:LinkButton></th>
-                                    <th>
-                                        <asp:LinkButton ID="lnkbtnDelete" runat="server" OnClientClick="return getConfirmation(this, 'Please confirm','Are you sure you want to delete?');">Delete</asp:LinkButton></th>
-                                </tr>
-                            </ItemTemplate>
-                        </asp:ListView>
-                        <asp:DataPager ID="DataPager1" runat="server" PagedControlID="ListView1" PageSize="5">
-                            <Fields>
-                                <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="false" ShowPreviousPageButton="true"
-                                    ShowNextPageButton="false" />
-                                <asp:NumericPagerField ButtonType="Link" />
-                                <asp:NextPreviousPagerField ButtonType="Link" ShowNextPageButton="true" ShowLastPageButton="false" ShowPreviousPageButton="false" />
-                            </Fields>
-                        </asp:DataPager>--%>
                     </div>
                 </div>
             </div>

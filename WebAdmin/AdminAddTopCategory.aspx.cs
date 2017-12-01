@@ -46,12 +46,9 @@ namespace WebAdmin
         private void FillgridViewTopCategory()
         {
             DataTable _datatable1 = new DataTable();
-            //_datatable1 = _batcat.SelectTopCategoryList("GETALL");
             _datatable1 = _batcat.SelectTopCategorywithSearch("GETALL", txtSearch.Text);
             gvTopCategory.DataSource = _datatable1;
             gvTopCategory.DataBind();
-            //ListView1.DataSource = _datatable1;
-            //ListView1.DataBind();
         }
 
         protected void Page_PreRender(object sender, EventArgs e)
@@ -99,9 +96,6 @@ namespace WebAdmin
                         lblerror.InnerText = "Please enter Top category";
                         lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
                     }
-                }
-                else
-                {
                 }
             }
             catch (Exception ex)
@@ -162,9 +156,6 @@ namespace WebAdmin
                         ShowMessage("Can not delete category because used in another entity", MessageType.Info);
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
@@ -186,7 +177,6 @@ namespace WebAdmin
         protected void btnSeach_Click(object sender, EventArgs e)
         {
             DataTable _datatable3 = new DataTable();
-            //_datatable3 = _batcat.SelectTopCategorywithSearch("GETALLwithSearch", txtSearch.Text);
             _datatable3 = _batcat.SelectTopCategorywithSearch("GETALL", txtSearch.Text);
             gvTopCategory.DataSource = _datatable3;
             gvTopCategory.DataBind();
@@ -203,10 +193,5 @@ namespace WebAdmin
             gvTopCategory.PageIndex = e.NewPageIndex;
             FillgridViewTopCategory();
         }
-
-        //protected void ListView1_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
-        //{
-
-        //}
     }
 }

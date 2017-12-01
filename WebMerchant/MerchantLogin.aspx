@@ -20,19 +20,6 @@
                     });
                     return false;
                 }
-                //if ($('[id$=txtcategory]').val() != "") {
-                //    var regex = new RegExp(/^[0-9a-zA-Z_@./#&$\_]+$/);
-                //    if (!regex.test($('[id$=txtcategory]').val())) {
-                //        $('[id$=lblerror]').css("display", "block");
-                //        $('[id$=lblerror]').html("Some special character not allow");
-                //        $('[id$=txtcategory]').css("border", "1px solid #FF0000");
-                //        $('[id$=txtcategory]').focus(function () {
-                //            $('[id$=txtcategory]').css("border", "1px solid #000000");
-                //            $('[id$=lblerror]').css("display", "none");
-                //        });
-                //        return false;
-                //    }
-                //}
                 if ($('[id$=drpTopcategory]').val() == null) {
                     $('[id$=lblerror]').css("display", "block");
                     $('[id$=lblerror]').html("Please Select Top Category");
@@ -128,12 +115,14 @@
                             <asp:BoundField HeaderText="Valid Date" DataField="ValidDate" DataFormatString="{0:yyyy/MM/dd}" />
                             <asp:TemplateField HeaderText="Exam Simulator">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkbtnGenerateExamSimulator" CommandArgument='<%#Eval("ExamSimulator") %>' runat="server" OnClick="lnkbtnGenerateExamSimulator_Click">Generate</asp:LinkButton>
+                                    <a href="#"><%#Eval("ExamSimulator") %></a>
+                                    <%--<asp:LinkButton ID="lnkbtnGenerateExamSimulator" CommandArgument='<%#Eval("ExamSimulator") %>' runat="server">Generate</asp:LinkButton>--%>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Exam Simulator Demo">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkbtnGenerateExamSimulatorDemo" CommandArgument='<%#Eval("ExamSimulatorDemo") %>' runat="server" OnClick="lnkbtnGenerateExamSimulatorDemo_Click">Generate</asp:LinkButton>
+                                    <a href="#"><%#Eval("ExamSimulatorDemo") %></a>
+                                    <%--<asp:LinkButton ID="lnkbtnGenerateExamSimulatorDemo" CommandArgument='<%#Eval("ExamSimulatorDemo") %>' runat="server">Generate</asp:LinkButton>--%>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Only Test Once">

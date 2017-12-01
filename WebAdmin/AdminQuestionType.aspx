@@ -31,6 +31,11 @@
             return true;
         }
     </script>
+    <style>
+        .hidegridcolumn {
+            display: none;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Question Type</h2>
@@ -70,7 +75,7 @@
                                         <asp:LinkButton ID="lnkbtnEdit" runat="server" OnClick="lnkbtnEdit_Click">Edit</asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Delete">
+                                <asp:TemplateField HeaderText="Delete" HeaderStyle-CssClass="hidegridcolumn" ItemStyle-CssClass="hidegridcolumn">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lnkbtnDelete" runat="server" OnClientClick="return getConfirmation(this, 'Please confirm','Are you sure you want to delete?');" OnClick="lnkbtnDelete_Click">Delete</asp:LinkButton>
                                     </ItemTemplate>

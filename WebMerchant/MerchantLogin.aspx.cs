@@ -33,7 +33,6 @@ namespace WebMerchant
                         FilldropDowntopCategory();
                         FilgirdViewMerchantDetail("GETWITHID", _bomerchantDetail.MerchantId);
                         FillgridViewExamDetail("GetExamWithMId", _bomerchantDetail.MerchantId);
-                        // FillgridViewExamDetail("GetReportWithMrID", _bomerchantDetail.MerchantId);
                         if (_bomerchantDetail.MerchantLevel == "Free")
                         {
                             gvExamDetail.Columns[0].Visible = gvExamDetail.Columns[6].Visible = gvExamDetail.Columns[7].Visible = gvExamDetail.Columns[8].Visible = gvExamDetail.Columns[9].Visible = gvExamDetail.Columns[10].Visible = gvExamDetail.Columns[11].Visible = false;
@@ -76,7 +75,6 @@ namespace WebMerchant
                 drpTopcategory.DataValueField = "TopCategoryID";
                 drpTopcategory.DataSource = _datatable;
                 drpTopcategory.DataBind();
-                //drpTopcategory.Items.Insert(0, Common.Select);
             }
         }
 
@@ -84,10 +82,6 @@ namespace WebMerchant
         {
             _datatable = new DataTable();
             _datatable = _baexmmng.SelectExamDetail(eventtext, Merchantid);
-            //BASalesReports _baslsrpt = new BASalesReports();
-            //_datatable = new DataTable();
-            //_datatable = _baslsrpt.SelectSalesReprotsWithMrid(eventtext, Merchantid);
-
             gvExamDetail.DataSource = _datatable;
             gvExamDetail.DataBind();
         }
@@ -116,9 +110,6 @@ namespace WebMerchant
                         ShowMessage("Category added successfully", MessageType.Success);
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
@@ -143,16 +134,6 @@ namespace WebMerchant
         {
             gvExamDetail.PageIndex = e.NewPageIndex;
             FillgridViewExamDetail("GetExamWithMId", merchantId);
-        }
-
-        protected void lnkbtnGenerateExamSimulator_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void lnkbtnGenerateExamSimulatorDemo_Click(object sender, EventArgs e)
-        {
-
         }
 
         protected void lnkbtnOnlytestOnce_Click(object sender, EventArgs e)

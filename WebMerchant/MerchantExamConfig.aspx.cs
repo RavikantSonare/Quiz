@@ -115,9 +115,6 @@ namespace WebMerchant
                         }
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
@@ -136,7 +133,6 @@ namespace WebMerchant
             drpTopCategory.DataValueField = "TopCategoryID";
             drpTopCategory.DataSource = _table;
             drpTopCategory.DataBind();
-            //drpTopCategory.Items.Insert(0, Common.Select);
             FilldropDownSecondCategory(drpTopCategory.SelectedItem.Value);
         }
 
@@ -199,9 +195,6 @@ namespace WebMerchant
                     {
                         ShowMessage("Can not delete Exam because used in another entity", MessageType.Info);
                     }
-                }
-                else
-                {
                 }
             }
             catch (Exception ex)

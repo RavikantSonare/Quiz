@@ -21,26 +21,31 @@ namespace ExamSimulator
     public partial class ExamReport : Page
     {
         TodoItem filelist = (TodoItem)Application.Current.Properties["test"];
+        double resultScore;
+        double passingSocre;
+        double totalScore;
 
-        public ExamReport(int Score, int OutOfScore)
+        public ExamReport(int Score, int TotalQuestion, decimal passingPercentage)
         {
             InitializeComponent();
             DateTime now = DateTime.Now;
             lbldate.Content = now.ToShortDateString();
             lbltime.Content = now.ToLongTimeString();
-            double passingSocre = ((OutOfScore * 100) * 75) / 100;
-            lblTargetScore.Content = Convert.ToString(passingSocre) + "/" + (OutOfScore * 100);
-            lblYourScore.Content = (Score * 100) + " / " + (OutOfScore * 100);
+            passingSocre = ((TotalQuestion * 100) * Convert.ToDouble(passingPercentage)) / 100;// ((TotalQuestion * 100) * 75) / 100;
+            resultScore = Score * 100;
+            totalScore = TotalQuestion * 100;
+            lblTargetScore.Content = Convert.ToString(passingSocre) + "/" + (totalScore);
+            lblYourScore.Content = (resultScore) + " / " + (totalScore);
             lblExamName.Content = filelist.Title;
             pbPassingStatus.Minimum = 0;
             pbPassingStatus.Value = passingSocre;
-            pbPassingStatus.Maximum = OutOfScore * 100;
+            pbPassingStatus.Maximum = totalScore;
             pbPassingStatus.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#0C4068");
             pbResultStatus.Minimum = 0;
-            pbResultStatus.Value = Score * 100;
-            pbResultStatus.Maximum = OutOfScore * 100;
-            lblPassingStatusValue.Content = lblResultStatusValue.Content = Convert.ToString(OutOfScore * 100);
-            if (Score * 100 >= passingSocre)
+            pbResultStatus.Value = resultScore;
+            pbResultStatus.Maximum = totalScore;
+            lblPassingStatusValue.Content = lblResultStatusValue.Content = Convert.ToString(totalScore);
+            if (resultScore >= passingSocre)
             {
                 lblresultStatus.Content = "Congratulation! You has passed the " + filelist.Title + " exam";
                 lblresultStatus.Foreground = Brushes.Green;

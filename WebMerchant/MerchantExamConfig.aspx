@@ -5,7 +5,6 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            //$('#submenu1').slideToggle();
             $('[id$=btnAdd]').click(function () {
                 if ($('[id$=txtExamCode]').val() == "") {
                     $('[id$=lblerror]').css("display", "block");
@@ -17,19 +16,6 @@
                     });
                     return false;
                 }
-                //if ($('[id$=txtExamCode]').val() != "") {
-                //    var regex = new RegExp(/^[0-9a-zA-Z_@./#&$\_]+$/);
-                //    if (!regex.test($('[id$=txtExamCode]').val())) {
-                //        $('[id$=lblerror]').css("display", "block");
-                //        $('[id$=lblerror]').html("Some special character not allow");
-                //        $('[id$=txtExamCode]').css("border", "1px solid #FF0000");
-                //        $('[id$=txtExamCode]').focus(function () {
-                //            $('[id$=txtExamCode]').css("border", "1px solid #000000");
-                //            $('[id$=lblerror]').css("display", "none");
-                //        });
-                //        return false;
-                //    }
-                //}
                 if ($('[id$=txtExamtitle]').val() == "") {
                     $('[id$=lblerror]').css("display", "block");
                     $('[id$=lblerror]').html("Please Enter Exam Title");
@@ -40,19 +26,6 @@
                     });
                     return false;
                 }
-                //if ($('[id$=txtExamtitle]').val() != "") {
-                //    var regex = new RegExp(/^[0-9a-zA-Z_@./#&$\_]+$/);
-                //    if (!regex.test($('[id$=txtExamtitle]').val())) {
-                //        $('[id$=lblerror]').css("display", "block");
-                //        $('[id$=lblerror]').html("Some special character not allow");
-                //        $('[id$=txtExamtitle]').css("border", "1px solid #FF0000");
-                //        $('[id$=txtExamtitle]').focus(function () {
-                //            $('[id$=txtExamtitle]').css("border", "1px solid #000000");
-                //            $('[id$=lblerror]').css("display", "none");
-                //        });
-                //        return false;
-                //    }
-                //}
                 if ($('[id$=drpTopCategory]').val() == null) {
                     $('[id$=lblerror]').css("display", "block");
                     $('[id$=lblerror]').html("Please Select Category");

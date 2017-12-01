@@ -122,10 +122,11 @@ namespace WebMerchant
                         {
                             ShowMessage("User added successfully", MessageType.Success);
                         }
+                        else if (_bamyuser.Insert(_bomyuser) == 4)
+                        {
+                            ShowMessage("Email Id already exist", MessageType.Info);
+                        }
                     }
-                }
-                else
-                {
                 }
             }
             catch (Exception ex)
@@ -156,7 +157,6 @@ namespace WebMerchant
                     }
                 }
             }
-
             return Tuple.Create(exmcode, exmcodeid);
         }
 
@@ -304,9 +304,6 @@ namespace WebMerchant
                     {
                         ShowMessage("Can not delete user because used in another entity", MessageType.Info);
                     }
-                }
-                else
-                {
                 }
             }
             catch (Exception ex)

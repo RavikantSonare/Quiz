@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ExamSimulator"
       mc:Ignorable="d" Loaded="Page_Loaded"
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="300" d:DesignWidth="300" 
       Title="ExamRun">
     <Page.Resources>
         <Style x:Key="wpfStyle1" TargetType="{x:Type TextBlock}">
@@ -45,6 +45,32 @@
                 <DataTrigger  Binding ="{Binding ElementName=btnExhibit, Path=Tag}"  Value="Refer to the Scenario">
                     <Setter Property="CheckBox.Visibility" Value="Visible"/>
                     <Setter Property="Content" Value="Scenario"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="btnTopology" TargetType="{x:Type Button}">
+            <Setter Property="Visibility" Value="Visible" />
+            <Setter Property="Content" Value="Topology"/>
+            <Style.Triggers>
+                <DataTrigger Binding ="{Binding ElementName=btnTopology, Path=Tag}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding ="{Binding ElementName=btnTopology, Path=Tag}" Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="btnScenario" TargetType="{x:Type Button}">
+            <Setter Property="Visibility" Value="Visible" />
+            <Setter Property="Content" Value="Scenario"/>
+            <Style.Triggers>
+                <DataTrigger Binding ="{Binding ElementName=btnScenario, Path=Tag}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding ="{Binding ElementName=btnScenario, Path=Tag}" Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -425,8 +451,19 @@
                             <DataTemplate>
                                 <StackPanel>
                                     <Label Content="{Binding QuestionType}" />
-                                    <TextBlock  Name="txtQuestion" Text="{Binding Question}" Tag="{Binding QuestionTypeId}" Style="{StaticResource wpfStyle1}"/>
-                                    <Button Name="btnExhibit" HorizontalAlignment="Center" CommandParameter="{Binding Exhibit}"  Tag="{Binding Exhibit}" Style="{StaticResource btnexhibit}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnExhibit_Click"/>
+                                    <TextBlock  Name="txtQuestion" Text="{Binding Question}" Tag="{Binding QuestionTypeId}" Style="{StaticResource wpfStyle1}" />
+                                    <RichTextBox local:HtmlRichTextBoxBehavior.Text="" Width="700" BorderThickness="0" BorderBrush="Transparent" Visibility="Collapsed"/>
+                                    <!--{Binding ElementName=txtQuestion, Path=Text}-->
+                                    <Grid Width="300">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Grid.Column="0" Name="btnExhibit" HorizontalAlignment="Center" CommandParameter="{Binding Exhibit}"  Tag="{Binding Exhibit}" Style="{StaticResource btnexhibit}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnExhibit_Click"/>
+                                        <Button Grid.Column="1" Name="btnTopology" HorizontalAlignment="Center" CommandParameter="{Binding Topology}"  Tag="{Binding Topology}" Style="{StaticResource btnTopology}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnTopology_Click"/>
+                                        <Button Grid.Column="2" Name="btnScenario" HorizontalAlignment="Center" CommandParameter="{Binding Scenario}"  Tag="{Binding Scenario}" Style="{StaticResource btnScenario}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnScenario_Click"/>
+                                    </Grid>
                                     <ListBox  x:Name="list" ItemsSource="{Binding AnswerList}" Width="auto" BorderThickness="0" IsEnabled="{Binding ExamMode}" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
@@ -549,5 +586,6 @@
                 </ScrollViewer>
             </Grid>
         </Border>
+
     </DockPanel>
 </Page>

@@ -21,12 +21,7 @@
     </security>
   </trustInfo>
 
-  <fileAssociation xmlns="urn:schemas-microsoft-com:clickonce.v1"
-      extension=".vcee"
-      description="Quiz Exam File"
-      progid="QuizProjectApp.ExamFile"
-      defaultIcon="q.ico"
-  />
+  <fileAssociation xmlns="urn:schemas-microsoft-com:clickonce.v1" extension=".vcee" description="Quiz Exam File" progid="QuizProjectApp.ExamFile" defaultIcon="q.ico"/>
 
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
     <application>

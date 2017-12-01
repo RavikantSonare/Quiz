@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace ExamSimulator
 {
-    /// <summary>
-    /// Interaction logic for ExamBegin.xaml
-    /// </summary>
+    
     public partial class ExamBegin : Page
     {
         TodoItem value = (TodoItem)Application.Current.Properties["test"];

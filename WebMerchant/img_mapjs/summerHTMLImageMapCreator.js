@@ -2733,6 +2733,7 @@ var summerHtmlImageMapCreator = (function () {
                     .clear()
                     .hidePreview();
                 deselectAll();
+                $("#divHotspot").html("");
             }
 
             e.preventDefault();
