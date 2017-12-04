@@ -42,7 +42,8 @@ namespace ExamSimulator.DALayer
                                                         ExamCodeId = li.Field<int>("ExamCodeId"),
                                                         ExamCode = li.Field<string>("ExamCode"),
                                                         SecondCategoryId = li.Field<int>("SecondCategoryId"),
-                                                        SecondCategory = li.Field<string>("SecondCategoryName")
+                                                        SecondCategory = li.Field<string>("SecondCategoryName"),
+                                                        TestTime = li.Field<int>("TestTime")
                                                     }).ToList();
                 _sqlcon.Close();
                 return _boexmmnglist;

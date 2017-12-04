@@ -22,7 +22,13 @@
         "Entry"
         {
         "MsmKey" = "8:_68FFCF5488657F8F8B8B8C76D256D59A"
-        "OwnerKey" = "8:_F78754E9AB81446AB2A4A0DE786B3522"
+        "OwnerKey" = "8:_7F086982207842F9817DE1892761F925"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7F086982207842F9817DE1892761F925"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -33,20 +39,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F78754E9AB81446AB2A4A0DE786B3522"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7F086982207842F9817DE1892761F925"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_68FFCF5488657F8F8B8B8C76D256D59A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F78754E9AB81446AB2A4A0DE786B3522"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -231,17 +231,6 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_974115F762F6421A984238E9CA5D0B8B"
-                    {
-                    "Name" = "8:Examfile"
-                    "AlwaysCreate" = "11:TRUE"
-                    "Condition" = "8:"
-                    "Transitive" = "11:FALSE"
-                    "Property" = "8:_174472A39D2340D7BFCCE47C26267829"
-                        "Folders"
-                        {
-                        }
-                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_8E35F698B507442BB7AA70CD35B4D655"
@@ -293,8 +282,8 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ExamSimulatorSetup"
-        "ProductCode" = "8:{0EA6FE69-400C-4DD4-9FE6-BD1765D6D5D6}"
-        "PackageCode" = "8:{8AF90F6E-486C-4D3E-852A-83E6ECC203F9}"
+        "ProductCode" = "8:{85EA2A28-98D3-4909-952B-9A4E4414B746}"
+        "PackageCode" = "8:{F5C94BA4-B774-4F73-9D92-F85301D96412}"
         "UpgradeCode" = "8:{CF53BD36-E778-4A65-95C2-4CD0A9D866CB}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -414,7 +403,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_598C333355654E44BE4592EE35B429A2"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B17AEFE9B5C149548524BF9532E2AE71"
             {
             "Name" = "8:QuizExamSimulator"
             "Arguments" = "8:"
@@ -422,13 +411,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_F78754E9AB81446AB2A4A0DE786B3522"
+            "Target" = "8:_7F086982207842F9817DE1892761F925"
             "Folder" = "8:_8E35F698B507442BB7AA70CD35B4D655"
             "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
-            "Icon" = "8:"
+            "Icon" = "8:_36020287153948EEA0E54830ED21F5BE"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A94604C291D64152BEE1E0A4DC3AC53C"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D75E5B9EECF2467C8C49BDA3EEC0A2ED"
             {
             "Name" = "8:QuizExamSimulator"
             "Arguments" = "8:"
@@ -436,10 +425,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_F78754E9AB81446AB2A4A0DE786B3522"
+            "Target" = "8:_7F086982207842F9817DE1892761F925"
             "Folder" = "8:_4F4BCCDA690243109B99D3F5731521B3"
             "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
-            "Icon" = "8:"
+            "Icon" = "8:_36020287153948EEA0E54830ED21F5BE"
             "Feature" = "8:"
             }
         }
@@ -888,7 +877,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F78754E9AB81446AB2A4A0DE786B3522"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7F086982207842F9817DE1892761F925"
             {
             "SourcePath" = "8:..\\ExamSimulator\\obj\\Debug\\ExamSimulator.exe"
             "TargetName" = "8:"

@@ -52,7 +52,10 @@ namespace WebUser
                     {
                         lblResultMsg.Text = "Sorry!! You has failed the " + _examqueanslist.ExamTitle + " exam";
                         lblResultMsg.ForeColor = System.Drawing.Color.Red;
-                        htmlresultvalue = "<div class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='" + Convert.ToString(resultScore / (totalScore / 100)) + "' aria-valuemin='0' aria-valuemax='100'><span class='skill'><i class='val'>" + Convert.ToString(resultScore) + "</i></span></div>";
+                        if (resultScore != 0)
+                            htmlresultvalue = "<div class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='" + Convert.ToString(resultScore / (totalScore / 100)) + "' aria-valuemin='0' aria-valuemax='100'><span class='skill'><i class='val'>" + Convert.ToString(resultScore) + "</i></span></div>";
+                        else
+                            htmlresultvalue = "<div class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='" + 1 + "' aria-valuemin='0' aria-valuemax='100'><span class='skill'><i class='val'>" + Convert.ToString(resultScore) + "</i></span></div>";
                     }
                     pbresultvalue.InnerHtml = htmlresultvalue;
                     lbldate.Text = DateTime.Now.ToShortDateString();

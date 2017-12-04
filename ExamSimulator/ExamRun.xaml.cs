@@ -24,7 +24,6 @@ namespace ExamSimulator
     public partial class ExamRun : System.Windows.Controls.Page
     {
         #region Global Variables
-        BOExamManage _examqueanslist = new BOExamManage();
         int currentQuestionIndex = 0;
         BOExamManage _list = new BOExamManage();
         TodoItem filelist = new TodoItem();
@@ -40,7 +39,7 @@ namespace ExamSimulator
             try
             {
                 filelist = filelistitem;
-                _time = TimeSpan.FromSeconds(300);
+                _time = TimeSpan.FromSeconds(filelistitem.Examtime * 60);
                 _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
                 {
                     lblTimer.Content = _time.ToString("c");
@@ -89,53 +88,25 @@ namespace ExamSimulator
             }
         }
 
-        private void Decrypt(string inputFilePath, string outputfilePath)
-        {
-            string EncryptionKey = "PROJECTQUIZMW238";
-            using (Aes encryptor = Aes.Create())
-            {
-                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-                encryptor.Key = pdb.GetBytes(32);
-                encryptor.IV = pdb.GetBytes(16);
-                using (FileStream fsInput = new FileStream(inputFilePath, FileMode.Open))
-                {
-                    using (CryptoStream cs = new CryptoStream(fsInput, encryptor.CreateDecryptor(), CryptoStreamMode.Read))
-                    {
-                        using (FileStream fsOutput = new FileStream(outputfilePath, FileMode.Create))
-                        {
-                            int data;
-                            while ((data = cs.ReadByte()) != -1)
-                            {
-                                fsOutput.WriteByte((byte)data);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        List<Questions> _quetionList = new List<Questions>();
         private BOExamManage bindQuestionListboxToList()
         {
+            BOExamManage _examqueanslist = new BOExamManage();
             try
             {
                 if (filelist != null)
                 {
-                    List<Answerlist> _answerlist = new List<Answerlist>();
-                    List<RightAnswer> _rightAnswerlist = new List<RightAnswer>();
-
                     string fileName = Path.GetFileNameWithoutExtension(filelist.Path);
                     string fileExtension = ".json";
 
                     string input = filelist.Path;
                     string output = fileName + fileExtension;
 
-                    if (!Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + output))
+                    if (!Directory.Exists(Common.UserDataFolder))
                     {
-                        File.Delete(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + output);
+                        File.Delete(Common.UserDataFolder + output);
                     }
-                    this.Decrypt(input, System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + output);
-                    var json = File.ReadAllText(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + output);
+                    Common.Decrypt(input, Common.UserDataFolder + output);
+                    var json = File.ReadAllText(Common.UserDataFolder + output);
                     _examqueanslist = JsonConvert.DeserializeObject<BOExamManage>(json);
                     if (filelist.Mode == "SM")
                     {
@@ -148,7 +119,7 @@ namespace ExamSimulator
                         _examqueanslist.QuestionList.ForEach(e => e.ExamMode = true);
                     }
                     //Delete the original (input) and the encrypted (output) file.
-                    File.Delete(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + output);
+                    File.Delete(Common.UserDataFolder + output);
                 }
             }
             catch (Exception ex)
@@ -598,35 +569,4 @@ namespace ExamSimulator
             _timer.Start();
         }
     }
-
-    [Serializable]
-    class Questions
-    {
-        public int QuestionNo { get; set; }
-        public string Question { get; set; }
-        public string Image { get; set; }
-        public List<Answerlist> Answerlist { get; set; }
-        public List<RightAnswer> RightAnswerlist { get; set; }
-        public string QuestionType { get; set; }
-        public int NoofAnswer { get; set; }
-        public decimal Score { get; set; }
-        public bool userResult { get; set; }
-        public string Explaination { get; set; }
-        public bool ExamMode { get; set; }
-        public bool Mark { get; set; }
-        public string ImageBtnShow { get; set; }
-        public string RightAnswerString { get; set; }
-    }
-
-    [Serializable]
-    class Answerlist
-    {
-        public string Answer { get; set; }
-        public bool UserAnwer { get; set; }
-        public int QuestionNo { get; set; }
-        public int OrderingList { get; set; } = 0;
-    }
-
-    [Serializable]
-    class RightAnswer { public bool Rightanswer { get; set; } }
 }

@@ -92,6 +92,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Spire.License.dll</HintPath>
     </Reference>
+    <Reference Include="Spire.Pdf">
+      <HintPath>C:\Users\mobiweb\Downloads\ImageOperationsInWord\ImageOperationsInWord\bin\Debug\Spire.Pdf.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />

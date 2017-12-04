@@ -1,1 +1,168 @@
-﻿
+﻿Time: 02/12/2017 02:25:12 PM
+-----------------------------------------------------------
+Message: The type initializer for 'spr▍' threw an exception.
+StackTrace:    at sprᩐ..ctor(Document A_0)
+   at spr⒐..ctor(IDocument A_0)
+   at sprẙ..ctor(IDocument A_0)
+   at Spire.Doc.Fields.DocPicture..ctor(IDocument doc)
+   at sprᣓ.ᜀ(XmlReader A_0, ParagraphItemCollection A_1, MemoryStream& A_2)
+   at sprᣓ.ᜈ(XmlReader A_0, ParagraphItemCollection A_1)
+   at sprᣓ.ᜐ(XmlReader A_0, ParagraphItemCollection A_1)
+   at sprᣓ.ᜏ(XmlReader A_0, IDocumentObject A_1)
+   at sprᣓ.ᜋ(Stream A_0)
+   at sprᣓ.ᜁ(spr᪉ A_0)
+   at sprᣓ.ᜁ(Document A_0)
+   at sprᣓ.ᜀ(String A_0, Document A_1)
+   at Spire.Doc.Document.ᜌ(String A_0)
+   at Spire.Doc.Document.LoadFromFile(String fileName, FileFormat fileFormat, String password)
+   at Spire.Doc.Document.ᜀ(String A_0, String A_1)
+   at Spire.Doc.Document..ctor(String fileName)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1098
+Source: Spire.Doc
+TargetSite: Void .ctor(Spire.Doc.Document)
+-----------------------------------------------------------
+
+Time: 04/12/2017 06:44:53 AM
+-----------------------------------------------------------
+Message: The type initializer for 'spr▍' threw an exception.
+StackTrace:    at sprᩐ..ctor(Document A_0)
+   at spr⒐..ctor(IDocument A_0)
+   at sprẙ..ctor(IDocument A_0)
+   at Spire.Doc.Fields.DocPicture..ctor(IDocument doc)
+   at sprᣓ.ᜀ(XmlReader A_0, ParagraphItemCollection A_1, MemoryStream& A_2)
+   at sprᣓ.ᜈ(XmlReader A_0, ParagraphItemCollection A_1)
+   at sprᣓ.ᜐ(XmlReader A_0, ParagraphItemCollection A_1)
+   at sprᣓ.ᜏ(XmlReader A_0, IDocumentObject A_1)
+   at sprᣓ.ᜋ(Stream A_0)
+   at sprᣓ.ᜁ(spr᪉ A_0)
+   at sprᣓ.ᜁ(Document A_0)
+   at sprᣓ.ᜀ(String A_0, Document A_1)
+   at Spire.Doc.Document.ᜌ(String A_0)
+   at Spire.Doc.Document.LoadFromFile(String fileName, FileFormat fileFormat, String password)
+   at Spire.Doc.Document.ᜀ(String A_0, String A_1)
+   at Spire.Doc.Document..ctor(String fileName)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1098
+Source: Spire.Doc
+TargetSite: Void .ctor(Spire.Doc.Document)
+-----------------------------------------------------------
+
+Time: 04/12/2017 06:49:27 AM
+-----------------------------------------------------------
+Message: The type initializer for 'spr▍' threw an exception.
+StackTrace:    at sprᩐ..ctor(Document A_0)
+   at spr⒐..ctor(IDocument A_0)
+   at sprẙ..ctor(IDocument A_0)
+   at Spire.Doc.Fields.DocPicture..ctor(IDocument doc)
+   at sprᣓ.ᜀ(XmlReader A_0, ParagraphItemCollection A_1, MemoryStream& A_2)
+   at sprᣓ.ᜈ(XmlReader A_0, ParagraphItemCollection A_1)
+   at sprᣓ.ᜐ(XmlReader A_0, ParagraphItemCollection A_1)
+   at sprᣓ.ᜏ(XmlReader A_0, IDocumentObject A_1)
+   at sprᣓ.ᜋ(Stream A_0)
+   at sprᣓ.ᜁ(spr᪉ A_0)
+   at sprᣓ.ᜁ(Document A_0)
+   at sprᣓ.ᜀ(String A_0, Document A_1)
+   at Spire.Doc.Document.ᜌ(String A_0)
+   at Spire.Doc.Document.LoadFromFile(String fileName, FileFormat fileFormat, String password)
+   at Spire.Doc.Document.ᜀ(String A_0, String A_1)
+   at Spire.Doc.Document..ctor(String fileName)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1098
+Source: Spire.Doc
+TargetSite: Void .ctor(Spire.Doc.Document)
+-----------------------------------------------------------
+
+Time: 04/12/2017 06:50:28 AM
+-----------------------------------------------------------
+Message: The type initializer for 'spr▍' threw an exception.
+StackTrace:    at sprᩐ..ctor(Document A_0)
+   at spr⒐..ctor(IDocument A_0)
+   at sprẙ..ctor(IDocument A_0)
+   at Spire.Doc.Fields.DocPicture..ctor(IDocument doc)
+   at sprᣓ.ᜀ(XmlReader A_0, ParagraphItemCollection A_1, MemoryStream& A_2)
+   at sprᣓ.ᜈ(XmlReader A_0, ParagraphItemCollection A_1)
+   at sprᣓ.ᜐ(XmlReader A_0, ParagraphItemCollection A_1)
+   at sprᣓ.ᜏ(XmlReader A_0, IDocumentObject A_1)
+   at sprᣓ.ᜋ(Stream A_0)
+   at sprᣓ.ᜁ(spr᪉ A_0)
+   at sprᣓ.ᜁ(Document A_0)
+   at sprᣓ.ᜀ(String A_0, Document A_1)
+   at Spire.Doc.Document.ᜌ(String A_0)
+   at Spire.Doc.Document.LoadFromFile(String fileName, FileFormat fileFormat, String password)
+   at Spire.Doc.Document.ᜀ(String A_0, String A_1)
+   at Spire.Doc.Document..ctor(String fileName)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1098
+Source: Spire.Doc
+TargetSite: Void .ctor(Spire.Doc.Document)
+-----------------------------------------------------------
+
+Time: 04/12/2017 06:50:41 AM
+-----------------------------------------------------------
+Message: The type initializer for 'spr▍' threw an exception.
+StackTrace:    at sprᩐ..ctor(Document A_0)
+   at spr⒐..ctor(IDocument A_0)
+   at sprẙ..ctor(IDocument A_0)
+   at Spire.Doc.Fields.DocPicture..ctor(IDocument doc)
+   at sprᣓ.ᜀ(XmlReader A_0, ParagraphItemCollection A_1, MemoryStream& A_2)
+   at sprᣓ.ᜈ(XmlReader A_0, ParagraphItemCollection A_1)
+   at sprᣓ.ᜐ(XmlReader A_0, ParagraphItemCollection A_1)
+   at sprᣓ.ᜏ(XmlReader A_0, IDocumentObject A_1)
+   at sprᣓ.ᜋ(Stream A_0)
+   at sprᣓ.ᜁ(spr᪉ A_0)
+   at sprᣓ.ᜁ(Document A_0)
+   at sprᣓ.ᜀ(String A_0, Document A_1)
+   at Spire.Doc.Document.ᜌ(String A_0)
+   at Spire.Doc.Document.LoadFromFile(String fileName, FileFormat fileFormat, String password)
+   at Spire.Doc.Document.ᜀ(String A_0, String A_1)
+   at Spire.Doc.Document..ctor(String fileName)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1098
+Source: Spire.Doc
+TargetSite: Void .ctor(Spire.Doc.Document)
+-----------------------------------------------------------
+
+Time: 04/12/2017 07:05:14 AM
+-----------------------------------------------------------
+Message: The type initializer for 'spr▍' threw an exception.
+StackTrace:    at sprᩐ..ctor(Document A_0)
+   at spr⒐..ctor(IDocument A_0)
+   at sprẙ..ctor(IDocument A_0)
+   at Spire.Doc.Fields.DocPicture..ctor(IDocument doc)
+   at sprᣓ.ᜀ(XmlReader A_0, ParagraphItemCollection A_1, MemoryStream& A_2)
+   at sprᣓ.ᜈ(XmlReader A_0, ParagraphItemCollection A_1)
+   at sprᣓ.ᜐ(XmlReader A_0, ParagraphItemCollection A_1)
+   at sprᣓ.ᜏ(XmlReader A_0, IDocumentObject A_1)
+   at sprᣓ.ᜋ(Stream A_0)
+   at sprᣓ.ᜁ(spr᪉ A_0)
+   at sprᣓ.ᜁ(Document A_0)
+   at sprᣓ.ᜀ(String A_0, Document A_1)
+   at Spire.Doc.Document.ᜌ(String A_0)
+   at Spire.Doc.Document.LoadFromFile(String fileName, FileFormat fileFormat, String password)
+   at Spire.Doc.Document.ᜀ(String A_0, String A_1)
+   at Spire.Doc.Document..ctor(String fileName)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1098
+Source: Spire.Doc
+TargetSite: Void .ctor(Spire.Doc.Document)
+-----------------------------------------------------------
+
+Time: 04/12/2017 07:05:51 AM
+-----------------------------------------------------------
+Message: The type initializer for 'spr▍' threw an exception.
+StackTrace:    at sprᩐ..ctor(Document A_0)
+   at spr⒐..ctor(IDocument A_0)
+   at sprẙ..ctor(IDocument A_0)
+   at Spire.Doc.Fields.DocPicture..ctor(IDocument doc)
+   at sprᣓ.ᜀ(XmlReader A_0, ParagraphItemCollection A_1, MemoryStream& A_2)
+   at sprᣓ.ᜈ(XmlReader A_0, ParagraphItemCollection A_1)
+   at sprᣓ.ᜐ(XmlReader A_0, ParagraphItemCollection A_1)
+   at sprᣓ.ᜏ(XmlReader A_0, IDocumentObject A_1)
+   at sprᣓ.ᜋ(Stream A_0)
+   at sprᣓ.ᜁ(spr᪉ A_0)
+   at sprᣓ.ᜁ(Document A_0)
+   at sprᣓ.ᜀ(String A_0, Document A_1)
+   at Spire.Doc.Document.ᜌ(String A_0)
+   at Spire.Doc.Document.LoadFromFile(String fileName, FileFormat fileFormat, String password)
+   at Spire.Doc.Document.ᜀ(String A_0, String A_1)
+   at Spire.Doc.Document..ctor(String fileName)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1098
+Source: Spire.Doc
+TargetSite: Void .ctor(Spire.Doc.Document)
+-----------------------------------------------------------
+

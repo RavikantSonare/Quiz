@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace ExamSimulator
 {
-    
+
     public partial class ExamBegin : Page
     {
         TodoItem value = (TodoItem)Application.Current.Properties["test"];
@@ -33,6 +33,7 @@ namespace ExamSimulator
             toitem.Mode = button.Tag.ToString();
             toitem.Title = value.Title;
             toitem.Path = value.Path;
+            toitem.Examtime = value.Examtime;
             NavigationService.Navigate(new ExamRun(toitem));
         }
     }

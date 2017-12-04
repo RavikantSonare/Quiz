@@ -41,12 +41,12 @@ namespace ExamSimulator
         {
             List<TodoItem> _exsitingExamlist = new List<TodoItem>();
             String[] files = null;
-            if (Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\"))
+            if (Directory.Exists(Common.UserDataFolder))
             {
                 // var allowedExtensions = new[] { ".doc", ".docx" };
                 var allowedExtensions = new[] { ".vcee" };
                 var filesss = Directory
-                    .GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\")
+                    .GetFiles(Common.UserDataFolder)
                     .Where(file => allowedExtensions.Any(file.ToLower().EndsWith))
                     .ToList();
                 files = filesss.ToArray();
@@ -59,7 +59,7 @@ namespace ExamSimulator
                 }
             }
             List<BOExamManage> _boexammng = new List<BOExamManage>();
-            _boexammng = _baexmmng.SelectExamDetail("GetExWithUid", 3);
+            _boexammng = _baexmmng.SelectExamDetail("GetExWithUid", _bouser.UserId);
 
             List<UserExamList> _userExamlist = new List<UserExamList>();
 
@@ -68,10 +68,10 @@ namespace ExamSimulator
                 var data = _exsitingExamlist.Where(x => x.Title.Contains(_boexammng[i].SecondCategory + "-" + _boexammng[i].ExamCode));
                 if (data.Any())
                 {
-                    _userExamlist.Add(new UserExamList { CategoryName = _boexammng[i].SecondCategory, ExamCodeList = new List<ExamCodelist>() { new ExamCodelist { ExamCodeId = _boexammng[i].ExamCodeId, ExamCode = _boexammng[i].ExamCode, Title = data.FirstOrDefault().Title, Path = data.FirstOrDefault().Path, IsActive = true } } });
+                    _userExamlist.Add(new UserExamList { CategoryName = _boexammng[i].SecondCategory, ExamCodeList = new List<ExamCodelist>() { new ExamCodelist { ExamCodeId = _boexammng[i].ExamCodeId, ExamCode = _boexammng[i].ExamCode, Title = data.FirstOrDefault().Title, Path = data.FirstOrDefault().Path, IsActive = true, Examtime = _boexammng[i].TestTime } } });
                 }
                 else
-                { _userExamlist.Add(new UserExamList { CategoryName = _boexammng[i].SecondCategory, ExamCodeList = new List<ExamCodelist>() { new ExamCodelist { ExamCodeId = _boexammng[i].ExamCodeId, ExamCode = _boexammng[i].ExamCode, Title = "", Path = "", IsActive = false } } }); }
+                { _userExamlist.Add(new UserExamList { CategoryName = _boexammng[i].SecondCategory, ExamCodeList = new List<ExamCodelist>() { new ExamCodelist { ExamCodeId = _boexammng[i].ExamCodeId, ExamCode = _boexammng[i].ExamCode, Title = "", Path = "", IsActive = false, Examtime = _boexammng[i].TestTime } } }); }
             }
             var _userExamFileList = from p in _userExamlist
                                     group p.ExamCodeList by p.CategoryName into g
@@ -107,7 +107,7 @@ namespace ExamSimulator
             Button btntest = (Button)sender;
             var list = _baexmmng.SelectExamQestionAnswer("GetEQAWithQId", Convert.ToInt32(btntest.CommandParameter));
             string strserialize = JsonConvert.SerializeObject(list);
-            string path = System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\";
+            string path = Common.UserDataFolder;
             string filename = list.ExamCode + ".json";
             System.IO.File.WriteAllText(path + list.ExamCode + ".json", strserialize);
 
@@ -118,21 +118,24 @@ namespace ExamSimulator
             string fileExtension = Path.GetExtension(filename);
 
             //Build the File Path for the original (input) and the encrypted (output) file.
-            string input = System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + fileName + fileExtension;
-            string output = System.AppDomain.CurrentDomain.BaseDirectory + "\\Examfile\\" + "Cisco-" + fileName + ".vcee";
+            string input = Common.UserDataFolder + fileName + fileExtension;
+            string output = Common.UserDataFolder + "Cisco-" + fileName + ".vcee";
 
             //Save the Input File, Encrypt it and save the encrypted file in output path.
-            this.Encrypt(input, output);
+            Common.Encrypt(input, output);
 
             //Download the Encrypted File.
-            WebClient webClient = new WebClient();
-            webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(wc_DownloadProgressChanged);
-            webClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(client_DownloadFileCompleted);
-            webClient.DownloadFileAsync(new Uri("http://quizuser.mobi96.org/ExamSimulator/" + output), @"D:\Work\Project\ExamSimulator\bin\Debug\Examfile\" + output);
+
+            // WebClient webClient = new WebClient();
+            // webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(wc_DownloadProgressChanged);
+            //webClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(client_DownloadFileCompleted);
+            // webClient.DownloadFileAsync(new Uri("http://quizuser.mobi96.org/ExamSimulator/" + output), @"D:\Work\Project\ExamSimulator\bin\Debug\Examfile\" + output);
 
             //Delete the original (input) and the encrypted (output) file.
             File.Delete(input);
             //File.Delete(output);
+
+            BindFileListBox();
         }
 
         public void wc_DownloadProgressChanged(Object sender, DownloadProgressChangedEventArgs e)
@@ -161,34 +164,10 @@ namespace ExamSimulator
             TodoItem ds = new TodoItem();
             ds.Title = button.Tag.ToString();
             ds.Path = filename.ToString();
+            ds.Examtime = Convert.ToInt32(button.ToolTip);
             ExamMaster _exammaster = new ExamMaster(ds);
             this.Close();
             _exammaster.Show();
-        }
-
-        private void Encrypt(string inputFilePath, string outputfilePath)
-        {
-            string EncryptionKey = "PROJECTQUIZMW238";
-            using (Aes encryptor = Aes.Create())
-            {
-                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-                encryptor.Key = pdb.GetBytes(32);
-                encryptor.IV = pdb.GetBytes(16);
-                using (FileStream fsOutput = new FileStream(outputfilePath, FileMode.Create))
-                {
-                    using (CryptoStream cs = new CryptoStream(fsOutput, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
-                    {
-                        using (FileStream fsInput = new FileStream(inputFilePath, FileMode.Open))
-                        {
-                            int data;
-                            while ((data = fsInput.ReadByte()) != -1)
-                            {
-                                cs.WriteByte((byte)data);
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 
@@ -198,6 +177,7 @@ namespace ExamSimulator
         public string Mode { get; set; }
         public string Title { get; set; }
         public string Path { get; set; }
+        public int Examtime { get; set; }
     }
 
     public class UserExamList
@@ -213,5 +193,6 @@ namespace ExamSimulator
         public string Title { get; set; }
         public string Path { get; set; }
         public bool IsActive { get; set; }
+        public int Examtime { get; set; }
     }
 }

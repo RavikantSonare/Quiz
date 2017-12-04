@@ -12,8 +12,6 @@ using System.Web.Hosting;
 using System.Text.RegularExpressions;
 using WebMerchant.BOLayer;
 using WebMerchant.BALayer;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using Spire.Doc;
 using Spire.Doc.Documents;
 using Spire.Doc.Fields;
@@ -29,8 +27,8 @@ namespace WebMerchant
         private BOQAManage _boqamng = new BOQAManage();
         private BAQAManage _baqamng = new BAQAManage();
         private List<BOQAManage> _boqamnglist = new List<BOQAManage>();
-        BAQAnswer _baqans = new BAQAnswer();
         BOQAnswer _boqans = new BOLayer.BOQAnswer();
+        BAQAnswer _baqans = new BAQAnswer();
         public enum MessageType { Success, Error, Info, Warning };
 
         protected void Page_PreInit(object sender, EventArgs e)
@@ -113,7 +111,6 @@ namespace WebMerchant
         private void FillgridViewQAManage(int mid)
         {
             System.Data.DataTable _datatable3 = new System.Data.DataTable();
-            //_datatable3 = _baqamng.SelectQAmanageList("GetQAWMId", mid);
             _datatable3 = _baqamng.SelectQAmanageListWithSearch("GetQAWMId", txtSearch.Text, MerchantId);
             gvQuestionManage.DataSource = _datatable3;
             gvQuestionManage.DataBind();
@@ -706,13 +703,13 @@ namespace WebMerchant
                     }
                     else if (Session["Qtypevalue"].ToString() == "5")
                     {
-                        //if (txtmaphtml.Text != "")
-                        //{
-                        //    string[] AnswerArray = txtmaphtml.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-                        //    ImageUpload(txtimage.Text, hdimage.Value);
-                        //    qusvalu = AddQuestion(AnswerArray.Length.ToString());
-                        //    AddHotspotAnswer(qusvalu);
-                        //}
+                        if (txtmaphtml.Text != "")
+                        {
+                            string[] AnswerArray = txtmaphtml.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                            ImageUpload(txtimage.Text, hdimage.Value);
+                            qusvalu = AddQuestion(AnswerArray.Length.ToString());
+                            AddHotspotAnswer(qusvalu);
+                        }
                     }
                     else if (Session["Qtypevalue"].ToString() == "6")
                     {
@@ -1076,7 +1073,6 @@ namespace WebMerchant
                     List<Answerlist> _answerlist = new List<Answerlist>();
                     List<RightAnswer> _rightAnswerlist = new List<RightAnswer>();
                     List<QuestionTypelist> _questionTypeList = new List<QuestionTypelist>();
-                    //{ "Question(Single Choice)", "Question(Multi Choice)", "Question(Vacant)", "Question(Drag & Drop)", "Question(Hotspot)", "Question(Scenario)" };
                     _questionTypeList.Add(new QuestionTypelist { QuestionTypeId = 1, QuestionType = "Question(Single Choice)" });
                     _questionTypeList.Add(new QuestionTypelist { QuestionTypeId = 2, QuestionType = "Question(Multi Choice)" });
                     _questionTypeList.Add(new QuestionTypelist { QuestionTypeId = 3, QuestionType = "Question(Vacant)" });
@@ -1233,84 +1229,8 @@ namespace WebMerchant
                         {
                             ShowMessage("Some technical error", MessageType.Warning);
                         }
-
-
-                        //TextExtractor extractor = new TextExtractor(filePath);
-                        //string docmunet = extractor.ExtractText();
-                        //string[] doc = docmunet.Split('\n');
-
-                        //List<QuestionManage> objqstmng = new List<QuestionManage>();
-                        //List<string> objAnswer = new List<string>();
-                        //List<int> objAnswerlist = new List<int>();
-                        //List<string> QuestionTypeList = new List<string>() { "Question(Single Choice)", "Question(Multi Choice)", "Question(Vacant)", "Question(Drag & Drop)", "Question(Hotspot)", "Question(Scenario)" };
-                        //List<string> AnswerCharList = new List<string>() { "A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.", "J." };
-
-                        //string tempp = string.Empty;
-
-                        //int questNo = 0;
-                        //bool flag = true;
-                        //string[] s;
-                        //string[] aas = null;
-                        //for (int i = 0; i < doc.Count(); i++)
-                        //{
-                        //    string temp = doc[i].Trim();
-                        //    if (temp != string.Empty)
-                        //    {
-                        //        if (temp == "Question")
-                        //        {
-                        //            questNo++;
-                        //        }
-                        //        else
-                        //        {
-                        //            if (AnswerCharList.Contains(temp.Substring(0, 2)))
-                        //            {
-                        //                objAnswer.Add(temp.Substring(2).Trim());
-                        //            }
-                        //            else
-                        //            {
-                        //                if (temp.Contains("Answer:"))
-                        //                {
-                        //                    s = temp.Split(':');
-                        //                    aas = Array.ConvertAll(s[1].Split(','), p => p.Trim());
-                        //                    for (int j = 0; j < objAnswer.Count; j++)
-                        //                    {
-                        //                        string value = Convert.ToChar(65 + j).ToString();
-                        //                        if (aas.Contains(value))
-                        //                            objAnswerlist.Add(1);
-                        //                        else objAnswerlist.Add(0);
-                        //                    }
-                        //                    flag = false;
-                        //                }
-                        //                else
-                        //                {
-                        //                    tempp += temp + "\n";
-                        //                }
-                        //            }
-                        //        }
-                        //    }
-                        //    if (questNo > 0 && flag == false)
-                        //    {
-                        //        int qtype = 1;
-                        //        if (aas.Length > 1)
-                        //        {
-                        //            qtype = 2;
-                        //        }
-                        //        objqstmng.Add(new QuestionManage { QuestionNo = questNo, Question = tempp, Answer = objAnswer, RightAnswer = objAnswerlist, QuestionType = qtype, NoofAnswer = objAnswer.Count, Score = 1 });
-                        //        tempp = ""; objAnswer = new List<string>(); objAnswerlist = new List<int>();
-                        //        flag = true;
-                        //    }
-                        //}
-                        //if (uploadAndSave(objqstmng))
-                        //{
-                        //    FillgridViewQAManage(MerchantId);
-                        //    ShowMessage("Question upload successfully", MessageType.Success);
-                        //}
-                        //else
-                        //{
-                        //    ShowMessage("Some technical error", MessageType.Warning);
-                        //}
-                        //// File.Delete(filePath);
                     }
+                    //File.Delete(filePath);
                 }
             }
             catch (Exception ex)
@@ -1389,7 +1309,6 @@ namespace WebMerchant
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             System.Data.DataTable _datatable3 = new System.Data.DataTable();
-            //_datatable3 = _baqamng.SelectQAmanageListWithSearch("GetQAWMIdandSearch", txtSearch.Text, MerchantId);
             _datatable3 = _baqamng.SelectQAmanageListWithSearch("GetQAWMId", txtSearch.Text, MerchantId);
             gvQuestionManage.DataSource = _datatable3;
             gvQuestionManage.DataBind();
