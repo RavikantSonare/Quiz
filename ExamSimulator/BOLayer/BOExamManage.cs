@@ -14,7 +14,6 @@ namespace ExamSimulator.BOLayer
         public string TopCategory { get; set; }
         public int SecondCategoryId { get; set; }
         public string SecondCategory { get; set; }
-        public List<SecondCategoryList> SecondCategoryList { get; set; }
         public decimal PassingPercentage { get; set; }
         public int TestTime { get; set; }
         public string TestOption { get; set; }

@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Data;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
+using System.Windows.Data;
 using ExamSimulator.BOLayer;
 using ExamSimulator.BALayer;
 
@@ -59,13 +60,14 @@ namespace ExamSimulator
                 }
             }
             List<BOExamManage> _boexammng = new List<BOExamManage>();
-            _boexammng = _baexmmng.SelectExamDetail("GetExWithUid", _bouser.UserId);
+            //_boexammng = _baexmmng.SelectExamDetail("GetExWithUid", _bouser.UserId);
+            _boexammng = _baexmmng.SelectExamDetail("GetExWithUid", 3);
 
             List<UserExamList> _userExamlist = new List<UserExamList>();
 
             for (int i = 0; i < _boexammng.Count; i++)
             {
-                var data = _exsitingExamlist.Where(x => x.Title.Contains(_boexammng[i].SecondCategory + "-" + _boexammng[i].ExamCode));
+                var data = _exsitingExamlist.Where(x => x.Title.Contains(_boexammng[i].SecondCategory + " " + _boexammng[i].ExamCode));
                 if (data.Any())
                 {
                     _userExamlist.Add(new UserExamList { CategoryName = _boexammng[i].SecondCategory, ExamCodeList = new List<ExamCodelist>() { new ExamCodelist { ExamCodeId = _boexammng[i].ExamCodeId, ExamCode = _boexammng[i].ExamCode, Title = data.FirstOrDefault().Title, Path = data.FirstOrDefault().Path, IsActive = true, Examtime = _boexammng[i].TestTime } } });
@@ -76,19 +78,13 @@ namespace ExamSimulator
             var _userExamFileList = from p in _userExamlist
                                     group p.ExamCodeList by p.CategoryName into g
                                     select new { SecondCategory = g.Key, ExamCodeList = g.ToList() };
-            listFile.ItemsSource = _userExamFileList;
+            // listFile.ItemsSource = _userExamFileList;
+            //treeview.Items.Clear();
+            treeview.ItemsSource = _userExamFileList;
         }
 
         private void TriggerClose(object sender, RoutedEventArgs e)
         {
-            //System.IO.DirectoryInfo di = new DirectoryInfo(System.AppDomain.CurrentDomain.BaseDirectory + "\\ExamReadfile\\");
-            //if (di.GetFiles().Any())
-            //{
-            //    foreach (FileInfo file in di.GetFiles())
-            //    {
-            //        file.Delete();
-            //    }
-            //}
             Application.Current.Shutdown();
         }
 
@@ -119,7 +115,7 @@ namespace ExamSimulator
 
             //Build the File Path for the original (input) and the encrypted (output) file.
             string input = Common.UserDataFolder + fileName + fileExtension;
-            string output = Common.UserDataFolder + "Cisco-" + fileName + ".vcee";
+            string output = Common.UserDataFolder + list.SecondCategory + " " + fileName + ".vcee";
 
             //Save the Input File, Encrypt it and save the encrypted file in output path.
             Common.Encrypt(input, output);
@@ -173,7 +169,6 @@ namespace ExamSimulator
 
     public class TodoItem
     {
-        public string ModeHeading { get; set; }
         public string Mode { get; set; }
         public string Title { get; set; }
         public string Path { get; set; }
@@ -194,5 +189,20 @@ namespace ExamSimulator
         public string Path { get; set; }
         public bool IsActive { get; set; }
         public int Examtime { get; set; }
+    }
+
+    class TreeViewLineConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            TreeViewItem item = (TreeViewItem)value;
+            ItemsControl ic = ItemsControl.ItemsControlFromItemContainer(item);
+            return null;// ic.ItemContainerGenerator.IndexFromContainer(item) == ic.Items.Count - 1;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return false;
+        }
     }
 }

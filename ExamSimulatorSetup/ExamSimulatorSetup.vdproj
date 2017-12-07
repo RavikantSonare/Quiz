@@ -15,20 +15,8 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_36020287153948EEA0E54830ED21F5BE"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_68FFCF5488657F8F8B8B8C76D256D59A"
-        "OwnerKey" = "8:_7F086982207842F9817DE1892761F925"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7F086982207842F9817DE1892761F925"
-        "OwnerKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BB49B27B1A774B358F79351CC15D3E7F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,14 +27,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7F086982207842F9817DE1892761F925"
+        "MsmKey" = "8:_BB49B27B1A774B358F79351CC15D3E7F"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_68FFCF5488657F8F8B8B8C76D256D59A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BB49B27B1A774B358F79351CC15D3E7F"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -144,26 +138,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_36020287153948EEA0E54830ED21F5BE"
-            {
-            "SourcePath" = "8:..\\ExamSimulator\\Resources\\q.ico"
-            "TargetName" = "8:q.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_68FFCF5488657F8F8B8B8C76D256D59A"
             {
             "AssemblyRegister" = "3:1"
@@ -283,7 +257,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ExamSimulatorSetup"
         "ProductCode" = "8:{85EA2A28-98D3-4909-952B-9A4E4414B746}"
-        "PackageCode" = "8:{F5C94BA4-B774-4F73-9D92-F85301D96412}"
+        "PackageCode" = "8:{73EC0908-2CA8-4C9F-AC5C-02068FA69202}"
         "UpgradeCode" = "8:{CF53BD36-E778-4A65-95C2-4CD0A9D866CB}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -300,7 +274,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_36020287153948EEA0E54830ED21F5BE"
+        "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -403,7 +377,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B17AEFE9B5C149548524BF9532E2AE71"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_406228E33FA74B50AA9A68F46D3A23C1"
             {
             "Name" = "8:QuizExamSimulator"
             "Arguments" = "8:"
@@ -411,24 +385,24 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_7F086982207842F9817DE1892761F925"
-            "Folder" = "8:_8E35F698B507442BB7AA70CD35B4D655"
-            "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
-            "Icon" = "8:_36020287153948EEA0E54830ED21F5BE"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D75E5B9EECF2467C8C49BDA3EEC0A2ED"
-            {
-            "Name" = "8:QuizExamSimulator"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_7F086982207842F9817DE1892761F925"
+            "Target" = "8:_BB49B27B1A774B358F79351CC15D3E7F"
             "Folder" = "8:_4F4BCCDA690243109B99D3F5731521B3"
             "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
-            "Icon" = "8:_36020287153948EEA0E54830ED21F5BE"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7FC5C4A96F594B649FCD24EA64716BBA"
+            {
+            "Name" = "8:QuizExamSimulator"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_BB49B27B1A774B358F79351CC15D3E7F"
+            "Folder" = "8:_8E35F698B507442BB7AA70CD35B4D655"
+            "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }
@@ -877,7 +851,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7F086982207842F9817DE1892761F925"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BB49B27B1A774B358F79351CC15D3E7F"
             {
             "SourcePath" = "8:..\\ExamSimulator\\obj\\Debug\\ExamSimulator.exe"
             "TargetName" = "8:"

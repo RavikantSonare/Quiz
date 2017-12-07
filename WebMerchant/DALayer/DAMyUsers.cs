@@ -71,7 +71,6 @@ namespace WebMerchant.DALayer
                 _sqlcommand.Parameters.AddWithValue("@UserName", _bomyuser.UserName);
                 _sqlcommand.Parameters.AddWithValue("@AccessPassword", _bomyuser.AccessPassword);
                 _sqlcommand.Parameters.AddWithValue("@MerchantId", _bomyuser.MerchantId);
-                _sqlcommand.Parameters.AddWithValue("@SecondCategoryId", _bomyuser.SecondCategoryId);
                 _sqlcommand.Parameters.AddWithValue("@ExamId", _bomyuser.ExamId);
                 _sqlcommand.Parameters.AddWithValue("@ExamCode", _bomyuser.ExamCode);
                 _sqlcommand.Parameters.AddWithValue("@ValidTime", _bomyuser.ValidTime);

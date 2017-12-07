@@ -17,6 +17,21 @@ namespace WebMerchant
         private BAMyUsers _bamyuser = new BAMyUsers();
         private int MerchantId = default(int);
         public enum MessageType { Success, Error, Info, Warning };
+        static List<ListItem> selected, unselected;
+        private List<string> setcurrentitem
+        {
+            get
+            {
+                if (ViewState["setcurrentitem"] == null)
+                    return null;
+                return (List<string>)ViewState["setcurrentitem"];
+            }
+            set
+            {
+                ViewState["setcurrentitem"] = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -29,7 +44,7 @@ namespace WebMerchant
                     {
                         Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
                         FillddlCategory();
-                        FillchkboxListExam(MerchantId);
+                        FillchkboxListExam(Convert.ToInt32(ddlCategory.SelectedItem.Value), MerchantId);
                         FillgridViewUserList(MerchantId);
                     }
                 }
@@ -50,17 +65,56 @@ namespace WebMerchant
             ViewState["CheckRefresh"] = Session["CheckRefresh"];
         }
 
-        private void FillchkboxListExam(int mid)
+        private void FillchkboxListExam(int catid, int mid)
         {
+            selected = chkExamCodeList.Items.Cast<ListItem>().Where(li => li.Selected).ToList();
+            unselected = chkExamCodeList.Items.Cast<ListItem>().Where(li => !li.Selected).ToList();
+            if (selected.Count > 0)
+            {
+                foreach (ListItem listItem in selected)
+                {
+                    if (!setcurrentitem.Contains(listItem.Value))
+                    {
+                        setcurrentitem.Add(listItem.Value);
+                    }
+                }
+                foreach (ListItem listItem in unselected)
+                {
+                    if (setcurrentitem.Contains(listItem.Value))
+                    {
+                        setcurrentitem.Remove(listItem.Value);
+                    }
+                }
+            }
             BAExamManage _baexmmng = new BAExamManage();
             DataTable _datatable1 = new DataTable();
             _datatable1 = _baexmmng.SelectExamDetail("GetExamWithMId", mid);
-            if (_datatable1.Rows.Count > 0)
+            _datatable1.Columns.Add("FullName", typeof(string), "ExamCode + ' (' + SecondCategoryName +')'");
+            if (catid > 0)
             {
-                chkExamCodeList.DataValueField = "ExamCodeId";
-                chkExamCodeList.DataTextField = "ExamCode";
-                chkExamCodeList.DataSource = _datatable1;
-                chkExamCodeList.DataBind();
+                var rows = _datatable1.AsEnumerable().Where(row => row.Field<int>("SecondCategoryId") == catid).ToList();
+                if (rows.Any())
+                    _datatable1 = rows.CopyToDataTable();
+                else
+                    _datatable1 = _datatable1.Clone();
+            }
+            chkExamCodeList.DataValueField = "ExamCodeId";
+            chkExamCodeList.DataTextField = "FullName";
+            chkExamCodeList.DataSource = _datatable1;
+            chkExamCodeList.DataBind();
+            if (setcurrentitem != null)
+            {
+                for (int i = 0; i < chkExamCodeList.Items.Count; i++)
+                {
+                    chkExamCodeList.Items[i].Selected = false;
+                    for (int x = 0; x < setcurrentitem.Count; x++)
+                    {
+                        if (chkExamCodeList.Items[i].Value == setcurrentitem[x])
+                        {
+                            chkExamCodeList.Items[i].Selected = true;
+                        }
+                    }
+                }
             }
         }
 
@@ -81,6 +135,8 @@ namespace WebMerchant
             ddlCategory.DataValueField = "SecondCategoryId";
             ddlCategory.DataSource = _datatable3;
             ddlCategory.DataBind();
+            ddlCategory.Items.Insert(0, new ListItem("Select All", "0"));
+            ddlCategory.SelectedIndex = 0;
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -93,7 +149,6 @@ namespace WebMerchant
                     _bomyuser.UserName = txtUserName.Text;
                     _bomyuser.AccessPassword = Encryptdata(txtPassword.Text);
                     _bomyuser.MerchantId = MerchantId;
-                    _bomyuser.SecondCategoryId = Convert.ToInt32(ddlCategory.SelectedValue);
                     _bomyuser.ExamId = chklist().Item2;
                     _bomyuser.ExamCode = chklist().Item1;
                     _bomyuser.ValidTime = Convert.ToDateTime(txtValidTime.Text);
@@ -186,7 +241,7 @@ namespace WebMerchant
             btnAdd.Text = "Add";
             ViewState["userId"] = "";
             ViewState["userId"] = null;
-            FillchkboxListExam(MerchantId);
+            FillchkboxListExam(Convert.ToInt32(ddlCategory.SelectedItem.Value), MerchantId);
             FillgridViewUserList(MerchantId);
         }
 
@@ -239,14 +294,13 @@ namespace WebMerchant
                     ViewState["userId"] = _datatable4.Rows[0]["UserId"].ToString();
                     txtUserName.Text = _datatable4.Rows[0]["UserName"].ToString();
                     txtPassword.Text = Decryptdata(_datatable4.Rows[0]["AccessPassword"].ToString());
-                    ddlCategory.SelectedItem.Text = _datatable4.Rows[0]["SecondCategoryName"].ToString();
-                    string[] examId = _datatable4.Rows[0]["ExamId"].ToString().Split(',');
+                    setcurrentitem = _datatable4.Rows[0]["ExamId"].ToString().Split(',').ToList();
                     for (int i = 0; i < chkExamCodeList.Items.Count; i++)
                     {
                         chkExamCodeList.Items[i].Selected = false;
-                        for (int x = 0; x < examId.Length; x++)
+                        for (int x = 0; x < setcurrentitem.Count; x++)
                         {
-                            if (chkExamCodeList.Items[i].Value == examId[x])
+                            if (chkExamCodeList.Items[i].Value == setcurrentitem[x])
                             {
                                 chkExamCodeList.Items[i].Selected = true;
                             }
@@ -331,6 +385,11 @@ namespace WebMerchant
         {
             gvMyUser.PageIndex = e.NewPageIndex;
             FillgridViewUserList(MerchantId);
+        }
+
+        protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FillchkboxListExam(Convert.ToInt32(ddlCategory.SelectedItem.Value), MerchantId);
         }
     }
 }

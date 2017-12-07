@@ -94,7 +94,7 @@ namespace WebMerchant.DALayer
                 _sqlcommond.Parameters.AddWithValue("@AllowSales", _boexmmng.AllowSales);
                 _sqlcommond.Parameters.AddWithValue("@Event", _boexmmng.Event);
                 _sqlcommond.Parameters.AddWithValue("@returnValue", 0).Direction = System.Data.ParameterDirection.InputOutput;
-              
+
                 try
                 {
                     _sqlcommond.ExecuteNonQuery();

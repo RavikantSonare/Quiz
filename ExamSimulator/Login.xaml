@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ExamSimulator"
         mc:Ignorable="d"
         Title="Login"  Width="450" Height="250" Loaded="Page_Loaded"
-        WindowStartupLocation="CenterScreen" Icon="Resources/q.ico">
+        WindowStartupLocation="CenterScreen">
 
     <Canvas>
         <Label Content="Account Email : "  FontSize="12"  Height="26" FontWeight="Bold" Foreground="#FF636162" Canvas.Left="51" Canvas.Top="41"/>

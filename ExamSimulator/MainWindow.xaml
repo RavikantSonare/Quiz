@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamSimulator" Loaded="Page_Loaded"
+        xmlns:i="clr-namespace:ExamSimulator"
         mc:Ignorable="d" MouseDown="Windows_MouseDown"
         Title="MainWindow" Height="455" Width="725" 
         WindowStyle="None" ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"  
-        AllowsTransparency="True" BorderBrush="#A5BBC8" BorderThickness="6"
-        Icon="Resources/q.ico">
+        AllowsTransparency="True" BorderBrush="#A5BBC8" BorderThickness="6">
     <Window.Resources>
         <Style x:Key="WindowIconStyle" TargetType="{x:Type Button}">
             <Setter Property="FontFamily" Value="Webdings" />
@@ -116,6 +116,111 @@
             </Setter>
         </Style>
 
+        <i:TreeViewLineConverter x:Key="LineConverter"/>
+
+        <!-- Toggle Button -->
+        <Style x:Key="ExpandCollapseToggleStyle" TargetType="ToggleButton">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid Width="15" Height="13" SnapsToDevicePixels="True">
+                            <Rectangle Width="9" Height="9" Stroke="#919191" SnapsToDevicePixels="true">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,2" StartPoint="0.5,0">
+                                        <GradientStop Color="White" Offset="0"/>
+                                        <GradientStop Color="Silver" Offset="0.5"/>
+                                        <GradientStop Color="LightGray" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Rectangle x:Name="ExpandPath" Width="1" Height="5" Stroke="Black" SnapsToDevicePixels="true"/>
+                            <Rectangle Width="5" Height="1" Stroke="Black" SnapsToDevicePixels="true"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Visibility"  TargetName="ExpandPath" Value="Collapsed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- TreeViewItem -->
+        <Style x:Key="{x:Type TreeViewItem}" TargetType="{x:Type TreeViewItem}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="1,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TreeViewItem}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="19" Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Connecting Lines -->
+                            <Rectangle x:Name="HorLn" Margin="9,1,0,0" Height="1" Stroke="#DCDCDC" SnapsToDevicePixels="True"/>
+                            <Rectangle x:Name="VerLn" Width="1" Stroke="#DCDCDC" Margin="0,0,1,0" Grid.RowSpan="2" SnapsToDevicePixels="true" Fill="White"/>
+                            <ToggleButton Margin="-1,0,0,0" x:Name="Expander" Style="{StaticResource ExpandCollapseToggleStyle}" IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"/>
+                            <Border Name="Bd" Grid.Column="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" MinWidth="20"/>
+                            </Border>
+                            <ItemsPresenter x:Name="ItemsHost" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+
+                            <!-- This trigger changes the connecting lines if the item is the last in the list -->
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource LineConverter}}" Value="true">
+                                <Setter TargetName="VerLn" Property="Height" Value="9"/>
+                                <Setter TargetName="VerLn" Property="VerticalAlignment" Value="Top"/>
+                            </DataTrigger>
+                            <Trigger Property="IsExpanded" Value="false">
+                                <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter TargetName="Expander" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="HasHeader" Value="false"/>
+                                    <Condition Property="Width" Value="Auto"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="PART_Header" Property="MinWidth" Value="75"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="HasHeader" Value="false"/>
+                                    <Condition Property="Height" Value="Auto"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="PART_Header" Property="MinHeight" Value="19"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="true"/>
+                                    <Condition Property="IsSelectionActive" Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Bd" Property="Background" Value="Green"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <DockPanel LastChildFill="True">
         <Border Height="70" Background="#3B6688" DockPanel.Dock="Top">
@@ -124,24 +229,12 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*">
-                    </ColumnDefinition>
-                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label x:Name="label" Grid.Row="0" Grid.Column="0" Content="Exam Simulator" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30"/>
-                <Label Margin="10,40,10,0" Grid.Row="0" Grid.Column="0" Content="Demo-Only" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="15"/>
-                <Menu Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" FontSize="18" Background="#3B6688" Foreground="White" Visibility="Collapsed">
-                    <MenuItem Header="File">
-                        <MenuItem Header="Add"/>
-                        <MenuItem Header="Remove" />
-                        <MenuItem Header="Exit" />
-                    </MenuItem>
-                    <MenuItem Header="Exam">
-                        <MenuItem Header="Start"  />
-                        <MenuItem Header="Select All"  />
-                    </MenuItem>
-                </Menu>
+                <Label x:Name="label" Grid.Row="0" Grid.Column="0" Content="Xexam Simulator" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30" Margin="0 10"/>
+
                 <Rectangle  HorizontalAlignment="Stretch" Height="35" VerticalAlignment="Top" Grid.Column="2"/>
                 <Button Style="{StaticResource WindowIconStyle}" x:Name="Btnclose" Content="r" Grid.Row="0" Grid.Column="2" Click="TriggerClose"/>
                 <Button Style="{StaticResource WindowIconStyle}" x:Name="Btnmin" Content="0" Margin="0,0,25,0"  Grid.Row="0" Grid.Column="2" Click="TriggerMinimize"/>
@@ -157,26 +250,73 @@
             </Grid>
         </Border>
         <Border Background="White">
-            <ListBox x:Name="listFile" ItemsSource="{Binding _userExamlist}" Width="auto" FontSize="14" ScrollViewer.VerticalScrollBarVisibility="Visible"  ItemContainerStyle="{StaticResource RedGlowItemContainer}">
+            <!--<Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>-->
+            <!--<ListBox Grid.Row="0" x:Name="listFile" ItemsSource="{Binding _userExamlist}" Width="auto" FontSize="14" ScrollViewer.VerticalScrollBarVisibility="Visible"  ItemContainerStyle="{StaticResource RedGlowItemContainer}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Label x:Name="lblExam1"  Content="{Binding SecondCategory}" />
+                                <ListBox  x:Name="list" ItemsSource="{Binding ExamCodeList}" Width="auto" BorderThickness="0"  ItemContainerStyle="{StaticResource RedGlowItemContainer}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button x:Name="btnDownload" Content="Download" CommandParameter="{Binding ExamCodeId}" Click="btnDownload_Click" Style="{StaticResource BaseButtonStyle}"/>
+                                                <Label Content=" - "  />
+                                                <Button x:Name="btnExamCode" Content="{Binding ExamCode}" IsEnabled="{Binding IsActive}" CommandParameter="{Binding Path}" Tag="{Binding Title}" ToolTip="{Binding Examtime}" Style="{StaticResource LinkButton}" Click="btnExamCode_Click"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>-->
+            <ListBox Name="treeview" Grid.Row="1" ItemsSource="{Binding _userExamlist}" Width="auto" FontSize="14" ScrollViewer.VerticalScrollBarVisibility="Visible"  ItemContainerStyle="{StaticResource RedGlowItemContainer}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <Label x:Name="lblExam1"  Content="{Binding SecondCategory}" />
-                            <ListBox  x:Name="list" ItemsSource="{Binding ExamCodeList}" Width="auto" BorderThickness="0"  ItemContainerStyle="{StaticResource RedGlowItemContainer}">
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button x:Name="btnDownload" Content="Download" CommandParameter="{Binding ExamCodeId}" Click="btnDownload_Click" Style="{StaticResource BaseButtonStyle}"/>
-                                            <Label Content=" - "  />
-                                            <Button x:Name="btnExamCode" Content="{Binding ExamCode}" IsEnabled="{Binding IsActive}" CommandParameter="{Binding Path}" Tag="{Binding Title}" ToolTip="{Binding Examtime}" Style="{StaticResource LinkButton}" Click="btnExamCode_Click"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
+                            <TreeViewItem Header="{Binding SecondCategory}">
+                                <ListBox  ItemsSource="{Binding ExamCodeList}" Width="auto" BorderThickness="0"  ItemContainerStyle="{StaticResource RedGlowItemContainer}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button x:Name="btnDownload" Content="Download" CommandParameter="{Binding ExamCodeId}" Click="btnDownload_Click" Style="{StaticResource BaseButtonStyle}"/>
+                                                <Label Content=" - "  />
+                                                <Button x:Name="btnExamCode" Margin="0 5 0 0" Content="{Binding ExamCode}" IsEnabled="{Binding IsActive}" CommandParameter="{Binding Path}" Tag="{Binding Title}" ToolTip="{Binding Examtime}" Style="{StaticResource LinkButton}" Click="btnExamCode_Click"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </TreeViewItem>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
+                <!--<TreeViewItem Header="Program Files">
+                        <TreeViewItem Header="Header"/>
+                    </TreeViewItem>-->
+                <!--<TreeViewItem Header="Program Data" IsExpanded="True">
+                        <TreeViewItem Header="Microsoft">
+                            <TreeViewItem Header="Header"/>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Microsoft Help"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Uers" IsExpanded="True">
+                        <TreeViewItem Header="Default"/>
+                        <TreeViewItem Header="Public" IsExpanded="True">
+                            <TreeViewItem Header="Libraries"/>
+                            <TreeViewItem Header="Public Desktop"/>
+                            <TreeViewItem Header="Public Documents"/>
+                        </TreeViewItem>
+                        <TreeViewItem Header="TUYEN">
+                            <TreeViewItem Header="Header"/>
+                        </TreeViewItem>
+                    </TreeViewItem>-->
             </ListBox>
+            <!--</Grid>-->
         </Border>
     </DockPanel>
 </Window>

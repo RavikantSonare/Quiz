@@ -25,7 +25,7 @@ namespace ExamSimulator
         double passingSocre;
         double totalScore;
 
-        public ExamReport(int Score, int TotalQuestion, decimal passingPercentage)
+        public ExamReport(int Score, int TotalQuestion, decimal passingPercentage, string examtitle)
         {
             InitializeComponent();
             DateTime now = DateTime.Now;
@@ -36,24 +36,24 @@ namespace ExamSimulator
             totalScore = TotalQuestion * 100;
             lblTargetScore.Content = Convert.ToString(passingSocre) + "/" + (totalScore);
             lblYourScore.Content = (resultScore) + " / " + (totalScore);
-            lblExamName.Content = filelist.Title;
+            lblExamName.Content = examtitle;
             pbPassingStatus.Minimum = 0;
             pbPassingStatus.Value = passingSocre;
             pbPassingStatus.Maximum = totalScore;
-            pbPassingStatus.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#0C4068");
+            pbPassingStatus.Foreground = Brushes.Green;// (SolidColorBrush)new BrushConverter().ConvertFromString("#0C4068");
             pbResultStatus.Minimum = 0;
             pbResultStatus.Value = resultScore;
             pbResultStatus.Maximum = totalScore;
             lblPassingStatusValue.Content = lblResultStatusValue.Content = Convert.ToString(totalScore);
             if (resultScore >= passingSocre)
             {
-                lblresultStatus.Content = "Congratulation! You has passed the " + filelist.Title + " exam";
+                lblresultStatus.Content = "Congratulation! You has passed the " + examtitle + " exam";
                 lblresultStatus.Foreground = Brushes.Green;
             }
             else
             {
                 pbResultStatus.Foreground = new SolidColorBrush(Colors.Red);
-                lblresultStatus.Content = "Sorry! You has failed the " + filelist.Title + " exam";
+                lblresultStatus.Content = "Sorry! You has failed the " + examtitle + " exam";
                 lblresultStatus.Foreground = Brushes.Red;
             }
         }

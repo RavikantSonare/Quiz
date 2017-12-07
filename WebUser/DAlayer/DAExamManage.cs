@@ -88,6 +88,8 @@ namespace WebUser.DAlayer
                                                   ExamTitle = li.Field<string>("ExamTitle"),
                                                   PassingPercentage = li.Field<decimal>("PassingPercentage"),
                                                   TestTime = li.Field<int>("TestTime"),
+                                                  SecondCategoryId = li.Field<int>("SecondCategoryId"),
+                                                  SecondCategory = li.Field<string>("SecondCategoryName"),
                                                   QuestionList = GetQuestionList()
                                               }).FirstOrDefault();
                 _sqlcon.Close();

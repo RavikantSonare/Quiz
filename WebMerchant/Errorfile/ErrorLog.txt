@@ -166,3 +166,207 @@ Source: Spire.Doc
 TargetSite: Void .ctor(Spire.Doc.Document)
 -----------------------------------------------------------
 
+Time: 05/12/2017 08:12:41 AM
+-----------------------------------------------------------
+Message: Input string was not in a correct format.
+StackTrace:    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at WebMerchant.MerchantMyUsers.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
+-----------------------------------------------------------
+
+Time: 05/12/2017 08:15:38 AM
+-----------------------------------------------------------
+Message: Input string was not in a correct format.
+StackTrace:    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at WebMerchant.MerchantMyUsers.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
+-----------------------------------------------------------
+
+Time: 05/12/2017 08:16:54 AM
+-----------------------------------------------------------
+Message: Input string was not in a correct format.
+StackTrace:    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at WebMerchant.MerchantMyUsers.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
+-----------------------------------------------------------
+
+Time: 05/12/2017 08:17:02 AM
+-----------------------------------------------------------
+Message: Input string was not in a correct format.
+StackTrace:    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at WebMerchant.MerchantMyUsers.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
+-----------------------------------------------------------
+
+Time: 05/12/2017 09:59:25 AM
+-----------------------------------------------------------
+Message: Sequence contains no elements
+StackTrace:    at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at WebMerchant.MerchantMyUsers.FillchkboxListExam(Int32 catid, Int32 mid) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 59
+   at WebMerchant.MerchantMyUsers.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 32
+Source: System.Core
+TargetSite: TSource Single[TSource](System.Collections.Generic.IEnumerable`1[TSource])
+-----------------------------------------------------------
+
+Time: 05/12/2017 10:01:06 AM
+-----------------------------------------------------------
+Message: Sequence contains no elements
+StackTrace:    at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at WebMerchant.MerchantMyUsers.FillchkboxListExam(Int32 catid, Int32 mid) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 59
+   at WebMerchant.MerchantMyUsers.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 32
+Source: System.Core
+TargetSite: TSource Single[TSource](System.Collections.Generic.IEnumerable`1[TSource])
+-----------------------------------------------------------
+
+Time: 05/12/2017 01:01:52 PM
+-----------------------------------------------------------
+Message: Value cannot be null.
+Parameter name: first
+StackTrace:    at System.Linq.Enumerable.Concat[TSource](IEnumerable`1 first, IEnumerable`1 second)
+   at WebMerchant.MerchantMyUsers.FillchkboxListExam(Int32 catid, Int32 mid) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 57
+   at WebMerchant.MerchantMyUsers.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 33
+Source: System.Core
+TargetSite: System.Collections.Generic.IEnumerable`1[TSource] Concat[TSource](System.Collections.Generic.IEnumerable`1[TSource], System.Collections.Generic.IEnumerable`1[TSource])
+-----------------------------------------------------------
+
+Time: 06/12/2017 07:43:38 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebMerchant.MerchantMyUsers.FillchkboxListExam(Int32 catid, Int32 mid) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 59
+   at WebMerchant.MerchantMyUsers.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 33
+Source: WebMerchant
+TargetSite: Void FillchkboxListExam(Int32, Int32)
+-----------------------------------------------------------
+
+Time: 06/12/2017 07:44:08 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebMerchant.MerchantMyUsers.FillchkboxListExam(Int32 catid, Int32 mid) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 59
+   at WebMerchant.MerchantMyUsers.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 33
+Source: WebMerchant
+TargetSite: Void FillchkboxListExam(Int32, Int32)
+-----------------------------------------------------------
+
+Time: 07/12/2017 08:00:39 AM
+-----------------------------------------------------------
+Message: Invalid column name 'SecondCategory'.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAExamManage.SelectExamDetail(String eventtext, Int32 merchantid) in D:\Work\Project\WebMerchant\DALayer\DAExamManage.cs:line 34
+   at WebMerchant.BALayer.BAExamManage.SelectExamDetail(String eventtext, Int32 merchantid) in D:\Work\Project\WebMerchant\BALayer\BAExamManage.cs:line 17
+   at WebMerchant.MerchantMyUsers.FillchkboxListExam(Int32 catid, Int32 mid) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 91
+   at WebMerchant.MerchantMyUsers.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 47
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 07/12/2017 08:00:51 AM
+-----------------------------------------------------------
+Message: Invalid column name 'SecondCategory'.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAExamManage.SelectExamDetail(String eventtext, Int32 merchantid) in D:\Work\Project\WebMerchant\DALayer\DAExamManage.cs:line 34
+   at WebMerchant.BALayer.BAExamManage.SelectExamDetail(String eventtext, Int32 merchantid) in D:\Work\Project\WebMerchant\BALayer\BAExamManage.cs:line 17
+   at WebMerchant.MerchantLogin.FillgridViewExamDetail(String eventtext, Int32 Merchantid) in D:\Work\Project\WebMerchant\MerchantLogin.aspx.cs:line 84
+   at WebMerchant.MerchantLogin.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantLogin.aspx.cs:line 35
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 07/12/2017 09:00:59 AM
+-----------------------------------------------------------
+Message: Invalid column name 'SecondCategory'.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAExamManage.SelectExamDetail(String eventtext, Int32 merchantid) in D:\Work\Project\WebMerchant\DALayer\DAExamManage.cs:line 34
+   at WebMerchant.BALayer.BAExamManage.SelectExamDetail(String eventtext, Int32 merchantid) in D:\Work\Project\WebMerchant\BALayer\BAExamManage.cs:line 17
+   at WebMerchant.MerchantLogin.FillgridViewExamDetail(String eventtext, Int32 Merchantid) in D:\Work\Project\WebMerchant\MerchantLogin.aspx.cs:line 84
+   at WebMerchant.MerchantLogin.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantLogin.aspx.cs:line 35
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 07/12/2017 09:48:57 AM
+-----------------------------------------------------------
+Message: Invalid column name 'SecondCategory'.
+Invalid column name 'SecondCategory'.
+Invalid column name 'SecondCategory'.
+Invalid column name 'SecondCategory'.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAMyUsers.SelectUserList(String v, Int32 mid) in D:\Work\Project\WebMerchant\DALayer\DAMyUsers.cs:line 31
+   at WebMerchant.BALayer.BAMyUsers.SelectUserDetail(String v, Int32 mid) in D:\Work\Project\WebMerchant\BALayer\BAMyUsers.cs:line 17
+   at WebMerchant.MerchantMyUsers.FillgridViewUserList(Int32 mid) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 124
+   at WebMerchant.MerchantMyUsers.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 48
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+

@@ -175,7 +175,7 @@
                             <div class="form-group">
                                 <label for="" class="col-sm-3 control-label">Category:</label>
                                 <div class="col-sm-2">
-                                    <asp:DropDownList ID="ddlCategory" runat="server" class="form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCategory" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged"></asp:DropDownList>
                                     <div class="mtop10">
                                         <asp:CheckBox ID="chkAll" Text="Select All" runat="server" />
                                     </div>
@@ -184,7 +184,7 @@
                             <div class="form-group">
                                 <label for="" class="col-sm-3 control-label">Exam:</label>
                                 <div class="col-sm-3">
-                                    <div class="">
+                                    <div style="overflow-y: scroll; width: 200px; height: 125px">
                                         <asp:CheckBoxList ID="chkExamCodeList" runat="server">
                                         </asp:CheckBoxList>
                                     </div>
@@ -237,7 +237,6 @@
                                 <asp:BoundField HeaderText="User Id" DataField="UserId" Visible="false" />
                                 <asp:BoundField HeaderText="UserName/RealName" DataField="UserName" />
                                 <asp:BoundField HeaderText="AccessPassword" DataField="AccessPassword" />
-                                <asp:BoundField HeaderText="Category" DataField="SecondCategoryName" />
                                 <asp:BoundField HeaderText="ExamCode" DataField="ExamCode" />
                                 <asp:TemplateField HeaderText="ValidTime">
                                     <ItemTemplate>

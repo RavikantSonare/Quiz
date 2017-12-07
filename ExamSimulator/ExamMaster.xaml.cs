@@ -27,7 +27,6 @@ namespace ExamSimulator
         {
             InitializeComponent();
             lblExamName.Content = _toitem.Title;
-            lblMode.Content = _toitem.ModeHeading;
             Application.Current.Properties["test"] = _toitem;
         }
         private void TriggerClose(object sender, RoutedEventArgs e)

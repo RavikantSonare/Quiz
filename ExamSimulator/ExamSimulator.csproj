@@ -90,7 +90,6 @@
     <Compile Include="BOLayer\BOExamManage.cs" />
     <Compile Include="BOLayer\BOQAManage.cs" />
     <Compile Include="BOLayer\BOQAnswer.cs" />
-    <Compile Include="BOLayer\SecondCategoryList.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="DALayer\DAExamManage.cs" />
     <Compile Include="ExhibitImage.xaml.cs">
@@ -255,9 +254,6 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\q.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ExamImage\CMS_Creative_164657191_Kingfisher.jpg" />

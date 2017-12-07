@@ -43,7 +43,8 @@ namespace WebMerchant.DALayer
                                  Password = list.Field<string>("Password"),
                                  MerchantLevelId = list.Field<int>("MerchantLevelId"),
                                  MerchantLevel = list.Field<string>("MerchantLevel"),
-                                 ActiveStatus = list.Field<bool>("ActiveStatus")
+                                 ActiveStatus = list.Field<bool>("ActiveStatus"),
+                                 EndDate = list.Field<DateTime>("EndDate")
                              }).FirstOrDefault();
                 return _bomermng;
             }

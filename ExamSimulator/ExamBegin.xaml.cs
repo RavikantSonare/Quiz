@@ -29,7 +29,6 @@ namespace ExamSimulator
         {
             Button button = sender as Button;
             TodoItem toitem = new TodoItem();
-            toitem.ModeHeading = button.Content.ToString();
             toitem.Mode = button.Tag.ToString();
             toitem.Title = value.Title;
             toitem.Path = value.Path;

@@ -30,8 +30,8 @@ namespace WebUser
                 if (Session["ExamList"] != null)
                 {
                     _examqueanslist = (BOExamManage)Session["ExamList"];
-                    lblExamCode.Text = _examqueanslist.ExamCode;
-                    lblExamName.Text = _examqueanslist.ExamTitle;
+                    lblExamCode.Text = _examqueanslist.SecondCategory + " " + _examqueanslist.ExamCode;
+                    lblExamName.Text = _examqueanslist.SecondCategory + " " + _examqueanslist.ExamCode;
                     passingSocre = ((_examqueanslist.QuestionList.Count() * 100) * Convert.ToDouble(_examqueanslist.PassingPercentage)) / 100;
                     resultScore = _examqueanslist.QuestionList.Where(ur => ur.UserResult == true).Count() * 100;
                     totalScore = _examqueanslist.QuestionList.Count() * 100;
@@ -39,18 +39,18 @@ namespace WebUser
                     lblyourscore.Text = Convert.ToString(resultScore) + " / " + (totalScore);
                     //lblpbpassingvalue.Text = Convert.ToString(passingSocre);
                     // lblpbresultvalue.Text = Convert.ToString(_examqueanslist.QuestionList.Where(ur => ur.UserResult == true).Count() * 100);
-                    string htmlpassingvalue = "<div class='progress-bar progress-bar-primary' role='progressbar' aria-valuenow='" + Convert.ToString(passingSocre / (totalScore / 100)) + "' aria-valuemin='0' aria-valuemax='100'><span class='skill'><i class='val'>" + Convert.ToString(passingSocre) + "</i></span></div>";
+                    string htmlpassingvalue = "<div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='" + Convert.ToString(passingSocre / (totalScore / 100)) + "' aria-valuemin='0' aria-valuemax='100'><span class='skill'><i class='val'>" + Convert.ToString(passingSocre) + "</i></span></div>";
                     pbpassingvalue.InnerHtml = htmlpassingvalue;
                     string htmlresultvalue = string.Empty;
                     if (resultScore >= passingSocre)
                     {
-                        lblResultMsg.Text = "Congratulation!! You has passed the " + _examqueanslist.ExamTitle + " exam";
+                        lblResultMsg.Text = "Congratulation!! You has passed the " + _examqueanslist.SecondCategory + " " + _examqueanslist.ExamCode + " exam";
                         lblResultMsg.ForeColor = System.Drawing.Color.Green;
                         htmlresultvalue = "<div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='" + Convert.ToString(resultScore / (totalScore / 100)) + "' aria-valuemin='0' aria-valuemax='100'><span class='skill'><i class='val'>" + Convert.ToString(resultScore) + "</i></span></div>";
                     }
                     else
                     {
-                        lblResultMsg.Text = "Sorry!! You has failed the " + _examqueanslist.ExamTitle + " exam";
+                        lblResultMsg.Text = "Sorry!! You has failed the " + _examqueanslist.SecondCategory + " " + _examqueanslist.ExamCode + " exam";
                         lblResultMsg.ForeColor = System.Drawing.Color.Red;
                         if (resultScore != 0)
                             htmlresultvalue = "<div class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='" + Convert.ToString(resultScore / (totalScore / 100)) + "' aria-valuemin='0' aria-valuemax='100'><span class='skill'><i class='val'>" + Convert.ToString(resultScore) + "</i></span></div>";
@@ -58,8 +58,9 @@ namespace WebUser
                             htmlresultvalue = "<div class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='" + 1 + "' aria-valuemin='0' aria-valuemax='100'><span class='skill'><i class='val'>" + Convert.ToString(resultScore) + "</i></span></div>";
                     }
                     pbresultvalue.InnerHtml = htmlresultvalue;
-                    lbldate.Text = DateTime.Now.ToShortDateString();
-                    lbltime.Text = DateTime.Now.ToShortTimeString();
+                    DateTime now = DateTime.Now;
+                    lbldate.Text = now.ToShortDateString();
+                    lbltime.Text = now.ToLongTimeString();
                     Session.Remove("ExamList");
                     if (_examqueanslist.QuestionList.FirstOrDefault().Event == "TO")
                     {

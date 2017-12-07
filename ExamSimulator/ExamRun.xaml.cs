@@ -282,7 +282,7 @@ namespace ExamSimulator
                     bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
                     _list.QuestionList.Where(q => q.QAId.Equals(item.QAId)).FirstOrDefault().UserResult = a;
                 }
-                NavigationService.Navigate(new ExamReport(_list.QuestionList.Where(z => z.UserResult == true).Count(), _list.QuestionList.Count(), _list.PassingPercentage));
+                NavigationService.Navigate(new ExamReport(_list.QuestionList.Where(z => z.UserResult == true).Count(), _list.QuestionList.Count(), _list.PassingPercentage, _list.SecondCategory + " " + _list.ExamCode));
             }
             catch
             {

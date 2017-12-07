@@ -40,7 +40,7 @@ namespace WebUser.DAlayer
                               UserName = list.Field<string>("UserName"),
                               AccessPassword = list.Field<string>("AccessPassword"),
                               MerchantId = list.Field<int>("MerchantId"),
-                              SecondCategory = list.Field<int>("SecondCategory"),
+                              //SecondCategory = list.Field<int>("SecondCategory"),
                               ExamId = list.Field<string>("ExamId"),
                               ExamCode = list.Field<string>("ExamCode"),
                               ValidTime = list.Field<DateTime>("ValidTime"),

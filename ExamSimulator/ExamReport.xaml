@@ -104,8 +104,8 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        
-        
+
+
     </Page.Resources>
     <DockPanel LastChildFill="True">
         <Border Height="50" DockPanel.Dock="Bottom" Style="{StaticResource bottomborder}" BorderThickness="0,1,0,0" BorderBrush="Gray">
@@ -188,15 +188,16 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0">
-                                <Label Content="Required Score:" FontSize="15"></Label>
+                                <Label Content="Your Score:" FontSize="15"></Label>
                             </StackPanel>
                             <Grid Grid.Row="1">
-                                <ProgressBar Name="pbPassingStatus" Height="20" Width="500" />
-                                <TextBlock  Text="{Binding ElementName=pbPassingStatus, Path=Value, StringFormat={}{0:0}}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                                <ProgressBar Name="pbResultStatus" Height="20" Width="500" />
+                                <TextBlock Name="txtpbResultStatusValue"  Text="{Binding ElementName=pbResultStatus, Path=Value, StringFormat={}{0:0}}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
+                                <Border BorderThickness="1" x:Name="PART_Indicator" HorizontalAlignment="Left" Background="Red" BorderBrush="Red" Margin="0,0,0,0" Style="{StaticResource BorderCornerRed}"/>
                             </Grid>
                         </Grid>
                         <StackPanel Grid.Row="0" Grid.Column="2"  VerticalAlignment="Bottom">
-                            <Label Name="lblPassingStatusValue"/>
+                            <Label Name="lblResultStatusValue"/>
                         </StackPanel>
                         <StackPanel Grid.Row="2" Grid.Column="0"  VerticalAlignment="Bottom">
                             <Label Content="0"/>
@@ -207,17 +208,17 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0">
-                                <Label Content="Your Score:" FontSize="15"></Label>
+                                <Label Content="Required Score:" FontSize="15"></Label>
                             </StackPanel>
                             <Grid Grid.Row="1">
-                                <ProgressBar Name="pbResultStatus" Height="20" Width="500" />
-                                <TextBlock Name="txtpbResultStatusValue"  Text="{Binding ElementName=pbResultStatus, Path=Value, StringFormat={}{0:0}}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
-                                <Border BorderThickness="1" x:Name="PART_Indicator" HorizontalAlignment="Left" Background="Red" BorderBrush="Red" Margin="0,0,0,0" Style="{StaticResource BorderCornerRed}"/>
+                                <ProgressBar Name="pbPassingStatus" Height="20" Width="500" />
+                                <TextBlock  Text="{Binding ElementName=pbPassingStatus, Path=Value, StringFormat={}{0:0}}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                             </Grid>
                         </Grid>
                         <StackPanel Grid.Row="2" Grid.Column="2"  VerticalAlignment="Bottom">
-                            <Label Name="lblResultStatusValue"/>
+                            <Label Name="lblPassingStatusValue"/>
                         </StackPanel>
+
                     </Grid>
                 </StackPanel>
             </Grid>

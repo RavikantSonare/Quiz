@@ -42,16 +42,24 @@ namespace WebMerchant
 
                         if (txtPassword.Text == Decryptdata(_bomerchantDetail.Password))
                         {
-                            if (_bomerchantDetail.ActiveStatus)
+                            if (_bomerchantDetail.EndDate > DateTime.Now)
                             {
-                                Session["Merchantid"] = _bomerchantDetail.MerchantId;
-                                Session["merchantDetail"] = _bomerchantDetail;
-                                if (Session["Merchantid"] != null)
-                                    Response.Redirect("MerchantLogin.aspx", false);
+                                if (_bomerchantDetail.ActiveStatus)
+                                {
+                                    Session["Merchantid"] = _bomerchantDetail.MerchantId;
+                                    Session["merchantDetail"] = _bomerchantDetail;
+                                    if (Session["Merchantid"] != null)
+                                        Response.Redirect("MerchantLogin.aspx", false);
+                                }
+                                else
+                                {
+                                    lblerror.InnerText = "Your account is currently not active. Contact your administrator to activate it.";
+                                    lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
+                                }
                             }
                             else
                             {
-                                lblerror.InnerText = "Your account is currently not active. Contact your administrator to activate it.";
+                                lblerror.InnerText = "Your account is Expired. Contact your Administrator";
                                 lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
                             }
                         }

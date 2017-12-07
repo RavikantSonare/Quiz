@@ -12,7 +12,7 @@
         <div class="col-lg-12 outer" style="min-height: 100px; background-color: #083C64; color: white; font-size: large">
             <div class="col-lg-4" style="text-align: left"></div>
             <div class="col-lg-4">
-                Exam:<asp:Label ID="lblExamCode" runat="server"></asp:Label>
+                <asp:Label ID="lblExamCode" runat="server"></asp:Label>
             </div>
             <div class="col-lg-4" style="text-align: right">
             </div>
@@ -48,9 +48,9 @@
             </div>
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
-                <div class="progress skill-bar" id="pbpassingvalue" runat="server">
-                </div>
                 <div class="progress skill-bar" id="pbresultvalue" runat="server">
+                </div>
+                <div class="progress skill-bar" id="pbpassingvalue" runat="server">
                 </div>
             </div>
             <div class="col-lg-3"></div>
