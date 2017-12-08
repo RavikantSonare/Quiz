@@ -124,6 +124,7 @@
     <Content Include="js\summernote.js" />
     <Content Include="MerchantAllowSales.aspx" />
     <Content Include="MerchantCheckout.html" />
+    <Content Include="MerchantDashboard.aspx" />
     <Content Include="MerchantDragdrop.aspx" />
     <Content Include="MerchantError.aspx" />
     <Content Include="MerchantExamConfig.aspx" />
@@ -260,6 +261,13 @@
     </Compile>
     <Compile Include="MerchantAllowSales.aspx.designer.cs">
       <DependentUpon>MerchantAllowSales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantDashboard.aspx.cs">
+      <DependentUpon>MerchantDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantDashboard.aspx.designer.cs">
+      <DependentUpon>MerchantDashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="MerchantDragdrop.aspx.cs">
       <DependentUpon>MerchantDragdrop.aspx</DependentUpon>

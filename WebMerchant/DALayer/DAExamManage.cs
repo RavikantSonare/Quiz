@@ -76,7 +76,6 @@ namespace WebMerchant.DALayer
                 _sqlcommond.Parameters.AddWithValue("@ExamCodeId", _boexmmng.ExamCodeId);
                 _sqlcommond.Parameters.AddWithValue("@ExamCode", _boexmmng.ExamCode);
                 _sqlcommond.Parameters.AddWithValue("@ExamTitle", _boexmmng.ExamTitle);
-                _sqlcommond.Parameters.AddWithValue("@TopCategoryId", _boexmmng.TopCategoryId);
                 _sqlcommond.Parameters.AddWithValue("@SecondCategoryId", _boexmmng.SecondCategoryId);
                 _sqlcommond.Parameters.AddWithValue("@PassingPercentage", _boexmmng.PassingPercentage);
                 _sqlcommond.Parameters.AddWithValue("@TestTime", _boexmmng.TestTime);

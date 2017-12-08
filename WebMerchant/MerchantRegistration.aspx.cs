@@ -126,7 +126,6 @@ namespace WebMerchant
                     _bomermng.MerchantName = txtMerchantName.Text;
                     _bomermng.UserName = txtUserName.Text;
                     _bomermng.Password = Encryptdata(txtPassword.Text);
-                    _bomermng.CountryId = Convert.ToInt32(drpCountry.SelectedItem.Value);
                     _bomermng.StateId = Convert.ToInt32(drpState.SelectedItem.Value);
                     _bomermng.EmailId = txtEmailId.Text;
                     _bomermng.Telephone = txtTelephone.Text;

@@ -109,7 +109,6 @@ namespace WebMerchant.DALayer
                 _sqlcommand.Parameters.AddWithValue("@MerchantName", _bomermng.MerchantName);
                 _sqlcommand.Parameters.AddWithValue("@UserName", _bomermng.UserName);
                 _sqlcommand.Parameters.AddWithValue("@Password", _bomermng.Password);
-                _sqlcommand.Parameters.AddWithValue("@CountryId", _bomermng.CountryId);
                 _sqlcommand.Parameters.AddWithValue("@StateId", _bomermng.StateId);
                 _sqlcommand.Parameters.AddWithValue("@Telephone", _bomermng.Telephone);
                 _sqlcommand.Parameters.AddWithValue("@MerchantLevelId", _bomermng.MerchantLevelId);

@@ -9,10 +9,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
-        <div class="col-lg-12 outer" style="min-height: 100px; background-color: #083C64; color: white; font-size: large">
-            <div class="col-lg-4" style="text-align: left"></div>
+        <div class="col-lg-12 onlineexamheader">
+            <div class="col-lg-4 simulatorname">Xexam Simulator</div>
             <div class="col-lg-4">
-                <asp:Label ID="lblExamCode" runat="server"></asp:Label>
+                <h4 class="examnameh4">
+                    <asp:Label ID="lblExamCode" runat="server"></asp:Label>
+                </h4>
             </div>
             <div class="col-lg-4" style="text-align: right">
             </div>
@@ -47,9 +49,11 @@
                 </div>
             </div>
             <div class="col-lg-3"></div>
-            <div class="col-lg-6">
+            <div class="col-lg-6" style="text-align: left;">
+                <b>Your Score:</b>
                 <div class="progress skill-bar" id="pbresultvalue" runat="server">
                 </div>
+                <b>Required Score:</b>
                 <div class="progress skill-bar" id="pbpassingvalue" runat="server">
                 </div>
             </div>
@@ -106,31 +110,6 @@
             </ProgressTemplate>
         </asp:UpdateProgress>--%>
     </div>
-
-    <style>
-        .progress {
-            height: 35px;
-        }
-
-            .progress .skill {
-                font: normal 12px "Open Sans Web";
-                line-height: 35px;
-                padding: 0;
-                margin: 0 0 0 20px;
-                text-transform: uppercase;
-            }
-
-                .progress .skill .val {
-                    float: right;
-                    font-style: normal;
-                    margin: 0 20px 0 0;
-                }
-
-        .progress-bar {
-            text-align: left;
-            transition-duration: 3s;
-        }
-    </style>
     <script>
         $(document).ready(function () {
             $('.progress .progress-bar').css("width",

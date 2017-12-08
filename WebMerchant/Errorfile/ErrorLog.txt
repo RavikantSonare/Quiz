@@ -370,3 +370,33 @@ Source: .Net SqlClient Data Provider
 TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
 -----------------------------------------------------------
 
+Time: 08/12/2017 01:35:31 PM
+-----------------------------------------------------------
+Message: Column 'TopCategoryId' does not belong to table .
+StackTrace:    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at WebMerchant.MerchantExamConfig.lnkbtnEdit_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantExamConfig.aspx.cs:line 221
+Source: System.Data
+TargetSite: System.Data.DataColumn GetDataColumn(System.String)
+-----------------------------------------------------------
+
+Time: 08/12/2017 01:35:34 PM
+-----------------------------------------------------------
+Message: Column 'TopCategoryId' does not belong to table .
+StackTrace:    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at WebMerchant.MerchantExamConfig.lnkbtnEdit_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantExamConfig.aspx.cs:line 221
+Source: System.Data
+TargetSite: System.Data.DataColumn GetDataColumn(System.String)
+-----------------------------------------------------------
+
+Time: 08/12/2017 01:40:02 PM
+-----------------------------------------------------------
+Message: Column 'TopCategoryId' does not belong to table .
+StackTrace:    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at WebMerchant.MerchantExamConfig.lnkbtnEdit_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantExamConfig.aspx.cs:line 221
+Source: System.Data
+TargetSite: System.Data.DataColumn GetDataColumn(System.String)
+-----------------------------------------------------------
+

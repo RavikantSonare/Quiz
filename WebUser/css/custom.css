@@ -222,3 +222,65 @@ li.dash a {
 input:checked + label {
     color: #083C64;
 }
+/*Online Exam Header*/
+.onlineexamheader {
+    min-height: 70px;
+    background-color: #083C64;
+    color: white;
+    font-size: large;
+}
+
+.onlineexamheader-two {
+    border: 1px solid #808080;
+    border-bottom: 0;
+    height: 50px;
+    line-height: 47px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.simulatorname {
+    line-height: 70px;
+    text-align: left;
+    font-size: xx-large;
+}
+
+.examnameh4 {
+    line-height: 50px;
+    text-align: center;
+}
+
+.btn.btn-square {
+    border-radius: 0;
+}
+/*Digonal line pattern*/
+.diagonal_lines_pattern {
+    height: 50px;
+    line-height: 47px;
+    text-align: center;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAKElEQVQYV2M8ffr0TFNT03QGNMAI4mOTBEtgk4RLoEuiSCBLYkjAJAH0QRcBJ0iRVwAAAABJRU5ErkJggg==);
+}
+/*Progress bar*/
+.progress {
+    height: 20px;
+    border-radius: 0;
+}
+
+    .progress .skill {
+        font: normal 12px "Open Sans Web";
+        line-height: 20px;
+        padding: 0;
+        margin: 0 0 0 20px;
+        text-transform: uppercase;
+    }
+
+        .progress .skill .val {
+            float: right;
+            font-style: normal;
+            margin: 0 20px 0 0;
+        }
+
+.progress-bar {
+    text-align: left;
+    transition-duration: 3s;
+}

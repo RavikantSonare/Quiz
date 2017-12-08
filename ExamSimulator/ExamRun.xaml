@@ -450,7 +450,6 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <Label Content="{Binding QuestionType}" />
                                     <TextBlock  Name="txtQuestion" Text="{Binding Question}" Tag="{Binding QuestionTypeId}" Style="{StaticResource wpfStyle1}" Width="1000"/>
                                     <RichTextBox local:HtmlRichTextBoxBehavior.Text="" Width="700" BorderThickness="0" BorderBrush="Transparent" Visibility="Collapsed"/>
                                     <!--{Binding ElementName=txtQuestion, Path=Text}-->

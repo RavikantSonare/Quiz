@@ -114,7 +114,7 @@ namespace WebUser
         {
             if (_exmlist != null)
             {
-                lblExamCode.Text = _exmlist.ExamCode;
+                lblExamName.Text = _exmlist.SecondCategory + " " + _exmlist.ExamCode;
                 lblTotalQuestion.Text = Convert.ToString(_exmlist.QuestionList.Count);
                 dlquesanswer.DataSource = _exmlist.QuestionList.Skip(currentQuestionIndex).Take(1);
                 dlquesanswer.DataBind();
@@ -123,8 +123,8 @@ namespace WebUser
             }
             else
             {
-                lblExamCode.Text = "No question found!";
-                lblExamCode.ForeColor = System.Drawing.Color.Red;
+                lblExamName.Text = "No question found!";
+                lblExamName.ForeColor = System.Drawing.Color.Red;
                 btnprevious.Enabled = false;
                 btnnext.Enabled = false;
             }

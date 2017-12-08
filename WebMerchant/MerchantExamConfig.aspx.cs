@@ -83,7 +83,6 @@ namespace WebMerchant
                     Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
                     _boexmmng.ExamCode = txtExamCode.Text;
                     _boexmmng.ExamTitle = txtExamtitle.Text;
-                    _boexmmng.TopCategoryId = Convert.ToInt32(drpTopCategory.SelectedItem.Value);
                     _boexmmng.SecondCategoryId = Convert.ToInt32(drpSecondCategory.SelectedItem.Value);
                     _boexmmng.PassingPercentage = Convert.ToDecimal(txtPassingPercentage.Text);
                     _boexmmng.TestTime = Convert.ToInt32(txtTestTime.Text);

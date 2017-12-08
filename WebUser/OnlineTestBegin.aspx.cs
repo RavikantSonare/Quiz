@@ -51,6 +51,7 @@ namespace WebUser
             _datatable = _baexmmng.SelectExamDetailWithID("GetExamWithId", Convert.ToInt32(examid));
             if (_datatable.Rows.Count > 0)
             {
+                lblExamName.Text = _datatable.Rows[0]["SecondCategoryName"].ToString() + " " + _datatable.Rows[0]["ExamCode"].ToString();
                 dlexamdetail.DataSource = _datatable;
                 dlexamdetail.DataBind();
             }
