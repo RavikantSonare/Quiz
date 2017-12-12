@@ -49,15 +49,6 @@ namespace WebMerchant {
         protected global::System.Web.UI.WebControls.TextBox txtUserName;
         
         /// <summary>
-        /// txtTelephone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTelephone;
-        
-        /// <summary>
         /// txtpassword control.
         /// </summary>
         /// <remarks>
@@ -67,40 +58,85 @@ namespace WebMerchant {
         protected global::System.Web.UI.WebControls.TextBox txtpassword;
         
         /// <summary>
-        /// drpMerchantLevel control.
+        /// txtMerchantLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpMerchantLevel;
+        protected global::System.Web.UI.WebControls.TextBox txtMerchantLevel;
         
         /// <summary>
-        /// ddlActiveStatus control.
+        /// txtValidDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlActiveStatus;
+        protected global::System.Web.UI.WebControls.TextBox txtValidDate;
         
         /// <summary>
-        /// txtStartDate control.
+        /// drpCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStartDate;
+        protected global::System.Web.UI.WebControls.DropDownList drpCountry;
         
         /// <summary>
-        /// txtEndDate control.
+        /// drpState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEndDate;
+        protected global::System.Web.UI.WebControls.DropDownList drpState;
+        
+        /// <summary>
+        /// txtTelephone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTelephone;
+        
+        /// <summary>
+        /// txtBrand control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBrand;
+        
+        /// <summary>
+        /// fuMerchantPicture control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuMerchantPicture;
+        
+        /// <summary>
+        /// lblPicture control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPicture;
+        
+        /// <summary>
+        /// txtAboutMerchant control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAboutMerchant;
         
         /// <summary>
         /// btnUpdate control.

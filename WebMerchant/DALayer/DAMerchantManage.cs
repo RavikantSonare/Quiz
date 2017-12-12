@@ -15,7 +15,7 @@ namespace WebMerchant.DALayer
         SqlDataAdapter _sqldataadapter;
         DataTable _datatable;
 
-        internal BOMerchantManage SelectmerchantLogin(string Event, string username, string password)
+        internal BOMerchantManage SelectmerchantLogin(string Event, string emailid, string password)
         {
             using (SqlConnection _sqlconnection = ConnectionInfo.GetConnection())
             {
@@ -24,7 +24,7 @@ namespace WebMerchant.DALayer
                 _sqlcommand.CommandType = CommandType.StoredProcedure;
                 _sqlcommand.Connection = _sqlconnection;
 
-                _sqlcommand.Parameters.AddWithValue("@username", username);
+                _sqlcommand.Parameters.AddWithValue("@emailid", emailid);
                 _sqlcommand.Parameters.AddWithValue("@password", password);
                 _sqlcommand.Parameters.AddWithValue("@Event", Event);
 
@@ -39,12 +39,20 @@ namespace WebMerchant.DALayer
                              select new BOMerchantManage
                              {
                                  MerchantId = list.Field<int>("MerchantId"),
+                                 MerchantName = list.Field<string>("MerchantName"),
+                                 EmailId = list.Field<string>("EmailId"),
                                  UserName = list.Field<string>("UserName"),
                                  Password = list.Field<string>("Password"),
                                  MerchantLevelId = list.Field<int>("MerchantLevelId"),
                                  MerchantLevel = list.Field<string>("MerchantLevel"),
                                  ActiveStatus = list.Field<bool>("ActiveStatus"),
-                                 EndDate = list.Field<DateTime>("EndDate")
+                                 EndDate = list.Field<DateTime>("EndDate"),
+                                 StateId = list.Field<int>("StateId"),
+                                 CountryId = list.Field<int>("CountryId"),
+                                 Telephone = list.Field<string>("Telephone"),
+                                 Brand = list.Field<string>("Brand"),
+                                 Picture = list.Field<string>("Picture"),
+                                 About = list.Field<string>("About")
                              }).FirstOrDefault();
                 return _bomermng;
             }
@@ -122,6 +130,9 @@ namespace WebMerchant.DALayer
                 _sqlcommand.Parameters.AddWithValue("@UpdatedBy", _bomermng.UpdatedBy);
                 _sqlcommand.Parameters.AddWithValue("@UpdatedDate", _bomermng.UpdatedDate);
                 _sqlcommand.Parameters.AddWithValue("@EmailId", _bomermng.EmailId);
+                _sqlcommand.Parameters.AddWithValue("@Brand", _bomermng.Brand);
+                _sqlcommand.Parameters.AddWithValue("@Picture", _bomermng.Picture);
+                _sqlcommand.Parameters.AddWithValue("@About", _bomermng.About);
                 _sqlcommand.Parameters.AddWithValue("@Event", _bomermng.Event);
                 _sqlcommand.Parameters.AddWithValue("@returnValue", 0).Direction = System.Data.ParameterDirection.InputOutput;
 

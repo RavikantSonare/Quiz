@@ -34,13 +34,13 @@ namespace WebMerchant
         {
             try
             {
-                if (!string.IsNullOrEmpty(txtUserName.Text) && !string.IsNullOrEmpty(txtPassword.Text))
+                if (!string.IsNullOrEmpty(txtEmailId.Text) && !string.IsNullOrEmpty(txtPassword.Text))
                 {
-                    BOMerchantManage _bomerchantDetail = _bamermng.SelectMerchantLogin("MerchantLogin", txtUserName.Text, Encryptdata(txtPassword.Text));
+                    BOMerchantManage _bomerchantDetail = _bamermng.SelectMerchantLogin("MerchantLogin", txtEmailId.Text, Common.Encryptdata(txtPassword.Text));
                     if (_bomerchantDetail != null)
                     {
 
-                        if (txtPassword.Text == Decryptdata(_bomerchantDetail.Password))
+                        if (txtPassword.Text == Common.Decryptdata(_bomerchantDetail.Password))
                         {
                             if (_bomerchantDetail.EndDate > DateTime.Now)
                             {
@@ -73,16 +73,16 @@ namespace WebMerchant
                     }
                     else
                     {
-                        lblerror.InnerText = "Username or Password invalid";
+                        lblerror.InnerText = "Email id or Password invalid";
                         lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
-                        txtUserName.Focus();
+                        txtEmailId.Focus();
                     }
                 }
                 else
                 {
-                    lblerror.InnerText = "Please Enter Correct UserName/Password";
+                    lblerror.InnerText = "Please Enter Correct Email id/Password";
                     lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
-                    txtUserName.Focus();
+                    txtEmailId.Focus();
                 }
             }
             catch (Exception ex)
@@ -91,28 +91,6 @@ namespace WebMerchant
                 lblerror.InnerText = "Server not respond";
                 lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
             }
-        }
-
-        private string Encryptdata(string password)
-        {
-            string strmsg = string.Empty;
-            byte[] encode = new byte[password.Length];
-            encode = Encoding.UTF8.GetBytes(password);
-            strmsg = Convert.ToBase64String(encode);
-            return strmsg;
-        }
-
-        private string Decryptdata(string encryptpwd)
-        {
-            string decryptpwd = string.Empty;
-            UTF8Encoding encodepwd = new UTF8Encoding();
-            Decoder Decode = encodepwd.GetDecoder();
-            byte[] todecode_byte = Convert.FromBase64String(encryptpwd);
-            int charCount = Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
-            char[] decoded_char = new char[charCount];
-            Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
-            decryptpwd = new String(decoded_char);
-            return decryptpwd;
         }
     }
 }

@@ -148,7 +148,7 @@
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label"></label>
                             <div class="col-sm-6">
-                                <asp:Button ID="btnSave" runat="server" Text="Save to Template" class="btn btn-default" OnClick="btnSave_Click" />
+                                <asp:Button ID="btnSave" runat="server" Text="Save to Template" CssClass="btn btn-default" OnClick="btnSave_Click" />
                                 <asp:Button ID="btnReset" runat="server" Text="Reset" class="btn btn-default" OnClick="btnReset_Click" />
                             </div>
                         </div>

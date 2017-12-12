@@ -198,3 +198,13 @@ li.dash a {
         outline: none;
         cursor: inherit;
     }
+
+/*Padding zero*/
+.paddingleftrightzero {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.paddingrightzero {
+    padding-right: 0;
+}

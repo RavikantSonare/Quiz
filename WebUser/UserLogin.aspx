@@ -41,11 +41,11 @@
                                     <asp:Button ID="btnTestOnce" runat="server" Text="Do Real Test" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnTestOnce_Click" Enabled='<%# Eval("QuestionCount").ToString() != "0" ? true : false %>' Visible='<%# Eval("OnlyTestOnce")%>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Download">
+                            <%--<asp:TemplateField HeaderText="Download">
                                 <ItemTemplate>
                                     <asp:Button ID="btnDownload" runat="server" Text="Download" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnDownload_Click" />
                                 </ItemTemplate>
-                            </asp:TemplateField>
+                            </asp:TemplateField>--%>
                         </Columns>
                         <EmptyDataTemplate>
                             <h2>Record not found...</h2>

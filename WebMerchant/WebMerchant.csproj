@@ -401,7 +401,7 @@
     <Folder Include="css\font\" />
     <Folder Include="ExcelUpload\" />
     <Folder Include="fonts\" />
-    <Folder Include="img_map\" />
+    <Folder Include="img_merchant\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

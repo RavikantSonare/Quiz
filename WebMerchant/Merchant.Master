@@ -28,7 +28,7 @@
                                         <a aria-controls="settings" role="tab" data-toggle="tab">Add Exam <span class="arrow"></span></a>
                                         <ul class="subtab" id="submenu1" style="display: none;">
                                             <li class="" id="submenu1li1">
-                                                <a href="MerchantLogin.aspx" aria-controls="settings" role="tab">
+                                                <a href="MerchantDashboard.aspx" aria-controls="settings" role="tab">
                                                     <span class="subtabarrow"></span>
                                                     Dashboard
                                                 </a>
@@ -105,23 +105,7 @@
             });
         </script>
         <script type="text/javascript">
-            //$(document).ready(function () {
-            //    var url = window.location.pathname;
-            //    var substr = url.split('/');
-            //    var urlaspx = substr[substr.length - 1];
-            //    $('.nav li a').each(function () {
-            //        if (this.href.indexOf(urlaspx) >= 0) {
-            //            $(this).parent().addClass('active');
-            //            $('.nav li ul li a').each(function () {
-            //                if (this.href.indexOf(urlaspx) >= 0) {
-            //                    $(this).parent().addClass('active');
-            //                    $(this).parents().addClass('active');
-            //                    $(this).parents().css("display", "block");
-            //                }
-            //            });
-            //        }
-            //    });
-            //});
+
             $(document).ready(function () { var a = window.location.pathname, i = a.split("/"), t = i[i.length - 1]; $(".nav li a").each(function () { this.href.indexOf(t) >= 0 && ($(this).parent().addClass("active"), $(".nav li ul li a").each(function () { this.href.indexOf(t) >= 0 && ($(this).parent().addClass("active"), $(this).parents().addClass("active"), $(this).parents().css("display", "block")) })) }) });
         </script>
         <style type="text/css">
@@ -139,6 +123,7 @@
         <link href="css/summernote.css" rel="stylesheet" />
         <script src="js/summernote.js"></script>
         <script src="js/editor_generate.js"></script>
+
     </form>
 </body>
 </html>

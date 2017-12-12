@@ -12,9 +12,9 @@ namespace WebMerchant.BALayer
     {
         private DAMerchantManage _damchntmng = new DAMerchantManage();
 
-        internal BOMerchantManage SelectMerchantLogin(string eventtxt, string username, string password)
+        internal BOMerchantManage SelectMerchantLogin(string eventtxt, string emailid, string password)
         {
-            return _damchntmng.SelectmerchantLogin(eventtxt, username, password);
+            return _damchntmng.SelectmerchantLogin(eventtxt, emailid, password);
         }
 
         internal DataTable SelectMerchantDetail(string eventtxt, int merchantid)
@@ -28,6 +28,10 @@ namespace WebMerchant.BALayer
         }
 
         public int Insert(BOMerchantManage _bomermng)
+        {
+            return _damchntmng.IUDMerchantManage(_bomermng);
+        }
+        public int Update(BOMerchantManage _bomermng)
         {
             return _damchntmng.IUDMerchantManage(_bomermng);
         }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Merchant.Master" AutoEventWireup="true" CodeBehind="MerchantDashboard.aspx.cs" Inherits="WebMerchant.MerchantDashboard" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Merchant.Master" AutoEventWireup="true" CodeBehind="MerchantDashboard.aspx.cs" Inherits="WebMerchant.MerchantDashboard" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -80,72 +80,72 @@
                 } else {
                     $('[id$=txtpassword]').parent().next(".validation").remove(); // remove it
                 }
-                if ($('[id$=drpMerchantLevel]').val() == null) {
-                    $('[id$=drpMerchantLevel]').css("border", "1px solid #FF0000");
-                    if ($('[id$=drpMerchantLevel]').parent().next(".validation").length == 0) // only add if not added
-                    {
-                        $('[id$=drpMerchantLevel]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select merchant level</div>");
-                    }
-                    $('[id$=drpMerchantLevel]').focus(function () {
-                        $('[id$=drpMerchantLevel]').css("border", "1px solid #000000");
-                    });
-                    e.preventDefault(); // prevent form from POST to server
-                    focusSet = true;
-                } else {
-                    $('[id$=drpMerchantLevel]').parent().next(".validation").remove(); // remove it
-                }
-                if ($('[id$=ddlActiveStatus]').val() == null) {
-                    $('[id$=ddlActiveStatus]').css("border", "1px solid #FF0000");
-                    if ($('[id$=ddlActiveStatus]').parent().next(".validation").length == 0) // only add if not added
-                    {
-                        $('[id$=ddlActiveStatus]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select status</div>");
-                    }
-                    $('[id$=ddlActiveStatus]').focus(function () {
-                        $('[id$=ddlActiveStatus]').css("border", "1px solid #000000");
-                    });
-                    e.preventDefault(); // prevent form from POST to server
-                    focusSet = true;
-                } else {
-                    $('[id$=ddlActiveStatus]').parent().next(".validation").remove(); // remove it
-                }
-                if ($('[id$=txtStartDate]').val() == "") {
-                    $('[id$=txtStartDate]').css("border", "1px solid #FF0000");
-                    if ($('[id$=txtStartDate]').parent().next(".validation").length == 0) // only add if not added
-                    {
-                        $('[id$=txtStartDate]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please enter start date</div>");
-                    }
-                    $('[id$=txtStartDate]').focus(function () {
-                        $('[id$=txtStartDate]').css("border", "1px solid #000000");
-                    });
-                    e.preventDefault(); // prevent form from POST to server
-                    focusSet = true;
-                } else {
-                    $('[id$=txtStartDate]').parent().next(".validation").remove(); // remove it
-                }
-                if ($('[id$=txtEndDate]').val() == "") {
-                    $('[id$=txtEndDate]').css("border", "1px solid #FF0000");
-                    if ($('[id$=txtEndDate]').parent().next(".validation").length == 0) // only add if not added
-                    {
-                        $('[id$=txtEndDate]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please enter end date</div>");
-                    }
-                    $('[id$=txtEndDate]').focus(function () {
-                        $('[id$=txtEndDate]').css("border", "1px solid #000000");
-                    });
-                    e.preventDefault(); // prevent form from POST to server
-                    focusSet = true;
-                } else {
-                    $('[id$=txtEndDate]').parent().next(".validation").remove(); // remove it
-                }
-                var StartDate = $('[id$=txtStartDate]').val();
-                var EndDate = $('[id$=txtEndDate]').val();
-                var eDate = new Date(EndDate);
-                var sDate = new Date(StartDate);
-                if (StartDate != '' && StartDate != '' && sDate > eDate) {
-                    $('[id$=txtEndDate]').css("border", "1px solid #FF0000");
-                    $('[id$=txtEndDate]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please ensure that the End Date is greater than or equal to the Start Date.</div>");
-                    e.preventDefault(); // prevent form from POST to server
-                    focusSet = true;
-                }
+                //if ($('[id$=drpMerchantLevel]').val() == null) {
+                //    $('[id$=drpMerchantLevel]').css("border", "1px solid #FF0000");
+                //    if ($('[id$=drpMerchantLevel]').parent().next(".validation").length == 0) // only add if not added
+                //    {
+                //        $('[id$=drpMerchantLevel]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select merchant level</div>");
+                //    }
+                //    $('[id$=drpMerchantLevel]').focus(function () {
+                //        $('[id$=drpMerchantLevel]').css("border", "1px solid #000000");
+                //    });
+                //    e.preventDefault(); // prevent form from POST to server
+                //    focusSet = true;
+                //} else {
+                //    $('[id$=drpMerchantLevel]').parent().next(".validation").remove(); // remove it
+                //}
+                //if ($('[id$=ddlActiveStatus]').val() == null) {
+                //    $('[id$=ddlActiveStatus]').css("border", "1px solid #FF0000");
+                //    if ($('[id$=ddlActiveStatus]').parent().next(".validation").length == 0) // only add if not added
+                //    {
+                //        $('[id$=ddlActiveStatus]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select status</div>");
+                //    }
+                //    $('[id$=ddlActiveStatus]').focus(function () {
+                //        $('[id$=ddlActiveStatus]').css("border", "1px solid #000000");
+                //    });
+                //    e.preventDefault(); // prevent form from POST to server
+                //    focusSet = true;
+                //} else {
+                //    $('[id$=ddlActiveStatus]').parent().next(".validation").remove(); // remove it
+                //}
+                //if ($('[id$=txtStartDate]').val() == "") {
+                //    $('[id$=txtStartDate]').css("border", "1px solid #FF0000");
+                //    if ($('[id$=txtStartDate]').parent().next(".validation").length == 0) // only add if not added
+                //    {
+                //        $('[id$=txtStartDate]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please enter start date</div>");
+                //    }
+                //    $('[id$=txtStartDate]').focus(function () {
+                //        $('[id$=txtStartDate]').css("border", "1px solid #000000");
+                //    });
+                //    e.preventDefault(); // prevent form from POST to server
+                //    focusSet = true;
+                //} else {
+                //    $('[id$=txtStartDate]').parent().next(".validation").remove(); // remove it
+                //}
+                //if ($('[id$=txtEndDate]').val() == "") {
+                //    $('[id$=txtEndDate]').css("border", "1px solid #FF0000");
+                //    if ($('[id$=txtEndDate]').parent().next(".validation").length == 0) // only add if not added
+                //    {
+                //        $('[id$=txtEndDate]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please enter end date</div>");
+                //    }
+                //    $('[id$=txtEndDate]').focus(function () {
+                //        $('[id$=txtEndDate]').css("border", "1px solid #000000");
+                //    });
+                //    e.preventDefault(); // prevent form from POST to server
+                //    focusSet = true;
+                //} else {
+                //    $('[id$=txtEndDate]').parent().next(".validation").remove(); // remove it
+                //}
+                //var StartDate = $('[id$=txtStartDate]').val();
+                //var EndDate = $('[id$=txtEndDate]').val();
+                //var eDate = new Date(EndDate);
+                //var sDate = new Date(StartDate);
+                //if (StartDate != '' && StartDate != '' && sDate > eDate) {
+                //    $('[id$=txtEndDate]').css("border", "1px solid #FF0000");
+                //    $('[id$=txtEndDate]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please ensure that the End Date is greater than or equal to the Start Date.</div>");
+                //    e.preventDefault(); // prevent form from POST to server
+                //    focusSet = true;
+                //}
             });
         });
 
@@ -179,19 +179,13 @@
             <div class="form-group row">
                 <label for="inputPassword" class="control-label col-xs-2">Email Id:</label>
                 <div class="col-xs-5">
-                    <asp:TextBox ID="txtEmailId" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtEmailId" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="userName" class="control-label col-xs-2">User Name:</label>
                 <div class="col-xs-5">
-                    <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputPassword" class="control-label col-xs-2">Mobile No.:</label>
-                <div class="col-xs-5">
-                    <asp:TextBox ID="txtTelephone" runat="server" CssClass="form-control" MaxLength="10"></asp:TextBox>
+                    <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                 </div>
             </div>
             <div class="form-group row">
@@ -203,33 +197,55 @@
             <div class="form-group row">
                 <label for="inputPassword" class="control-label col-xs-2">Merchant Level:</label>
                 <div class="col-xs-5">
-                    <asp:DropDownList ID="drpMerchantLevel" runat="server" class="form-control"></asp:DropDownList>
+                    <asp:TextBox ID="txtMerchantLevel" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputPassword" class="control-label col-xs-2">Active Status:</label>
+                <label for="inputPassword" class="control-label col-xs-2">Valid Time:</label>
                 <div class="col-xs-5">
-                    <asp:DropDownList ID="ddlActiveStatus" runat="server" class="form-control">
-                        <asp:ListItem Value="True">Active</asp:ListItem>
-                        <asp:ListItem Value="False">Inactive</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:TextBox ID="txtValidDate" runat="server" CssClass="form-control" ReadOnly="true" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputPassword" class="control-label col-xs-2">Start Date:</label>
+                <label for="inputPassword" class="control-label col-xs-2">Location:</label>
+                <div class="col-xs-5 row paddingrightzero">
+                    <div class="col-xs-6">
+                        <asp:DropDownList ID="drpCountry" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="drpCountry_SelectedIndexChanged"></asp:DropDownList>
+                    </div>
+                    <div class="col-xs-6 paddingleftrightzero">
+                        <asp:DropDownList ID="drpState" runat="server" class="form-control"></asp:DropDownList>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="control-label col-xs-2">Tel:</label>
                 <div class="col-xs-5">
-                    <asp:TextBox ID="txtStartDate" runat="server" CssClass="form-control" TextMode="Date" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
+                    <asp:TextBox ID="txtTelephone" runat="server" CssClass="form-control" MaxLength="10"></asp:TextBox>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputPassword" class="control-label col-xs-2">End Date:</label>
+                <label for="inputPassword" class="control-label col-xs-2">Brand:</label>
                 <div class="col-xs-5">
-                    <asp:TextBox ID="txtEndDate" runat="server" CssClass="form-control" TextMode="Date" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
+                    <asp:TextBox ID="txtBrand" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="control-label col-xs-2">Merchant Picture:</label>
+                <div class="col-xs-5">
+                    <asp:FileUpload ID="fuMerchantPicture" runat="server" CssClass="form-control" />
+                    <asp:Label ID="lblPicture" runat="server" Visible="false"></asp:Label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="control-label col-xs-2">About Merchant:</label>
+                <div class="col-xs-5">
+                    <asp:TextBox ID="txtAboutMerchant" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-xs-offset-2 col-xs-10">
-                    <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-success" />
+                    <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-success" OnClick="btnUpdate_Click" />
                     <label id="lblerror" runat="server" style="display: none; color: #D8000C;"></label>
                 </div>
             </div>

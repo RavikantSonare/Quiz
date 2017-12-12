@@ -111,9 +111,6 @@ namespace WebMerchant
                         }
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
