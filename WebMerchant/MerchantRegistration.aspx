@@ -17,26 +17,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('[id$=btnRegistration]').click(function () {
-                if ($('[id$=txtMerchantName]').val() == "") {
-                    $('[id$=lblerror]').css("display", "block");
-                    $('[id$=lblerror]').html("Please Enter Merchant Name");
-                    $('[id$=txtMerchantName]').css("border", "1px solid #FF0000");
-                    $('[id$=txtMerchantName]').focus(function () {
-                        $('[id$=txtMerchantName]').css("border", "1px solid #000000");
-                        $('[id$=lblerror]').css("display", "none");
-                    });
-                    return false;
-                }
-                if ($('[id$=txtUserName]').val() == "") {
-                    $('[id$=lblerror]').css("display", "block");
-                    $('[id$=lblerror]').html("Please Enter UserName");
-                    $('[id$=txtUserName]').css("border", "1px solid #FF0000");
-                    $('[id$=txtUserName]').focus(function () {
-                        $('[id$=txtUserName]').css("border", "1px solid #000000");
-                        $('[id$=lblerror]').css("display", "none");
-                    });
-                    return false;
-                }
                 if ($('[id$=txtEmailId]').val() == "") {
                     $('[id$=lblerror]').css("display", "block");
                     $('[id$=lblerror]').html("Please Enter Email Id");
@@ -53,66 +33,6 @@
                     $('[id$=txtEmailId]').css("border", "1px solid #FF0000");
                     $('[id$=txtEmailId]').focus(function () {
                         $('[id$=txtEmailId]').css("border", "1px solid #000000");
-                        $('[id$=lblerror]').css("display", "none");
-                    });
-                    return false;
-                }
-                //if ($('[id$=txtTelephone]').val() == "") {
-                //    $('[id$=lblerror]').css("display", "block");
-                //    $('[id$=lblerror]').html("Please Enter Telephone Number");
-                //    $('[id$=txtTelephone]').css("border", "1px solid #FF0000");
-                //    $('[id$=txtTelephone]').focus(function () {
-                //        $('[id$=txtTelephone]').css("border", "1px solid #000000");
-                //        $('[id$=lblerror]').css("display", "none");
-                //    });
-                //    return false;
-                //}
-                //if (!ValidateMobile($('[id$=txtTelephone]').val())) {
-                //    $('[id$=lblerror]').css("display", "block");
-                //    $('[id$=lblerror]').html("Please Enter Valid Telephone Number");
-                //    $('[id$=txtTelephone]').css("border", "1px solid #FF0000");
-                //    $('[id$=txtTelephone]').focus(function () {
-                //        $('[id$=txtTelephone]').css("border", "1px solid #000000");
-                //        $('[id$=lblerror]').css("display", "none");
-                //    });
-                //    return false;
-                //}
-                if ($('[id$=drpCountry]').val() == null) {
-                    $('[id$=lblerror]').css("display", "block");
-                    $('[id$=lblerror]').html("Please Select Country");
-                    $('[id$=drpCountry]').css("border", "1px solid #FF0000");
-                    $('[id$=drpCountry]').focus(function () {
-                        $('[id$=drpCountry]').css("border", "1px solid #000000");
-                        $('[id$=lblerror]').css("display", "none");
-                    });
-                    return false;
-                }
-                if ($('[id$=drpState]').val() == null) {
-                    $('[id$=lblerror]').css("display", "block");
-                    $('[id$=lblerror]').html("Please Select State");
-                    $('[id$=drpState]').css("border", "1px solid #FF0000");
-                    $('[id$=drpState]').focus(function () {
-                        $('[id$=drpState]').css("border", "1px solid #000000");
-                        $('[id$=lblerror]').css("display", "none");
-                    });
-                    return false;
-                }
-                if ($('[id$=drpMerchantLevel]').val() == null) {
-                    $('[id$=lblerror]').css("display", "block");
-                    $('[id$=lblerror]').html("Please Select Plan");
-                    $('[id$=drpMerchantLevel]').css("border", "1px solid #FF0000");
-                    $('[id$=drpMerchantLevel]').focus(function () {
-                        $('[id$=drpMerchantLevel]').css("border", "1px solid #000000");
-                        $('[id$=lblerror]').css("display", "none");
-                    });
-                    return false;
-                }
-                if ($('[id$=txtAnnualFee]').val() == "") {
-                    $('[id$=lblerror]').css("display", "block");
-                    $('[id$=lblerror]').html("Please Enter Annual Fee");
-                    $('[id$=txtAnnualFee]').css("border", "1px solid #FF0000");
-                    $('[id$=txtAnnualFee]').focus(function () {
-                        $('[id$=txtAnnualFee]').css("border", "1px solid #000000");
                         $('[id$=lblerror]').css("display", "none");
                     });
                     return false;
@@ -206,52 +126,17 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div id="register-form" role="form" style="display: block;">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <asp:TextBox ID="txtMerchantName" runat="server" class="form-control" placeholder="Merchant Name"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <asp:TextBox ID="txtUserName" runat="server" class="form-control" placeholder="UserName"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <div class="form-group">
                                                 <asp:TextBox ID="txtEmailId" runat="server" class="form-control" placeholder="Email Id"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <asp:TextBox ID="txtTelephone" runat="server" class="form-control" placeholder="Telephone"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <asp:DropDownList ID="drpCountry" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="drpCountry_SelectedIndexChanged"></asp:DropDownList>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <asp:DropDownList ID="drpState" runat="server" class="form-control"></asp:DropDownList>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <asp:DropDownList ID="drpMerchantLevel" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="drpMerchantLevel_SelectedIndexChanged"></asp:DropDownList>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <asp:TextBox ID="txtAnnualFee" runat="server" class="form-control" placeholder="Annual Fee" ReadOnly="true"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <div class="form-group">
                                                 <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" class="form-control" placeholder="Password"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <div class="form-group">
                                                 <asp:TextBox ID="txtConfirmPassword" TextMode="Password" runat="server" class="form-control" placeholder="Confirm Password"></asp:TextBox>
                                             </div>

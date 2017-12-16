@@ -97,6 +97,7 @@ namespace WebMerchant
                     _boexmmng.UpdatedDate = DateTime.UtcNow;
                     if (ViewState["examId"] != null)
                     {
+                        //  btnAdd.OnClientClick = "return getConfirmation(this, 'Please confirm','Are you sure you want to update this record?');";
                         _boexmmng.ExamCodeId = Convert.ToInt32(ViewState["examId"]);
                         _boexmmng.Event = "Update";
                         if (_baexmmng.Update(_boexmmng) == 2)
@@ -227,6 +228,9 @@ namespace WebMerchant
                     DateTime date = Convert.ToDateTime(table.Rows[0]["ValidDate"]);
                     txtdate.Text = date.ToString("yyyy-MM-dd");
                     btnAdd.Text = "Update";
+                    btnAdd.OnClientClick = "javascript:return if (getConfirmation(this, 'Please confirm','Are you sure you want to update this record?');";
+                    btnAdd.CausesValidation = false;
+                    //btnAdd.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                 }
             }
             catch (Exception ex)
