@@ -185,7 +185,7 @@
             <div class="form-group row">
                 <label for="userName" class="control-label col-xs-2">User Name:</label>
                 <div class="col-xs-5">
-                    <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
             <div class="form-group row">

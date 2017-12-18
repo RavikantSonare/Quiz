@@ -521,3 +521,38 @@ Source: .Net SqlClient Data Provider
 TargetSite: Void .ctor(System.Data.ProviderBase.DbConnectionPoolIdentity, System.Data.SqlClient.SqlConnectionString, System.Data.SqlClient.SqlCredential, System.Object, System.String, System.Security.SecureString, Boolean, System.Data.SqlClient.SqlConnectionString, System.Data.SqlClient.SessionData, System.Data.ProviderBase.DbConnectionPool, System.String, Boolean)
 -----------------------------------------------------------
 
+Time: 18/12/2017 06:20:51 AM
+-----------------------------------------------------------
+Message: Failure sending mail.
+StackTrace:    at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebMerchant.MerchantRegistration.SendHTMLMail(String email, String Password) in D:\Work\Project\WebMerchant\MerchantRegistration.aspx.cs:line 301
+   at WebMerchant.MerchantRegistration.btnRegistration_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantRegistration.aspx.cs:line 159
+Source: System
+TargetSite: Void Send(System.Net.Mail.MailMessage)
+-----------------------------------------------------------
+
+Time: 18/12/2017 11:32:19 AM
+-----------------------------------------------------------
+Message: Failure sending mail.
+StackTrace:    at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebMerchant.MerchantRegistration.SendHTMLMail(String email, String Password) in D:\Work\Project\WebMerchant\MerchantRegistration.aspx.cs:line 186
+   at WebMerchant.MerchantRegistration.btnRegistration_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantRegistration.aspx.cs:line 118
+Source: System
+TargetSite: Void Send(System.Net.Mail.MailMessage)
+-----------------------------------------------------------
+
+Time: 18/12/2017 01:29:19 PM
+-----------------------------------------------------------
+Message: Cannot cast DBNull.Value to type 'System.Int32'. Please use a nullable type.
+StackTrace:    at System.Data.DataRowExtensions.UnboxT`1.ValueField(Object value)
+   at System.Data.DataRowExtensions.Field[T](DataRow row, String columnName)
+   at WebMerchant.DALayer.DAMerchantManage.<>c.<SelectmerchantLogin>b__3_0(DataRow list) in D:\Work\Project\WebMerchant\DALayer\DAMerchantManage.cs:line 39
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at WebMerchant.DALayer.DAMerchantManage.SelectmerchantLogin(String Event, String emailid, String password) in D:\Work\Project\WebMerchant\DALayer\DAMerchantManage.cs:line 38
+   at WebMerchant.BALayer.BAMerchantManage.SelectMerchantLogin(String eventtxt, String emailid, String password) in D:\Work\Project\WebMerchant\BALayer\BAMerchantManage.cs:line 17
+   at WebMerchant.Default.btnLogin_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\Default.aspx.cs:line 39
+Source: System.Data.DataSetExtensions
+TargetSite: T ValueField(System.Object)
+-----------------------------------------------------------
+

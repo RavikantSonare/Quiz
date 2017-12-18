@@ -15,7 +15,52 @@
     <form id="form1" runat="server">
         <div class="container">
             <div class="row mtop30">
-                <div class="col-xs-12 col-md-3">
+                <asp:DataList ID="dlpricetable" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                    <ItemTemplate>
+                        <div class="col-xs-12 col-md-3">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><%#Eval("MerchantLevel")%></h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="the-price">
+                                        <h1>$<%#Eval("AnnualFee") %><span class="subscript">/yr</span></h1>
+                                    </div>
+                                    <table class="table">
+                                        <tr>
+                                            <td><%#Eval("ExamCount") %> Exam Count
+                            </td>
+                                        </tr>
+                                        <tr class="active">
+                                            <td><%#Eval("StudentCount") %> Student Count
+                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>100K Demo
+                            </td>
+                                        </tr>
+                                        <tr class="active">
+                                            <td>100MB Demo
+                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Demo
+                            </td>
+                                        </tr>
+                                        <tr class="active">
+                                            <td>Demo
+                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="panel-footer">
+                                    <asp:Button ID="btncheckout" Text="Checkout" runat="server" CssClass="btn btn-success" CommandArgument='<%#Eval("AnnualFee") %>' ToolTip='<%#Eval("MerchantLevel") %>' OnClick="btncheckout_Click" />
+                                </div>
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:DataList>
+                <%--  <div class="col-xs-12 col-md-3">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">Bronze</h3>
@@ -150,7 +195,7 @@
                             <a href="http://www.jquery2dotnet.com" class="btn btn-success" role="button">Sign Up</a> 1 month FREE trial
                         </div>
                     </div>
-                </div>
+                </div>--%>
             </div>
         </div>
 

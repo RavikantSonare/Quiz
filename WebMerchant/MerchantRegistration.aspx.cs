@@ -29,6 +29,8 @@ namespace WebMerchant
                                     dict.AllKeys.ToDictionary(k => k, k => dict[k])
                            );
                 InsertPaymentDetail(Session["registationid"].ToString(), Request.QueryString["merchant_order_id"], Request.QueryString["sid"], Request.QueryString["key"], Request.QueryString["order_number"], Request.QueryString["currency_code"], Request.QueryString["invoice_id"], Request.QueryString["total"], Request.QueryString["credit_card_processed"], Request.QueryString["pay_method"], json);
+                lblerror.InnerText = "Payment Success";
+                lblerror.Attributes.Add("Style", "display: block;color: Green;");
             }
             if (!IsPostBack)
             {
@@ -38,8 +40,6 @@ namespace WebMerchant
                 }
                 else
                 {
-                    FilldrpMerchantlevel();
-                    FilldrpCountry();
                     Session.Abandon();
                     Session.Clear();
                 }
@@ -70,66 +70,14 @@ namespace WebMerchant
             lblerror.Attributes.Add("Style", "display: block;color: Green;");
         }
 
-        private void FilldrpMerchantlevel()
-        {
-            BAMerchantLevel _bamlvl = new BALayer.BAMerchantLevel();
-            DataTable _datatable2 = new DataTable();
-            _datatable2 = _bamlvl.GetMerchantLevelList("GETALL");
-            //drpMerchantLevel.DataTextField = "MerchantLevel";
-            //drpMerchantLevel.DataValueField = "MerchantLevelId";
-            //drpMerchantLevel.DataSource = _datatable2;
-            //drpMerchantLevel.DataBind();
-            //ViewState["leveltable"] = _datatable2;
-            //txtAnnualFee.Text = FilltxtAnnualFee(drpMerchantLevel.SelectedValue, _datatable2).ToString();
-        }
-
-        private double FilltxtAnnualFee(string levelid, DataTable _dtabel)
-        {
-            double amount = 0;
-            DataRow[] result = _dtabel.Select("MerchantLevelId ='" + levelid + "'");
-            foreach (DataRow row in result)
-            {
-                amount = Convert.ToDouble(row["AnnualFee"]);
-            }
-            return amount;
-        }
-
-        private void FilldrpCountry()
-        {
-            BAMasterCountry _bamstcountry = new BAMasterCountry();
-            DataTable _datatable3 = new DataTable();
-            _datatable3 = _bamstcountry.GetCountryList("GETALL");
-            //drpCountry.DataTextField = "Country";
-            //drpCountry.DataValueField = "CountryId";
-            //drpCountry.DataSource = _datatable3;
-            //drpCountry.DataBind();
-            //FilldrpState(drpCountry.SelectedValue);
-        }
-
-        private void FilldrpState(string countryid)
-        {
-            BAMasterState _bamststate = new BAMasterState();
-            DataTable _datatable4 = new DataTable();
-            _datatable4 = _bamststate.GetStateList("GETStateWithCouid", countryid);
-            //drpState.DataTextField = "State";
-            //drpState.DataValueField = "StateId";
-            //drpState.DataSource = _datatable4;
-            //drpState.DataBind();
-        }
-
         protected void btnRegistration_Click(object sender, EventArgs e)
         {
             try
             {
                 if (validateForm())
                 {
-                    //  _bomermng.MerchantName = txtMerchantName.Text;
-                    //  _bomermng.UserName = txtUserName.Text;
                     _bomermng.Password = Encryptdata(txtPassword.Text);
-                    //   _bomermng.StateId = Convert.ToInt32(drpState.SelectedItem.Value);
                     _bomermng.EmailId = txtEmailId.Text;
-                    //   _bomermng.Telephone = txtTelephone.Text;
-                    //    _bomermng.MerchantLevelId = Convert.ToInt32(drpMerchantLevel.SelectedItem.Value);
                     _bomermng.StartDate = DateTime.UtcNow;
                     _bomermng.EndDate = DateTime.UtcNow.AddYears(1);
                     _bomermng.ActiveStatus = false;
@@ -141,7 +89,7 @@ namespace WebMerchant
                     _bomermng.UpdatedDate = DateTime.UtcNow;
                     _bomermng.MerchantId = 0;
                     _bomermng.Event = "Insert";
-                    int returnvalue = 1;// _bamermng.Insert(_bomermng);
+                    int returnvalue = _bamermng.Insert(_bomermng);
                     switch (returnvalue)
                     {
                         case -1:
@@ -154,14 +102,10 @@ namespace WebMerchant
                             break;
                         default:
                             Session["registationid"] = returnvalue;
-                            Response.AppendHeader("Refresh", "3;url=MerchantCheckoutLevel.aspx");
                             lblerror.InnerText = "Registration Success";
                             lblerror.Attributes.Add("Style", "display: block;color: Green;");
-                            //   SendHTMLMail(txtMerchantName.Text, txtEmailId.Text, txtUserName.Text, txtTelephone.Text, drpMerchantLevel.SelectedItem.Text, txtPassword.Text, Convert.ToString(FilltxtAnnualFee(drpMerchantLevel.SelectedValue, ViewState["leveltable"] as DataTable)));
-                            //if (FilltxtAnnualFee(drpMerchantLevel.SelectedValue, ViewState["leveltable"] as DataTable) > 0)
-                            //{
-                            //    Checkout();
-                            //}
+                            SendHTMLMail(txtEmailId.Text, txtPassword.Text);
+                            Response.AppendHeader("Refresh", "3;url=MerchantCheckoutLevel.aspx?emid=" + Common.Encryptdata(txtEmailId.Text));
                             break;
                     }
                 }
@@ -182,26 +126,6 @@ namespace WebMerchant
         private bool validateForm()
         {
             bool ret = true;
-            //if (string.IsNullOrEmpty(txtMerchantName.Text))
-            //{
-            //    ret = false;
-            //    lblerror.InnerText = "Enter merchant name";
-            //    lblerror.Attributes.Add("Style", "display: block;color: Red;");
-            //}
-            //else
-            //{
-            //    lblerror.InnerText = "";
-            //}
-            //if (string.IsNullOrEmpty(txtUserName.Text))
-            //{
-            //    ret = false;
-            //    lblerror.InnerText = "Enter username";
-            //    lblerror.Attributes.Add("Style", "display: block;color: Red;");
-            //}
-            //else
-            //{
-            //    lblerror.InnerText = "";
-            //}
             if (string.IsNullOrEmpty(txtEmailId.Text))
             {
                 ret = false;
@@ -212,16 +136,6 @@ namespace WebMerchant
             {
                 lblerror.InnerText = "";
             }
-            //if (string.IsNullOrEmpty(txtTelephone.Text))
-            //{
-            //    ret = false;
-            //    lblerror.InnerText = "Enter telephone number";
-            //    lblerror.Attributes.Add("Style", "display: block;color: Red;");
-            //}
-            //else
-            //{
-            //    lblerror.InnerText = "";
-            //}
             if (string.IsNullOrEmpty(txtPassword.Text))
             {
                 ret = false;
@@ -235,58 +149,14 @@ namespace WebMerchant
             return ret;
         }
 
-        private void Checkout()
-        {
-            Response.Clear();
-
-            StringBuilder sb = new StringBuilder();
-            //sb.Append("<div id=\"loading\" style=\" text-align:center; top:100px;\"><p> Please wait ... Do not refresh or back this page!</p><br/><img src=\"../images/processing.gif\" \"width:400px\"></div>");
-            //sb.Append("<html>");
-            //sb.AppendFormat(@"<body onload='document.forms[""form""].submit()'>");
-            //sb.AppendFormat("<form name='form' action='{0}' method='post'>", "https://sandbox.2checkout.com/checkout/purchase");
-            //sb.AppendFormat("<input type='hidden' name='sid' value='{0}'>", "901350981");
-            //sb.AppendFormat("<input type='hidden' name='mode' value='{0}'>", "2CO");
-            //sb.AppendFormat("<input type='hidden' name='li_0_type' value='{0}'>", "Membership");
-            //sb.AppendFormat("<input type='hidden' name='li_0_name' value='{0}'>", drpMerchantLevel.SelectedItem.Text);
-            //sb.AppendFormat("<input type='hidden' name='li_0_price' value='{0}'>", FilltxtAnnualFee(drpMerchantLevel.SelectedValue, ViewState["leveltable"] as DataTable));
-            //sb.AppendFormat("<input type='hidden' name='card_holder_name' value='{0}'>", txtMerchantName.Text);
-            //sb.AppendFormat("<input type='hidden' name='street_address' value='{0}'>", "");
-            //sb.AppendFormat("<input type='hidden' name='street_address2' value='{0}'>", "");
-            //sb.AppendFormat("<input type='hidden' name='city' value='{0}'>", "");
-            //sb.AppendFormat("<input type='hidden' name='state' value='{0}'>", drpState.SelectedItem.Text);
-            //sb.AppendFormat("<input type='hidden' name='zip' value='{0}'>", "");
-            //sb.AppendFormat("<input type='hidden' name='country' value='{0}'>", drpCountry.SelectedItem.Text);
-            //sb.AppendFormat("<input type='hidden' name='email' value='{0}'>", txtEmailId.Text);
-            //sb.AppendFormat("<input type='hidden' name='phone' value='{0}'>", txtTelephone.Text);
-            //sb.AppendFormat("<input type='hidden' name='merchant_order_id' value='{0}'>", DateTime.UtcNow.ToString("yyyyMMddHHmmssfff"));
-            //sb.AppendFormat("<input type='hidden' name='x_receipt_link_url' value='{0}'>", "http://quizmerchant.mobi96.org/MerchantRegistration.aspx");
-            //// Other params go here
-            //sb.Append("</form>");
-            //sb.Append("</body>");
-            //sb.Append("</html>");
-            HttpContext.Current.Response.Clear();
-            HttpContext.Current.Response.Write(sb.ToString());
-            // HttpContext.Current.Response.End();
-            HttpContext.Current.Response.Flush(); // Sends all currently buffered output to the client.
-            HttpContext.Current.Response.SuppressContent = true;  // Gets or sets a value indicating whether to send HTTP content to the client.
-            HttpContext.Current.ApplicationInstance.CompleteRequest(); // Causes ASP.NET to bypass all events and filtering in the HTTP pipeline chain of execution and directly execute the EndRequest event.
-            //Response.Write(sb.ToString());
-
-            //Response.End();
-        }
-
-        public void SendHTMLMail(string merchantname, string email, string UserName, string Telephone, string Plan, string Password, string amount)
+        public void SendHTMLMail(string email, string Password)
         {
             StreamReader reader = new StreamReader(Server.MapPath("~/MerchantRegsitrationEmail.html"));
             string readFile = reader.ReadToEnd();
             string myString = "";
             myString = readFile;
-            myString = myString.Replace("$$MerchantName$$", merchantname);
-            myString = myString.Replace("$$UserName$$", UserName);
-            myString = myString.Replace("$$Telephone$$", Telephone);
+            myString = myString.Replace("$$MerchantEmail$$", email);
             myString = myString.Replace("$$Password$$", Password);
-            myString = myString.Replace("$$Plan$$", Plan);
-            myString = myString.Replace("$$Amount$$", amount);
 
             SmtpClient smtpClient = new SmtpClient("relay-hosting.secureserver.net");
             MailMessage message = new MailMessage();
@@ -313,23 +183,6 @@ namespace WebMerchant
             encode = Encoding.UTF8.GetBytes(password);
             strmsg = Convert.ToBase64String(encode);
             return strmsg;
-        }
-
-        protected void drpCountry_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                // FilldrpState(drpCountry.SelectedValue);
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex);
-            }
-        }
-
-        protected void drpMerchantLevel_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // txtAnnualFee.Text = Convert.ToString(FilltxtAnnualFee(drpMerchantLevel.SelectedValue, ViewState["leveltable"] as DataTable));
         }
 
     }

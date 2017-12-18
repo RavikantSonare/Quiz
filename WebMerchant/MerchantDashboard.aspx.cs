@@ -40,10 +40,10 @@ namespace WebMerchant
                 if (Session["Merchantid"] != null)
                 {
                     Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                    FilldrpCountry();
                     BOMerchantManage _bomerchantDetail = (BOMerchantManage)Session["merchantDetail"];
                     merchantId = _bomerchantDetail.MerchantId;
                     FillMerchantDetail(_bomerchantDetail);
-                    FilldrpCountry();
                 }
                 else
                 {
@@ -119,6 +119,7 @@ namespace WebMerchant
                     BAMerchantManage _bamerchant = new BAMerchantManage();
                     _bomerchant.MerchantId = merchantId;
                     _bomerchant.MerchantName = txtMerchantName.Text;
+                    _bomerchant.UserName = txtUserName.Text;
                     _bomerchant.Password = Common.Encryptdata(txtpassword.Text);
                     _bomerchant.StateId = Convert.ToInt32(drpState.SelectedItem.Value);
                     _bomerchant.Telephone = txtTelephone.Text;

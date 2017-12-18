@@ -11,6 +11,7 @@
                 <div class="col-sm-12">
                     <asp:GridView ID="gvMerchantManage" runat="server" class="table" AutoGenerateColumns="false" DataKeyNames="MerchantId" OnRowDataBound="gvMerchantManage_RowDataBound" AllowPaging="True" OnPageIndexChanging="gvMerchantManage_PageIndexChanging">
                         <Columns>
+                            <asp:BoundField HeaderText="Email Id" DataField="EmailId" />
                             <asp:BoundField HeaderText="Merchant Name" DataField="MerchantName" />
                             <asp:BoundField HeaderText="Country" DataField="Country" />
                             <asp:BoundField HeaderText="Province/State" DataField="State" />
