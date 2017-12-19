@@ -105,7 +105,7 @@ namespace WebMerchant
                             lblerror.InnerText = "Registration Success";
                             lblerror.Attributes.Add("Style", "display: block;color: Green;");
                             SendHTMLMail(txtEmailId.Text, txtPassword.Text);
-                            Response.AppendHeader("Refresh", "3;url=MerchantCheckoutLevel.aspx?emid=" + Common.Encryptdata(txtEmailId.Text));
+                            Response.AppendHeader("Refresh", "1;url=MerchantCheckoutLevel.aspx?emid=" + Common.Encryptdata(txtEmailId.Text) + "&mid=" + Common.Encryptdata(returnvalue.ToString()));
                             break;
                     }
                 }

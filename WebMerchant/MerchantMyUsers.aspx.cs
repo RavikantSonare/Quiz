@@ -88,7 +88,7 @@ namespace WebMerchant
             }
             BAExamManage _baexmmng = new BAExamManage();
             DataTable _datatable1 = new DataTable();
-            _datatable1 = _baexmmng.SelectExamDetail("GetExamWithMId", mid);
+            _datatable1 = _baexmmng.SelectExamDetail("GetExamWithMId", mid, "");
             _datatable1.Columns.Add("FullName", typeof(string), "ExamCode + ' (' + SecondCategoryName +')'");
             if (catid > 0)
             {

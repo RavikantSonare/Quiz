@@ -12,9 +12,9 @@ namespace WebMerchant.BALayer
     {
         private DAExamManage _daexmmng = new DAExamManage();
 
-        internal DataTable SelectExamDetail(string eventtext, int merchantid)
+        internal DataTable SelectExamDetail(string eventtext, int merchantid, string searchtext)
         {
-            return _daexmmng.SelectExamDetail(eventtext, merchantid);
+            return _daexmmng.SelectExamDetail(eventtext, merchantid, searchtext);
         }
 
         internal int Insert(BOExamManage _boexmmng)

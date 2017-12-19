@@ -31,14 +31,15 @@ namespace WebMerchant
             if (!IsPostBack)
             {
                 Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                if (Request.QueryString["emid"] != null)
+                if (Request.QueryString["emid"] != null && Request.QueryString["mid"] != null)
                 {
                     ViewState["emid"] = Request.QueryString["emid"];
+                    ViewState["mid"] = Request.QueryString["mid"];
                     FillgridViewMerchantLevel();
                 }
                 else
                 {
-                    ShowMessage("technical error", MessageType.Error);
+                    Response.Redirect("MerchantRegistration.aspx");
                 }
             }
         }
@@ -51,7 +52,7 @@ namespace WebMerchant
             dlpricetable.DataBind();
         }
 
-        private void Checkout(string amount, string levle, JObject obj)
+        private void Checkout(string amount, string levle, int lvlid, JObject obj)
         {
             Response.Clear();
 
@@ -63,6 +64,7 @@ namespace WebMerchant
             sb.AppendFormat("<input type='hidden' name='sid' value='{0}'>", "901350981");
             sb.AppendFormat("<input type='hidden' name='mode' value='{0}'>", "2CO");
             sb.AppendFormat("<input type='hidden' name='li_0_type' value='{0}'>", "Membership");
+            sb.AppendFormat("<input type='hidden' name='li_0_product_id' value='{0}'>", lvlid);
             sb.AppendFormat("<input type='hidden' name='li_0_name' value='{0}'>", levle);
             sb.AppendFormat("<input type='hidden' name='li_0_price' value='{0}'>", amount);
             sb.AppendFormat("<input type='hidden' name='card_holder_name' value='{0}'>", "");
@@ -99,7 +101,49 @@ namespace WebMerchant
         protected void btncheckout_Click(object sender, EventArgs e)
         {
             Button btncheck = sender as Button;
-            Checkout(btncheck.CommandArgument, btncheck.ToolTip, GetCountryName());
+            DataListItem gvrow = btncheck.NamingContainer as DataListItem;
+            int lvlid = Convert.ToInt32(dlpricetable.DataKeys[gvrow.ItemIndex]);
+            MerchantLevelUpdate(lvlid);
+            Checkout(btncheck.CommandArgument, btncheck.ToolTip, lvlid, GetCountryName());
+        }
+
+        protected void MerchantLevelUpdate(int levelid)
+        {
+            try
+            {
+                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
+                {
+                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+
+                    BOMerchantManage _bomerchant = new BOMerchantManage();
+                    BAMerchantManage _bamerchant = new BAMerchantManage();
+                    _bomerchant.MerchantId = Convert.ToInt32(Common.Decryptdata(ViewState["mid"].ToString()));
+                    _bomerchant.MerchantLevelId = levelid;
+                    _bomerchant.MerchantName = "";
+                    _bomerchant.UserName = "";
+                    _bomerchant.Password = "";
+                    _bomerchant.StateId = 0;
+                    _bomerchant.Telephone = "";
+                    _bomerchant.Brand = "";
+                    _bomerchant.Picture = "";
+                    _bomerchant.About = "";
+                    _bomerchant.IsActive = true;
+                    _bomerchant.IsDelete = false;
+                    _bomerchant.StartDate = DateTime.UtcNow;
+                    _bomerchant.EndDate = DateTime.UtcNow;
+                    _bomerchant.CreatedBy = 0;
+                    _bomerchant.CreatedDate = DateTime.UtcNow;
+                    _bomerchant.UpdatedBy = 0;
+                    _bomerchant.UpdatedDate = DateTime.UtcNow;
+                    _bomerchant.Event = "UpdateLevelAfterRegistrer";
+                    int returnvalue = _bamerchant.Update(_bomerchant);
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
         }
 
         protected static JObject GetCountryName()

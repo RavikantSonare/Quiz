@@ -556,3 +556,407 @@ Source: System.Data.DataSetExtensions
 TargetSite: T ValueField(System.Object)
 -----------------------------------------------------------
 
+Time: 19/12/2017 10:34:12 AM
+-----------------------------------------------------------
+Message: Input string was not in a correct format.
+StackTrace:    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.String.System.IConvertible.ToInt32(IFormatProvider provider)
+   at System.Convert.ToInt32(Object value)
+   at WebMerchant.MerchantCheckoutLevel.MerchantLevelUpdate(Int32 levelid) in D:\Work\Project\WebMerchant\MerchantCheckoutLevel.aspx.cs:line 120
+Source: mscorlib
+TargetSite: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
+-----------------------------------------------------------
+
+Time: 19/12/2017 12:48:11 PM
+-----------------------------------------------------------
+Message: Incorrect syntax near the keyword 'ORDER'.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAExamManage.SelectExamDetail(String eventtext, Int32 merchantid) in D:\Work\Project\WebMerchant\DALayer\DAExamManage.cs:line 34
+   at WebMerchant.BALayer.BAExamManage.SelectExamDetail(String eventtext, Int32 merchantid) in D:\Work\Project\WebMerchant\BALayer\BAExamManage.cs:line 17
+   at WebMerchant.MerchantLogin.FillgridViewExamDetail(String eventtext, Int32 Merchantid) in D:\Work\Project\WebMerchant\MerchantLogin.aspx.cs:line 84
+   at WebMerchant.MerchantLogin.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantLogin.aspx.cs:line 35
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 19/12/2017 12:48:23 PM
+-----------------------------------------------------------
+Message: Incorrect syntax near the keyword 'ORDER'.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAExamManage.SelectExamDetail(String eventtext, Int32 merchantid) in D:\Work\Project\WebMerchant\DALayer\DAExamManage.cs:line 34
+   at WebMerchant.BALayer.BAExamManage.SelectExamDetail(String eventtext, Int32 merchantid) in D:\Work\Project\WebMerchant\BALayer\BAExamManage.cs:line 17
+   at WebMerchant.MerchantMyExams.FillgridViewExamDetail(String eventtext, Int32 Merchantid) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 52
+   at WebMerchant.MerchantMyExams.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 28
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 19/12/2017 12:52:47 PM
+-----------------------------------------------------------
+Message: Incorrect syntax near the keyword 'ORDER'.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAExamManage.SelectExamDetail(String eventtext, Int32 merchantid) in D:\Work\Project\WebMerchant\DALayer\DAExamManage.cs:line 34
+   at WebMerchant.BALayer.BAExamManage.SelectExamDetail(String eventtext, Int32 merchantid) in D:\Work\Project\WebMerchant\BALayer\BAExamManage.cs:line 17
+   at WebMerchant.MerchantMyExams.FillgridViewExamDetail(String eventtext, Int32 Merchantid) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 52
+   at WebMerchant.MerchantMyExams.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 28
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 19/12/2017 12:54:21 PM
+-----------------------------------------------------------
+Message: Incorrect syntax near the keyword 'ORDER'.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\DALayer\DAExamManage.cs:line 35
+   at WebMerchant.BALayer.BAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\BALayer\BAExamManage.cs:line 17
+   at WebMerchant.MerchantLogin.FillgridViewExamDetail(String eventtext, Int32 Merchantid) in D:\Work\Project\WebMerchant\MerchantLogin.aspx.cs:line 84
+   at WebMerchant.MerchantLogin.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantLogin.aspx.cs:line 35
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 19/12/2017 12:54:53 PM
+-----------------------------------------------------------
+Message: Incorrect syntax near the keyword 'ORDER'.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\DALayer\DAExamManage.cs:line 35
+   at WebMerchant.BALayer.BAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\BALayer\BAExamManage.cs:line 17
+   at WebMerchant.MerchantMyExams.FillgridViewExamDetail(String eventtext, Int32 Merchantid, String searchtext) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 52
+   at WebMerchant.MerchantMyExams.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 28
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 19/12/2017 12:55:11 PM
+-----------------------------------------------------------
+Message: Incorrect syntax near the keyword 'ORDER'.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\DALayer\DAExamManage.cs:line 35
+   at WebMerchant.BALayer.BAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\BALayer\BAExamManage.cs:line 17
+   at WebMerchant.MerchantMyExams.FillgridViewExamDetail(String eventtext, Int32 Merchantid, String searchtext) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 52
+   at WebMerchant.MerchantMyExams.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 28
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 19/12/2017 12:56:32 PM
+-----------------------------------------------------------
+Message: Incorrect syntax near the keyword 'ORDER'.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\DALayer\DAExamManage.cs:line 35
+   at WebMerchant.BALayer.BAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\BALayer\BAExamManage.cs:line 17
+   at WebMerchant.MerchantMyExams.FillgridViewExamDetail(String eventtext, Int32 Merchantid, String searchtext) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 52
+   at WebMerchant.MerchantMyExams.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 28
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 19/12/2017 01:01:04 PM
+-----------------------------------------------------------
+Message: Must declare the scalar variable "@MerchantId".
+SELECT        dbo.tbl_ExamConfig.ExamCodeId, dbo.tbl_ExamConfig.ExamCode, 
+									  dbo.tbl_ExamConfig.ExamTitle, dbo.tbl_ExamConfig.PassingPercentage, 
+									  dbo.tbl_ExamConfig.TestTime, dbo.tbl_ExamConfig.ValidDate, 
+									  dbo.tbl_ExamConfig.TestOption,dbo.tbl_ExamConfig.Price,dbo.tbl_ExamConfig.ExamSimulator,
+									  dbo.tbl_ExamConfig.ExamSimulatorDemo,dbo.tbl_ExamConfig.OnlyTestOnce,dbo.tbl_ExamConfig.AllowPrint,
+									  dbo.tbl_ExamConfig.AllowSales,dbo.tbl_SecondCategory.SecondCategoryId,
+									  dbo.tbl_SecondCategory.SecondCategoryName, dbo.tbl_TopCategory.TopCategoryName
+						FROM            dbo.tbl_ExamConfig INNER JOIN
+												 dbo.tbl_SecondCategory ON dbo.tbl_ExamConfig.SecondCategoryId = dbo.tbl_SecondCategory.SecondCategoryId INNER JOIN
+												 dbo.tbl_TopCategory ON dbo.tbl_SecondCategory.TopCategoryId = dbo.tbl_TopCategory.TopCategoryId
+						WHERE       (dbo.tbl_ExamConfig.MerchantId=@MerchantId) AND(dbo.tbl_ExamConfig.IsDelete = 0) AND (dbo.tbl_ExamConfig.IsActive = 1)
+						 And (dbo.tbl_ExamConfig.ExamCode like '%'+@SearchText+'%' 
+				 OR dbo.tbl_ExamConfig.ExamTitle LIKE '%'+@Searchtext+'%' OR 
+				 dbo.tbl_SecondCategory.SecondCategoryName LIKE '%'+@Searchtext+'%' OR 
+				 dbo.tbl_ExamConfig.TestTime LIKE '%'+@Searchtext+'%') ORDER BY dbo.tbl_ExamConfig.ExamCodeId DESC
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\DALayer\DAExamManage.cs:line 35
+   at WebMerchant.BALayer.BAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\BALayer\BAExamManage.cs:line 17
+   at WebMerchant.MerchantMyExams.FillgridViewExamDetail(String eventtext, Int32 Merchantid, String searchtext) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 52
+   at WebMerchant.MerchantMyExams.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 28
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 19/12/2017 01:01:07 PM
+-----------------------------------------------------------
+Message: Must declare the scalar variable "@MerchantId".
+SELECT        dbo.tbl_ExamConfig.ExamCodeId, dbo.tbl_ExamConfig.ExamCode, 
+									  dbo.tbl_ExamConfig.ExamTitle, dbo.tbl_ExamConfig.PassingPercentage, 
+									  dbo.tbl_ExamConfig.TestTime, dbo.tbl_ExamConfig.ValidDate, 
+									  dbo.tbl_ExamConfig.TestOption,dbo.tbl_ExamConfig.Price,dbo.tbl_ExamConfig.ExamSimulator,
+									  dbo.tbl_ExamConfig.ExamSimulatorDemo,dbo.tbl_ExamConfig.OnlyTestOnce,dbo.tbl_ExamConfig.AllowPrint,
+									  dbo.tbl_ExamConfig.AllowSales,dbo.tbl_SecondCategory.SecondCategoryId,
+									  dbo.tbl_SecondCategory.SecondCategoryName, dbo.tbl_TopCategory.TopCategoryName
+						FROM            dbo.tbl_ExamConfig INNER JOIN
+												 dbo.tbl_SecondCategory ON dbo.tbl_ExamConfig.SecondCategoryId = dbo.tbl_SecondCategory.SecondCategoryId INNER JOIN
+												 dbo.tbl_TopCategory ON dbo.tbl_SecondCategory.TopCategoryId = dbo.tbl_TopCategory.TopCategoryId
+						WHERE       (dbo.tbl_ExamConfig.MerchantId=@MerchantId) AND(dbo.tbl_ExamConfig.IsDelete = 0) AND (dbo.tbl_ExamConfig.IsActive = 1)
+						 And (dbo.tbl_ExamConfig.ExamCode like '%'+@SearchText+'%' 
+				 OR dbo.tbl_ExamConfig.ExamTitle LIKE '%'+@Searchtext+'%' OR 
+				 dbo.tbl_SecondCategory.SecondCategoryName LIKE '%'+@Searchtext+'%' OR 
+				 dbo.tbl_ExamConfig.TestTime LIKE '%'+@Searchtext+'%') ORDER BY dbo.tbl_ExamConfig.ExamCodeId DESC
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\DALayer\DAExamManage.cs:line 35
+   at WebMerchant.BALayer.BAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\BALayer\BAExamManage.cs:line 17
+   at WebMerchant.MerchantMyExams.FillgridViewExamDetail(String eventtext, Int32 Merchantid, String searchtext) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 52
+   at WebMerchant.MerchantMyExams.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 28
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 19/12/2017 01:01:44 PM
+-----------------------------------------------------------
+Message: Must declare the scalar variable "@MerchantId".
+SELECT        dbo.tbl_ExamConfig.ExamCodeId, dbo.tbl_ExamConfig.ExamCode, 
+									  dbo.tbl_ExamConfig.ExamTitle, dbo.tbl_ExamConfig.PassingPercentage, 
+									  dbo.tbl_ExamConfig.TestTime, dbo.tbl_ExamConfig.ValidDate, 
+									  dbo.tbl_ExamConfig.TestOption,dbo.tbl_ExamConfig.Price,dbo.tbl_ExamConfig.ExamSimulator,
+									  dbo.tbl_ExamConfig.ExamSimulatorDemo,dbo.tbl_ExamConfig.OnlyTestOnce,dbo.tbl_ExamConfig.AllowPrint,
+									  dbo.tbl_ExamConfig.AllowSales,dbo.tbl_SecondCategory.SecondCategoryId,
+									  dbo.tbl_SecondCategory.SecondCategoryName, dbo.tbl_TopCategory.TopCategoryName
+						FROM            dbo.tbl_ExamConfig INNER JOIN
+												 dbo.tbl_SecondCategory ON dbo.tbl_ExamConfig.SecondCategoryId = dbo.tbl_SecondCategory.SecondCategoryId INNER JOIN
+												 dbo.tbl_TopCategory ON dbo.tbl_SecondCategory.TopCategoryId = dbo.tbl_TopCategory.TopCategoryId
+						WHERE       (dbo.tbl_ExamConfig.MerchantId=@MerchantId) AND(dbo.tbl_ExamConfig.IsDelete = 0) AND (dbo.tbl_ExamConfig.IsActive = 1)
+						 And (dbo.tbl_ExamConfig.ExamCode like '%'+@SearchText+'%' 
+				 OR dbo.tbl_ExamConfig.ExamTitle LIKE '%'+@Searchtext+'%' OR 
+				 dbo.tbl_SecondCategory.SecondCategoryName LIKE '%'+@Searchtext+'%' OR 
+				 dbo.tbl_ExamConfig.TestTime LIKE '%'+@Searchtext+'%') ORDER BY dbo.tbl_ExamConfig.ExamCodeId DESC
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\DALayer\DAExamManage.cs:line 35
+   at WebMerchant.BALayer.BAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\BALayer\BAExamManage.cs:line 17
+   at WebMerchant.MerchantMyExams.FillgridViewExamDetail(String eventtext, Int32 Merchantid, String searchtext) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 52
+   at WebMerchant.MerchantMyExams.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 28
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 19/12/2017 01:02:07 PM
+-----------------------------------------------------------
+Message: Must declare the scalar variable "@MerchantId".
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at WebMerchant.DALayer.DAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\DALayer\DAExamManage.cs:line 35
+   at WebMerchant.BALayer.BAExamManage.SelectExamDetail(String eventtext, Int32 merchantid, String searchtext) in D:\Work\Project\WebMerchant\BALayer\BAExamManage.cs:line 17
+   at WebMerchant.MerchantMyExams.FillgridViewExamDetail(String eventtext, Int32 Merchantid, String searchtext) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 52
+   at WebMerchant.MerchantMyExams.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 28
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 19/12/2017 03:07:55 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebMerchant.MerchantMyExams.btnAddBundle_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 177
+Source: WebMerchant
+TargetSite: Void btnAddBundle_Click(System.Object, System.EventArgs)
+-----------------------------------------------------------
+
+Time: 19/12/2017 03:08:09 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebMerchant.MerchantMyExams.btnAddBundle_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyExams.aspx.cs:line 177
+Source: WebMerchant
+TargetSite: Void btnAddBundle_Click(System.Object, System.EventArgs)
+-----------------------------------------------------------
+
+Time: 19/12/2017 03:09:46 PM
+-----------------------------------------------------------
+Message: Invalid object name 'tbl_BundleExam'.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebMerchant.DALayer.DABundleExam.IUDBundle(BOBundleExam _bobndlexm) in D:\Work\Project\WebMerchant\DALayer\DABundleExam.cs:line 42
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 19/12/2017 03:12:57 PM
+-----------------------------------------------------------
+Message: Invalid object name 'tbl_BundleExam'.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebMerchant.DALayer.DABundleExam.IUDBundle(BOBundleExam _bobndlexm) in D:\Work\Project\WebMerchant\DALayer\DABundleExam.cs:line 42
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+

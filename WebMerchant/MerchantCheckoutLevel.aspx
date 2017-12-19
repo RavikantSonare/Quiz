@@ -15,7 +15,7 @@
     <form id="form1" runat="server">
         <div class="container">
             <div class="row mtop30">
-                <asp:DataList ID="dlpricetable" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                <asp:DataList ID="dlpricetable" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" RepeatLayout="Flow" DataKeyField="MerchantLevelId">
                     <ItemTemplate>
                         <div class="col-xs-12 col-md-3">
                             <div class="panel panel-primary">
@@ -29,27 +29,27 @@
                                     <table class="table">
                                         <tr>
                                             <td><%#Eval("ExamCount") %> Exam Count
-                            </td>
+                                            </td>
                                         </tr>
                                         <tr class="active">
                                             <td><%#Eval("StudentCount") %> Student Count
-                            </td>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>100K Demo
-                            </td>
+                                            </td>
                                         </tr>
                                         <tr class="active">
                                             <td>100MB Demo
-                            </td>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Demo
-                            </td>
+                                            </td>
                                         </tr>
                                         <tr class="active">
                                             <td>Demo
-                            </td>
+                                            </td>
                                         </tr>
                                     </table>
                                 </div>
@@ -198,7 +198,18 @@
                 </div>--%>
             </div>
         </div>
-
+        <style type="text/css">
+            .messagealert {
+                width: 50%;
+                position: fixed;
+                top: 0px;
+                z-index: 100000;
+                padding: 0;
+                font-size: 15px;
+            }
+        </style>
+        <div class="messagealert" id="alert_container">
+        </div>
     </form>
 </body>
 </html>

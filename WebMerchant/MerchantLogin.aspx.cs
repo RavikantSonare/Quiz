@@ -81,7 +81,7 @@ namespace WebMerchant
         private void FillgridViewExamDetail(string eventtext, int Merchantid)
         {
             _datatable = new DataTable();
-            _datatable = _baexmmng.SelectExamDetail(eventtext, Merchantid);
+            _datatable = _baexmmng.SelectExamDetail(eventtext, Merchantid,"");
             gvExamDetail.DataSource = _datatable;
             gvExamDetail.DataBind();
         }

@@ -201,6 +201,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BALayer\BABundleExam.cs" />
     <Compile Include="BALayer\BAExamManage.cs" />
     <Compile Include="BALayer\BAExamReports.cs" />
     <Compile Include="BALayer\BAFinanceConfig.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="BALayer\BASecondCategory.cs" />
     <Compile Include="BALayer\BATemplate.cs" />
     <Compile Include="BALayer\BATopCategory.cs" />
+    <Compile Include="BOLayer\BOBundleExam.cs" />
     <Compile Include="BOLayer\BOExamManage.cs" />
     <Compile Include="BOLayer\BOExamReports.cs" />
     <Compile Include="BOLayer\BOFinanceConfig.cs" />
@@ -243,6 +245,7 @@
     <Compile Include="BOLayer\BOTopCategory.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="ConnectionInfo.cs" />
+    <Compile Include="DALayer\DABundleExam.cs" />
     <Compile Include="DALayer\DAExamManage.cs" />
     <Compile Include="DALayer\DAExamReports.cs" />
     <Compile Include="DALayer\DAFinanceConfig.cs" />

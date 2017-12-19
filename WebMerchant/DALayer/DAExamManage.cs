@@ -15,7 +15,7 @@ namespace WebMerchant.DALayer
         private SqlDataAdapter _sqldataadapter;
         private DataTable _datatable;
 
-        internal DataTable SelectExamDetail(string eventtext, int merchantid)
+        internal DataTable SelectExamDetail(string eventtext, int merchantid, string searchtext)
         {
             using (SqlConnection _sqlcon = ConnectionInfo.GetConnection())
             {
@@ -26,6 +26,7 @@ namespace WebMerchant.DALayer
 
                 _sqlcommond.Parameters.AddWithValue("@MerchantId", merchantid);
                 _sqlcommond.Parameters.AddWithValue("@Event", eventtext);
+                _sqlcommond.Parameters.AddWithValue("@Searchtext", searchtext);
 
                 _sqlcon.Open();
                 _sqldataadapter = new SqlDataAdapter(_sqlcommond);

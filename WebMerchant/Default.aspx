@@ -74,11 +74,15 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div id="login-form" role="form" style="display: block;">
-                                        <div class="form-group">
-                                            <asp:TextBox ID="txtEmailId" runat="server" class="form-control" placeholder="Email Id" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <asp:TextBox ID="txtEmailId" runat="server" class="form-control" placeholder="Email Id" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <asp:TextBox ID="txtPassword" runat="server" class="form-control" placeholder="Password" TextMode="Password" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <asp:TextBox ID="txtPassword" runat="server" class="form-control" placeholder="Password" TextMode="Password" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">

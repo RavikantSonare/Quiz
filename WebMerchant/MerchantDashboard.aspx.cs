@@ -41,7 +41,9 @@ namespace WebMerchant
                 {
                     Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
                     FilldrpCountry();
-                    BOMerchantManage _bomerchantDetail = (BOMerchantManage)Session["merchantDetail"];
+                    BAMerchantManage _bamermng = new BAMerchantManage();
+                    BOMerchantManage mnag = (BOMerchantManage)Session["merchantDetail"];
+                    BOMerchantManage _bomerchantDetail = _bamermng.SelectMerchantLogin("MerchantLogin", mnag.EmailId, mnag.Password);
                     merchantId = _bomerchantDetail.MerchantId;
                     FillMerchantDetail(_bomerchantDetail);
                 }
@@ -135,9 +137,14 @@ namespace WebMerchant
                     _bomerchant.UpdatedBy = merchantId;
                     _bomerchant.UpdatedDate = DateTime.UtcNow;
                     _bomerchant.Event = "UpdateBySelf";
-                    if (_bamerchant.Update(_bomerchant) == 2)
+                    int returnvalue = _bamerchant.Update(_bomerchant);
+                    if (returnvalue == 2)
                     {
-                        ShowMessage("Certificate detail updated successfully", MessageType.Success);
+                        ShowMessage("Updated successfully", MessageType.Success);
+                    }
+                    else if (returnvalue == -2)
+                    {
+                        ShowMessage("UserName already taken", MessageType.Info);
                     }
                 }
             }

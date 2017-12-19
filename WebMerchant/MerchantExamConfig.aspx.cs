@@ -56,7 +56,7 @@ namespace WebMerchant
             try
             {
                 DataTable _datatable = new DataTable();
-                _datatable = _baexmmng.SelectExamDetail("GetExamWithMId", merid);
+                _datatable = _baexmmng.SelectExamDetail("GetExamWithMId", merid, "");
                 gvExamDetail.DataSource = _datatable;
                 gvExamDetail.DataBind();
             }

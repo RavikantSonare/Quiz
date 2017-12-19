@@ -83,7 +83,7 @@ namespace WebMerchant
         {
             BAExamManage _baexmmng = new BAExamManage();
             System.Data.DataTable _datatable1 = new System.Data.DataTable();
-            _datatable1 = _baexmmng.SelectExamDetail("GetExamWithMId", mid);
+            _datatable1 = _baexmmng.SelectExamDetail("GetExamWithMId", mid, "");
             if (_datatable1.Rows.Count > 0)
             {
                 ddlExamCode.DataValueField = "ExamCodeId";
