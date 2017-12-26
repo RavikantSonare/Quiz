@@ -12,8 +12,6 @@ namespace WebMerchant.DALayer
     public class DAMerchantPayment
     {
         private SqlCommand _sqlcommond;
-        private SqlDataAdapter _sqldataadapter;
-        private DataTable _datatable;
 
         internal int IUD(BOMerchantPayment _bomerpmt)
         {

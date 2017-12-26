@@ -22,7 +22,7 @@ namespace WebUser.DAlayer
                 _sqlcommand.CommandType = CommandType.StoredProcedure;
                 _sqlcommand.Connection = _sqlconnection;
 
-                _sqlcommand.Parameters.AddWithValue("@UserName", text);
+                _sqlcommand.Parameters.AddWithValue("@EmailId", text);
                 _sqlcommand.Parameters.AddWithValue("@AccessPassword", v2);
                 _sqlcommand.Parameters.AddWithValue("@Event", v1);
 
@@ -47,6 +47,10 @@ namespace WebUser.DAlayer
                               AccessOption = list.Field<string>("AccessPassword"),
                               IsActive = list.Field<bool>("IsActive"),
                               IsDelete = list.Field<bool>("IsDelete"),
+                              EmailId = list.Field<string>("EmailId"),
+                              GroupId = list.Field<int>("GroupId"),
+                              GroupStatus = list.Field<bool>("GroupStatus")
+
                           }).FirstOrDefault();
                 return _bousr;
             }

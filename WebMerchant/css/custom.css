@@ -311,3 +311,128 @@ li.dash a {
     font-weight: bold;
     text-align: center;
 }
+/*Model Popup*/
+
+.modal-header {
+    padding-bottom: 5px;
+}
+
+.modal-footer {
+    padding: 0;
+}
+
+    .modal-footer .btn-group button {
+        height: 40px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border: none;
+        border-right: 1px solid #ddd;
+    }
+
+    .modal-footer .btn-group:last-child > button {
+        border-right: 0;
+    }
+
+/*Tab*/
+body {
+    font: 14px/1 'Open Sans', sans-serif;
+    color: #555;
+    background: #eee;
+}
+
+#main_text main {
+    min-width: 320px;
+    max-width: 1100px;
+    padding: 20px;
+    margin: 0 auto;
+    background: #fff;
+}
+
+#main_text section {
+    display: none;
+    padding: 20px 0 0;
+    border-top: 1px solid #ddd;
+}
+
+#main_text .inputcls {
+    display: none;
+}
+
+#main_text .labelcls {
+    display: inline-block;
+    margin: 0 0 -1px;
+    padding: 15px 25px;
+    font-weight: 600;
+    text-align: center;
+    /*color: #bbb;*/
+    border: 1px solid transparent;
+}
+
+#main_text label:before {
+    font-family: fontawesome;
+    font-weight: normal;
+    margin-right: 10px;
+}
+
+/*#main_text label[for*='1']:before {
+        content: '\f2bc';
+    }
+
+    #main_text label[for*='2']:before {
+        content: '\f0ca';
+    }
+
+    #main_text label[for*='3']:before {
+        content: '\f02f';
+    }
+
+    #main_text label[for*='4']:before {
+        content: '\f1a9';
+    }*/
+
+#main_text label:hover {
+    color: #888;
+    cursor: pointer;
+}
+
+#main_text input:checked + label {
+    color: #555;
+    border: 1px solid #ddd;
+    border-top: 2px solid orange;
+    border-bottom: 1px solid #fff;
+}
+
+#main_text #tab1:checked ~ #content1,
+#main_text #tab2:checked ~ #content2,
+#main_text #tab3:checked ~ #content3,
+#main_text #tab4:checked ~ #content4 {
+    display: block;
+}
+/* Tabing*/
+.Initial {
+    display: block;
+    padding: 10px 18px 4px 18px;
+    float: left;
+    background: url("images/InitialImage.png") no-repeat right top;
+    color: Black;
+    font-weight: bold;
+}
+
+    .Initial:hover {
+        color: White;
+        background: url("images/SelectedButton.png") no-repeat right top;
+    }
+
+.Clicked {
+    float: left;
+    display: block;
+    background: url("images/SelectedButton.png") no-repeat right top;
+    padding: 10px 18px 4px 18px;
+    color: Black;
+    font-weight: bold;
+    color: White;
+}
+
+.pnlcls {
+    padding: 40px;
+}

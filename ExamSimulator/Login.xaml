@@ -11,7 +11,7 @@
     <Canvas>
         <Label Content="Account Email : "  FontSize="12"  Height="26" FontWeight="Bold" Foreground="#FF636162" Canvas.Left="51" Canvas.Top="41"/>
         <Label Content="Password : " FontSize="12"  Height="26" FontWeight="Bold" Foreground="#FF636162" Canvas.Left="78" Canvas.Top="87"/>
-        <TextBox  x:Name="txtUsername" Width="180" Height="26" Canvas.Left="200" Canvas.Top="41" FontSize="15" />
+        <TextBox  x:Name="txtEmailid" Width="180" Height="26" Canvas.Left="200" Canvas.Top="41" FontSize="15" />
         <PasswordBox  Height="26" Width="180" Name="txtPassword" KeyDown="txtPassword_KeyDown" Canvas.Left="200" Canvas.Top="87" FontSize="15"/>
         <Button x:Name="btnLogin" Height="30" Width="120"   Content="Authentication"  FontWeight="Bold" FontSize="12" Click="btnLogin_Click" Canvas.Left="200" Canvas.Top="135" />
         <Label Content="Access Denied!!" Name="result" Visibility="Hidden" FontSize="12" Width="100" Height="26" FontWeight="Bold" Foreground="Red" Canvas.Left="200" Canvas.Top="183"/>

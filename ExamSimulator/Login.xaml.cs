@@ -16,6 +16,7 @@ using ExamSimulator.BOLayer;
 using ExamSimulator.BALayer;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace ExamSimulator
 {
@@ -53,39 +54,49 @@ namespace ExamSimulator
 
         private void LoginFunction()
         {
-            BOUser _bousr = _bausr.SelectUserDetail("GetUserDetail", txtUsername.Text, Encryptdata(txtPassword.Password));
-            if (_bousr != null)
+            if (ValidateTextBoxes())
             {
-                Application.Current.Properties["Bouser"] = _bousr;
-                if (txtPassword.Password == Decryptdata(_bousr.AccessPassword))
+                BOUser _bousr = _bausr.SelectUserDetail("GetUserDetail", txtEmailid.Text, Encryptdata(txtPassword.Password));
+                if (_bousr != null)
                 {
-                    this.Hide();
-                    MainWindow _mainWindow = new ExamSimulator.MainWindow();
-                    _mainWindow.ShowDialog();
+                    Application.Current.Properties["Bouser"] = _bousr;
+                    if (txtPassword.Password == Decryptdata(_bousr.AccessPassword))
+                    {
+                        this.Hide();
+                        MainWindow _mainWindow = new ExamSimulator.MainWindow();
+                        _mainWindow.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Email Id or Password Invalid", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        txtEmailid.Text = txtPassword.Password = "";
+                        txtEmailid.Focus();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Username or Password Invalid", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    txtUsername.Text = txtPassword.Password = "";
-                    txtUsername.Focus();
+                    MessageBox.Show("Email Id or Password Invalid");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Username or Password Invalid");
             }
         }
 
         private bool ValidateTextBoxes()
         {
-            if (txtUsername.Text.Trim().Length == 0)
+            if (txtEmailid.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Please enter user name");
+                MessageBox.Show("Please enter email id");
                 return false;
             }
             if (txtPassword.Password.Trim().Length == 0)
             {
                 MessageBox.Show("Please enter password");
+                return false;
+            }
+            if (!Regex.IsMatch(txtEmailid.Text, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
+            {
+                MessageBox.Show("Enter a valid email id");
+                txtEmailid.Select(0, txtEmailid.Text.Length);
+                txtEmailid.Focus();
                 return false;
             }
             return true;

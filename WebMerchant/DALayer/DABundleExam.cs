@@ -65,6 +65,29 @@ namespace WebMerchant.DALayer
             return returnvalue;
         }
 
+        internal DataTable SelectBundleDetailWithID(string v, int bundleid)
+        {
+            using (SqlConnection _sqlcon = ConnectionInfo.GetConnection())
+            {
+                _sqlcommond = new SqlCommand();
+                _sqlcommond.CommandText = "SP_GetBundle";
+                _sqlcommond.Connection = _sqlcon;
+                _sqlcommond.CommandType = CommandType.StoredProcedure;
+
+                _sqlcommond.Parameters.AddWithValue("@BundleId", bundleid);
+                _sqlcommond.Parameters.AddWithValue("@Event", v);
+
+                _sqlcon.Open();
+                _sqldataadapter = new SqlDataAdapter(_sqlcommond);
+
+                _datatable = new DataTable();
+                _sqldataadapter.Fill(_datatable);
+                _sqlcon.Close();
+
+                return _datatable;
+            }
+        }
+
         internal DataTable SelectBundleDetail(string eventtext, int merchantid)
         {
             using (SqlConnection _sqlcon = ConnectionInfo.GetConnection())

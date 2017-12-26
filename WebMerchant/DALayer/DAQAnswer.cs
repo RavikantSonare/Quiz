@@ -12,8 +12,6 @@ namespace WebMerchant.DALayer
     public class DAQAnswer
     {
         private SqlCommand _sqlcommand;
-        private DataTable _datatable;
-        private SqlDataAdapter _sqldataadapter;
 
         internal int IUDAnswer(BOQAnswer _boqans)
         {

@@ -33,9 +33,9 @@ namespace WebUser
         {
             try
             {
-                if (!string.IsNullOrEmpty(txtUserName.Text) && !string.IsNullOrEmpty(txtPassword.Text))
+                if (!string.IsNullOrEmpty(txtEmailId.Text) && !string.IsNullOrEmpty(txtPassword.Text))
                 {
-                    BOUser _bousr = _bausr.SelectUserDetail("GetUserDetail", txtUserName.Text, Encryptdata(txtPassword.Text));
+                    BOUser _bousr = _bausr.SelectUserDetail("GetUserDetail", txtEmailId.Text, Encryptdata(txtPassword.Text));
                     if (_bousr != null)
                     {
                         if (txtPassword.Text == Decryptdata(_bousr.AccessPassword))
@@ -54,16 +54,16 @@ namespace WebUser
                     }
                     else
                     {
-                        lblerror.InnerText = "Username or Password invalid";
+                        lblerror.InnerText = "Email Id or Password invalid";
                         lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
-                        txtUserName.Focus();
+                        txtEmailId.Focus();
                     }
                 }
                 else
                 {
-                    lblerror.InnerText = "Please Enter Correct UserName/Password";
+                    lblerror.InnerText = "Please Enter Correct Email Id/Password";
                     lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
-                    txtUserName.Focus();
+                    txtEmailId.Focus();
                 }
             }
             catch (Exception ex)

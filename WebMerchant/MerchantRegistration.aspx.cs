@@ -96,10 +96,6 @@ namespace WebMerchant
                             lblerror.InnerText = "Sorry, your email address is already in use.";
                             lblerror.Attributes.Add("Style", "display: block;color: Red;");
                             break;
-                        case -2:
-                            lblerror.InnerText = "Sorry, your username is already in use.";
-                            lblerror.Attributes.Add("Style", "display: block;color: Red;");
-                            break;
                         default:
                             Session["registationid"] = returnvalue;
                             lblerror.InnerText = "Registration Success";

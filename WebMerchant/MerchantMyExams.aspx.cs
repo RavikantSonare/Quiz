@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Data;
 using WebMerchant.BOLayer;
 using WebMerchant.BALayer;
+using System.Web.Services;
+
 namespace WebMerchant
 {
     public partial class MerchantMyExams : System.Web.UI.Page
@@ -176,6 +178,51 @@ namespace WebMerchant
             FillgridViewExamDetail("GetExamWithMId", MerchantId, txtsearch.Text);
         }
 
+        protected void btnExamdelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
+                {
+                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                    LinkButton lnkbtn = sender as LinkButton;
+                    GridViewRow gvrow = lnkbtn.NamingContainer as GridViewRow;
+                    int examid = Convert.ToInt32(gvExamDetail.DataKeys[gvrow.RowIndex].Value.ToString());
+                    _boexmmng.ExamCodeId = examid;
+                    _boexmmng.IsDelete = true;
+                    _boexmmng.ValidDate = DateTime.UtcNow;
+                    _boexmmng.CreatedBy = MerchantId;
+                    _boexmmng.CreatedDate = DateTime.UtcNow;
+                    _boexmmng.UpdatedBy = MerchantId;
+                    _boexmmng.UpdatedDate = DateTime.UtcNow;
+                    _boexmmng.Event = "Delete";
+                    int rtnvalue = _baexmmng.Delete(_boexmmng);
+                    if (rtnvalue == 3)
+                    {
+                        ShowMessage("Exam deleted successfully", MessageType.Success);
+                    }
+                    else if (rtnvalue == 5)
+                    {
+                        ShowMessage("Can not delete Exam because used in another entity", MessageType.Info);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
+            ClearControl();
+        }
+
+        private void FillBundleGrid(string eventtxt, int merchantid)
+        {
+            DataTable _datatable = new DataTable();
+            _datatable = _babndlexm.SelectBundleDetail("GetAll", merchantid);
+            gridBundle.DataSource = _datatable;
+            gridBundle.DataBind();
+        }
+
         protected void btnAddBundle_Click(object sender, EventArgs e)
         {
             try
@@ -221,12 +268,67 @@ namespace WebMerchant
             ClearControl();
         }
 
-        private void FillBundleGrid(string eventtxt, int merchantid)
+        protected void lnkbtnBundleEdit_Click(object sender, EventArgs e)
         {
-            DataTable _datatable = new DataTable();
-            _datatable = _babndlexm.SelectBundleDetail("GetAll", merchantid);
-            gridBundle.DataSource = _datatable;
-            gridBundle.DataBind();
+            try
+            {
+                LinkButton lnkbtn = sender as LinkButton;
+                GridViewRow gvrow = lnkbtn.NamingContainer as GridViewRow;
+                int bundleid = Convert.ToInt32(gridBundle.DataKeys[gvrow.RowIndex].Value.ToString());
+                DataTable table = new DataTable();
+                table = _babndlexm.SelectBundleDetailWithID("GetBundleWithId", bundleid);
+                if (table.Rows.Count > 0)
+                {
+                    ViewState["bundleId"] = table.Rows[0]["BundleId"].ToString();
+                    txtContent.Text = table.Rows[0]["BundleContent"].ToString();
+                    txtPrice.Text = table.Rows[0]["Price"].ToString();
+                    chkfeatureestore.Checked = Convert.ToBoolean(table.Rows[0]["FeaturedSelfsEstore"]);
+                    MerchantId = Convert.ToInt32(table.Rows[0]["MerchantId"].ToString());
+                    btnAddBundle.Text = "Update";
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
+        }
+
+        protected void lnkbtnBundleDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
+                {
+                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                    LinkButton lnkbtn = sender as LinkButton;
+                    GridViewRow gvrow = lnkbtn.NamingContainer as GridViewRow;
+                    int bundleid = Convert.ToInt32(gridBundle.DataKeys[gvrow.RowIndex].Value.ToString());
+                    _bobndlexm.BundleId = bundleid;
+                    _bobndlexm.IsDelete = true;
+                    _bobndlexm.CreatedBy = MerchantId;
+                    _bobndlexm.CreatedDate = DateTime.UtcNow;
+                    _bobndlexm.UpdatedBy = MerchantId;
+                    _bobndlexm.UpdatedDate = DateTime.UtcNow;
+                    _bobndlexm.Event = "Delete";
+                    int rtnvalue = _babndlexm.Delete(_bobndlexm);
+                    if (rtnvalue == 3)
+                    {
+                        ShowMessage("Exam deleted successfully", MessageType.Success);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
+            ClearControl();
+        }
+        [WebMethod]
+        public static void InsertConfigData(string Questiono, string Price, string ExamPic, string ExamDes)
+        {
+            //ShowMessage(name + surname, MessageType.Success);
         }
 
         private void ClearControl()
@@ -235,6 +337,7 @@ namespace WebMerchant
             btnAddBundle.Text = "Add";
             ViewState["bundleId"] = "";
             ViewState["bundleId"] = null;
+            FillBundleGrid("GetAll", MerchantId);
         }
     }
 }

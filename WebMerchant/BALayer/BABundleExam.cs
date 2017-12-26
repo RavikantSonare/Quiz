@@ -21,9 +21,19 @@ namespace WebMerchant.BALayer
             return _dabndlexm.IUDBundle(_bobndlexm);
         }
 
+        internal int Delete(BOBundleExam _bobndlexm)
+        {
+            return _dabndlexm.IUDBundle(_bobndlexm);
+        }
+
         internal DataTable SelectBundleDetail(string v, int merchantid)
         {
             return _dabndlexm.SelectBundleDetail(v, merchantid);
+        }
+
+        internal DataTable SelectBundleDetailWithID(string v, int bundleid)
+        {
+            return _dabndlexm.SelectBundleDetailWithID(v, bundleid);
         }
     }
 }

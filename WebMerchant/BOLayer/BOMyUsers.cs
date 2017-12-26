@@ -25,6 +25,9 @@ namespace WebMerchant.BOLayer
         public int UpdatedBy { get; set; }
         public DateTime UpdatedDate { get; set; }
         public DateTime ValidTimeTo { get; set; }
+        public string EmailId { get; set; }
+        public int GroupId { get; set; }
+        public bool GroupStatus { get; set; }
         public string Event { get; set; }
     }
 }

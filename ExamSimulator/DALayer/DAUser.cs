@@ -23,7 +23,7 @@ namespace ExamSimulator.DALayer
                 _sqlcommand.CommandType = CommandType.StoredProcedure;
                 _sqlcommand.Connection = _sqlconnection;
 
-                _sqlcommand.Parameters.AddWithValue("@UserName", text);
+                _sqlcommand.Parameters.AddWithValue("@EmailId", text);
                 _sqlcommand.Parameters.AddWithValue("@AccessPassword", v2);
                 _sqlcommand.Parameters.AddWithValue("@Event", v1);
 
@@ -41,13 +41,16 @@ namespace ExamSimulator.DALayer
                               UserName = list.Field<string>("UserName"),
                               AccessPassword = list.Field<string>("AccessPassword"),
                               MerchantId = list.Field<int>("MerchantId"),
-                              SecondCategory = list.Field<int>("SecondCategory"),
+                              // SecondCategory = list.Field<int>("SecondCategory"),
                               ExamId = list.Field<string>("ExamId"),
                               ExamCode = list.Field<string>("ExamCode"),
                               ValidTime = list.Field<DateTime>("ValidTime"),
                               AccessOption = list.Field<string>("AccessPassword"),
                               IsActive = list.Field<bool>("IsActive"),
                               IsDelete = list.Field<bool>("IsDelete"),
+                              EmailId = list.Field<string>("EmailId"),
+                              GroupId = list.Field<int>("GroupId"),
+                              GroupStatus = list.Field<bool>("GroupStatus")
                           }).FirstOrDefault();
                 return _bousr;
             }

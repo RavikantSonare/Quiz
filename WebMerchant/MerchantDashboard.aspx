@@ -210,10 +210,10 @@
                 <label for="inputPassword" class="control-label col-xs-2">Location:</label>
                 <div class="col-xs-5 row paddingrightzero">
                     <div class="col-xs-6">
-                        <asp:DropDownList ID="drpCountry" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="drpCountry_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:DropDownList ID="drpCountry" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="drpCountry_SelectedIndexChanged"></asp:DropDownList>
                     </div>
                     <div class="col-xs-6 paddingleftrightzero">
-                        <asp:DropDownList ID="drpState" runat="server" class="form-control"></asp:DropDownList>
+                        <asp:DropDownList ID="drpState" runat="server" CssClass="form-control"></asp:DropDownList>
                     </div>
                 </div>
 

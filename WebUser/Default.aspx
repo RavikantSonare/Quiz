@@ -17,12 +17,22 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('[id$=btnLogin]').click(function () {
-                if ($('[id$=txtUserName]').val() == "") {
+                if ($('[id$=txtEmailId]').val() == "") {
                     $('[id$=lblerror]').css("display", "block");
-                    $('[id$=lblerror]').html("Please Enter UserName");
-                    $('[id$=txtUserName]').css("border", "1px solid #FF0000");
-                    $('[id$=txtUserName]').focus(function () {
-                        $('[id$=txtUserName]').css("border", "1px solid #000000");
+                    $('[id$=lblerror]').html("Please Enter Email Id");
+                    $('[id$=txtEmailId]').css("border", "1px solid #FF0000");
+                    $('[id$=txtEmailId]').focus(function () {
+                        $('[id$=txtEmailId]').css("border", "1px solid #000000");
+                        $('[id$=lblerror]').css("display", "none");
+                    });
+                    return false;
+                }
+                if (!ValidateEmail($('[id$=txtEmailId]').val())) {
+                    $('[id$=lblerror]').css("display", "block");
+                    $('[id$=lblerror]').html("Please Enter Valid Email Id");
+                    $('[id$=txtEmailId]').css("border", "1px solid #FF0000");
+                    $('[id$=txtEmailId]').focus(function () {
+                        $('[id$=txtEmailId]').css("border", "1px solid #000000");
                         $('[id$=lblerror]').css("display", "none");
                     });
                     return false;
@@ -53,6 +63,10 @@
             }
             return true;
         }
+        function ValidateEmail(email) {
+            var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+            return expr.test(email);
+        };
     </script>
 </head>
 <body>
@@ -74,7 +88,7 @@
                                 <div class="col-lg-12">
                                     <div id="login-form" role="form" style="display: block;">
                                         <div class="form-group">
-                                            <asp:TextBox ID="txtUserName" runat="server" class="form-control" placeholder="Username" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
+                                            <asp:TextBox ID="txtEmailId" runat="server" class="form-control" placeholder="Email Id" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
                                         </div>
                                         <div class="form-group">
                                             <asp:TextBox ID="txtPassword" runat="server" class="form-control" placeholder="Password" TextMode="Password" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>

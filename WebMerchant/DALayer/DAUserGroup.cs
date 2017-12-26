@@ -1,30 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
-using System.Data;
 using System.Data.SqlClient;
 using WebMerchant.BOLayer;
 using WebMerchant.BALayer;
 
 namespace WebMerchant.DALayer
 {
-    public class DAMyUsers
+    public class DAUserGroup
     {
         private SqlCommand _sqlcommand;
         private SqlDataAdapter _sqlDataAdapter;
 
-        internal DataTable SelectUserList(string v, int mid)
+        internal DataTable SelectGroupDetail(string eventtxt, int mid)
         {
             using (SqlConnection _sqlconnection = ConnectionInfo.GetConnection())
             {
                 _sqlcommand = new SqlCommand();
-                _sqlcommand.CommandText = "SP_GetMyUser";
+                _sqlcommand.CommandText = "SP_GetGroup";
                 _sqlcommand.CommandType = CommandType.StoredProcedure;
                 _sqlcommand.Connection = _sqlconnection;
                 _sqlconnection.Open();
                 _sqlcommand.Parameters.AddWithValue("@MerchantId", mid);
-                _sqlcommand.Parameters.AddWithValue("@Event", v);
+                _sqlcommand.Parameters.AddWithValue("@Event", eventtxt);
                 _sqlDataAdapter = new SqlDataAdapter(_sqlcommand);
 
                 DataTable _dataTable = new DataTable();
@@ -35,16 +35,16 @@ namespace WebMerchant.DALayer
             }
         }
 
-        internal DataTable SelectUserListWithUID(string v, int userId)
+        internal DataTable SelectGroupDetailWithGroupID(string v, int groupId)
         {
             using (SqlConnection _sqlconnection = ConnectionInfo.GetConnection())
             {
                 _sqlcommand = new SqlCommand();
-                _sqlcommand.CommandText = "SP_GetMyUser";
+                _sqlcommand.CommandText = "SP_GetGroup";
                 _sqlcommand.CommandType = CommandType.StoredProcedure;
                 _sqlcommand.Connection = _sqlconnection;
                 _sqlconnection.Open();
-                _sqlcommand.Parameters.AddWithValue("@UserId", userId);
+                _sqlcommand.Parameters.AddWithValue("@GroupId", groupId);
                 _sqlcommand.Parameters.AddWithValue("@Event", v);
                 _sqlDataAdapter = new SqlDataAdapter(_sqlcommand);
 
@@ -56,36 +56,29 @@ namespace WebMerchant.DALayer
             }
         }
 
-        internal int IUDUserDetail(BOMyUsers _bomyuser)
+        internal int IUDGroupDetail(BOUserGroup _bousrgroup)
         {
             int returnValue = default(int);
             using (SqlConnection _sqlconnection = ConnectionInfo.GetConnection())
             {
                 _sqlcommand = new SqlCommand();
                 _sqlcommand.Connection = _sqlconnection;
-                _sqlcommand.CommandText = "SP_IUDMyUser";
+                _sqlcommand.CommandText = "SP_IUDGroup";
                 _sqlcommand.CommandType = CommandType.StoredProcedure;
                 _sqlconnection.Open();
 
-                _sqlcommand.Parameters.AddWithValue("@UserId", _bomyuser.UserId);
-                _sqlcommand.Parameters.AddWithValue("@UserName", _bomyuser.UserName);
-                _sqlcommand.Parameters.AddWithValue("@AccessPassword", _bomyuser.AccessPassword);
-                _sqlcommand.Parameters.AddWithValue("@MerchantId", _bomyuser.MerchantId);
-                _sqlcommand.Parameters.AddWithValue("@ExamId", _bomyuser.ExamId);
-                _sqlcommand.Parameters.AddWithValue("@ExamCode", _bomyuser.ExamCode);
-                _sqlcommand.Parameters.AddWithValue("@ValidTime", _bomyuser.ValidTime);
-                _sqlcommand.Parameters.AddWithValue("@AccessOption", _bomyuser.AccessOption);
-                _sqlcommand.Parameters.AddWithValue("@IsActive", _bomyuser.IsActive);
-                _sqlcommand.Parameters.AddWithValue("@IsDelete", _bomyuser.IsDelete);
-                _sqlcommand.Parameters.AddWithValue("@CreatedBy", _bomyuser.CreatedBy);
-                _sqlcommand.Parameters.AddWithValue("@CreatedDate", _bomyuser.CreatedDate);
-                _sqlcommand.Parameters.AddWithValue("@UpdatedBy", _bomyuser.UpdatedBy);
-                _sqlcommand.Parameters.AddWithValue("@UpdatedDate", _bomyuser.UpdatedDate);
-                _sqlcommand.Parameters.AddWithValue("@ValidTimeTo", _bomyuser.ValidTimeTo);
-                _sqlcommand.Parameters.AddWithValue("@EmailId", _bomyuser.EmailId);
-                _sqlcommand.Parameters.AddWithValue("@GroupId", _bomyuser.GroupId);
-                _sqlcommand.Parameters.AddWithValue("@GroupStatus", _bomyuser.GroupStatus);
-                _sqlcommand.Parameters.AddWithValue("@Event", _bomyuser.Event);
+                _sqlcommand.Parameters.AddWithValue("@GroupId", _bousrgroup.GroupId);
+                _sqlcommand.Parameters.AddWithValue("@GroupName", _bousrgroup.GroupName);
+                _sqlcommand.Parameters.AddWithValue("@MerchantId", _bousrgroup.MerchantId);
+                _sqlcommand.Parameters.AddWithValue("@ExamId", _bousrgroup.ExamId);
+                _sqlcommand.Parameters.AddWithValue("@AccessOption", _bousrgroup.AccessOption);
+                _sqlcommand.Parameters.AddWithValue("@IsActive", _bousrgroup.IsActive);
+                _sqlcommand.Parameters.AddWithValue("@IsDelete", _bousrgroup.IsDelete);
+                _sqlcommand.Parameters.AddWithValue("@CreatedBy", _bousrgroup.Createdby);
+                _sqlcommand.Parameters.AddWithValue("@CreatedDate", _bousrgroup.CreatedDate);
+                _sqlcommand.Parameters.AddWithValue("@UpdatedBy", _bousrgroup.UpdatedBy);
+                _sqlcommand.Parameters.AddWithValue("@UpdatedDate", _bousrgroup.UpdatedDate);
+                _sqlcommand.Parameters.AddWithValue("@Event", _bousrgroup.Event);
                 _sqlcommand.Parameters.AddWithValue("@returnValue", 0).Direction = System.Data.ParameterDirection.InputOutput;
 
                 try

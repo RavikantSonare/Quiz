@@ -119,7 +119,9 @@
     <Content Include="css\login.css" />
     <Content Include="css\summernote.css" />
     <Content Include="Errorfile\ErrorLog.txt" />
+    <Content Include="images\InitialImage.png" />
     <Content Include="images\processing.gif" />
+    <Content Include="images\SelectedButton.png" />
     <Content Include="img_mapjs\main.css" />
     <Content Include="img_mapjs\summerHTMLImageMapCreator.js" />
     <Content Include="js\custome.js" />
@@ -131,6 +133,7 @@
     <Content Include="MerchantDashboard.aspx" />
     <Content Include="MerchantDragdrop.aspx" />
     <Content Include="MerchantError.aspx" />
+    <Content Include="MerchantEstoreConfig.aspx" />
     <Content Include="MerchantExamConfig.aspx" />
     <Content Include="MerchantExamReports.aspx" />
     <Content Include="MerchantFinanceConfig.aspx" />
@@ -141,6 +144,7 @@
     <Content Include="MerchantRegistration.aspx" />
     <Content Include="MerchantRegsitrationEmail.html" />
     <Content Include="MerchantSalesReports.aspx" />
+    <Content Include="MerchantUserGroup.aspx" />
     <Content Include="MerchantWithDraw.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -222,6 +226,8 @@
     <Compile Include="BALayer\BASecondCategory.cs" />
     <Compile Include="BALayer\BATemplate.cs" />
     <Compile Include="BALayer\BATopCategory.cs" />
+    <Compile Include="BALayer\BAUserAccess.cs" />
+    <Compile Include="BALayer\BAUserGroup.cs" />
     <Compile Include="BOLayer\BOBundleExam.cs" />
     <Compile Include="BOLayer\BOExamManage.cs" />
     <Compile Include="BOLayer\BOExamReports.cs" />
@@ -243,6 +249,8 @@
     <Compile Include="BOLayer\BOSecondCategory.cs" />
     <Compile Include="BOLayer\BOTemplate.cs" />
     <Compile Include="BOLayer\BOTopCategory.cs" />
+    <Compile Include="BOLayer\BOUserAccess.cs" />
+    <Compile Include="BOLayer\BOUserGroup.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="ConnectionInfo.cs" />
     <Compile Include="DALayer\DABundleExam.cs" />
@@ -266,6 +274,8 @@
     <Compile Include="DALayer\DASecondCategory.cs" />
     <Compile Include="DALayer\DATemplate.cs" />
     <Compile Include="DALayer\DATopCategory.cs" />
+    <Compile Include="DALayer\DAUserAccess.cs" />
+    <Compile Include="DALayer\DAUserGroup.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -307,6 +317,13 @@
     </Compile>
     <Compile Include="MerchantError.aspx.designer.cs">
       <DependentUpon>MerchantError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantEstoreConfig.aspx.cs">
+      <DependentUpon>MerchantEstoreConfig.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantEstoreConfig.aspx.designer.cs">
+      <DependentUpon>MerchantEstoreConfig.aspx</DependentUpon>
     </Compile>
     <Compile Include="MerchantExamConfig.aspx.cs">
       <DependentUpon>MerchantExamConfig.aspx</DependentUpon>
@@ -384,6 +401,13 @@
     </Compile>
     <Compile Include="MerchantSalesReports.aspx.designer.cs">
       <DependentUpon>MerchantSalesReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantUserGroup.aspx.cs">
+      <DependentUpon>MerchantUserGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantUserGroup.aspx.designer.cs">
+      <DependentUpon>MerchantUserGroup.aspx</DependentUpon>
     </Compile>
     <Compile Include="MerchantWithDraw.aspx.cs">
       <DependentUpon>MerchantWithDraw.aspx</DependentUpon>
