@@ -76,13 +76,13 @@ namespace WebMerchant {
         protected global::System.Web.UI.WebControls.CheckBox chkfeatureestore;
         
         /// <summary>
-        /// btnAddBundle control.
+        /// lnkbtnAddBundle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddBundle;
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnAddBundle;
         
         /// <summary>
         /// gridBundle control.
@@ -148,6 +148,15 @@ namespace WebMerchant {
         protected global::System.Web.UI.WebControls.HiddenField hfexamid;
         
         /// <summary>
+        /// hfimagebase64 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfimagebase64;
+        
+        /// <summary>
         /// btnestoreconfig control.
         /// </summary>
         /// <remarks>
@@ -155,5 +164,14 @@ namespace WebMerchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnestoreconfig;
+        
+        /// <summary>
+        /// lblmsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblmsg;
     }
 }

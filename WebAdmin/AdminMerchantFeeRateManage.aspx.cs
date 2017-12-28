@@ -112,9 +112,6 @@ namespace WebAdmin
                         lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
@@ -138,7 +135,8 @@ namespace WebAdmin
                     ViewState["frateId"] = _datatable3.Rows[0][0].ToString();
                     txtMerchantFeeRate.Text = _datatable3.Rows[0][1].ToString();
                     ddlMerchantLevel.SelectedValue = _datatable3.Rows[0][2].ToString();
-                    btnAdd.Text = "Update";
+                    lnkbtnAdd.Text = "Update";
+                    lnkbtnAdd.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                 }
             }
             catch (Exception ex)
@@ -175,9 +173,6 @@ namespace WebAdmin
                         ShowMessage("Can not delete fee rate because used in another entity", MessageType.Info);
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
@@ -193,7 +188,8 @@ namespace WebAdmin
             ViewState["frateId"] = "";
             ViewState["frateId"] = null;
             txtMerchantFeeRate.Text = "";
-            btnAdd.Text = "Add";
+            lnkbtnAdd.Text = "Add";
+            lnkbtnAdd.OnClientClick = "";
             Common.ClearControl(Panel1);
         }
 

@@ -21,3 +21,11 @@
         });
     }, 5000);//5000=5 seconds
 }
+
+function getConfirmation(sender, title, message) {
+            $("#spnTitle").text(title);
+            $("#spnMsg").text(message);
+            $('#modalPopUp').modal('show');
+            var val = $('#btnConfirm').attr('onclick', "$('#modalPopUp').modal('hide');setTimeout(function(){" + $(sender).prop('href') + "}, 50);");
+            return false;
+        }

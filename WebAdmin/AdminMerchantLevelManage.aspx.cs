@@ -99,9 +99,6 @@ namespace WebAdmin
                         lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
@@ -125,7 +122,8 @@ namespace WebAdmin
                     ViewState["mlvlId"] = _datatable2.Rows[0][0].ToString();
                     txtMerchantLevel.Text = _datatable2.Rows[0][1].ToString();
                     txtAnnualFee.Text = _datatable2.Rows[0][2].ToString();
-                    btnAdd.Text = "Update";
+                    lnkbtnAdd.Text = "Update";
+                    lnkbtnAdd.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                 }
             }
             catch (Exception ex)
@@ -162,9 +160,6 @@ namespace WebAdmin
                         ShowMessage("Can not delete Merchant level because used in another entity", MessageType.Info);
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
@@ -176,7 +171,8 @@ namespace WebAdmin
 
         private void ClearControl()
         {
-            btnAdd.Text = "Add";
+            lnkbtnAdd.Text = "Add";
+            lnkbtnAdd.OnClientClick = "";
             ViewState["mlvlId"] = "";
             ViewState["mlvlId"] = null;
             FillgridViewMerchantLevel();

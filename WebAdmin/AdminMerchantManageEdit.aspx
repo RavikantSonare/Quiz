@@ -145,7 +145,7 @@
                     $('[id$=txtEndDate]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please ensure that the End Date is greater than or equal to the Start Date.</div>");
                     e.preventDefault(); // prevent form from POST to server
                     focusSet = true;
-                } 
+                }
             });
         });
 
@@ -223,22 +223,34 @@
             </div>
             <div class="form-group row">
                 <div class="col-xs-offset-2 col-xs-10">
-                    <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-success" OnClick="btnUpdate_Click" />
+                    <asp:LinkButton ID="lnkbtnUpdate" runat="server" CssClass="btn btn-success" OnClick="btnUpdate_Click">Update</asp:LinkButton>
+                    <%--<asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-success" OnClick="btnUpdate_Click" />--%>
                     <label id="lblerror" runat="server" style="display: none; color: #D8000C;"></label>
                 </div>
             </div>
         </form>
-
-        <style type="text/css">
-            .messagealert {
-                width: 50%;
-                position: fixed;
-                top: 0px;
-                z-index: 100000;
-                padding: 0;
-                font-size: 15px;
-            }
-        </style>
+        <div id="modalPopUp" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">
+                            <span id="spnTitle"></span>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <span id="spnMsg"></span>.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button type="button" id="btnConfirm" class="btn btn-danger">
+                            Yes, please</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="messagealert" id="alert_container">
         </div>
     </asp:Panel>

@@ -158,8 +158,6 @@ namespace WebMerchant
                 ViewState["dtAcsOpt"] = _datatable1;
             }
             return _datatable1;
-            //FillchkboxListAccessOptionUser(_datatable1);
-            //FillchkboxListAccessOptionGroup(_datatable1);
         }
 
         private void FillchkboxListAccessOptionUser(DataTable _table)
@@ -187,8 +185,6 @@ namespace WebMerchant
                 ViewState["dtTopCat"] = _datatable3;
             }
             return _datatable3;
-            //FillddlTopCategoryUser(_datatable3);
-            //FillddlTopCategoryGroup(_datatable3);
         }
 
         private void FillddlTopCategoryUser(DataTable _table)
@@ -206,14 +202,6 @@ namespace WebMerchant
             DataTable _datatable3 = new DataTable();
             _datatable3 = bascat.SelectSecondCategoryList("GetWithTopCatId", value);
             return _datatable3;
-
-            //ddlSecondCategory.DataTextField = "SecondCategoryName";
-            //ddlSecondCategory.DataValueField = "SecondCategoryId";
-            //ddlSecondCategory.DataSource = _datatable3;
-            //ddlSecondCategory.DataBind();
-            // FillchkboxListExam(Convert.ToInt32(ddlSecondCategory.SelectedItem.Value), MerchantId);
-            //ddlCategory.Items.Insert(0, new ListItem("Select All", "0"));
-            //ddlCategory.SelectedIndex = 0;
         }
 
         private void FillddlSecondCategoryUser(DataTable _table)
@@ -355,7 +343,8 @@ namespace WebMerchant
         private void ClearControl()
         {
             Common.ClearControl(pnlMyuser);
-            btnAdd.Text = "Add";
+            lnkbtnAdd.Text = "Add";
+            lnkbtnAdd.OnClientClick = "";
             ViewState["userId"] = "";
             ViewState["userId"] = null;
             FillchkboxListExam(Convert.ToInt32(ddlSecondCategory.SelectedItem.Value), MerchantId);
@@ -446,7 +435,8 @@ namespace WebMerchant
                         pnlgroupsection.Visible = false;
                     }
                     else { pnlgroupsection.Visible = true; }
-                    btnAdd.Text = "Update";
+                    lnkbtnAdd.Text = "Update";
+                    lnkbtnAdd.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                 }
             }
             catch (Exception ex)
@@ -718,7 +708,8 @@ namespace WebMerchant
         private void ClearControlGroup()
         {
             Common.ClearControl(pnlusergroup);
-            btnAdd.Text = "Add";
+            lnkbtnAddGroup.Text = "Add";
+            lnkbtnAddGroup.OnClientClick = "";
             ViewState["groupId"] = "";
             ViewState["groupId"] = null;
             FillchkboxListExamgGroup(Convert.ToInt32(ddlSecondCategoryGroup.SelectedItem.Value), MerchantId);
@@ -802,7 +793,8 @@ namespace WebMerchant
                             }
                         }
                     }
-                    btnAdd.Text = "Update";
+                    lnkbtnAddGroup.Text = "Update";
+                    lnkbtnAddGroup.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                 }
             }
             catch (Exception ex)

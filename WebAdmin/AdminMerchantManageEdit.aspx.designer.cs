@@ -94,13 +94,13 @@ namespace WebAdmin {
         protected global::System.Web.UI.WebControls.TextBox txtEndDate;
         
         /// <summary>
-        /// btnUpdate control.
+        /// lnkbtnUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdate;
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnUpdate;
         
         /// <summary>
         /// lblerror control.

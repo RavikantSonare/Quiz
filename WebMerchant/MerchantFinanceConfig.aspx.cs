@@ -146,9 +146,6 @@ namespace WebMerchant
                         }
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
@@ -163,7 +160,8 @@ namespace WebMerchant
             Common.ClearControl(pnlPaypal);
             FillgridViewShowFinancConfigDetail(MerchantID);
             ViewState["fcId"] = null;
-            btnAdd.Text = "Add";
+            lnkbtnAdd.Text = "Add";
+            lnkbtnAdd.OnClientClick = "";
         }
 
         protected void lnkbtnEdit_Click(object sender, EventArgs e)
@@ -179,7 +177,7 @@ namespace WebMerchant
                     if (_datatable3.Rows.Count > 0)
                     {
                         ViewState["fcId"] = _datatable3.Rows[0]["FinanceConfigId"].ToString();
-                        drpPaymentOption.SelectedItem.Value = _datatable3.Rows[0]["PaymentOptionId"].ToString();
+                        drpPaymentOption.SelectedValue = _datatable3.Rows[0]["PaymentOptionId"].ToString();
                         if (drpPaymentOption.SelectedItem.Text.Equals("Paypal"))
                         {
                             pnlPaypal.Visible = true;
@@ -197,7 +195,8 @@ namespace WebMerchant
                         txtCity.Text = _datatable3.Rows[0]["City"].ToString();
                         txtBankName.Text = _datatable3.Rows[0]["BankOfName"].ToString();
                         txtSwiftCode.Text = _datatable3.Rows[0]["SwiftCode"].ToString();
-                        btnAdd.Text = "Update";
+                        lnkbtnAdd.Text = "Update";
+                        lnkbtnAdd.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                     }
                 }
             }

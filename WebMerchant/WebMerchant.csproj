@@ -133,7 +133,6 @@
     <Content Include="MerchantDashboard.aspx" />
     <Content Include="MerchantDragdrop.aspx" />
     <Content Include="MerchantError.aspx" />
-    <Content Include="MerchantEstoreConfig.aspx" />
     <Content Include="MerchantExamConfig.aspx" />
     <Content Include="MerchantExamReports.aspx" />
     <Content Include="MerchantFinanceConfig.aspx" />
@@ -213,6 +212,7 @@
     <Compile Include="BALayer\BAMasterState.cs" />
     <Compile Include="BALayer\BAMerchantAllowSales.cs" />
     <Compile Include="BALayer\BAMerchantBalance.cs" />
+    <Compile Include="BALayer\BAMerchantEstoreConfig.cs" />
     <Compile Include="BALayer\BAMerchantLevel.cs" />
     <Compile Include="BALayer\BAMerchantManage.cs" />
     <Compile Include="BALayer\BAMerchantPayment.cs" />
@@ -236,6 +236,7 @@
     <Compile Include="BOLayer\BOMasterState.cs" />
     <Compile Include="BOLayer\BOMerchantAllowSales.cs" />
     <Compile Include="BOLayer\BOMerchantBalance.cs" />
+    <Compile Include="BOLayer\BOMerchantEstoreConfig.cs" />
     <Compile Include="BOLayer\BOMerchantLevel.cs" />
     <Compile Include="BOLayer\BOMerchantManage.cs" />
     <Compile Include="BOLayer\BOMerchantPayment.cs" />
@@ -261,6 +262,7 @@
     <Compile Include="DALayer\DAMasterState.cs" />
     <Compile Include="DALayer\DAMerchantAllowSales.cs" />
     <Compile Include="DALayer\DAMerchantBalance.cs" />
+    <Compile Include="DALayer\DAMerchantEstoreConfig.cs" />
     <Compile Include="DALayer\DAMerchantLevel.cs" />
     <Compile Include="DALayer\DAMerchantManage.cs" />
     <Compile Include="DALayer\DAMerchantPayment.cs" />
@@ -317,13 +319,6 @@
     </Compile>
     <Compile Include="MerchantError.aspx.designer.cs">
       <DependentUpon>MerchantError.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MerchantEstoreConfig.aspx.cs">
-      <DependentUpon>MerchantEstoreConfig.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MerchantEstoreConfig.aspx.designer.cs">
-      <DependentUpon>MerchantEstoreConfig.aspx</DependentUpon>
     </Compile>
     <Compile Include="MerchantExamConfig.aspx.cs">
       <DependentUpon>MerchantExamConfig.aspx</DependentUpon>
@@ -455,6 +450,7 @@
     <Folder Include="css\font\" />
     <Folder Include="ExcelUpload\" />
     <Folder Include="fonts\" />
+    <Folder Include="img_exmestoreconfig\" />
     <Folder Include="img_merchant\" />
   </ItemGroup>
   <ItemGroup>

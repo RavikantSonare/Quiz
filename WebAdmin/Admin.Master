@@ -53,12 +53,12 @@
                                                     Merchant Manage 
                                                 </a>
                                             </li>
-                                            <li class="" id="submenu6li2" style="display:none;">
+                                            <li class="" id="submenu6li2" style="display: none;">
                                                 <a href="AdminMerchantLevelManage.aspx" aria-controls="settings" role="tab"><span class="subtabarrow"></span>
                                                     Merchant Level 
                                                 </a>
                                             </li>
-                                            <li id="submenu6li3" style="display:none;">
+                                            <li id="submenu6li3" style="display: none;">
                                                 <a href="AdminMerchantFeeRateManage.aspx" aria-controls="settings" role="tab"><span class="subtabarrow"></span>
                                                     Merchant Fee Rate
                                                 </a>
@@ -134,16 +134,6 @@
                 });
             });
         </script>
-        <style type="text/css">
-            .messagealert {
-                width: 50%;
-                position: fixed;
-                top: 0px;
-                z-index: 100000;
-                padding: 0;
-                font-size: 15px;
-            }
-        </style>
         <div class="messagealert" id="alert_container">
         </div>
     </form>

@@ -273,7 +273,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-3">
-                                    <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" ValidationGroup="single" />
+                                    <asp:LinkButton ID="lnkbtnAdd" runat="server" CssClass="btn btn-default" OnClick="btnAdd_Click">Add</asp:LinkButton>
+                                    <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" ValidationGroup="single" Visible="false" />
                                     <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
                                 </div>
                             </div>
@@ -308,7 +309,7 @@
                             <asp:BoundField DataField="QuestionType" HeaderText="Question Type" />
                             <asp:TemplateField HeaderText="Edit">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lbtnEdit" runat="server" CommandArgument='<%#Eval("QAId")%>' OnClick="lbtnEdit_Click">Edit</asp:LinkButton>
+                                    <asp:LinkButton ID="lbtnEdit" runat="server" CommandArgument='<%#Eval("QAId")%>' OnClick="lbtnEdit_Click" OnClientClick="return getConfirmation(this, 'Please confirm','Are you sure you want to edit this record?');">Edit</asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Delete">
@@ -325,16 +326,6 @@
             </div>
         </div>
     </div>
-
-    <script type="text/javascript">
-        function getConfirmation(sender, title, message) {
-            $("#spnTitle").text(title);
-            $("#spnMsg").text(message);
-            $('#modalPopUp').modal('show');
-            $('#btnConfirm').attr('onclick', "$('#modalPopUp').modal('hide');setTimeout(function(){" + $(sender).prop('href') + "}, 50);");
-            return false;
-        }
-    </script>
     <div id="modalPopUp" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -357,16 +348,6 @@
             </div>
         </div>
     </div>
-    <style type="text/css">
-        .messagealert {
-            width: 50%;
-            position: fixed;
-            top: 0px;
-            z-index: 100000;
-            padding: 0;
-            font-size: 15px;
-        }
-    </style>
     <div class="messagealert" id="alert_container">
     </div>
     <script>

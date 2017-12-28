@@ -25,19 +25,19 @@
                     });
                     return false;
                 }
-                if ($('[id$=txtAccountEmail]').val() != "") {
-                    var regex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-                    if (!regex.test($('[id$=txtAccountEmail]').val())) {
-                        $('[id$=lblerror]').css("display", "block");
-                        $('[id$=lblerror]').html("Email address not valid");
-                        $('[id$=txtAccountEmail]').css("border", "1px solid #FF0000");
-                        $('[id$=txtAccountEmail]').focus(function () {
-                            $('[id$=txtAccountEmail]').css("border", "1px solid #000000");
-                            $('[id$=lblerror]').css("display", "none");
-                        });
-                        return false;
-                    }
-                }
+                //if ($('[id$=txtAccountEmail]').val() != "") {
+                //    var regex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+                //    if (!regex.test($('[id$=txtAccountEmail]').val())) {
+                //        $('[id$=lblerror]').css("display", "block");
+                //        $('[id$=lblerror]').html("Email address not valid");
+                //        $('[id$=txtAccountEmail]').css("border", "1px solid #FF0000");
+                //        $('[id$=txtAccountEmail]').focus(function () {
+                //            $('[id$=txtAccountEmail]').css("border", "1px solid #000000");
+                //            $('[id$=lblerror]').css("display", "none");
+                //        });
+                //        return false;
+                //    }
+                //}
                 if ($('[id$=txtFirstName]').val() == "") {
                     $('[id$=lblerror]').css("display", "block");
                     $('[id$=lblerror]').html("Please Enter First Name");
@@ -254,7 +254,7 @@
                                     <label id="lblerror" runat="server" style="display: none; color: #D8000C;"></label>
                                 </div>
                                 <div class="col-sm-offset-3 col-sm-3">
-                                    <asp:Button ID="btnAdd" runat="server" Text="Add" class="btn btn-default" OnClick="btnAdd_Click" />
+                                    <asp:LinkButton ID="lnkbtnAdd" runat="server" CssClass="btn btn-default" OnClick="btnAdd_Click">Add</asp:LinkButton>
                                     <asp:Button ID="btnReset" runat="server" Text="Reset" class="btn btn-default" OnClick="btnReset_Click" />
                                 </div>
                             </div>
@@ -268,7 +268,7 @@
                                             <asp:BoundField HeaderText="Payment Option" DataField="PaymentOption" />
                                             <asp:TemplateField HeaderText="Edit">
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkbtnEdit" runat="server" CommandArgument='<%#Eval("FinanceConfigId")%>' OnClick="lnkbtnEdit_Click">Edit</asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkbtnEdit" runat="server" CommandArgument='<%#Eval("FinanceConfigId")%>' OnClick="lnkbtnEdit_Click" OnClientClick="return getConfirmation(this, 'Please confirm','Are you sure you want to edit this record?');">Edit</asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -282,20 +282,31 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-        <style type="text/css">
-            .messagealert {
-                width: 50%;
-                position: fixed;
-                top: 0px;
-                z-index: 100000;
-                padding: 0;
-                font-size: 15px;
-            }
-        </style>
         <div class="messagealert" id="alert_container">
+        </div>
+        <div id="modalPopUp" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">
+                            <span id="spnTitle"></span>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <span id="spnMsg"></span>.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button type="button" id="btnConfirm" class="btn btn-danger">
+                            Yes, please</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </asp:Panel>
 </asp:Content>

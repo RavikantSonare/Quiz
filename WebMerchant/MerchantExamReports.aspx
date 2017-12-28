@@ -148,7 +148,7 @@
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label"></label>
                             <div class="col-sm-6">
-                                <asp:Button ID="btnSave" runat="server" Text="Save to Template" CssClass="btn btn-default" OnClick="btnSave_Click" />
+                                <asp:LinkButton ID="lnkbtnSave" runat="server" CssClass="btn btn-default" OnClick="btnSave_Click">Save to Template</asp:LinkButton>
                                 <asp:Button ID="btnReset" runat="server" Text="Reset" class="btn btn-default" OnClick="btnReset_Click" />
                             </div>
                         </div>
@@ -164,7 +164,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Edit">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lnkbtnEdit" runat="server" OnClick="lnkbtnEdit_Click" CommandArgument='<%#Eval("TemplateId")%>'>Edit</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkbtnEdit" runat="server" OnClick="lnkbtnEdit_Click" CommandArgument='<%#Eval("TemplateId")%>' OnClientClick="return getConfirmation(this, 'Please confirm','Are you sure you want to edit this record?');">Edit</asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Delete">
@@ -182,15 +182,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        function getConfirmation(sender, title, message) {
-            $("#spnTitle").text(title);
-            $("#spnMsg").text(message);
-            $('#modalPopUp').modal('show');
-            $('#btnConfirm').attr('onclick', "$('#modalPopUp').modal('hide');setTimeout(function(){" + $(sender).prop('href') + "}, 50);");
-            return false;
-        }
-    </script>
     <div id="modalPopUp" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -213,16 +204,6 @@
             </div>
         </div>
     </div>
-    <style type="text/css">
-        .messagealert {
-            width: 50%;
-            position: fixed;
-            top: 0px;
-            z-index: 100000;
-            padding: 0;
-            font-size: 15px;
-        }
-    </style>
     <div class="messagealert" id="alert_container">
     </div>
 </asp:Content>

@@ -1275,3 +1275,21 @@ Source: .Net SqlClient Data Provider
 TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
 -----------------------------------------------------------
 
+Time: 28/12/2017 10:10:10 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebMerchant.Common.Decrypt(String cipherText) in D:\Work\Project\WebMerchant\Common.cs:line 174
+   at WebMerchant.MerchantAllowSales.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantAllowSales.aspx.cs:line 32
+Source: WebMerchant
+TargetSite: System.String Decrypt(System.String)
+-----------------------------------------------------------
+
+Time: 28/12/2017 10:11:10 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebMerchant.Common.Decrypt(String cipherText) in D:\Work\Project\WebMerchant\Common.cs:line 174
+   at WebMerchant.MerchantAllowSales.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantAllowSales.aspx.cs:line 32
+Source: WebMerchant
+TargetSite: System.String Decrypt(System.String)
+-----------------------------------------------------------
+

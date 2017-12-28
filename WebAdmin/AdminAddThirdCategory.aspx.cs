@@ -130,7 +130,8 @@ namespace WebAdmin
                     ViewState["ThirdcatId"] = _datatable3.Rows[0][0].ToString();
                     txtThirdCategory.Text = _datatable3.Rows[0][1].ToString();
                     ddlSecondCategory.SelectedValue = _datatable3.Rows[0][2].ToString();
-                    btnAdd.Text = "Update";
+                    lnkbtnAdd.Text = "Update";
+                    lnkbtnAdd.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                 }
             }
             catch (Exception ex)
@@ -181,7 +182,8 @@ namespace WebAdmin
             FillgridViewThirdCategory();
             ViewState["ThirdcatId"] = "";
             ViewState["ThirdcatId"] = null;
-            btnAdd.Text = "Add";
+            lnkbtnAdd.Text = "Add";
+            lnkbtnAdd.OnClientClick = "";
             txtThirdCategory.Text = "";
         }
 

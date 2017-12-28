@@ -30,7 +30,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <asp:Button ID="btnmodify" runat="server" Text="Modify" CssClass="btn btn-primary" CommandArgument='<%#Eval("MerchantId") %>' OnClick="btnmodify_Click" />
+                                    <asp:LinkButton ID="lnkbtnmodify" runat="server" CommandArgument='<%#Eval("MerchantId") %>' OnClick="btnmodify_Click" OnClientClick="return getConfirmation(this, 'Please confirm','Are you sure you want to edit this record?');" CssClass="btn btn-primary">Modify</asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -44,16 +44,28 @@
 
         </div>
     </div>
-    <style type="text/css">
-        .messagealert {
-            width: 50%;
-            position: fixed;
-            top: 0px;
-            z-index: 100000;
-            padding: 0;
-            font-size: 15px;
-        }
-    </style>
+    <div id="modalPopUp" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">
+                        <span id="spnTitle"></span>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <span id="spnMsg"></span>.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button type="button" id="btnConfirm" class="btn btn-danger">
+                        Yes, please</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="messagealert" id="alert_container">
     </div>
 </asp:Content>

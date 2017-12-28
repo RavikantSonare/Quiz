@@ -27,7 +27,7 @@ namespace WebMerchant
                     if (!IsPostBack)
                     {
                         Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                        if (Request.QueryString["examid"] != "")
+                        if (Request.QueryString["examid"] != null)
                         {
                             ViewState["querystring"] = Common.Decrypt(HttpUtility.UrlDecode(Request.QueryString["examid"]));
                             FillGridviewAllowSales(Convert.ToInt32(ViewState["querystring"]));

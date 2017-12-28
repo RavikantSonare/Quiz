@@ -124,7 +124,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Config">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkbtnexconfig" CssClass="clickvalue" myexmid='<%#Eval("ExamCodeId")%>' runat="server" CommandArgument='<%#Eval("ExamCodeId")%>' data-toggle="modal" data-target="#contact" data-original-title>Config</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnexconfig" CssClass="clickvalue" myexmid='<%#Eval("ExamCodeId")%>' runat="server" CommandArgument='<%#Eval("ExamCodeId")%>' data-toggle="modal" data-target="#contact" data-original-title OnClientClick="clearcontrol();">Config</asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Featured in selfs estore" ItemStyle-HorizontalAlign="Center">
@@ -163,7 +163,7 @@
                                 <label for="">Featured in self estore:</label>
                                 <asp:CheckBox ID="chkfeatureestore" runat="server" />
                             </div>
-                            <asp:Button ID="btnAddBundle" runat="server" Text="Add" class="btn btn-default" OnClick="btnAddBundle_Click" />
+                            <asp:LinkButton ID="lnkbtnAddBundle" runat="server" CssClass="btn btn-default" OnClick="btnAddBundle_Click">Add</asp:LinkButton>
                         </div>
                     </asp:Panel>
                 </div>
@@ -191,22 +191,6 @@
         </div>
 
     </div>
-    <script type="text/javascript">
-        function getConfirmation(sender, title, message) {
-            $("#spnTitle").text(title);
-            $("#spnMsg").text(message);
-            $('#modalPopUp').modal('show');
-            var val = $('#btnConfirm').attr('onclick', "$('#modalPopUp').modal('hide');setTimeout(function(){" + $(sender).prop('href') + "}, 50);");
-            return false;
-        }
-
-        $(document).ready(function () {
-            $(".clickvalue").click(function () {
-                var customID = $(this).attr('myexmid');
-                $("#ContentPlaceHolder1_hfexamid").val(customID);
-            });
-        });
-    </script>
     <div id="modalPopUp" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -229,16 +213,6 @@
             </div>
         </div>
     </div>
-    <style type="text/css">
-        .messagealert {
-            width: 50%;
-            position: fixed;
-            top: 0px;
-            z-index: 100000;
-            padding: 0;
-            font-size: 15px;
-        }
-    </style>
     <div class="messagealert" id="alert_container">
     </div>
     <div class="row">
@@ -261,7 +235,7 @@
                                     <label for="lblquestionno">Question Number</label>
                                 </div>
                                 <div class="col-lg-8 col-md-8 col-sm-8" style="padding-bottom: 10px;">
-                                    <asp:TextBox ID="txtQuestionno" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtQuestionno" runat="server" class="form-control" TextMode="Number" min="0" ViewStateMode="Disabled"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row">
@@ -269,7 +243,7 @@
                                     <label for="lblprice">Price</label>
                                 </div>
                                 <div class="col-lg-8 col-md-8 col-sm-8" style="padding-bottom: 10px;">
-                                    <asp:TextBox ID="txtEstoreExamPrice" TextMode="Number" min="0" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtEstoreExamPrice" TextMode="Number" min="0" runat="server" class="form-control" ViewStateMode="Disabled"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row">
@@ -277,7 +251,7 @@
                                     <label for="lblexampicture">Exam Picture</label>
                                 </div>
                                 <div class="col-lg-8 col-md-8 col-sm-8" style="padding-bottom: 10px;">
-                                    <asp:FileUpload ID="fuexampicture" CssClass="form-control" runat="server" />
+                                    <asp:FileUpload ID="fuexampicture" CssClass="form-control" runat="server" onchange="loadImageFileAsURL();" ViewStateMode="Disabled" />
                                 </div>
                             </div>
                             <div class="row">
@@ -285,43 +259,62 @@
                                     <label for="lblexamdescription">Exam Description</label>
                                 </div>
                                 <div class="col-lg-8 col-md-8 col-sm-8" style="padding-bottom: 10px;">
-                                    <asp:TextBox ID="txtExamDescription" TextMode="MultiLine" Rows="5" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtExamDescription" TextMode="MultiLine" Rows="5" runat="server" class="form-control" ViewStateMode="Disabled"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
                         <div class="panel-footer" style="margin-bottom: -14px;">
-                            <asp:HiddenField ID="hfexamid" runat="server" />
+                            <asp:HiddenField ID="hfexamid" runat="server" ViewStateMode="Disabled" />
+                            <asp:HiddenField ID="hfimagebase64" runat="server" ViewStateMode="Disabled" />
                             <asp:Button ID="btnestoreconfig" runat="server" Text="Add" CssClass="btn btn-success" />
+                            <asp:Label ID="lblmsg" runat="server"></asp:Label>
                             <%-- <input type="submit" class="btn btn-success" value="Send" />
                             <!--<span class="glyphicon glyphicon-ok"></span>-->
                             <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>--%>
                         </div>
 
                         <script type="text/javascript">
-                            //$(document).ready(function () {
                             $('#ContentPlaceHolder1_btnestoreconfig').click(function () {
+                                var Examid = $.trim($('#<%=hfexamid.ClientID %>').val());
                                 var Questiono = $.trim($('#<%=txtQuestionno.ClientID %>').val());
                                 var Price = $.trim($('#<%=txtEstoreExamPrice.ClientID %>').val());
-                                var ExamPic = $.trim($('#<%=fuexampicture.ClientID %>').val());
+                                var ExamPic = $.trim($('#<%=hfimagebase64.ClientID %>').val());
                                 var ExamDes = $.trim($('#<%=txtExamDescription.ClientID %>').val());
-                                //$.ajax({
-                                //    type: 'POST',
-                                //    contentType: "application/json; charset=utf-8",
-                                //    url: 'MerchantMyExams.aspx/InsertConfigData',
-                                //    //  data: "{'Name':'" + Name + "', 'LName':'" + LName + "'}",
-                                //    //async: false,
-                                //    success: function (response) {
-                                //        $('#txtUserName').val('');
-                                //        $('#txtEmail').val('');
-                                //        alert("Record Has been Saved in Database");
-                                //    },
-                                //    error: function () {
-                                //        console.log('there is some error');
-                                //    }
-                                //});
-                                PageMethods.InsertConfigData(Questiono, Price, ExamPic, ExamDes);
+                                PageMethods.InsertConfigData(Examid, Questiono, Price, ExamPic, ExamDes, OnSuccess);
                             });
-                            //  });
+
+                            function OnSuccess(response, userContext, methodName) {
+                                clearcontrol();
+                                alert(response);
+                            }
+
+                            function clearcontrol() {
+                                $('#<%=hfexamid.ClientID %>').val('');
+                                $('#<%=txtQuestionno.ClientID %>').val('');
+                                $('#<%=txtEstoreExamPrice.ClientID %>').val('');
+                                $('#<%=hfimagebase64.ClientID %>').val('');
+                                $('#<%=txtExamDescription.ClientID %>').val('');
+                            }
+
+                            function loadImageFileAsURL() {
+                                var filesSelected = document.getElementById("ContentPlaceHolder1_fuexampicture").files;
+                                if (filesSelected.length > 0) {
+                                    var fileToLoad = filesSelected[0];
+                                    var fileReader = new FileReader();
+                                    fileReader.onload = function (fileLoadedEvent) {
+                                        var srcData = fileLoadedEvent.target.result; // <--- data: base64
+                                        $("#ContentPlaceHolder1_hfimagebase64").val(srcData);
+                                    }
+                                    fileReader.readAsDataURL(fileToLoad);
+                                }
+                            }
+
+                            $(document).ready(function () {
+                                $(".clickvalue").click(function () {
+                                    var customID = $(this).attr('myexmid');
+                                    $("#ContentPlaceHolder1_hfexamid").val(customID);
+                                });
+                            });
                         </script>
                     </div>
                 </div>

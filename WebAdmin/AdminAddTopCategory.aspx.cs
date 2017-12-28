@@ -119,7 +119,8 @@ namespace WebAdmin
                 {
                     ViewState["tcatId"] = _datatable2.Rows[0][0].ToString();
                     txtCategoryName.Text = _datatable2.Rows[0][1].ToString();
-                    btnAdd.Text = "Update";
+                    lnkbtnAdd.Text = "Update";
+                    lnkbtnAdd.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                 }
             }
             catch (Exception ex)
@@ -167,7 +168,8 @@ namespace WebAdmin
 
         private void ClearControl()
         {
-            btnAdd.Text = "Add";
+            lnkbtnAdd.Text = "Add";
+            lnkbtnAdd.OnClientClick = "";
             ViewState["tcatId"] = "";
             ViewState["tcatId"] = null;
             FillgridViewTopCategory();

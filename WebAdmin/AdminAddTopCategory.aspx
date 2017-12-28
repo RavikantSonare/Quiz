@@ -46,7 +46,7 @@
                                 <label for="exampleInputName2">Category Name:</label>
                                 <asp:TextBox ID="txtCategoryName" runat="server" CssClass="form-control" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
                             </div>
-                            <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-success" OnClick="btnAdd_Click" />
+                            <asp:LinkButton ID="lnkbtnAdd" runat="server" CssClass="btn btn-success" OnClick="btnAdd_Click">Add</asp:LinkButton>
                         </div>
                     </asp:Panel>
                 </div>
@@ -72,7 +72,7 @@
                                 <asp:BoundField HeaderText="Category Name" DataField="TopCategoryName" />
                                 <asp:TemplateField HeaderText="Edit">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lnkbtnEdit" runat="server" OnClick="lnkbtnEdit_Click">Edit</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkbtnEdit" runat="server" OnClick="lnkbtnEdit_Click" OnClientClick="return getConfirmation(this, 'Please confirm','Are you sure you want to edit this record?');">Edit</asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Delete">
@@ -90,15 +90,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        function getConfirmation(sender, title, message) {
-            $("#spnTitle").text(title);
-            $("#spnMsg").text(message);
-            $('#modalPopUp').modal('show');
-            $('#btnConfirm').attr('onclick', "$('#modalPopUp').modal('hide');setTimeout(function(){" + $(sender).prop('href') + "}, 50);");
-            return false;
-        }
-    </script>
     <div id="modalPopUp" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -121,17 +112,6 @@
             </div>
         </div>
     </div>
-
-    <style type="text/css">
-        .messagealert {
-            width: 50%;
-            position: fixed;
-            top: 0px;
-            z-index: 100000;
-            padding: 0;
-            font-size: 15px;
-        }
-    </style>
     <div class="messagealert" id="alert_container">
     </div>
 </asp:Content>

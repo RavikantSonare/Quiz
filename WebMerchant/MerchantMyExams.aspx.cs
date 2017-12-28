@@ -8,6 +8,11 @@ using System.Data;
 using WebMerchant.BOLayer;
 using WebMerchant.BALayer;
 using System.Web.Services;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Web.UI.HtmlControls;
+using System.Net;
 
 namespace WebMerchant
 {
@@ -18,7 +23,7 @@ namespace WebMerchant
         private BOBundleExam _bobndlexm = new BOBundleExam();
         private BABundleExam _babndlexm = new BABundleExam();
         public enum MessageType { Success, Error, Info, Warning };
-        private int MerchantId = default(int);
+        private static int MerchantId = default(int);
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -284,7 +289,8 @@ namespace WebMerchant
                     txtPrice.Text = table.Rows[0]["Price"].ToString();
                     chkfeatureestore.Checked = Convert.ToBoolean(table.Rows[0]["FeaturedSelfsEstore"]);
                     MerchantId = Convert.ToInt32(table.Rows[0]["MerchantId"].ToString());
-                    btnAddBundle.Text = "Update";
+                    lnkbtnAddBundle.Text = "Update";
+                    lnkbtnAddBundle.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                 }
             }
             catch (Exception ex)
@@ -325,16 +331,59 @@ namespace WebMerchant
             }
             ClearControl();
         }
+
         [WebMethod]
-        public static void InsertConfigData(string Questiono, string Price, string ExamPic, string ExamDes)
+        public static string InsertConfigData(int Examid, int Questiono, decimal Price, string ExamPic, string ExamDes)
         {
-            //ShowMessage(name + surname, MessageType.Success);
+            string status = string.Empty;
+            try
+            {
+                String path = HttpContext.Current.Server.MapPath("~/img_exmestoreconfig"); //Path
+                                                                                           //Check if directory exist
+                if (!System.IO.Directory.Exists(path))
+                {
+                    System.IO.Directory.CreateDirectory(path); //Create directory if it doesn't exist
+                }
+                string imagename = Common.AppendTimeStamp("exmpic.png");
+                string imgPath = Path.Combine(path, imagename);
+                // string convert = ExamPic.Replace("data:image/png;base64,", String.Empty);
+                string convert = ExamPic.Split(',')[1];
+                byte[] imageBytes = Convert.FromBase64String(convert);
+                File.WriteAllBytes(imgPath, imageBytes);
+
+                BOMerchantEstoreConfig _bomecnfg = new BOMerchantEstoreConfig();
+                BAMerchantEstoreConfig _bamecnfg = new BAMerchantEstoreConfig();
+                _bomecnfg.QuestionNumber = Questiono;
+                _bomecnfg.Price = Price;
+                _bomecnfg.ExamPicture = imagename;
+                _bomecnfg.ExamDescription = ExamDes;
+                _bomecnfg.ExamId = Examid;
+                _bomecnfg.MerchantId = MerchantId;
+                _bomecnfg.IsActive = true;
+                _bomecnfg.IsDelete = false;
+                _bomecnfg.Createdby = MerchantId;
+                _bomecnfg.CreatedDate = DateTime.UtcNow;
+                _bomecnfg.UpdatedBy = MerchantId;
+                _bomecnfg.UpdatedDate = DateTime.UtcNow;
+                _bomecnfg.Event = "Insert";
+                if (_bamecnfg.Insert(_bomecnfg) == 1)
+                {
+                    status = "Insert successfully";
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                status = ex.ToString(); ;
+            }
+            return status;
         }
 
         private void ClearControl()
         {
             Common.ClearControl(pnlbundle);
-            btnAddBundle.Text = "Add";
+            lnkbtnAddBundle.Text = "Add";
+            lnkbtnAddBundle.OnClientClick = "";
             ViewState["bundleId"] = "";
             ViewState["bundleId"] = null;
             FillBundleGrid("GetAll", MerchantId);

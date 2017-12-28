@@ -103,6 +103,7 @@ namespace WebMerchant
             txtBrand.Text = _bomermng.Brand;
             lblPicture.Text = _bomermng.Picture;
             txtAboutMerchant.Text = _bomermng.About;
+            lnkbtnUpdate.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this details?");
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)

@@ -281,7 +281,7 @@
                     return false;
                 }
 
-                var checkBoxList = document.getElementById("<%=chkExamCodeListGroup.ClientID %>");
+                <%--var checkBoxList = document.getElementById("<%=chkExamCodeListGroup.ClientID %>");
                 var checkboxes = checkBoxList.getElementsByTagName("input");
                 var isValid = false;
                 for (var i = 0; i < checkboxes.length; i++) {
@@ -302,9 +302,9 @@
                         });
                         return false;
                     }
-                }
+                }--%>
 
-                var checkBoxList2 = document.getElementById("<%=chklistAccessoptionGroup.ClientID %>");
+                <%--var checkBoxList2 = document.getElementById("<%=chklistAccessoptionGroup.ClientID %>");
                 var checkboxes2 = checkBoxList2.getElementsByTagName("input");
                 var isValid = false;
                 for (var i = 0; i < checkboxes2.length; i++) {
@@ -325,7 +325,7 @@
                         });
                         return false;
                     }
-                }
+                }--%>
             });
         });
         function CheckFirstChar(key, txt) {
@@ -436,7 +436,7 @@
                                                     <label id="lblerror" runat="server" style="display: none; color: #D8000C;"></label>
                                                 </div>
                                                 <div class="col-sm-offset-2 col-sm-10">
-                                                    <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" />
+                                                    <asp:LinkButton ID="lnkbtnAdd" runat="server" CssClass="btn btn-default" OnClick="btnAdd_Click">Add</asp:LinkButton>
                                                     <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
                                                 </div>
                                             </div>
@@ -499,7 +499,7 @@
                                                     <label id="lblerrorGroup" runat="server" style="display: none; color: #D8000C;"></label>
                                                 </div>
                                                 <div class="col-sm-offset-2 col-sm-10">
-                                                    <asp:Button ID="btnAddGroup" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAddGroup_Click" />
+                                                    <asp:LinkButton ID="lnkbtnAddGroup" runat="server" CssClass="btn btn-default" OnClick="btnAddGroup_Click">Add</asp:LinkButton>
                                                     <asp:Button ID="btnResetGroup" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnResetGroup_Click" />
                                                 </div>
                                             </div>
@@ -514,7 +514,7 @@
                                                 <asp:BoundField HeaderText="GroupName" DataField="GroupName" />
                                                 <asp:TemplateField HeaderText="Edit">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkbtnEdit" runat="server" CommandArgument='<%#Eval("GroupId") %>' OnClick="lnkbtnEditGroup_Click">Edit</asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkbtnEdit" runat="server" CommandArgument='<%#Eval("GroupId") %>' OnClick="lnkbtnEditGroup_Click" OnClientClick="return getConfirmation(this, 'Please confirm','Are you sure you want to edit this record?');">Edit</asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Delete">
@@ -556,7 +556,7 @@
                     <asp:BoundField HeaderText="Access Group" DataField="GroupName" />
                     <asp:TemplateField HeaderText="Edit">
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkbtnEdit" runat="server" CommandArgument='<%#Eval("UserId") %>' OnClick="lnkbtnEdit_Click">Edit</asp:LinkButton>
+                            <asp:LinkButton ID="lnkbtnEdit" runat="server" CommandArgument='<%#Eval("UserId") %>' OnClick="lnkbtnEdit_Click" OnClientClick="return getConfirmation(this, 'Please confirm','Are you sure you want to edit this record?');">Edit</asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Delete">
@@ -571,15 +571,6 @@
             </asp:GridView>
         </div>
     </div>
-    <script type="text/javascript">
-        function getConfirmation(sender, title, message) {
-            $("#spnTitle").text(title);
-            $("#spnMsg").text(message);
-            $('#modalPopUp').modal('show');
-            $('#btnConfirm').attr('onclick', "$('#modalPopUp').modal('hide');setTimeout(function(){" + $(sender).prop('href') + "}, 50);");
-            return false;
-        }
-    </script>
     <div id="modalPopUp" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -602,34 +593,6 @@
             </div>
         </div>
     </div>
-    <style type="text/css">
-        .messagealert {
-            width: 50%;
-            position: fixed;
-            top: 0px;
-            z-index: 100000;
-            padding: 0;
-            font-size: 15px;
-        }
-    </style>
     <div class="messagealert" id="alert_container">
     </div>
-    <%--<div id="main_text">
-        <main>
-
-            <input id="tab1" type="radio" class="inputcls" name="tabs" checked>
-            <label for="tab1" class="labelcls">Add New User</label>
-
-            <input id="tab2" type="radio" class="inputcls" name="tabs">
-            <label for="tab2" class="labelcls">Add User Group</label>
-
-            <section id="content1">
-                Content1
-            </section>
-
-            <section id="content2">
-                Content2
-            </section>
-        </main>
-    </div>--%>
 </asp:Content>

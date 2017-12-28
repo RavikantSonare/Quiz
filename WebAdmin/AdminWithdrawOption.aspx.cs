@@ -96,9 +96,6 @@ namespace WebAdmin
                         lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
@@ -121,7 +118,8 @@ namespace WebAdmin
                 {
                     ViewState["poptId"] = _datatable2.Rows[0][0].ToString();
                     txtPaymentOption.Text = _datatable2.Rows[0][1].ToString();
-                    btnAdd.Text = "Update";
+                    lnkbtnAdd.Text = "Update";
+                    lnkbtnAdd.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                 }
             }
             catch (Exception ex)
@@ -154,9 +152,6 @@ namespace WebAdmin
                         ShowMessage("Payment Option deleted successfully", MessageType.Success);
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
@@ -168,6 +163,8 @@ namespace WebAdmin
 
         private void ClearControl()
         {
+            lnkbtnAdd.Text = "Add";
+            lnkbtnAdd.OnClientClick = "";
             ViewState["poptId"] = "";
             ViewState["poptId"] = null;
             Common.ClearControl(Panel1);

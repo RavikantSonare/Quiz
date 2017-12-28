@@ -130,7 +130,8 @@ namespace WebAdmin
                 if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
                 {
                     Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    Button lnkbtn = sender as Button;
+                    //Button lnkbtn = sender as Button;
+                    LinkButton lnkbtn = sender as LinkButton;
                     GridViewRow gvrow = lnkbtn.NamingContainer as GridViewRow;
                     int mid = Convert.ToInt32(gvMerchantManage.DataKeys[gvrow.RowIndex].Value.ToString());
                     if (mid > 0)

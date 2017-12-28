@@ -125,7 +125,8 @@ namespace WebMerchant
             txtCertificateTitle.Text = "";
             FillgridViewExamReport(MerchantId);
             FillgridViewTemplatePicture(MerchantId);
-            btnSave.Text = "Save to Template";
+            lnkbtnSave.Text = "Save to Template";
+            lnkbtnSave.OnClientClick = "";
         }
 
         protected void lnkbtnEdit_Click(object sender, EventArgs e)
@@ -142,7 +143,8 @@ namespace WebMerchant
                     ViewState["exmrptId"] = _datatable3.Rows[0]["TemplateId"].ToString();
                     txtCertificateTitle.Text = _datatable3.Rows[0]["CertificateTitle"].ToString();
                     lblimg.Text = _datatable3.Rows[0]["TemplatePicture"].ToString();
-                    btnSave.Text = "Update";
+                    lnkbtnSave.Text = "Update";
+                    lnkbtnSave.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                 }
             }
             catch (Exception ex)
@@ -183,9 +185,6 @@ namespace WebMerchant
                     {
                         ShowMessage("Can not delete certificate because used in another entity", MessageType.Info);
                     }
-                }
-                else
-                {
                 }
             }
             catch (Exception ex)

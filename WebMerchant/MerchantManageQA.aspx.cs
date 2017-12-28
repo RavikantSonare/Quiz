@@ -854,7 +854,9 @@ namespace WebMerchant
                         ViewState["arrScenarioAnswerID"] = arrScenarioAnswerID;
                         hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
                     }
+                    lnkbtnAdd.Text = "Update";
                     btnAdd.Text = "Update";
+                    lnkbtnAdd.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                 }
             }
             catch (Exception ex)
@@ -1323,6 +1325,8 @@ namespace WebMerchant
             ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = null;
             ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = "";
             btnAdd.Text = "Add";
+            lnkbtnAdd.Text = "Add";
+            lnkbtnAdd.OnClientClick = "";
             pnlSingleSelect.Visible = pnlHotspot.Visible = pnladdAnswertxtbox.Visible = false;
             pnlETS.Visible = true;
         }

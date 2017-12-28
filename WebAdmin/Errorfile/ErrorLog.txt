@@ -25,3 +25,11 @@ Source: System.Web
 TargetSite: Boolean TryGetSimplePropertyValue(System.Object, System.Object ByRef)
 -----------------------------------------------------------
 
+Time: 28/12/2017 11:24:24 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebAdmin.AdminMerchantManage.btnmodify_Click(Object sender, EventArgs e) in D:\Work\Project\WebAdmin\AdminMerchantManage.aspx.cs:line 134
+Source: WebAdmin
+TargetSite: Void btnmodify_Click(System.Object, System.EventArgs)
+-----------------------------------------------------------
+

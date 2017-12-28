@@ -97,7 +97,7 @@ namespace WebMerchant
                     _boexmmng.UpdatedDate = DateTime.UtcNow;
                     if (ViewState["examId"] != null)
                     {
-                        //  btnAdd.OnClientClick = "return getConfirmation(this, 'Please confirm','Are you sure you want to update this record?');";
+                        // btnAdd.OnClientClick = "return getConfirmation(this, 'Please confirm','Are you sure you want to update this record?');";
                         _boexmmng.ExamCodeId = Convert.ToInt32(ViewState["examId"]);
                         _boexmmng.Event = "Update";
                         if (_baexmmng.Update(_boexmmng) == 2)
@@ -165,6 +165,8 @@ namespace WebMerchant
             Common.ClearControl(Panel1);
             ViewState["examId"] = null;
             btnAdd.Text = "Add";
+            lnkbtnAdd.Text = "Add";
+            lnkbtnAdd.OnClientClick = "";
             FillgridViewExamDetail(MerchantId);
         }
 
@@ -228,9 +230,8 @@ namespace WebMerchant
                     DateTime date = Convert.ToDateTime(table.Rows[0]["ValidDate"]);
                     txtdate.Text = date.ToString("yyyy-MM-dd");
                     btnAdd.Text = "Update";
-                    btnAdd.OnClientClick = "javascript:return if (getConfirmation(this, 'Please confirm','Are you sure you want to update this record?');";
-                    btnAdd.CausesValidation = false;
-                    //btnAdd.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
+                    lnkbtnAdd.Text = "Update";
+                    lnkbtnAdd.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                 }
             }
             catch (Exception ex)
@@ -262,6 +263,55 @@ namespace WebMerchant
         {
             gvExamDetail.PageIndex = e.NewPageIndex;
             FillgridViewExamDetail(MerchantId);
+        }
+
+        protected void lnkbtnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["CheckRefresh"].ToString() == ViewState["CheckRefresh"].ToString())
+                {
+                    Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                    _boexmmng.ExamCode = txtExamCode.Text;
+                    _boexmmng.ExamTitle = txtExamtitle.Text;
+                    _boexmmng.SecondCategoryId = Convert.ToInt32(drpSecondCategory.SelectedItem.Value);
+                    _boexmmng.PassingPercentage = Convert.ToDecimal(txtPassingPercentage.Text);
+                    _boexmmng.TestTime = Convert.ToInt32(txtTestTime.Text);
+                    _boexmmng.TestOption = txtTestOption.Text;
+                    _boexmmng.ValidDate = Convert.ToDateTime(txtdate.Text);
+                    _boexmmng.MerchantId = MerchantId;
+                    _boexmmng.IsActive = true;
+                    _boexmmng.IsDelete = false;
+                    _boexmmng.CreatedBy = MerchantId;
+                    _boexmmng.CreatedDate = DateTime.UtcNow;
+                    _boexmmng.UpdatedBy = MerchantId;
+                    _boexmmng.UpdatedDate = DateTime.UtcNow;
+                    if (ViewState["examId"] != null)
+                    {
+                        _boexmmng.ExamCodeId = Convert.ToInt32(ViewState["examId"]);
+                        _boexmmng.Event = "Update";
+                        if (_baexmmng.Update(_boexmmng) == 2)
+                        {
+                            ShowMessage("Exam updated successfully", MessageType.Success);
+                        }
+                    }
+                    else
+                    {
+                        _boexmmng.ExamCodeId = 0;
+                        _boexmmng.Event = "Insert";
+                        if (_baexmmng.Insert(_boexmmng) == 1)
+                        {
+                            ShowMessage("Exam added successfully", MessageType.Success);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex);
+                ShowMessage("Some technical error", MessageType.Warning);
+            }
+            ClearControl();
         }
     }
 }

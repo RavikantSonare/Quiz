@@ -69,6 +69,7 @@ namespace WebAdmin
                 txtEndDate.Text = enddate.ToString("yyyy-MM-dd");
                 txtpassword.Text = Decryptdata(_datatable1.Rows[0]["Password"].ToString());
                 txtEmailId.Text = _datatable1.Rows[0]["EmailId"].ToString();
+                lnkbtnUpdate.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
             }
         }
 
