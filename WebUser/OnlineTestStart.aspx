@@ -47,8 +47,10 @@
             <div class="col-lg-4">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
-                        <asp:Label ID="lblTime" runat="server" Text="Time:"></asp:Label>
-                        <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+                        <asp:Panel ID="pnltimer" runat="server">
+                            <asp:Label ID="lblTime" runat="server" Text="Time:"></asp:Label>
+                            <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+                        </asp:Panel>
                     </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="Timer1" />
@@ -56,7 +58,13 @@
                 </asp:UpdatePanel>
                 <asp:Timer ID="Timer1" runat="server" Interval="1000" OnTick="Timer1_Tick"></asp:Timer>
             </div>
-            <div class="col-lg-4" style="text-align: right"></div>
+            <div class="col-lg-4" style="text-align: right">
+                <asp:DataList ID="dlmark" runat="server" RepeatLayout="Flow">
+                    <ItemTemplate>
+                        <asp:CheckBox ID="chkmark" runat="server" Text="Mark" Checked='<%#Eval("Mark")%>' ToolTip='<%#Eval("QAId")%>' OnCheckedChanged="chkmark_CheckedChanged" AutoPostBack="true" />
+                    </ItemTemplate>
+                </asp:DataList>
+            </div>
         </div>
         <asp:DataList ID="dlquesanswer" runat="server" RepeatLayout="Flow" DataKeyField="QAId" OnItemDataBound="DataList1_ItemDataBound">
             <ItemTemplate>
@@ -67,7 +75,7 @@
                             <asp:Label ID="lblQuestion" runat="server" Text='<%#Eval("Question")%>'></asp:Label>
                         </div>
                         <div class="mtop10">
-                            <asp:Image ID="imgETS" runat="server" Visible='<%#Eval("Exhibit") == DBNull.Value ||Eval("Topology") == DBNull.Value ||Eval("Scenario") == DBNull.Value ? false : true %>' ImageUrl='<%#String.Format("http://quizmerchant.mobi96.org/resource/{0}{1}{2}",Eval("Exhibit"),Eval("Topology"),Eval("Scenario"))%>' />
+                            <asp:Image ID="imgETS" runat="server" Visible='<%#(String.IsNullOrEmpty(Eval("Exhibit").ToString()))&&(String.IsNullOrEmpty(Eval("Topology").ToString()))&&(String.IsNullOrEmpty(Eval("Scenario").ToString()))?  false : true %>' ImageUrl='<%#String.Format("http://quizmerchant.mobi96.org/resource/{0}{1}{2}",Eval("Exhibit").ToString(),Eval("Topology").ToString(),Eval("Scenario").ToString())%>' />
                         </div>
                         <div class="col-lg-12">
                             <asp:RadioButtonList ID="rdbtnAnswerList" CssClass="radioboxlist" runat="server" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString()=="1" || Eval("QuestionTypeId").ToString()== "3" || Eval("QuestionTypeId").ToString()== "6" ? true : false %>' CommandArguments='<%#Eval("QAId")%>' OnSelectedIndexChanged="rdbtnAnswerList_SelectedIndexChanged"></asp:RadioButtonList>
@@ -110,9 +118,15 @@
                                 </asp:ImageMap>
                             </asp:Panel>
                         </div>
-                        <asp:Panel ID="Panel2" runat="server" Visible='<%# Eval("Event").ToString() == "SM" ? true : false %>'>
-                            <div class="mtop10 clearfix">
-                                <asp:Label ID="lbldescription" runat="server" Text='<%#Eval("Explanation")%>'></asp:Label>
+                        <asp:Panel ID="pnlexplain" runat="server" Visible="false">
+                            <div class="col-lg-12 clearfix" style="border: 1px solid #000000; margin-bottom: 10px; padding: 10px; }">
+                                <div class=" clearfix">
+                                    <asp:Label ID="lblCorrectAnswer" runat="server" Text="Correct Answer : "></asp:Label>
+                                    <asp:Label ID="lblCorrectAnswervalue" runat="server" Text='<%#Eval("CorrectAns")%>'></asp:Label>
+                                </div>
+                                <div class="mtop10 clearfix">
+                                    <asp:Label ID="lbldescription" runat="server" Text='<%#Eval("Explanation")%>'></asp:Label>
+                                </div>
                             </div>
                         </asp:Panel>
                     </asp:Panel>
@@ -133,7 +147,13 @@
                 </div>
             </div>
             <div class="col-lg-6 " style="margin-top: 8px">
-                <div class="col-lg-4 pull-right">
+                <div class="col-lg-4">
+                    <asp:Button ID="btnCorrectAnswer" runat="server" Text="Correct Answer" CssClass="btn bg-primary btn-block btn-square" Visible="false" OnClick="btnCorrectAnswer_Click" />
+                </div>
+                <div class="col-lg-4">
+                    <asp:Button ID="btnReviewMark" runat="server" Text="Review Mark" CssClass="btn bg-primary btn-block btn-square" OnClick="btnReviewMark_Click" />
+                </div>
+                <div class="col-lg-4">
                     <asp:Button ID="btnEndExam" runat="server" Text="End Exam" CssClass="btn bg-primary btn-block btn-square" OnClick="btnEndExam_Click" />
                 </div>
             </div>
@@ -163,4 +183,7 @@
             $('.map').maphilight({ strokeColor: '808080', strokeWidth: 0, fill: 'ff0000', fillColor: 'ff0000', alwaysOn: true });
         });
     </script>
+
+    <div class="messagealert" id="alert_container">
+    </div>
 </asp:Content>

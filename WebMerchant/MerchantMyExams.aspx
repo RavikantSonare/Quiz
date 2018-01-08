@@ -231,35 +231,35 @@
                     <div>
                         <div class="modal-body" style="padding: 5px;">
                             <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-4" style="padding-bottom: 10px;">
+                                <div class="col-lg-3 col-md-3 col-sm-3" style="padding-bottom: 10px;">
                                     <label for="lblquestionno">Question Number</label>
                                 </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8" style="padding-bottom: 10px;">
+                                <div class="col-lg-9 col-md-9 col-sm-9" style="padding-bottom: 10px;">
                                     <asp:TextBox ID="txtQuestionno" runat="server" class="form-control" TextMode="Number" min="0" ViewStateMode="Disabled"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-4" style="padding-bottom: 10px;">
+                                <div class="col-lg-3 col-md-3 col-sm-3" style="padding-bottom: 10px;">
                                     <label for="lblprice">Price</label>
                                 </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8" style="padding-bottom: 10px;">
+                                <div class="col-lg-9 col-md-9 col-sm-9" style="padding-bottom: 10px;">
                                     <asp:TextBox ID="txtEstoreExamPrice" TextMode="Number" min="0" runat="server" class="form-control" ViewStateMode="Disabled"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-4" style="padding-bottom: 10px;">
+                                <div class="col-lg-3 col-md-3 col-sm-3" style="padding-bottom: 10px;">
                                     <label for="lblexampicture">Exam Picture</label>
                                 </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8" style="padding-bottom: 10px;">
+                                <div class="col-lg-9 col-md-9 col-sm-9" style="padding-bottom: 10px;">
                                     <asp:FileUpload ID="fuexampicture" CssClass="form-control" runat="server" onchange="loadImageFileAsURL();" ViewStateMode="Disabled" />
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="col-lg-3 col-md-3 col-sm-3">
                                     <label for="lblexamdescription">Exam Description</label>
                                 </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8" style="padding-bottom: 10px;">
-                                    <asp:TextBox ID="txtExamDescription" TextMode="MultiLine" Rows="5" runat="server" class="form-control" ViewStateMode="Disabled"></asp:TextBox>
+                                <div class="col-lg-9 col-md-9 col-sm-9" style="padding-bottom: 10px;">
+                                    <asp:TextBox ID="txtExamDescription" TextMode="MultiLine" Rows="5" runat="server" CssClass="summernote form-control" ViewStateMode="Disabled"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -321,5 +321,5 @@
             </div>
         </div>
     </div>
-
+    <script src="img_mapjs/summerHTMLImageMapCreator.js"></script>
 </asp:Content>

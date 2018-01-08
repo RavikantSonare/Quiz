@@ -30,5 +30,7 @@ namespace WebUser.BOLayer
         public string Scenario { get; set; }
         public bool UserResult { get; set; }
         public List<BOQAnswer> AnswerList { get; set; }
+        public string CorrectAns { get; set; }
+        public bool Mark { get; set; }
     }
 }

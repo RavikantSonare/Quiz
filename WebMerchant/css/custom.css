@@ -210,11 +210,11 @@ li.dash a {
 }
 
 /*price table*/
-.panel {
+.panelprice {
     text-align: center;
 }
 
-    .panel:hover {
+    .panelprice:hover {
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 1px 5px rgba(130, 130, 130, 0.35);
     }
 
@@ -371,4 +371,8 @@ li.dash a {
 
 .pnlcls {
     padding: 40px;
+}
+/*Checkbox table css*/
+.chktable td {
+    padding: 5px;
 }

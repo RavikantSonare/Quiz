@@ -11,9 +11,9 @@ namespace WebUser.BALayer
     public class BAExamManage
     {
         DAExamManage _daexmange = new DAExamManage();
-        internal DataTable SelectExamDetail(string v, int uid)
+        internal DataTable SelectExamDetail(string v, string searchtext, int uid)
         {
-            return _daexmange.SelectExamDetail(v, uid);
+            return _daexmange.SelectExamDetail(v, searchtext, uid);
         }
 
         public DataTable SelectExamDetailWithID(string v, int exmid)

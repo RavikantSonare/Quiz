@@ -17,10 +17,12 @@ namespace WebUser
         #region Global Variables
         // public int currentQuestionIndex;
         static BOExamManage _examqueanslist = new BOExamManage();
+        static bool flagMark = false;
         #endregion
 
         static int hh, mm, ss;
         static double TimeAllSecondes;
+        public enum MessageType { Success, Error, Info, Warning };
 
         private int currentQuestionIndex
         {
@@ -49,9 +51,19 @@ namespace WebUser
                         BOUser _bouserDetail = (BOUser)Session["UserDetail"];
                         if (Request.QueryString["exmid"] != null && Request.QueryString["tstmd"] != null)
                         {
+                            if (Request.QueryString["tstmd"].ToString().Equals("SM") || Request.QueryString["tstmd"].ToString().Equals("TM"))
+                            {
+                                Timer1.Enabled = false;
+                                pnltimer.Visible = false;
+                            }
+                            if (Request.QueryString["tstmd"].ToString().Equals("SM"))
+                            {
+                                btnCorrectAnswer.Visible = true;
+                            }
                             string examid = Common.Decrypt(HttpUtility.UrlDecode(Request.QueryString["exmid"]));
                             _examqueanslist = GetEQAList(examid, Request.QueryString["tstmd"]);
                             GetExamDetail(_examqueanslist);
+                            TimeAllSecondes = Convert.ToDouble(_examqueanslist.TestTime) * 60;
                         }
                         else
                         {
@@ -72,23 +84,59 @@ namespace WebUser
 
         protected void btnprevious_Click(object sender, EventArgs e)
         {
-            if (currentQuestionIndex > 0)
+            if (flagMark)
             {
-                currentQuestionIndex -= 1;
-                btnnext.Enabled = true;
-                showQuestionNo(currentQuestionIndex + 1);
-                GetExamDetail(_examqueanslist);
+                if (currentQuestionIndex > 0)
+                {
+                    currentQuestionIndex--;
+                    btnnext.Enabled = true;
+                    GetExamDetail(_examqueanslist);
+                    showQuestionNo(currentQuestionIndex + 1);
+                }
+                if (currentQuestionIndex == 0)
+                {
+                    btnnext.Enabled = true;
+                    btnprevious.Enabled = false;
+                }
+            }
+            else
+            {
+                if (currentQuestionIndex > 0)
+                {
+                    currentQuestionIndex -= 1;
+                    btnnext.Enabled = true;
+                    showQuestionNo(currentQuestionIndex + 1);
+                    GetExamDetail(_examqueanslist);
+                }
             }
         }
 
         protected void btnnext_Click(object sender, EventArgs e)
         {
-            if (currentQuestionIndex < _examqueanslist.QuestionList.Count - 1)
+            if (flagMark)
             {
-                currentQuestionIndex += 1;
-                btnprevious.Enabled = true;
-                showQuestionNo(currentQuestionIndex + 1);
-                GetExamDetail(_examqueanslist);
+                if (_examqueanslist.QuestionList.Where(f => f.Mark).ToList().Count - 1 > currentQuestionIndex)
+                {
+                    currentQuestionIndex++;
+                    btnprevious.Enabled = true;
+                    GetExamDetail(_examqueanslist);
+                    showQuestionNo(currentQuestionIndex + 1);
+                }
+                if (_examqueanslist.QuestionList.Where(f => f.Mark).ToList().Count - 1 == currentQuestionIndex)
+                {
+                    btnprevious.Enabled = true;
+                    btnnext.Enabled = false;
+                }
+            }
+            else
+            {
+                if (currentQuestionIndex < _examqueanslist.QuestionList.Count - 1)
+                {
+                    currentQuestionIndex += 1;
+                    btnprevious.Enabled = true;
+                    showQuestionNo(currentQuestionIndex + 1);
+                    GetExamDetail(_examqueanslist);
+                }
             }
         }
 
@@ -115,11 +163,24 @@ namespace WebUser
             if (_exmlist != null)
             {
                 lblExamName.Text = _exmlist.SecondCategory + " " + _exmlist.ExamCode;
-                lblTotalQuestion.Text = Convert.ToString(_exmlist.QuestionList.Count);
-                dlquesanswer.DataSource = _exmlist.QuestionList.Skip(currentQuestionIndex).Take(1);
-                dlquesanswer.DataBind();
-                showQuestionNo(currentQuestionIndex + 1);
-                TimeAllSecondes = Convert.ToDouble(_examqueanslist.TestTime) * 60;
+                if (flagMark)
+                {
+                    lblTotalQuestion.Text = Convert.ToString(_exmlist.QuestionList.Where(q => q.Mark.Equals(true)).Count());
+                    dlquesanswer.DataSource = _exmlist.QuestionList.Where(q => q.Mark.Equals(true)).Skip(currentQuestionIndex).Take(1);
+                    dlquesanswer.DataBind();
+                    dlmark.DataSource = _exmlist.QuestionList.Where(q => q.Mark.Equals(true)).Skip(currentQuestionIndex).Take(1);
+                    dlmark.DataBind();
+                    showQuestionNo(currentQuestionIndex + 1);
+                }
+                else
+                {
+                    lblTotalQuestion.Text = Convert.ToString(_exmlist.QuestionList.Count);
+                    dlquesanswer.DataSource = _exmlist.QuestionList.Skip(currentQuestionIndex).Take(1);
+                    dlquesanswer.DataBind();
+                    dlmark.DataSource = _exmlist.QuestionList.Skip(currentQuestionIndex).Take(1);
+                    dlmark.DataBind();
+                    showQuestionNo(currentQuestionIndex + 1);
+                }
             }
             else
             {
@@ -374,17 +435,26 @@ namespace WebUser
             {
                 if (_examqueanslist.QuestionList != null)
                 {
-                    foreach (var item in _examqueanslist.QuestionList)
+                    int mrkcunt = _examqueanslist.QuestionList.Where(ql => ql.Mark == true).Count();
+                    if (mrkcunt == 0)
                     {
-                        var QuetionOrignalAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(ans => ans.RightAnswer.Equals(true)).ToList();
-                        var QuetionUserAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true)).ToList();
+                        flagMark = false;
+                        foreach (var item in _examqueanslist.QuestionList)
+                        {
+                            var QuetionOrignalAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(ans => ans.RightAnswer.Equals(true)).ToList();
+                            var QuetionUserAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true)).ToList();
 
-                        bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
-                        _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().UserResult = a;
+                            bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
+                            _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().UserResult = a;
+                        }
+                        Session["ExamList"] = _examqueanslist;
+                        Response.Redirect("OnlineTestReport.aspx");
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Your time end now!');window.location ='OnlineTestReport.aspx';", true);
                     }
-                    Session["ExamList"] = _examqueanslist;
-                    Response.Redirect("OnlineTestReport.aspx");
-                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Your time end now!');window.location ='OnlineTestReport.aspx';", true);
+                    else
+                    {
+                        ShowMessage("Please give answer mark question and uncheck all mark question", MessageType.Info);
+                    }
                 }
             }
         }
@@ -403,6 +473,53 @@ namespace WebUser
                     return false;
             }
             return true;
+        }
+
+        protected void btnCorrectAnswer_Click(object sender, EventArgs e)
+        {
+            foreach (DataListItem item in dlquesanswer.Items)
+            {
+                Panel pnlexplain = (Panel)item.FindControl("pnlexplain");
+                pnlexplain.Visible = true;
+            }
+
+        }
+
+        protected void chkmark_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var button = sender as CheckBox;
+                var QuestionNo = Convert.ToInt32(button.ToolTip);
+                _examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionNo)).FirstOrDefault().Mark = Convert.ToBoolean(button.Checked);
+            }
+            catch
+            {
+
+            }
+        }
+
+        protected void btnReviewMark_Click(object sender, EventArgs e)
+        {
+            int mrkcunt = _examqueanslist.QuestionList.Where(ql => ql.Mark == true).Count();
+            if (mrkcunt > 0)
+            {
+                flagMark = true;
+                currentQuestionIndex = 0;
+                _examqueanslist.QuestionList.Where(q => q.Mark.Equals(true)).ToList();
+                GetExamDetail(_examqueanslist);
+                btnprevious.Enabled = false;
+                btnnext.Enabled = true;
+            }
+            else
+            {
+                ShowMessage("Sorry! no mark question found", MessageType.Info);
+            }
+        }
+
+        protected void ShowMessage(string Message, MessageType type)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
         }
     }
 }

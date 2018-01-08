@@ -5,34 +5,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link href="css/example.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-            <script src="js/editor.js"></script>
-            <script>
-                $(document).ready(function () {
-                    $("#txtEditor").Editor();
-                });
-		</script>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-            <link href="css/editor.css" rel="stylesheet" />
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 nopadding">
-                                <textarea id="txtEditor"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h1>Default Toolbar Config</h1>
+        <p>
+            This example simply shows the default toolbar config.
+        </p>
+        <rte:editor runat="server" id="Editor1" text="Type here" />
     </form>
 </body>
 </html>

@@ -55,7 +55,7 @@ namespace WebUser
         private void FillgirdViewExamDetail(int uid)
         {
             _datatable = new DataTable();
-            _datatable = _baexmmng.SelectExamDetail("GetExWithUid", uid);
+            _datatable = _baexmmng.SelectExamDetail("GetExWithUid", txtSearch.Text, uid);
             gvExamDetail.DataSource = _datatable;
             gvExamDetail.DataBind();
         }
@@ -189,6 +189,14 @@ namespace WebUser
                     }
                 }
             }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            _datatable = new DataTable();
+            _datatable = _baexmmng.SelectExamDetail("GetExWithUid", txtSearch.Text, userId);
+            gvExamDetail.DataSource = _datatable;
+            gvExamDetail.DataBind();
         }
     }
 }

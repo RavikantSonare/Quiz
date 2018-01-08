@@ -411,8 +411,8 @@
                                                 <div class="form-group">
                                                     <label for="" class="col-sm-3 control-label">Exam:</label>
                                                     <div class="col-sm-3">
-                                                        <div style="overflow-y: scroll; width: 200px; height: 125px">
-                                                            <asp:CheckBoxList ID="chkExamCodeList" runat="server">
+                                                        <div style="overflow-y: scroll; width: 550px; height: 125px">
+                                                            <asp:CheckBoxList ID="chkExamCodeList" runat="server" RepeatColumns="4" CssClass="chktable">
                                                             </asp:CheckBoxList>
                                                         </div>
                                                     </div>
@@ -422,7 +422,7 @@
                                                     <div class="col-sm-5">
                                                         <div class="row">
                                                             <div class="col-sm-12">
-                                                                <asp:CheckBoxList ID="chklistAccessoption" runat="server" RepeatDirection="Horizontal">
+                                                                <asp:CheckBoxList ID="chklistAccessoption" runat="server" RepeatDirection="Horizontal" CssClass="chktable">
                                                                 </asp:CheckBoxList>
                                                             </div>
                                                             <div class="col-sm-3">
@@ -475,8 +475,8 @@
                                             <div class="form-group">
                                                 <label for="" class="col-sm-3 control-label">Exam:</label>
                                                 <div class="col-sm-3">
-                                                    <div style="overflow-y: scroll; width: 200px; height: 125px">
-                                                        <asp:CheckBoxList ID="chkExamCodeListGroup" runat="server">
+                                                    <div style="overflow-y: scroll; width: 550px; height: 125px">
+                                                        <asp:CheckBoxList ID="chkExamCodeListGroup" runat="server" RepeatColumns="4" CssClass="chktable">
                                                         </asp:CheckBoxList>
                                                     </div>
                                                 </div>
@@ -488,7 +488,7 @@
                                                 <div class="col-sm-5">
                                                     <div class="row">
                                                         <div class="col-sm-12">
-                                                            <asp:CheckBoxList ID="chklistAccessoptionGroup" runat="server" RepeatDirection="Horizontal">
+                                                            <asp:CheckBoxList ID="chklistAccessoptionGroup" runat="server" RepeatDirection="Horizontal" CssClass="chktable">
                                                             </asp:CheckBoxList>
                                                         </div>
                                                     </div>

@@ -109,6 +109,11 @@
                                     <asp:TextBox ID="txtNo" runat="server" CssClass="form-control" Enabled='<%# (Boolean.Parse(Eval("Result").ToString()))%>' onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            <%-- <asp:TemplateField HeaderText="Option">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkbtnresultdelete" runat="server" Visible='<%# (Convert.ToBoolean(Eval("Result"))==true? false:true) %>' CommandArgument='<%#Eval("ExamId")%>' OnClick="lnkbtnresultdelete_Click">Delete</asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>--%>
                         </Columns>
                         <EmptyDataTemplate>
                             <h2>Record not found...</h2>

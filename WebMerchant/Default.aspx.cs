@@ -59,7 +59,7 @@ namespace WebMerchant
                             }
                             else
                             {
-                                lblerror.InnerText = "Your account is Expired. Contact your Administrator";
+                                lblerror.InnerText = "Your account is expired. contact to administrator";
                                 lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
                             }
                         }

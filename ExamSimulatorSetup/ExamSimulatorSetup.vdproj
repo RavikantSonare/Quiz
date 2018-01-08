@@ -15,19 +15,19 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_68FFCF5488657F8F8B8B8C76D256D59A"
-        "OwnerKey" = "8:_BB49B27B1A774B358F79351CC15D3E7F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8683E1467136424DBF4AAB991D70AA2B"
+        "MsmKey" = "8:_270554021C464B20AC63D046DFB3FC12"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_BB49B27B1A774B358F79351CC15D3E7F"
+        "MsmKey" = "8:_68FFCF5488657F8F8B8B8C76D256D59A"
+        "OwnerKey" = "8:_270554021C464B20AC63D046DFB3FC12"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8683E1467136424DBF4AAB991D70AA2B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -40,7 +40,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BB49B27B1A774B358F79351CC15D3E7F"
+        "OwnerKey" = "8:_270554021C464B20AC63D046DFB3FC12"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -377,7 +377,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_406228E33FA74B50AA9A68F46D3A23C1"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_31215A36596F4E57B4F922BA208D3D17"
             {
             "Name" = "8:QuizExamSimulator"
             "Arguments" = "8:"
@@ -385,13 +385,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_BB49B27B1A774B358F79351CC15D3E7F"
-            "Folder" = "8:_4F4BCCDA690243109B99D3F5731521B3"
+            "Target" = "8:_270554021C464B20AC63D046DFB3FC12"
+            "Folder" = "8:_8E35F698B507442BB7AA70CD35B4D655"
             "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
             "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7FC5C4A96F594B649FCD24EA64716BBA"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3688A408E4DA47768273A3F3221855C7"
             {
             "Name" = "8:QuizExamSimulator"
             "Arguments" = "8:"
@@ -399,8 +399,8 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_BB49B27B1A774B358F79351CC15D3E7F"
-            "Folder" = "8:_8E35F698B507442BB7AA70CD35B4D655"
+            "Target" = "8:_270554021C464B20AC63D046DFB3FC12"
+            "Folder" = "8:_4F4BCCDA690243109B99D3F5731521B3"
             "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
             "Icon" = "8:"
             "Feature" = "8:"
@@ -851,7 +851,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BB49B27B1A774B358F79351CC15D3E7F"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_270554021C464B20AC63D046DFB3FC12"
             {
             "SourcePath" = "8:..\\ExamSimulator\\obj\\Debug\\ExamSimulator.exe"
             "TargetName" = "8:"

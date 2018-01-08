@@ -250,5 +250,19 @@ namespace WebMerchant
             gvCertificateTemplate.PageIndex = e.NewPageIndex;
             FillgridViewTemplatePicture(MerchantId);
         }
+
+        protected void lnkbtnresultdelete_Click(object sender, EventArgs e)
+        {
+            BOExamManage _boexmnge = new BOExamManage();
+            BAExamManage _baexmmng = new BAExamManage();
+            LinkButton lnkbtn = sender as LinkButton;
+            int id = Convert.ToInt32(lnkbtn.CommandArgument);
+            //_boexmnge.ExamCodeId = _boexammanage.ExamCodeId;
+            //_boexmnge.OnlyTestOnce = false;
+            //_boexmnge.UpdatedBy = _bouserDetail.UserId;
+            //_boexmnge.UpdatedDate = DateTime.UtcNow;
+            //_boexmnge.Event = "UpdateByUser";
+            //_baexmmng.IUD(_boexmnge);
+        }
     }
 }

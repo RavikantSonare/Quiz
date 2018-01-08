@@ -58,6 +58,15 @@ namespace WebUser {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
+        /// pnltimer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnltimer;
+        
+        /// <summary>
         /// lblTime control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace WebUser {
         protected global::System.Web.UI.Timer Timer1;
         
         /// <summary>
+        /// dlmark control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlmark;
+        
+        /// <summary>
         /// dlquesanswer control.
         /// </summary>
         /// <remarks>
@@ -110,6 +128,24 @@ namespace WebUser {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnnext;
+        
+        /// <summary>
+        /// btnCorrectAnswer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCorrectAnswer;
+        
+        /// <summary>
+        /// btnReviewMark control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReviewMark;
         
         /// <summary>
         /// btnEndExam control.

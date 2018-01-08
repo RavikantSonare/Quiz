@@ -18,7 +18,7 @@
                 <asp:DataList ID="dlpricetable" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" RepeatLayout="Flow" DataKeyField="MerchantLevelId">
                     <ItemTemplate>
                         <div class="col-xs-12 col-md-3">
-                            <div class="panel panel-primary">
+                            <div class="panelprice panel-primary">
                                 <div class="panel-heading">
                                     <h3 class="panel-title"><%#Eval("MerchantLevel")%></h3>
                                 </div>

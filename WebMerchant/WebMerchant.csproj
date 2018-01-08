@@ -116,6 +116,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\example.css" />
     <Content Include="css\login.css" />
     <Content Include="css\summernote.css" />
     <Content Include="Errorfile\ErrorLog.txt" />
@@ -447,14 +448,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\" />
     <Folder Include="css\font\" />
     <Folder Include="ExcelUpload\" />
     <Folder Include="fonts\" />
     <Folder Include="img_exmestoreconfig\" />
     <Folder Include="img_merchant\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

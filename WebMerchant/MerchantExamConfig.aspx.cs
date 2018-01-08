@@ -299,9 +299,14 @@ namespace WebMerchant
                     {
                         _boexmmng.ExamCodeId = 0;
                         _boexmmng.Event = "Insert";
-                        if (_baexmmng.Insert(_boexmmng) == 1)
+                        int retval = _baexmmng.Insert(_boexmmng);
+                        if (retval == 1)
                         {
                             ShowMessage("Exam added successfully", MessageType.Success);
+                        }
+                        else if (retval == -1)
+                        {
+                            ShowMessage("Exam Code already exist", MessageType.Info);
                         }
                     }
                 }

@@ -60,8 +60,8 @@ namespace ExamSimulator
                 }
             }
             List<BOExamManage> _boexammng = new List<BOExamManage>();
-            //_boexammng = _baexmmng.SelectExamDetail("GetExWithUid", _bouser.UserId);
-            _boexammng = _baexmmng.SelectExamDetail("GetExWithUid", 3);
+            _boexammng = _baexmmng.SelectExamDetail("GetExWithUid", _bouser.UserId);
+            // _boexammng = _baexmmng.SelectExamDetail("GetExWithUid", 3);
 
             List<UserExamList> _userExamlist = new List<UserExamList>();
 
