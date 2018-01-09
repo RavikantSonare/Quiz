@@ -30,6 +30,7 @@ namespace WebMerchant
         BOQAnswer _boqans = new BOLayer.BOQAnswer();
         BAQAnswer _baqans = new BAQAnswer();
         public enum MessageType { Success, Error, Info, Warning };
+        DataTable _dtextrapermission = new DataTable();
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -60,6 +61,11 @@ namespace WebMerchant
                         FillddlExamCode(MerchantId);
                         FillrbtnListQuestiontype(_bomerchantDetail.MerchantLevelId);
                         FillgridViewQAManage(MerchantId);
+                        _dtextrapermission = (DataTable)Session["extrapermission"];
+                        if (_dtextrapermission.Rows[0][0].ToString() == "1")
+                        {
+                            pnlfileuploaod.Visible = true;
+                        }
                     }
                 }
                 else
@@ -96,13 +102,13 @@ namespace WebMerchant
         private void FillrbtnListQuestiontype(int levelid)
         {
             BAQuestionType _baqtype = new BALayer.BAQuestionType();
-            System.Data.DataTable _datatable2 = new System.Data.DataTable();
-            _datatable2 = _baqtype.SelectQuestionTypeList("GetQTypeWithMLevel", levelid);
-            if (_datatable2.Rows.Count > 0)
+            System.Data.DataSet _dataset = new System.Data.DataSet();
+            _dataset = _baqtype.SelectQuestionTypeList("GetQTypeWithMLevel", levelid);
+            if (_dataset.Tables[0].Rows.Count > 0)
             {
                 ddlQuestionType.DataValueField = "QuestionTypeId";
                 ddlQuestionType.DataTextField = "QuestionType";
-                ddlQuestionType.DataSource = _datatable2;
+                ddlQuestionType.DataSource = _dataset.Tables[0];
                 ddlQuestionType.DataBind();
                 ddlQuestionType.Items.Insert(0, "Select");
             }

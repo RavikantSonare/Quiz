@@ -49,7 +49,9 @@ namespace WebUser.DAlayer
                               IsDelete = list.Field<bool>("IsDelete"),
                               EmailId = list.Field<string>("EmailId"),
                               GroupId = list.Field<int>("GroupId"),
-                              GroupStatus = list.Field<bool>("GroupStatus")
+                              GroupStatus = list.Field<bool>("GroupStatus"),
+                              UGExamId = list.Field<string>("UGExamId"),
+                              UGAccessOption = list.Field<string>("UGAccessOption")
 
                           }).FirstOrDefault();
                 return _bousr;

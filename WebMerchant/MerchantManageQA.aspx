@@ -90,12 +90,14 @@
                                 <div class="col-sm-2">
                                     <asp:DropDownList ID="ddlExamCode" runat="server" CssClass="form-control"></asp:DropDownList>
                                 </div>
-                                <div class="col-sm-3">
-                                    <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control" />
-                                </div>
-                                <div class="col-sm-2">
-                                    <asp:Button ID="btnImport" runat="server" Text="Import Questions" CssClass="btn btn-default" OnClick="btnImport_Click" />
-                                </div>
+                                <asp:Panel ID="pnlfileuploaod" runat="server" Visible="false">
+                                    <div class="col-sm-3">
+                                        <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <asp:Button ID="btnImport" runat="server" Text="Import Questions" CssClass="btn btn-default" OnClick="btnImport_Click" />
+                                    </div>
+                                </asp:Panel>
                             </div>
 
                             <div class="form-group">

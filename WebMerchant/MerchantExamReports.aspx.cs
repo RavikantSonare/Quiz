@@ -21,6 +21,8 @@ namespace WebMerchant
 
         private int MerchantId = default(int);
         public enum MessageType { Success, Error, Info, Warning };
+        DataTable _dtextrapermission = new DataTable();
+        bool exists;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,6 +35,12 @@ namespace WebMerchant
                     if (!IsPostBack)
                     {
                         Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                        _dtextrapermission = (DataTable)Session["extrapermission"];
+                        exists = _dtextrapermission.Select().ToList().Exists(row => row["ExtraPermissionOptId"].ToString() == "5");
+                        if (exists)
+                        {
+                            pnlCertificate.Visible = true;
+                        }
                         FillgridViewExamReport(MerchantId);
                         FillgridViewTemplatePicture(MerchantId);
                     }
@@ -211,6 +219,15 @@ namespace WebMerchant
                         ddlTemplate.DataTextField = "CertificateTitle";
                         ddlTemplate.DataValueField = "TemplateId";
                         ddlTemplate.DataBind();
+                    }
+                    if (!exists)
+                    {
+                        if (e.Row.RowType == DataControlRowType.DataRow)
+                        {
+                            gvExamReport.Columns[7].Visible = false;
+                            gvExamReport.Columns[8].Visible = false;
+                            gvExamReport.Columns[9].Visible = false;
+                        }
                     }
                 }
             }

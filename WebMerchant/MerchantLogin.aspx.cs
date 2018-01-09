@@ -18,6 +18,7 @@ namespace WebMerchant
         private BAExamManage _baexmmng = new BAExamManage();
         private int merchantId = default(int);
         public enum MessageType { Success, Error, Info, Warning };
+        bool exists;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,6 +31,7 @@ namespace WebMerchant
                     if (!IsPostBack)
                     {
                         Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
+                        GetExtraPermission(_bomerchantDetail.MerchantLevelId);
                         FilldropDowntopCategory();
                         FilgirdViewMerchantDetail("GETWITHID", _bomerchantDetail.MerchantId);
                         FillgridViewExamDetail("GetExamWithMId", _bomerchantDetail.MerchantId);
@@ -54,6 +56,17 @@ namespace WebMerchant
         protected void Page_PreRender(object sender, EventArgs e)
         {
             ViewState["CheckRefresh"] = Session["CheckRefresh"];
+        }
+
+        private void GetExtraPermission(int levelid)
+        {
+            DataTable _datatable = new DataTable();
+            BAQuestionType _baqtype = new BALayer.BAQuestionType();
+            System.Data.DataSet _dataset = new System.Data.DataSet();
+            _dataset = _baqtype.SelectQuestionTypeList("GetQTypeWithMLevel", levelid);
+            _datatable = _dataset.Tables[1];
+            Session["extrapermission"] = _datatable;
+            exists = _datatable.Select().ToList().Exists(row => row["ExtraPermissionOptId"].ToString() == "4");
         }
 
         private void FilgirdViewMerchantDetail(string eventtxt, int merchantid)
@@ -81,7 +94,7 @@ namespace WebMerchant
         private void FillgridViewExamDetail(string eventtext, int Merchantid)
         {
             _datatable = new DataTable();
-            _datatable = _baexmmng.SelectExamDetail(eventtext, Merchantid,"");
+            _datatable = _baexmmng.SelectExamDetail(eventtext, Merchantid, "");
             gvExamDetail.DataSource = _datatable;
             gvExamDetail.DataBind();
         }
@@ -232,6 +245,17 @@ namespace WebMerchant
             {
                 Common.LogError(ex);
                 ShowMessage("Some technical error", MessageType.Warning);
+            }
+        }
+
+        protected void gvExamDetail_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (!exists)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    gvExamDetail.Columns[8].Visible = false;
+                }
             }
         }
     }

@@ -14,7 +14,7 @@ namespace WebMerchant.DALayer
         private SqlCommand _sqlcommand;
         private SqlDataAdapter _sqldataadapter;
 
-        internal DataTable SelectQuestionTypelist(string v,int levelid)
+        internal DataSet SelectQuestionTypelist(string v,int levelid)
         {
             using (SqlConnection _sqlconnection = ConnectionInfo.GetConnection())
             {
@@ -27,7 +27,7 @@ namespace WebMerchant.DALayer
                 _sqlcommand.Parameters.AddWithValue("@Event", v);
                 _sqlcommand.Parameters.AddWithValue("@MerchantLevelId", levelid);
 
-                DataTable _datatable2 = new DataTable();
+                DataSet _datatable2 = new DataSet();
                 _sqldataadapter = new SqlDataAdapter(_sqlcommand);
                 _sqldataadapter.Fill(_datatable2);
 

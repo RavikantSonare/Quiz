@@ -24,6 +24,9 @@ namespace WebMerchant
         private BABundleExam _babndlexm = new BABundleExam();
         public enum MessageType { Success, Error, Info, Warning };
         private static int MerchantId = default(int);
+        DataTable _dtextrapermission = new DataTable();
+        bool exists;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -34,9 +37,10 @@ namespace WebMerchant
                     MerchantId = _bomerchantDetail.MerchantId;
                     if (!IsPostBack)
                     {
+                        _dtextrapermission = (DataTable)Session["extrapermission"];
+                        exists = _dtextrapermission.Select().ToList().Exists(row => row["ExtraPermissionOptId"].ToString() == "6");
                         FillgridViewExamDetail("GetExamWithMId", _bomerchantDetail.MerchantId, "");
                         FillBundleGrid("GetAll", MerchantId);
-                        //FillgridViewExamDetail("GetReportWithMrID", _bomerchantDetail.MerchantId);
                         if (_bomerchantDetail.MerchantLevel == "Free")
                         {
                             gvExamDetail.Columns[0].Visible = gvExamDetail.Columns[6].Visible = gvExamDetail.Columns[7].Visible = gvExamDetail.Columns[8].Visible = gvExamDetail.Columns[9].Visible = gvExamDetail.Columns[10].Visible = false;
@@ -387,6 +391,17 @@ namespace WebMerchant
             ViewState["bundleId"] = "";
             ViewState["bundleId"] = null;
             FillBundleGrid("GetAll", MerchantId);
+        }
+
+        protected void gvExamDetail_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (!exists)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    gvExamDetail.Columns[13].Visible = false;
+                }
+            }
         }
     }
 }

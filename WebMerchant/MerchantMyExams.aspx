@@ -48,7 +48,7 @@
                     <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-default" OnClick="btnSearch_Click" />
                 </div>
                 <div class="col-lg-12" style="height: 200px; overflow-y: scroll">
-                    <asp:GridView ID="gvExamDetail" runat="server" class="table merchantLogin-table mtop10" AutoGenerateColumns="false" AllowPaging="True" OnPageIndexChanging="gvExamDetail_PageIndexChanging" DataKeyNames="ExamCodeId">
+                    <asp:GridView ID="gvExamDetail" runat="server" class="table merchantLogin-table mtop10" AutoGenerateColumns="false" AllowPaging="True" OnPageIndexChanging="gvExamDetail_PageIndexChanging" DataKeyNames="ExamCodeId" OnRowDataBound="gvExamDetail_RowDataBound">
                         <Columns>
                             <asp:TemplateField HeaderText="Review" HeaderStyle-CssClass="hidecolumn" ItemStyle-CssClass="hidecolumn">
                                 <ItemTemplate>

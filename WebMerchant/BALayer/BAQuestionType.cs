@@ -12,7 +12,7 @@ namespace WebMerchant.BALayer
     {
         DAQuestionType _daqtype = new DAQuestionType();
 
-        internal DataTable SelectQuestionTypeList(string v,int levelid)
+        internal DataSet SelectQuestionTypeList(string v, int levelid)
         {
             return _daqtype.SelectQuestionTypelist(v, levelid);
         }

@@ -122,68 +122,70 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12">
-                    <h5>Template Setting: For Eg.</h5>
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Template Picture:</label>
-                            <div class="col-sm-4">
-                                <asp:FileUpload ID="fuTemplatePicture" runat="server" class="form-control" accept="image/*" />
-                                <asp:Label ID="lblimg" runat="server" Visible="false"></asp:Label>
+                <asp:Panel ID="pnlCertificate" runat="server" Visible="false">
+                    <div class="col-sm-12">
+                        <h5>Template Setting: For Eg.</h5>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">Template Picture:</label>
+                                <div class="col-sm-4">
+                                    <asp:FileUpload ID="fuTemplatePicture" runat="server" class="form-control" accept="image/*" />
+                                    <asp:Label ID="lblimg" runat="server" Visible="false"></asp:Label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Certificate Title:</label>
-                            <div class="col-sm-3">
-                                <asp:TextBox ID="txtCertificateTitle" runat="server" class="form-control" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">Certificate Title:</label>
+                                <div class="col-sm-3">
+                                    <asp:TextBox ID="txtCertificateTitle" runat="server" class="form-control" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group" style="display: none;">
-                            <label for="" class="col-sm-2 control-label">Sample:</label>
-                            <div class="col-sm-10">
-                                <asp:Label ID="lblsamplemsg" runat="server" Text="Review for the picture which include 2 fields (UserName and Certificate Title)"></asp:Label>
+                            <div class="form-group" style="display: none;">
+                                <label for="" class="col-sm-2 control-label">Sample:</label>
+                                <div class="col-sm-10">
+                                    <asp:Label ID="lblsamplemsg" runat="server" Text="Review for the picture which include 2 fields (UserName and Certificate Title)"></asp:Label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label"></label>
-                            <div class="col-sm-10">
-                                <label id="lblerror" runat="server" style="display: none; color: #D8000C;"></label>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <label id="lblerror" runat="server" style="display: none; color: #D8000C;"></label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label"></label>
-                            <div class="col-sm-6">
-                                <asp:LinkButton ID="lnkbtnSave" runat="server" CssClass="btn btn-default" OnClick="btnSave_Click">Save to Template</asp:LinkButton>
-                                <asp:Button ID="btnReset" runat="server" Text="Reset" class="btn btn-default" OnClick="btnReset_Click" />
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label"></label>
+                                <div class="col-sm-6">
+                                    <asp:LinkButton ID="lnkbtnSave" runat="server" CssClass="btn btn-default" OnClick="btnSave_Click">Save to Template</asp:LinkButton>
+                                    <asp:Button ID="btnReset" runat="server" Text="Reset" class="btn btn-default" OnClick="btnReset_Click" />
+                                </div>
                             </div>
-                        </div>
 
-                        <asp:GridView ID="gvCertificateTemplate" class="table" AutoGenerateColumns="false" runat="server" DataKeyNames="TemplateId" AllowPaging="True" OnPageIndexChanging="gvCertificateTemplate_PageIndexChanging" PageSize="5">
-                            <Columns>
-                                <asp:BoundField HeaderText="Template Id" DataField="TemplateId" Visible="false" />
-                                <asp:BoundField HeaderText="Certificate Title" DataField="CertificateTitle" />
-                                <asp:TemplateField HeaderText="Template Picture">
-                                    <ItemTemplate>
-                                        <asp:Image ID="imgTemplatePicture" runat="server" ImageUrl='<%# Eval("TemplatePicture","~/TemplateImage/{0}") %>' Width="100" Height="70" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Edit">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="lnkbtnEdit" runat="server" OnClick="lnkbtnEdit_Click" CommandArgument='<%#Eval("TemplateId")%>' OnClientClick="return getConfirmation(this, 'Please confirm','Are you sure you want to edit this record?');">Edit</asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Delete">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="lnkbtnDelete" runat="server" OnClick="lnkbtnDelete_Click" CommandArgument='<%#Eval("TemplateId")%>' OnClientClick="return getConfirmation(this, 'Please confirm','Are you sure you want to delete?');">Delete</asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                            <EmptyDataTemplate>
-                                <h2>Record not found...</h2>
-                            </EmptyDataTemplate>
-                        </asp:GridView>
+                            <asp:GridView ID="gvCertificateTemplate" class="table" AutoGenerateColumns="false" runat="server" DataKeyNames="TemplateId" AllowPaging="True" OnPageIndexChanging="gvCertificateTemplate_PageIndexChanging" PageSize="5">
+                                <Columns>
+                                    <asp:BoundField HeaderText="Template Id" DataField="TemplateId" Visible="false" />
+                                    <asp:BoundField HeaderText="Certificate Title" DataField="CertificateTitle" />
+                                    <asp:TemplateField HeaderText="Template Picture">
+                                        <ItemTemplate>
+                                            <asp:Image ID="imgTemplatePicture" runat="server" ImageUrl='<%# Eval("TemplatePicture","~/TemplateImage/{0}") %>' Width="100" Height="70" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Edit">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lnkbtnEdit" runat="server" OnClick="lnkbtnEdit_Click" CommandArgument='<%#Eval("TemplateId")%>' OnClientClick="return getConfirmation(this, 'Please confirm','Are you sure you want to edit this record?');">Edit</asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Delete">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lnkbtnDelete" runat="server" OnClick="lnkbtnDelete_Click" CommandArgument='<%#Eval("TemplateId")%>' OnClientClick="return getConfirmation(this, 'Please confirm','Are you sure you want to delete?');">Delete</asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                                <EmptyDataTemplate>
+                                    <h2>Record not found...</h2>
+                                </EmptyDataTemplate>
+                            </asp:GridView>
+                        </div>
                     </div>
-                </div>
+                </asp:Panel>
             </div>
         </div>
     </div>

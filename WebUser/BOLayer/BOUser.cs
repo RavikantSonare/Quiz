@@ -40,6 +40,8 @@ namespace WebUser.BOLayer
         public string EmailId { get; set; }
         public int GroupId { get; set; }
         public bool GroupStatus { get; set; }
+        public string UGExamId { get; set; }
+        public string UGAccessOption { get; set; }
 
         public string Event { get; set; }
     }

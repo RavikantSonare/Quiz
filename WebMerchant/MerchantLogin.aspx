@@ -64,7 +64,7 @@
                             <asp:BoundField HeaderText="Merchant Name" DataField="MerchantName" />
                             <asp:BoundField HeaderText="Login" DataField="UserName" />
                             <asp:BoundField HeaderText="Currently Level" DataField="MerchantLevel" />
-                            <asp:TemplateField HeaderText="Upgrade">
+                            <asp:TemplateField HeaderText="Upgrade" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkbtnUpgrade" runat="server">Upgrade</asp:LinkButton>
                                 </ItemTemplate>
@@ -93,7 +93,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <asp:GridView ID="gvExamDetail" runat="server" class="table merchantLogin-table mtop10" DataKeyNames="ExamCodeId" AutoGenerateColumns="false" AllowPaging="True" OnPageIndexChanging="gvExamDetail_PageIndexChanging">
+                    <asp:GridView ID="gvExamDetail" runat="server" class="table merchantLogin-table mtop10" DataKeyNames="ExamCodeId" AutoGenerateColumns="false" AllowPaging="True" OnPageIndexChanging="gvExamDetail_PageIndexChanging" OnRowDataBound="gvExamDetail_RowDataBound">
                         <Columns>
                             <asp:TemplateField HeaderText="Review">
                                 <ItemTemplate>

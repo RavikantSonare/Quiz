@@ -257,9 +257,6 @@ namespace WebAdmin
                         ShowMessage("Can not delete Merchant level because used in another entity", MessageType.Info);
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
