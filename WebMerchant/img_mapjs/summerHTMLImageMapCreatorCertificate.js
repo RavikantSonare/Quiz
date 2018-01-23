@@ -799,6 +799,7 @@ var summerHtmlImageMapCreator = (function () {
     };
     Area.HTML_NAMES_TO_AREA_NAMES = {
         rect: 'rectangle',
+        rect: 'rectangle1',
         circle: 'circle',
         poly: 'polygon'
     };
@@ -1183,7 +1184,14 @@ var summerHtmlImageMapCreator = (function () {
         app.removeAllEvents()
            .setIsDraw(false)
            .resetNewArea();
-        CreatRadioButton(this._coords.x, this._coords.y, coords.x, coords.y)
+        var typecheck = this._type;
+        if (this._type == 'rectangle1') {
+            alert('hi1');
+        }
+        else {
+            alert('hi2');
+            CreatRadioButton(this._coords.x, this._coords.y, coords.x, coords.y)
+        }
     };
 
     /**
@@ -2695,6 +2703,7 @@ var summerHtmlImageMapCreator = (function () {
             save = utils.id('save'),
             load = utils.id('load'),
             rectangle = utils.id('rectangle'),
+            rectangle1 = utils.id('rectangle1'),
             circle = utils.id('circle'),
             polygon = utils.id('polygon'),
             edit = utils.id('edit'),
@@ -2833,6 +2842,7 @@ var summerHtmlImageMapCreator = (function () {
         save.addEventListener('click', onSaveButtonClick, false);
         load.addEventListener('click', onLoadButtonClick, false);
         rectangle.addEventListener('click', onShapeButtonClick, false);
+        rectangle1.addEventListener('click', onShapeButtonClick, false);
         circle.addEventListener('click', onShapeButtonClick, false);
         polygon.addEventListener('click', onShapeButtonClick, false);
         clear.addEventListener('click', onClearButtonClick, false);

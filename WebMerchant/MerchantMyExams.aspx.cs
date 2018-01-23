@@ -399,7 +399,7 @@ namespace WebMerchant
             {
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    gvExamDetail.Columns[13].Visible = false;
+                    gvExamDetail.Columns[12].Visible = false;
                 }
             }
         }
