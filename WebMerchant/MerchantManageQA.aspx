@@ -74,8 +74,32 @@
 
         });
     </script>
+    <script src="ckeditor.js"></script>
+    <script src="samples/js/sample.js"></script>
+    <link href="samples/css/samples.css" rel="stylesheet" />
+    <link href="samples/toolbarconfigurator/lib/codemirror/neo.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Label ID="Label1" Text="CK Editor Sample" runat="server"></asp:Label>
+    <br />
+    <textarea runat="server" placeholder="Haber metnini girin." name="editor1" style="height: 700px" id="editor1" rows="10" cols="80">
+            </textarea>
+    <script type="text/javascript">
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        // CKEDITOR.replace('BodyContent_editor1');
+        CKEDITOR.replace('<%=editor1.ClientID %>',
+{
+    filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+    filebrowserImageBrowseUrl: './Upload.ashx/',
+    filebrowserFlashBrowseUrl: '/ckfinder/ckfinder.html?Type=Flash',
+    filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+    filebrowserImageUploadUrl: './Upload.ashx',
+    filebrowserFlashUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash',
+});
+    </script>
+    <asp:Button runat="server" Text="Show Text" ID="show_text" OnClick="show_text_Click" />
+    <asp:Label ID="lblNewsLong" runat="server" Text="getvalue"></asp:Label>
     <h2>Manage Question</h2>
     <hr />
     <div class="tab-content">

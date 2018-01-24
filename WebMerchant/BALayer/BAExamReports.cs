@@ -16,5 +16,10 @@ namespace WebMerchant.BALayer
         {
             return _daexmrpt.SelectExamReportlist(v, mid);
         }
+
+        internal DataTable SelectExamreport(string v, int rptid)
+        {
+            return _daexmrpt.SelectExamReport(v, rptid);
+        }
     }
 }

@@ -1341,6 +1341,12 @@ namespace WebMerchant
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
         }
+
+        protected void show_text_Click(object sender, EventArgs e)
+        {
+            string desc = editor1.Value.ToString();
+            lblNewsLong.Text = Server.HtmlDecode(desc);
+        }
     }
 }
 //class QuestionManage

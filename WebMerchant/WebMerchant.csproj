@@ -116,6 +116,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bender.ci.js" />
+    <Content Include="bender.js" />
+    <Content Include="ckeditor.js" />
+    <Content Include="config.js" />
     <Content Include="css\example.css" />
     <Content Include="css\login.css" />
     <Content Include="css\summernote.css" />
@@ -131,6 +135,7 @@
     <Content Include="js\summernote.js" />
     <Content Include="MerchantAllowSales.aspx" />
     <Content Include="MerchantCertificate.aspx" />
+    <Content Include="MerchantCertificateGenerate.aspx" />
     <Content Include="MerchantCheckout.html" />
     <Content Include="MerchantCheckoutLevel.aspx" />
     <Content Include="MerchantDashboard.aspx" />
@@ -167,10 +172,75 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="samples\css\samples.css" />
+    <Content Include="samples\Default.aspx" />
+    <Content Include="samples\img\github-top.png" />
+    <Content Include="samples\img\header-bg.png" />
+    <Content Include="samples\img\header-separator.png" />
+    <Content Include="samples\img\logo.png" />
+    <Content Include="samples\img\navigation-tip.png" />
+    <Content Include="samples\js\sample.js" />
+    <Content Include="samples\js\sf.js" />
+    <Content Include="samples\old\ajax.html" />
+    <Content Include="samples\old\api.html" />
+    <Content Include="samples\old\appendto.html" />
+    <Content Include="samples\old\assets\inlineall\logo.png" />
+    <Content Include="samples\old\assets\outputxhtml\outputxhtml.css" />
+    <Content Include="samples\old\assets\sample.jpg" />
+    <Content Include="samples\old\assets\uilanguages\languages.js" />
+    <Content Include="samples\old\datafiltering.html" />
+    <Content Include="samples\old\divreplace.html" />
+    <Content Include="samples\old\index.html" />
+    <Content Include="samples\old\inlineall.html" />
+    <Content Include="samples\old\inlinebycode.html" />
+    <Content Include="samples\old\inlinetextarea.html" />
+    <Content Include="samples\old\jquery.html" />
+    <Content Include="samples\old\readonly.html" />
+    <Content Include="samples\old\replacebyclass.html" />
+    <Content Include="samples\old\replacebycode.html" />
+    <Content Include="samples\old\sample.css" />
+    <Content Include="samples\old\sample.js" />
+    <Content Include="samples\old\tabindex.html" />
+    <Content Include="samples\old\uicolor.html" />
+    <Content Include="samples\old\uilanguages.html" />
+    <Content Include="samples\old\xhtmlstyle.html" />
+    <Content Include="samples\Test.aspx" />
+    <Content Include="samples\toolbarconfigurator\bender.js" />
+    <Content Include="samples\toolbarconfigurator\css\fontello.css" />
+    <Content Include="samples\toolbarconfigurator\font\fontello.svg" />
+    <Content Include="samples\toolbarconfigurator\font\LICENSE.txt" />
+    <Content Include="samples\toolbarconfigurator\index.html" />
+    <Content Include="samples\toolbarconfigurator\js\abstracttoolbarmodifier.js" />
+    <Content Include="samples\toolbarconfigurator\js\fulltoolbareditor.js" />
+    <Content Include="samples\toolbarconfigurator\js\toolbarmodifier.js" />
+    <Content Include="samples\toolbarconfigurator\js\toolbartextmodifier.js" />
+    <Content Include="samples\toolbarconfigurator\lib\codemirror\codemirror.css" />
+    <Content Include="samples\toolbarconfigurator\lib\codemirror\codemirror.js" />
+    <Content Include="samples\toolbarconfigurator\lib\codemirror\javascript.js" />
+    <Content Include="samples\toolbarconfigurator\lib\codemirror\neo.css" />
+    <Content Include="samples\toolbarconfigurator\lib\codemirror\show-hint.css" />
+    <Content Include="samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
+    <Content Include="samples\toolbarconfigurator\tests\one.js" />
+    <Content Include="styles.js" />
     <Content Include="WebForm1.aspx" />
     <Content Include="WebForm2.aspx" />
     <None Include="Properties\PublishProfiles\QuizMerchant.pubxml" />
     <Content Include="Web.config" />
+    <Content Include="samples\less\custom.less" />
+    <Content Include="samples\less\samples.less" />
+    <Content Include="samples\old\assets\posteddata.php" />
+    <Content Include="samples\old\sample_posteddata.php" />
+    <Content Include="samples\toolbarconfigurator\font\config.json" />
+    <Content Include="samples\toolbarconfigurator\font\fontello.eot" />
+    <Content Include="samples\toolbarconfigurator\font\fontello.ttf" />
+    <Content Include="samples\toolbarconfigurator\font\fontello.woff" />
+    <Content Include="samples\toolbarconfigurator\less\base.less" />
+    <Content Include="samples\toolbarconfigurator\less\toolbarmodifier.less" />
+    <Content Include="samples\toolbarconfigurator\lib\codemirror\LICENSE" />
+    <Content Include="samples\toolbarconfigurator\lib\codemirror\README.md" />
+    <Content Include="samples\toolbarconfigurator\package.json" />
+    <Content Include="samples\Upload.ashx" />
+    <Content Include="TemplateImage\img_20180124142911197.png" />
     <None Include="Web.config_18Dec2017" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -305,6 +375,13 @@
     <Compile Include="MerchantCertificate.aspx.designer.cs">
       <DependentUpon>MerchantCertificate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MerchantCertificateGenerate.aspx.cs">
+      <DependentUpon>MerchantCertificateGenerate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MerchantCertificateGenerate.aspx.designer.cs">
+      <DependentUpon>MerchantCertificateGenerate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MerchantCheckoutLevel.aspx.cs">
       <DependentUpon>MerchantCheckoutLevel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -430,6 +507,17 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="samples\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="samples\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="samples\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -460,12 +548,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="adapters\" />
     <Folder Include="bin\" />
+    <Folder Include="core\" />
     <Folder Include="css\font\" />
+    <Folder Include="dev\" />
     <Folder Include="ExcelUpload\" />
     <Folder Include="fonts\" />
     <Folder Include="img_exmestoreconfig\" />
     <Folder Include="img_merchant\" />
+    <Folder Include="lang\" />
+    <Folder Include="plugins\" />
+    <Folder Include="skins\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

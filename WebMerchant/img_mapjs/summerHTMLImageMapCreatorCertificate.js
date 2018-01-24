@@ -663,7 +663,7 @@ var summerHtmlImageMapCreator = (function () {
 
     /**
      * The constructor of helpers points
-     * Helper is small svg-rectangle with some actions
+     * Helper is small svg-rectangle1 with some actions
      * 
      * @constructor
      * @param node {DOMElement} - a node for inserting helper
@@ -734,7 +734,7 @@ var summerHtmlImageMapCreator = (function () {
      *
      * @constructor
      * @abstract
-     * @param type {string} - type of area ('rectangle', 'circle' or 'polygon')
+     * @param type {string} - type of area ('rectangle1', 'circle' or 'polygon')
      * @param coords {Object} - coordinates of area (e.g. x, y, width, height)
      * @param attributes {Object} [attributes=undefined] - attributes for area (e.g. href, title)
      */
@@ -787,6 +787,7 @@ var summerHtmlImageMapCreator = (function () {
     };
     Area.CONSTRUCTORS = {
         rectangle: Rectangle,
+        rectangle1: Rectangle1,
         circle: Circle,
         polygon: Polygon
     };
@@ -798,8 +799,7 @@ var summerHtmlImageMapCreator = (function () {
         DELIMETER: / ?, ?/
     };
     Area.HTML_NAMES_TO_AREA_NAMES = {
-        rect: 'rectangle',
-        rect: 'rectangle1',
+        rect: 'rectangle1,rectangle',
         circle: 'circle',
         poly: 'polygon'
     };
@@ -927,7 +927,7 @@ var summerHtmlImageMapCreator = (function () {
     Area.prototype.toJSON = function () {
         /**
          * @namespace
-         * @property type {string} - type of this area (e.g. 'rectangle', 'circle')
+         * @property type {string} - type of this area (e.g. 'rectangle1', 'circle')
          * @property coords {Object} - coordinates of this area (e.g. 'x', 'width') 
          * @property attributes {Object} - attributes of this area (e.g. 'href', 'title')
          */
@@ -943,7 +943,7 @@ var summerHtmlImageMapCreator = (function () {
      * 
      * @static
      * @param params {Object} - params of area, incl. type, coords and attributes
-     * @returns {Rectangle|Circle|Polygon}
+     * @returns {Rectangle1|Circle|Polygon}
      */
     Area.fromJSON = function (params) {
         var AreaConstructor = Area.CONSTRUCTORS[params.type];
@@ -1021,6 +1021,458 @@ var summerHtmlImageMapCreator = (function () {
      */
     Area.copy = function (originalArea) {
         return Area.fromJSON(originalArea.toJSON()).move(10, 10).select();
+    };
+
+    /* ---------- Constructors for real areas ---------- */
+
+    /**
+     * The constructor for rectangle1s
+     * 
+     * (x, y) -----
+     * |          | height
+     * ------------
+     *     width
+     *
+     * @constructor
+     * @param coords {Object} - object with parameters of new area (x, y, width, height)
+     *                          if some parameter is undefined, it will set 0
+     * @param attributes {Object} [attributes=undefined] - attributes for area (e.g. href, title) 
+     */
+    function Rectangle1(coords, attributes) {
+        Area.call(this, 'rectangle1', coords, attributes);
+
+        /**
+         * @namespace
+         * @property {number} x - Distance from the left edge of the image to the left side of the rectangle1
+         * @property {number} y - Distance from the top edge of the image to the top side of the rectangle1
+         * @property {number} width - Width of rectangle1
+         * @property {number} height - Height of rectangle1
+         */
+        this._coords = {
+            x: coords.x || 0,
+            y: coords.y || 0,
+            width: coords.width || 0,
+            height: coords.height || 0
+        };
+
+        this._el = document.createElementNS(Area.SVG_NS, 'rect');
+        this._groupEl.appendChild(this._el);
+
+        var x = coords.x - this._coords.width / 2,
+            y = coords.y - this._coords.height / 2;
+
+        this._helpers = {
+            center: new Helper(this._groupEl, x, y, 'move'),
+            top: new Helper(this._groupEl, x, y, 'editTop'),
+            bottom: new Helper(this._groupEl, x, y, 'editBottom'),
+            left: new Helper(this._groupEl, x, y, 'editLeft'),
+            right: new Helper(this._groupEl, x, y, 'editRight'),
+            topLeft: new Helper(this._groupEl, x, y, 'editTopLeft'),
+            topRight: new Helper(this._groupEl, x, y, 'editTopRight'),
+            bottomLeft: new Helper(this._groupEl, x, y, 'editBottomLeft'),
+            bottomRight: new Helper(this._groupEl, x, y, 'editBottomRight')
+        };
+
+        this.redraw();
+    }
+    utils.inherits(Rectangle1, Area);
+
+    /**
+     * Set attributes for svg-elements of area by new parameters
+     * 
+     * -----top------
+     * |            |
+     * ---center_y---
+     * |            |
+     * ----bottom----
+     * 
+     * @param coords {Object} - Object with coords of this area (x, y, width, height)
+     * @returns {Rectangle1} - this rectangle1
+     */
+    Rectangle1.prototype.setSVGCoords = function (coords) {
+        this._el.setAttribute('x', coords.x);
+        this._el.setAttribute('y', coords.y);
+        this._el.setAttribute('width', coords.width);
+        this._el.setAttribute('height', coords.height);
+
+        var top = coords.y,
+            center_y = coords.y + coords.height / 2,
+            bottom = coords.y + coords.height,
+            left = coords.x,
+            center_x = coords.x + coords.width / 2,
+            right = coords.x + coords.width;
+
+        this._helpers.center.setCoords(center_x, center_y);
+        this._helpers.top.setCoords(center_x, top);
+        this._helpers.bottom.setCoords(center_x, bottom);
+        this._helpers.left.setCoords(left, center_y);
+        this._helpers.right.setCoords(right, center_y);
+        this._helpers.topLeft.setCoords(left, top);
+        this._helpers.topRight.setCoords(right, top);
+        this._helpers.bottomLeft.setCoords(left, bottom);
+        this._helpers.bottomRight.setCoords(right, bottom);
+
+        return this;
+    };
+
+    /**
+     * Set coords for this area
+     * 
+     * @param coords {coords}
+     * @returns {Rectangle1} - this rectangle1
+     */
+    Rectangle1.prototype.setCoords = function (coords) {
+        this._coords.x = coords.x;
+        this._coords.y = coords.y;
+        this._coords.width = coords.width;
+        this._coords.height = coords.height;
+
+        return this;
+    };
+
+    /**
+     * Calculates new coordinates in process of drawing
+     * 
+     * @param x {number} - x-coordinate of cursor
+     * @param y {number} - y-coordinate of cursor
+     * @param isSquare {boolean}
+     * @returns {Object} - calculated coords of this area
+     */
+    Rectangle1.prototype.dynamicDraw = function (x, y, isSquare) {
+        var newCoords = {
+            x: this._coords.x,
+            y: this._coords.y,
+            width: x - this._coords.x,
+            height: y - this._coords.y
+        };
+
+        if (isSquare) {
+            newCoords = Rectangle1.getSquareCoords(newCoords);
+        }
+
+        newCoords = Rectangle1.getNormalizedCoords(newCoords);
+
+        this.redraw(newCoords);
+        return newCoords;
+    };
+
+    /**
+     * Handler for drawing process (by mousemove)
+     * It includes only redrawing area by new coords 
+     * (this coords doesn't save as own area coords)
+     * 
+     * @params e {MouseEvent} - mousemove event
+     */
+    Rectangle1.prototype.onProcessDrawing = function (e) {
+        var coords = utils.getRightCoords(e.pageX, e.pageY);
+
+        this.dynamicDraw(coords.x, coords.y, e.shiftKey);
+    };
+
+    /**
+     * Handler for drawing stoping (by second click on drawing canvas)
+     * It includes redrawing area by new coords 
+     * and saving this coords as own area coords
+     * 
+     * @params e {MouseEvent} - click event
+     */
+    Rectangle1.prototype.onStopDrawing = function (e) {
+        var coords = utils.getRightCoords(e.pageX, e.pageY);
+
+        this.setCoords(this.dynamicDraw(coords.x, coords.y, e.shiftKey)).deselect();
+
+        app.removeAllEvents()
+           .setIsDraw(false)
+           .resetNewArea();
+        alert('rectangle1');
+
+        CreatRadioButton(this._coords.x, this._coords.y, coords.x, coords.y, '#ContentPlaceHolder1_txtDate')
+    };
+
+    /**
+     * Changes area parameters by editing type and offsets
+     * 
+     * @param {string} editingType - A type of editing (e.g. 'move')
+     * @returns {Object} - Object with changed parameters of area 
+     */
+    Rectangle1.prototype.edit = function (editingType, dx, dy) {
+        var tempParams = Object.create(this._coords);
+
+        switch (editingType) {
+            case 'move':
+                tempParams.x += dx;
+                tempParams.y += dy;
+                break;
+
+            case 'editLeft':
+                tempParams.x += dx;
+                tempParams.width -= dx;
+                break;
+
+            case 'editRight':
+                tempParams.width += dx;
+                break;
+
+            case 'editTop':
+                tempParams.y += dy;
+                tempParams.height -= dy;
+                break;
+
+            case 'editBottom':
+                tempParams.height += dy;
+                break;
+
+            case 'editTopLeft':
+                tempParams.x += dx;
+                tempParams.y += dy;
+                tempParams.width -= dx;
+                tempParams.height -= dy;
+                break;
+
+            case 'editTopRight':
+                tempParams.y += dy;
+                tempParams.width += dx;
+                tempParams.height -= dy;
+                break;
+
+            case 'editBottomLeft':
+                tempParams.x += dx;
+                tempParams.width -= dx;
+                tempParams.height += dy;
+                break;
+
+            case 'editBottomRight':
+                tempParams.width += dx;
+                tempParams.height += dy;
+                break;
+        }
+
+        return tempParams;
+    };
+
+    /**
+     * Calculates new coordinates in process of editing
+     * 
+     * @param coords {Object} - area coords 
+     * @param saveProportions {boolean}
+     * @returns {Object} - new coordinates of area
+     */
+    Rectangle1.prototype.dynamicEdit = function (coords, saveProportions) {
+        coords = Rectangle1.getNormalizedCoords(coords);
+
+        if (saveProportions) {
+            coords = Rectangle1.getSavedProportionsCoords(coords);
+        }
+
+        this.redraw(coords);
+
+        return coords;
+    };
+
+    /**
+     * Handler for editing process (by mousemove)
+     * It includes only redrawing area by new coords 
+     * (this coords doesn't save as own area coords)
+     * 
+     * @params e {MouseEvent} - mousemove event
+     */
+    Rectangle1.prototype.onProcessEditing = function (e) {
+        return this.dynamicEdit(
+            this.edit(
+                app.getEditType(),
+                e.pageX - this.editingStartPoint.x,
+                e.pageY - this.editingStartPoint.y
+            ),
+            e.shiftKey
+        );
+    };
+
+    /**
+     * Handler for editing stoping (by mouseup)
+     * It includes redrawing area by new coords 
+     * and saving this coords as own area coords
+     * 
+     * @params e {MouseEvent} - mouseup event
+     */
+    Rectangle1.prototype.onStopEditing = function (e) {
+        this.setCoords(this.onProcessEditing(e));
+        app.removeAllEvents();
+    };
+
+    /**
+     * Returns string-representation of this rectangle1
+     * 
+     * @returns {string}
+     */
+    Rectangle1.prototype.toString = function () {
+        return 'Rectangle1 {x: ' + this._coords.x +
+               ', y: ' + this._coords.y +
+               ', width: ' + this._coords.width +
+               ', height: ' + this._coords.height + '}';
+    }
+
+    /**
+     * Returns html-string of area html element with params of this rectangle1
+     * 
+     * @returns {string}
+     */
+    Rectangle1.prototype.toHTMLMapElementString = function () {
+        var x2 = this._coords.x + this._coords.width,
+            y2 = this._coords.y + this._coords.height;
+
+        return '<area shape="rect" coords="' // TODO: use template engine
+            + this._coords.x + ', '
+            + this._coords.y + ', '
+            + x2 + ', '
+            + y2
+            + '"'
+            + (this._attributes.href ? ' href="' + this._attributes.href + '"' : '')
+            + (this._attributes.alt ? ' alt="' + this._attributes.alt + '"' : '')
+            + (this._attributes.title ? ' title="' + this._attributes.title + '"' : '')
+            + ' />';
+    };
+
+    Rectangle1.prototype.toCoords = function () {
+        var x2 = this._coords.x + this._coords.width,
+            y2 = this._coords.y + this._coords.height;
+
+        return this._coords.x + ',' + this._coords.y + ',' + x2 + ',' + y2;
+    };
+
+    /**
+     * Returns coords for area attributes form
+     * 
+     * @returns {Object} - object width coordinates of point
+     */
+    Rectangle1.prototype.getCoordsForDisplayingInfo = function () {
+        return {
+            x: this._coords.x,
+            y: this._coords.y
+        };
+    };
+
+    /**
+     * Returns true if coords is valid for rectangle1s and false otherwise
+     *
+     * @static
+     * @param coords {Object} - object with coords for new rectangle1
+     * @return {boolean}
+     */
+    Rectangle1.testCoords = function (coords) {
+        return coords.x && coords.y && coords.width && coords.height;
+    };
+
+    /**
+     * Returns true if html coords array is valid for rectangle1s and false otherwise
+     *
+     * @static
+     * @param coords {Array} - coords for new rectangle1 as array
+     * @return {boolean}
+     */
+    Rectangle1.testHTMLCoords = function (coords) {
+        return coords.length === 4;
+    };
+
+    /**
+     * Return rectangle1 coords object from html array
+     * 
+     * @param htmlCoordsArray {Array}
+     * @returns {Object}
+     */
+    Rectangle1.getCoordsFromHTMLArray = function (htmlCoordsArray) {
+        if (!Rectangle1.testHTMLCoords(htmlCoordsArray)) {
+            throw new Error('This html-coordinates is not valid for rectangle1');
+        }
+
+        return {
+            x: htmlCoordsArray[0],
+            y: htmlCoordsArray[1],
+            width: htmlCoordsArray[2] - htmlCoordsArray[0],
+            height: htmlCoordsArray[3] - htmlCoordsArray[1]
+        };
+    };
+
+    /**
+     * Fixes coords if width or/and height are negative
+     * 
+     * @static
+     * @param coords {Object} - Coordinates of this area 
+     * @returns {Object} - Normalized coordinates of area
+     */
+    Rectangle1.getNormalizedCoords = function (coords) {
+        if (coords.width < 0) {
+            coords.x += coords.width;
+            coords.width = Math.abs(coords.width);
+        }
+
+        if (coords.height < 0) {
+            coords.y += coords.height;
+            coords.height = Math.abs(coords.height);
+        }
+
+        return coords;
+    };
+
+    /**
+     * Returns coords with equivivalent width and height
+     * 
+     * @static
+     * @param coords {Object} - Coordinates of this area 
+     * @returns {Object} - Coordinates of area with equivivalent width and height
+     */
+    Rectangle1.getSquareCoords = function (coords) {
+        var width = Math.abs(coords.width),
+            height = Math.abs(coords.height);
+
+        if (width > height) {
+            coords.width = coords.width > 0 ? height : -height;
+        } else {
+            coords.height = coords.height > 0 ? width : -width;
+        }
+
+        return coords;
+    };
+
+    /**
+     * Returns coords with saved proportions of original area
+     * 
+     * @static
+     * @param coords {Object} - Coordinates of this area 
+     * @param originalCoords {Object} - Coordinates of the original area
+     * @returns {Object} - Coordinates of area with saved proportions of original area
+     */
+    Rectangle1.getSavedProportionsCoords = function (coords, originalCoords) {
+        var originalProportions = coords.width / coords.height,
+            currentProportions = originalCoords.width / originalCoords.height;
+
+        if (currentProportions > originalProportions) {
+            coords.width = Math.round(coords.height * originalProportions);
+        } else {
+            coords.height = Math.round(coords.width / originalProportions);
+        }
+
+        return coords;
+    };
+
+    /**
+     * Creates new rectangle1 and adds drawing handlers for DOM-elements
+     * 
+     * @static
+     * @param firstPointCoords {Object}
+     * @returns {Rectangle1}
+     */
+    Rectangle1.createAndStartDrawing = function (firstPointCoords) {
+        var newArea = new Rectangle1({
+            x: firstPointCoords.x,
+            y: firstPointCoords.y,
+            width: 0,
+            height: 0
+        });
+
+        app.addEvent(app.domElements.container, 'mousemove', newArea.onProcessDrawing.bind(newArea))
+           .addEvent(app.domElements.container, 'click', newArea.onStopDrawing.bind(newArea));
+
+        return newArea;
     };
 
     /* ---------- Constructors for real areas ---------- */
@@ -1185,13 +1637,8 @@ var summerHtmlImageMapCreator = (function () {
            .setIsDraw(false)
            .resetNewArea();
         var typecheck = this._type;
-        if (this._type == 'rectangle1') {
-            alert('hi1');
-        }
-        else {
-            alert('hi2');
-            CreatRadioButton(this._coords.x, this._coords.y, coords.x, coords.y)
-        }
+        alert('rectangle');
+        CreatRadioButton(this._coords.x, this._coords.y, coords.x, coords.y, '#ContentPlaceHolder1_txtName')
     };
 
     /**
@@ -1479,7 +1926,6 @@ var summerHtmlImageMapCreator = (function () {
 
         return newArea;
     };
-
 
     /**
      * The constructor for circles
@@ -2702,7 +3148,7 @@ var summerHtmlImageMapCreator = (function () {
         var all = utils.id('nav').getElementsByTagName('li'),
             save = utils.id('save'),
             load = utils.id('load'),
-            rectangle = utils.id('rectangle'),
+            rectangle1 = utils.id('rectangle1'),
             rectangle1 = utils.id('rectangle1'),
             circle = utils.id('circle'),
             polygon = utils.id('polygon'),
@@ -2857,6 +3303,8 @@ var summerHtmlImageMapCreator = (function () {
 })();
 
 
-function CreatRadioButton(x, y, w, h) {
-    $('<div class="col-sm-12"><input type="radio" id=' + x + y + w + h + ' name="radiobtnrect" value=' + x + ',' + y + ',' + w + ',' + h + '>' + x + ',' + y + ',' + w + ',' + h + '</input></div>').appendTo('#divHotspot');
+function CreatRadioButton(x, y, w, h, txtname) {
+    $(txtname).attr('value', x + ', ' + y + ', ' + w + ', ' + h);
+    deselectAll();
+    // $('<div class="col-sm-12"><input type="radio" id=' + x + y + w + h + ' name="radiobtnrect" value=' + x + ',' + y + ',' + w + ',' + h + '>' + x + ',' + y + ',' + w + ',' + h + '</input></div>').appendTo('#divHotspot');
 }
