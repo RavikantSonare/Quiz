@@ -141,7 +141,7 @@
                                     <li id="circle" style="display: none;"><a href="#">circle</a></li>
                                     <li id="polygon" style="display: none;"><a href="#">polygon</a></li>
                                     <li id="edit"><a href="#">edit</a></li>
-                                    <li id="to_html"><a href="#">to html</a></li>
+                                    <li id="to_html" style="display: none;"><a href="#">to html</a></li>
                                     <li id="preview" style="display: none;"><a href="#">preview</a></li>
                                     <li id="clear"><a href="#">clear</a></li>
                                     <li id="new_image"><a href="#">new image</a></li>

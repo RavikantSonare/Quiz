@@ -1779,3 +1779,263 @@ Source: mscorlib
 TargetSite: Void AbortInternal()
 -----------------------------------------------------------
 
+Time: 25/01/2018 05:54:22 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 116
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 06:16:26 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 116
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 06:22:29 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 116
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 07:16:01 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, Int32 x, Int32 y) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 119
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 07:19:24 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, Int32 x, Int32 y) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 119
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 07:24:29 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, Int32 x, Int32 y) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 119
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 07:28:41 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, Int32 x, Int32 y) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 119
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 07:30:49 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, Int32 x, Int32 y) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 119
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 07:38:07 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, Int32 x, Int32 y) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 119
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 07:44:14 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, Int32 x, Int32 y) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 119
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 08:45:06 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, String name, Int32 nx, Int32 ny, Int32 dx, Int32 dy) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 128
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 32
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 08:58:52 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, String name, String date, Int32 nx, Int32 ny, Int32 dx, Int32 dy) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 128
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 61
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 08:59:24 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, String name, String date, Int32 nx, Int32 ny, Int32 dx, Int32 dy) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 128
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 61
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 09:00:25 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, String name, String date, Int32 nx, Int32 ny, Int32 dx, Int32 dy) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 128
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 61
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 09:08:50 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, String name, String date, Int32 nx, Int32 ny, Int32 dx, Int32 dy) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 128
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 61
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 09:09:09 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, String name, String date, Int32 nx, Int32 ny, Int32 dx, Int32 dy) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 128
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 61
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 09:09:29 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, String name, String date, Int32 nx, Int32 ny, Int32 dx, Int32 dy) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 128
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 61
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 09:39:19 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, String name, String date, Int32 nx, Int32 ny, Int32 dx, Int32 dy) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 128
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 61
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 09:39:48 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, String name, String date, Int32 nx, Int32 ny, Int32 dx, Int32 dy) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 128
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 61
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 25/01/2018 09:40:12 AM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at WebMerchant.MerchantCertificateGenerate.Imagewatermark(String imagename, String name, String date, Int32 nx, Int32 ny, Int32 dx, Int32 dy) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 128
+   at WebMerchant.MerchantCertificateGenerate.Page_Load(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantCertificateGenerate.aspx.cs:line 61
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+

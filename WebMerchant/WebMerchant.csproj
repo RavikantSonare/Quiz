@@ -241,6 +241,7 @@
     <Content Include="samples\toolbarconfigurator\package.json" />
     <Content Include="samples\Upload.ashx" />
     <Content Include="TemplateImage\img_20180124142911197.png" />
+    <Content Include="Upload.ashx" />
     <None Include="Web.config_18Dec2017" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

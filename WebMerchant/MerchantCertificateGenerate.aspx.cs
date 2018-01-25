@@ -29,7 +29,7 @@ namespace WebMerchant
         {
             try
             {
-                Imagewatermark("img_20180124142911197.png");
+                // Imagewatermark("img_20180125114321342.png", "Shailendra Kumrawat", DateTime.Now.ToString("dd/MM/yyyy"), 195, 214, 142, 365);
                 if (Session["merchantDetail"] != null)
                 {
                     BOMerchantManage _bomerchantDetail = (BOMerchantManage)Session["merchantDetail"];
@@ -51,8 +51,14 @@ namespace WebMerchant
                             DataTable _datatable3 = new DataTable();
                             _datatable3 = _bamercertfict.SelectCertifcateDetailWithID("GetCertificateWithCId", certid);
 
+                            string namefield = _datatable3.Rows[0]["NameBox"].ToString();
+                            string[] nameareavalue = namefield.Split(',');
+
+                            string datefiled = _datatable3.Rows[0]["DateBox"].ToString();
+                            string[] dateareavalue = datefiled.Split(',');
+
                             imgcertificate.ImageUrl = "~/TemplateImage/" + _datatable3.Rows[0]["CertificatePic"].ToString();
-                           // Imagewatermark("img_20180124142911197.png");
+                            Imagewatermark(_datatable3.Rows[0]["CertificatePic"].ToString(), Request.QueryString["name"].ToString(), DateTime.Now.ToString("dd/MM/yyyy"), Convert.ToInt32(nameareavalue[0]), Convert.ToInt32(nameareavalue[1]), Convert.ToInt32(dateareavalue[0]), Convert.ToInt32(dateareavalue[1]));
                         }
                     }
                 }
@@ -73,12 +79,12 @@ namespace WebMerchant
             ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
         }
 
-        internal void Imagewatermark(string imagename)
+        internal void Imagewatermark(string imagename, string name, string date, int nx, int ny, int dx, int dy)
         {
             string filePath = string.Empty;
             filePath = HostingEnvironment.MapPath("~/TemplateImage/");
             Bitmap bmp1 = (Bitmap)System.Drawing.Image.FromFile(filePath + imagename);
-            string watermarkText = "Quiz Manage";
+            string watermarkText = name;
             using (Bitmap bmp = new Bitmap(System.Drawing.Image.FromFile(filePath + imagename)))
             {
                 using (Graphics grp = Graphics.FromImage(bmp))
@@ -87,7 +93,7 @@ namespace WebMerchant
                     Brush brush = new SolidBrush(Color.Black);
 
                     //Set the Font and its size.
-                    Font font = new System.Drawing.Font("Arial", 30, FontStyle.Bold, GraphicsUnit.Pixel);
+                    Font font = new System.Drawing.Font("Arial", 25, FontStyle.Regular, GraphicsUnit.Pixel);
 
                     //Determine the size of the Watermark text.
                     SizeF textSize = new SizeF();
@@ -95,8 +101,14 @@ namespace WebMerchant
 
                     //Position the text and draw it on the image.
                     //Point position = new Point((bmp.Width - ((int)textSize.Width + 10)), (bmp.Height - ((int)textSize.Height + 10)));
-                    Point position = new Point(149, 162);
+                    Point position = new Point(nx, ny);
                     grp.DrawString(watermarkText, font, brush, position);
+
+                    Font fontdate = new System.Drawing.Font("Arial", 15, FontStyle.Regular, GraphicsUnit.Pixel);
+                    SizeF textSizedate = new SizeF();
+                    textSizedate = grp.MeasureString(date, fontdate);
+                    Point positiondate = new Point(dx, dy);
+                    grp.DrawString(date, fontdate, brush, positiondate);
 
                     using (MemoryStream memoryStream = new MemoryStream())
                     {

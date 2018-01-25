@@ -90,12 +90,12 @@
         // CKEDITOR.replace('BodyContent_editor1');
         CKEDITOR.replace('<%=editor1.ClientID %>',
 {
-    filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+    filebrowserBrowseUrl: './Upload.ashx/',
     filebrowserImageBrowseUrl: './Upload.ashx/',
-    filebrowserFlashBrowseUrl: '/ckfinder/ckfinder.html?Type=Flash',
-    filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+    filebrowserFlashBrowseUrl: './Upload.ashx/',
+    filebrowserUploadUrl: './Upload.ashx/',
     filebrowserImageUploadUrl: './Upload.ashx',
-    filebrowserFlashUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash',
+    filebrowserFlashUploadUrl: './Upload.ashx/',
 });
     </script>
     <asp:Button runat="server" Text="Show Text" ID="show_text" OnClick="show_text_Click" />

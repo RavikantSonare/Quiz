@@ -3305,6 +3305,18 @@ var summerHtmlImageMapCreator = (function () {
 
 function CreatRadioButton(x, y, w, h, txtname) {
     $(txtname).attr('value', x + ', ' + y + ', ' + w + ', ' + h);
-    deselectAll();
-    // $('<div class="col-sm-12"><input type="radio" id=' + x + y + w + h + ' name="radiobtnrect" value=' + x + ',' + y + ',' + w + ',' + h + '>' + x + ',' + y + ',' + w + ',' + h + '</input></div>').appendTo('#divHotspot');
+    // $('#clear').click();
+    onClearButtonClick123();
+}
+function onClearButtonClick123() {
+    // Clear all
+    if (confirm('Clear all?')) {
+        app.setMode(null)
+            .setDefaultClass()
+            .setShape(null)
+            .clear()
+            .hidePreview();
+        deselectAll();
+        $("#divHotspot").html("");
+    }
 }

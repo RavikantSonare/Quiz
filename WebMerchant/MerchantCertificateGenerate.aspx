@@ -9,6 +9,7 @@
         <div class="tab-pane active" id="examReport">
             <div class="row">
                 <asp:Image ID="imgcertificate" runat="server" />
+                <asp:Label ID="lblname" runat="server" />
             </div>
         </div>
     </div>
