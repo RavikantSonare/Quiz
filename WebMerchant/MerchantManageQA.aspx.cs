@@ -218,9 +218,9 @@ namespace WebMerchant
                 _boqamng.ExamCode = ddlExamCode.SelectedItem.Text;
                 _boqamng.QuestionTypeId = Convert.ToInt32(ddlQuestionType.SelectedItem.Value);
                 _boqamng.Score = Convert.ToDecimal(txtScore.Text);
-                _boqamng.Question = hftxtquestion.Value;
+                _boqamng.Question = txtQuestion.Text;// hftxtquestion.Value;
                 _boqamng.NoofAnswer = Convert.ToInt32(noofanswer);
-                _boqamng.Explanation = hftxtExplanation.Value;
+                _boqamng.Explanation = txtExplanation.Text;// hftxtExplanation.Value;
                 _boqamng.MerchantId = MerchantId;
                 _boqamng.IsActive = true;
                 _boqamng.IsDelete = false;
@@ -280,10 +280,10 @@ namespace WebMerchant
                 for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
                 {
                     _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
                     {
                         _boqans.AnswerId = array[loopcnt - 1];
-                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
                     }
                     if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
                     {
@@ -312,9 +312,9 @@ namespace WebMerchant
                 for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
                 {
                     _boqans.QuestionId = qusvalu;
-                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
                     {
-                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
                     }
                     if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
                     {
@@ -348,10 +348,10 @@ namespace WebMerchant
                 for (int loopcnt = 1; loopcnt <= arrayMulti.Length; loopcnt++)
                 {
                     _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
                     {
                         _boqans.AnswerId = arrayMulti[loopcnt - 1];
-                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
                     }
                     if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
                     {
@@ -380,9 +380,9 @@ namespace WebMerchant
                 for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
                 {
                     _boqans.QuestionId = qusvalu;
-                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
                     {
-                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
                     }
                     if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
                     {
@@ -416,10 +416,10 @@ namespace WebMerchant
                 for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
                 {
                     _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
                     {
                         _boqans.AnswerId = array[loopcnt - 1];
-                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
                     }
                     if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
                     {
@@ -448,9 +448,9 @@ namespace WebMerchant
                 for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
                 {
                     _boqans.QuestionId = qusvalu;
-                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
                     {
-                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
                     }
                     if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
                     {
@@ -484,10 +484,10 @@ namespace WebMerchant
                 for (int loopcnt = 1; loopcnt <= arrayDragdrop.Length; loopcnt++)
                 {
                     _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
                     {
                         _boqans.AnswerId = arrayDragdrop[loopcnt - 1];
-                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
                     }
                     if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
                     {
@@ -516,9 +516,9 @@ namespace WebMerchant
                 for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
                 {
                     _boqans.QuestionId = qusvalu;
-                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
                     {
-                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
                     }
                     if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$" + loopcnt))
                     {
@@ -619,10 +619,10 @@ namespace WebMerchant
                 for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
                 {
                     _boqans.QuestionId = Convert.ToInt32(ViewState["QAId"]);
-                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
                     {
                         _boqans.AnswerId = array[loopcnt - 1];
-                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
                     }
                     if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
                     {
@@ -651,9 +651,9 @@ namespace WebMerchant
                 for (int loopcnt = 1; loopcnt <= Convert.ToInt32(prevVaile.Value.Trim()); loopcnt++)
                 {
                     _boqans.QuestionId = qusvalu;
-                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$hf" + loopcnt))
+                    if (Request.Params.AllKeys.Contains("ctl00$ContentPlaceHolder1$tb" + loopcnt))
                     {
-                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$hf" + loopcnt].ToString();
+                        _boqans.Answer = Request.Params["ctl00$ContentPlaceHolder1$tb" + loopcnt].ToString();
                     }
                     if (Convert.ToInt32(Request.Params["ctl00$ContentPlaceHolder1$Single"]) == loopcnt)
                     {
@@ -778,7 +778,8 @@ namespace WebMerchant
                     Session["Qtypevalue"] = _datatable4.Rows[0][2].ToString();
                     ddlQuestionType.Enabled = false;
                     txtScore.Text = _datatable4.Rows[0][3].ToString();
-                    hftxtquestion.Value = _datatable4.Rows[0][4].ToString();
+                    //hftxtquestion.Value = _datatable4.Rows[0][4].ToString();
+                    txtQuestion.Text = _datatable4.Rows[0][4].ToString();
                     hfExhibit.Value = _datatable4.Rows[0]["Exhibit"].ToString();
                     hfTopology.Value = _datatable4.Rows[0]["Topology"].ToString();
                     hfScenario.Value = _datatable4.Rows[0]["Scenario"].ToString();
@@ -794,7 +795,7 @@ namespace WebMerchant
                             CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
                         }
                         ViewState["arrAnswerID"] = arrAnswerID;
-                        hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
+                        txtExplanation.Text = _datatable4.Rows[0][6].ToString();
                     }
                     else if (_datatable4.Rows[0][2].ToString().Equals("2"))
                     {
@@ -808,7 +809,7 @@ namespace WebMerchant
                             CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
                         }
                         ViewState["arrMultiAnswerID"] = arrMultiAnswerID;
-                        hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
+                        txtExplanation.Text = _datatable4.Rows[0][6].ToString();
                     }
                     else if (_datatable4.Rows[0][2].ToString().Equals("3"))
                     {
@@ -822,7 +823,7 @@ namespace WebMerchant
                             CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
                         }
                         ViewState["arrVacantAnswerID"] = arrVacantAnswerID;
-                        hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
+                        txtExplanation.Text = _datatable4.Rows[0][6].ToString();
                     }
                     else if (_datatable4.Rows[0][2].ToString().Equals("4"))
                     {
@@ -836,7 +837,7 @@ namespace WebMerchant
                             CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
                         }
                         ViewState["arrDragdropAnswerID"] = arrDragdropAnswerID;
-                        hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
+                        txtExplanation.Text = _datatable4.Rows[0][6].ToString();
                     }
                     else if (_datatable4.Rows[0][2].ToString().Equals("5"))
                     {
@@ -858,7 +859,8 @@ namespace WebMerchant
                             CreateTextBoxQEdit(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox", _datatable4.Rows[loopcnt - 1][9].ToString(), Convert.ToBoolean(_datatable4.Rows[loopcnt - 1][10]));
                         }
                         ViewState["arrScenarioAnswerID"] = arrScenarioAnswerID;
-                        hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
+                        //hftxtExplanation.Value = _datatable4.Rows[0][6].ToString();
+                        txtExplanation.Text = _datatable4.Rows[0][6].ToString();
                     }
                     lnkbtnAdd.Text = "Update";
                     btnAdd.Text = "Update";
@@ -973,13 +975,38 @@ namespace WebMerchant
 
             System.Web.UI.WebControls.TextBox tb = new System.Web.UI.WebControls.TextBox();
             tb.ID = "tb" + loopcnt;
-            tb.CssClass = "summernote form-control";
+            ////tb.CssClass = "summernote form-control";
             tb.EnableViewState = true;
+            tb.TextMode = TextBoxMode.MultiLine;
             ctrlPlaceholderTextBox.Controls.Add(tb);
 
-            HiddenField hf = new HiddenField();
-            hf.ID = "hf" + loopcnt;
-            ctrlPlaceholderTextBox.Controls.Add(hf);
+            //Label txtarea = new Label();
+            //txtarea.Text = "<textarea runat='server' placeholder='Haber metnini girin.' name='tb" + loopcnt + "' style='height: 700px' id='tb" + loopcnt + "' rows='10' cols='80'></textarea>";
+            //ctrlPlaceholderTextBox.Controls.Add(txtarea);
+
+
+            // Page.ClientScript.RegisterStartupScript(this.GetType(), "myKey", myScript, false);
+
+            //            Label scriptareaopen = new Label();
+            //            scriptareaopen.Text = @"<script type='text / javascript'>
+            //            CKEDITOR.replace('<%=tb" + loopcnt + ".ClientID %>',";
+            //            ctrlPlaceholderTextBox.Controls.Add(scriptareaopen);
+            //            Label scriptareaopen1 = new Label();
+            //            scriptareaopen1.Text = @"{ filebrowserBrowseUrl: './Upload.ashx/',
+            //    filebrowserImageBrowseUrl: './Upload.ashx/',
+            //    filebrowserFlashBrowseUrl: './Upload.ashx/',
+            //    filebrowserUploadUrl: './Upload.ashx/',
+            //    filebrowserImageUploadUrl: './Upload.ashx',
+            //    filebrowserFlashUploadUrl: './Upload.ashx/',
+            //}); ";
+            //            ctrlPlaceholderTextBox.Controls.Add(scriptareaopen1);
+            //            Label scriptareaclose = new Label();
+            //            scriptareaclose.Text = "</ script >";
+            //            ctrlPlaceholderTextBox.Controls.Add(scriptareaclose);
+
+            //HiddenField hf = new HiddenField();
+            //hf.ID = "hf" + loopcnt;
+            //ctrlPlaceholderTextBox.Controls.Add(hf);
 
             Label lblClose = new Label();
             lblClose.Text = "</div><div class='col-sm-1'>";
@@ -996,6 +1023,22 @@ namespace WebMerchant
             Label lblvalidaclose = new Label();
             lblvalidaclose.Text = "</div></div>";
             ctrlPlaceholderTextBox.Controls.Add(lblvalidaclose);
+
+            Label myScript = new Label();
+            myScript.Text = "\n<script type=\"text/javascript\" language=\"Javascript\" >\n";
+            string name = "ContentPlaceHolder1_tb" + loopcnt;
+            myScript.Text += @"CKEDITOR.replace('" + name + "',";
+            myScript.Text += @"{
+    filebrowserUploadUrl: './Upload.ashx/',
+    filebrowserImageUploadUrl: './Upload.ashx',
+    filebrowserFlashUploadUrl: './Upload.ashx/',
+}); ";
+            myScript.Text += "\n\n </script>";
+            ctrlPlaceholderTextBox.Controls.Add(myScript);
+            // Page.ClientScript.RegisterStartupScript(this.GetType(), "myKey", myScript.Text, false);
+            // ClientScript.RegisterClientScriptBlock(this.GetType(), "blah", myScript.Text, true);
+            // ClientScript.RegisterStartupScript(this.GetType(), "RegisterStartupScript", myScript.Text, true);
+
         }
 
         private void CreateTextBoxQEdit(int loopcnt, int qtype, string placeholder, string tbvalue, bool valueans)
@@ -1038,14 +1081,15 @@ namespace WebMerchant
             System.Web.UI.WebControls.TextBox tb = new System.Web.UI.WebControls.TextBox();
             tb.ID = "tb" + loopcnt;
             tb.Text = tbvalue;
-            tb.CssClass = "summernote form-control";
+            // tb.CssClass = "summernote form-control";
+            tb.TextMode = TextBoxMode.MultiLine;
             tb.EnableViewState = true;
             ctrlPlaceholderTextBox.Controls.Add(tb);
 
-            HiddenField hf = new HiddenField();
-            hf.ID = "hf" + loopcnt;
-            hf.Value = tbvalue;
-            ctrlPlaceholderTextBox.Controls.Add(hf);
+            //HiddenField hf = new HiddenField();
+            //hf.ID = "hf" + loopcnt;
+            //hf.Value = tbvalue;
+            //ctrlPlaceholderTextBox.Controls.Add(hf);
 
             Label lblClose = new Label();
             lblClose.Text = "</div><div class='col-sm-1'>";
@@ -1062,6 +1106,18 @@ namespace WebMerchant
             Label lblvalidaclose = new Label();
             lblvalidaclose.Text = "</div></div>";
             ctrlPlaceholderTextBox.Controls.Add(lblvalidaclose);
+
+            Label myScript = new Label();
+            myScript.Text = "\n<script type=\"text/javascript\" language=\"Javascript\" >\n";
+            string name = "ContentPlaceHolder1_tb" + loopcnt;
+            myScript.Text += @"CKEDITOR.replace('" + name + "',";
+            myScript.Text += @"{
+    filebrowserUploadUrl: './Upload.ashx/',
+    filebrowserImageUploadUrl: './Upload.ashx',
+    filebrowserFlashUploadUrl: './Upload.ashx/',
+}); ";
+            myScript.Text += "\n\n </script>";
+            ctrlPlaceholderTextBox.Controls.Add(myScript);
         }
 
         protected void btnImport_Click(object sender, EventArgs e)
@@ -1327,7 +1383,7 @@ namespace WebMerchant
             btnAddAnswerSingle.Visible = true;
             FillgridViewQAManage(MerchantId);
             Common.ClearControl(Panel1);
-            txtQuestion.Text = txtExplanation.Text = hftxtquestion.Value = hftxtExplanation.Value = "";
+            txtQuestion.Text = txtExplanation.Text = "";// hftxtquestion.Value = hftxtExplanation.Value = "";
             ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = null;
             ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = "";
             btnAdd.Text = "Add";

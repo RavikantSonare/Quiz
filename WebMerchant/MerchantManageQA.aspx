@@ -74,30 +74,13 @@
 
         });
     </script>
-    <script src="ckeditor.js"></script>
-    <script src="samples/js/sample.js"></script>
-    <link href="samples/css/samples.css" rel="stylesheet" />
-    <link href="samples/toolbarconfigurator/lib/codemirror/neo.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Label ID="Label1" Text="CK Editor Sample" runat="server"></asp:Label>
     <br />
     <textarea runat="server" placeholder="Haber metnini girin." name="editor1" style="height: 700px" id="editor1" rows="10" cols="80">
             </textarea>
-    <script type="text/javascript">
-        // Replace the <textarea id="editor1"> with a CKEditor
-        // instance, using default configuration.
-        // CKEDITOR.replace('BodyContent_editor1');
-        CKEDITOR.replace('<%=editor1.ClientID %>',
-{
-    filebrowserBrowseUrl: './Upload.ashx/',
-    filebrowserImageBrowseUrl: './Upload.ashx/',
-    filebrowserFlashBrowseUrl: './Upload.ashx/',
-    filebrowserUploadUrl: './Upload.ashx/',
-    filebrowserImageUploadUrl: './Upload.ashx',
-    filebrowserFlashUploadUrl: './Upload.ashx/',
-});
-    </script>
+
     <asp:Button runat="server" Text="Show Text" ID="show_text" OnClick="show_text_Click" />
     <asp:Label ID="lblNewsLong" runat="server" Text="getvalue"></asp:Label>
     <h2>Manage Question</h2>
@@ -141,9 +124,11 @@
                             <div class="form-group">
                                 <label for="" class="col-sm-3 control-label">Question</label>
                                 <div class="col-sm-9">
-                                    <asp:TextBox ID="txtQuestion" runat="server" CssClass="summernote form-control"></asp:TextBox>
+                                    <%--<textarea runat="server" placeholder="Haber metnini girin." name="txtQuestion" style="height: 700px" id="txtQuestion" rows="10" cols="80">
+            </textarea>--%>
+                                    <asp:TextBox ID="txtQuestion" runat="server" CssClass="summernote form-control" TextMode="MultiLine"></asp:TextBox>
                                     <asp:HiddenField runat="server" ID="prevVaile" />
-                                    <asp:HiddenField runat="server" ID="hftxtquestion" />
+                                    <%--<asp:HiddenField runat="server" ID="hftxtquestion" />--%>
                                 </div>
                             </div>
                             <asp:Panel ID="pnlSingleSelect" runat="server" Visible="false">
@@ -297,8 +282,9 @@
                                     <asp:HiddenField ID="hfExhibit" runat="server" />
                                     <asp:HiddenField ID="hfTopology" runat="server" />
                                     <asp:HiddenField ID="hfScenario" runat="server" />
-                                    <asp:HiddenField ID="hftxtExplanation" runat="server" />
-                                    <asp:TextBox ID="txtExplanation" runat="server" CssClass="summernote form-control"></asp:TextBox>
+                                    <%--<asp:HiddenField ID="hftxtExplanation" runat="server" />--%>
+                                    <asp:TextBox ID="txtExplanation" runat="server" CssClass="summernote form-control" TextMode="MultiLine"></asp:TextBox>
+                                    <%--<textarea runat="server" placeholder="Haber metnini girin." name="txtExplanation" style="height: 700px" id="txtExplanation" rows="10" cols="80" />--%>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -384,5 +370,47 @@
         $(document).on("click", "#ContentPlaceHolder1_btnAdd", function () {
             $("#preview").trigger("click");
         });
+    </script>
+    <script type="text/javascript">
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        // CKEDITOR.replace('BodyContent_editor1');
+        CKEDITOR.replace('<%=editor1.ClientID %>',
+{
+    //filebrowserBrowseUrl: './Upload.ashx/',
+    //filebrowserImageBrowseUrl: './Upload.ashx/',
+    //filebrowserFlashBrowseUrl: './Upload.ashx/',
+    filebrowserUploadUrl: './Upload.ashx/',
+    filebrowserImageUploadUrl: './Upload.ashx',
+    filebrowserFlashUploadUrl: './Upload.ashx/',
+});
+    </script>
+    <script type="text/javascript">
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        // CKEDITOR.replace('BodyContent_editor1');
+        CKEDITOR.replace('<%=txtQuestion.ClientID %>',
+{
+    //filebrowserBrowseUrl: './Upload.ashx/',
+    //filebrowserImageBrowseUrl: './Upload.ashx/',
+    //filebrowserFlashBrowseUrl: './Upload.ashx/',
+    filebrowserUploadUrl: './Upload.ashx/',
+    filebrowserImageUploadUrl: './Upload.ashx',
+    filebrowserFlashUploadUrl: './Upload.ashx/',
+});
+    </script>
+    <script type="text/javascript">
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        // CKEDITOR.replace('BodyContent_editor1');
+        CKEDITOR.replace('<%=txtExplanation.ClientID %>',
+{
+    //    filebrowserBrowseUrl: './Upload.ashx/',
+    //    filebrowserImageBrowseUrl: './Upload.ashx/',
+    //    filebrowserFlashBrowseUrl: './Upload.ashx/',
+    filebrowserUploadUrl: './Upload.ashx/',
+    filebrowserImageUploadUrl: './Upload.ashx',
+    filebrowserFlashUploadUrl: './Upload.ashx/',
+});
     </script>
 </asp:Content>

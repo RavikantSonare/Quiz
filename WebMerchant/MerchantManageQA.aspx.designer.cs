@@ -130,15 +130,6 @@ namespace WebMerchant {
         protected global::System.Web.UI.WebControls.HiddenField prevVaile;
         
         /// <summary>
-        /// hftxtquestion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hftxtquestion;
-        
-        /// <summary>
         /// pnlSingleSelect control.
         /// </summary>
         /// <remarks>
@@ -281,15 +272,6 @@ namespace WebMerchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfScenario;
-        
-        /// <summary>
-        /// hftxtExplanation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hftxtExplanation;
         
         /// <summary>
         /// txtExplanation control.

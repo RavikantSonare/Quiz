@@ -116,9 +116,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bender.ci.js" />
-    <Content Include="bender.js" />
-    <Content Include="ckeditor.js" />
+    <Content Include="samples\bender.ci.js" />
+    <Content Include="samples\bender.js" />
+    <Content Include="samples\ckeditor.js" />
     <Content Include="config.js" />
     <Content Include="css\example.css" />
     <Content Include="css\login.css" />
@@ -181,29 +181,6 @@
     <Content Include="samples\img\navigation-tip.png" />
     <Content Include="samples\js\sample.js" />
     <Content Include="samples\js\sf.js" />
-    <Content Include="samples\old\ajax.html" />
-    <Content Include="samples\old\api.html" />
-    <Content Include="samples\old\appendto.html" />
-    <Content Include="samples\old\assets\inlineall\logo.png" />
-    <Content Include="samples\old\assets\outputxhtml\outputxhtml.css" />
-    <Content Include="samples\old\assets\sample.jpg" />
-    <Content Include="samples\old\assets\uilanguages\languages.js" />
-    <Content Include="samples\old\datafiltering.html" />
-    <Content Include="samples\old\divreplace.html" />
-    <Content Include="samples\old\index.html" />
-    <Content Include="samples\old\inlineall.html" />
-    <Content Include="samples\old\inlinebycode.html" />
-    <Content Include="samples\old\inlinetextarea.html" />
-    <Content Include="samples\old\jquery.html" />
-    <Content Include="samples\old\readonly.html" />
-    <Content Include="samples\old\replacebyclass.html" />
-    <Content Include="samples\old\replacebycode.html" />
-    <Content Include="samples\old\sample.css" />
-    <Content Include="samples\old\sample.js" />
-    <Content Include="samples\old\tabindex.html" />
-    <Content Include="samples\old\uicolor.html" />
-    <Content Include="samples\old\uilanguages.html" />
-    <Content Include="samples\old\xhtmlstyle.html" />
     <Content Include="samples\Test.aspx" />
     <Content Include="samples\toolbarconfigurator\bender.js" />
     <Content Include="samples\toolbarconfigurator\css\fontello.css" />
@@ -228,8 +205,6 @@
     <Content Include="Web.config" />
     <Content Include="samples\less\custom.less" />
     <Content Include="samples\less\samples.less" />
-    <Content Include="samples\old\assets\posteddata.php" />
-    <Content Include="samples\old\sample_posteddata.php" />
     <Content Include="samples\toolbarconfigurator\font\config.json" />
     <Content Include="samples\toolbarconfigurator\font\fontello.eot" />
     <Content Include="samples\toolbarconfigurator\font\fontello.ttf" />
