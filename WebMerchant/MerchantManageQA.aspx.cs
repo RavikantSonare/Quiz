@@ -975,50 +975,13 @@ namespace WebMerchant
 
             System.Web.UI.WebControls.TextBox tb = new System.Web.UI.WebControls.TextBox();
             tb.ID = "tb" + loopcnt;
-            ////tb.CssClass = "summernote form-control";
             tb.EnableViewState = true;
             tb.TextMode = TextBoxMode.MultiLine;
             ctrlPlaceholderTextBox.Controls.Add(tb);
 
-            //Label txtarea = new Label();
-            //txtarea.Text = "<textarea runat='server' placeholder='Haber metnini girin.' name='tb" + loopcnt + "' style='height: 700px' id='tb" + loopcnt + "' rows='10' cols='80'></textarea>";
-            //ctrlPlaceholderTextBox.Controls.Add(txtarea);
-
-
-            // Page.ClientScript.RegisterStartupScript(this.GetType(), "myKey", myScript, false);
-
-            //            Label scriptareaopen = new Label();
-            //            scriptareaopen.Text = @"<script type='text / javascript'>
-            //            CKEDITOR.replace('<%=tb" + loopcnt + ".ClientID %>',";
-            //            ctrlPlaceholderTextBox.Controls.Add(scriptareaopen);
-            //            Label scriptareaopen1 = new Label();
-            //            scriptareaopen1.Text = @"{ filebrowserBrowseUrl: './Upload.ashx/',
-            //    filebrowserImageBrowseUrl: './Upload.ashx/',
-            //    filebrowserFlashBrowseUrl: './Upload.ashx/',
-            //    filebrowserUploadUrl: './Upload.ashx/',
-            //    filebrowserImageUploadUrl: './Upload.ashx',
-            //    filebrowserFlashUploadUrl: './Upload.ashx/',
-            //}); ";
-            //            ctrlPlaceholderTextBox.Controls.Add(scriptareaopen1);
-            //            Label scriptareaclose = new Label();
-            //            scriptareaclose.Text = "</ script >";
-            //            ctrlPlaceholderTextBox.Controls.Add(scriptareaclose);
-
-            //HiddenField hf = new HiddenField();
-            //hf.ID = "hf" + loopcnt;
-            //ctrlPlaceholderTextBox.Controls.Add(hf);
-
             Label lblClose = new Label();
             lblClose.Text = "</div><div class='col-sm-1'>";
             ctrlPlaceholderTextBox.Controls.Add(lblClose);
-
-            //RequiredFieldValidator rfv = new RequiredFieldValidator();
-            //rfv.ID = "rfv" + loopcnt;
-            //rfv.ControlToValidate = "tb" + loopcnt;
-            //rfv.ValidationGroup = "single";
-            //rfv.ForeColor = System.Drawing.Color.Red;
-            //rfv.ErrorMessage = "Please Enter Option " + Convert.ToChar(64 + loopcnt);
-            //ctrlPlaceholderTextBox.Controls.Add(rfv);
 
             Label lblvalidaclose = new Label();
             lblvalidaclose.Text = "</div></div>";
@@ -1035,10 +998,6 @@ namespace WebMerchant
 }); ";
             myScript.Text += "\n\n </script>";
             ctrlPlaceholderTextBox.Controls.Add(myScript);
-            // Page.ClientScript.RegisterStartupScript(this.GetType(), "myKey", myScript.Text, false);
-            // ClientScript.RegisterClientScriptBlock(this.GetType(), "blah", myScript.Text, true);
-            // ClientScript.RegisterStartupScript(this.GetType(), "RegisterStartupScript", myScript.Text, true);
-
         }
 
         private void CreateTextBoxQEdit(int loopcnt, int qtype, string placeholder, string tbvalue, bool valueans)
@@ -1081,27 +1040,13 @@ namespace WebMerchant
             System.Web.UI.WebControls.TextBox tb = new System.Web.UI.WebControls.TextBox();
             tb.ID = "tb" + loopcnt;
             tb.Text = tbvalue;
-            // tb.CssClass = "summernote form-control";
             tb.TextMode = TextBoxMode.MultiLine;
             tb.EnableViewState = true;
             ctrlPlaceholderTextBox.Controls.Add(tb);
 
-            //HiddenField hf = new HiddenField();
-            //hf.ID = "hf" + loopcnt;
-            //hf.Value = tbvalue;
-            //ctrlPlaceholderTextBox.Controls.Add(hf);
-
             Label lblClose = new Label();
             lblClose.Text = "</div><div class='col-sm-1'>";
             ctrlPlaceholderTextBox.Controls.Add(lblClose);
-
-            //RequiredFieldValidator rfv = new RequiredFieldValidator();
-            //rfv.ID = "rfv" + loopcnt;
-            //rfv.ControlToValidate = "tb" + loopcnt;
-            //rfv.ValidationGroup = "single";
-            //rfv.ForeColor = System.Drawing.Color.Red;
-            //rfv.ErrorMessage = "Please Enter Option " + Convert.ToChar(64 + loopcnt);
-            //ctrlPlaceholderTextBox.Controls.Add(rfv);
 
             Label lblvalidaclose = new Label();
             lblvalidaclose.Text = "</div></div>";
@@ -1383,7 +1328,7 @@ namespace WebMerchant
             btnAddAnswerSingle.Visible = true;
             FillgridViewQAManage(MerchantId);
             Common.ClearControl(Panel1);
-            txtQuestion.Text = txtExplanation.Text = "";// hftxtquestion.Value = hftxtExplanation.Value = "";
+            txtQuestion.Text = txtExplanation.Text = "";
             ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = null;
             ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = "";
             btnAdd.Text = "Add";
@@ -1397,24 +1342,8 @@ namespace WebMerchant
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
         }
-
-        protected void show_text_Click(object sender, EventArgs e)
-        {
-            string desc = editor1.Value.ToString();
-            lblNewsLong.Text = Server.HtmlDecode(desc);
-        }
     }
 }
-//class QuestionManage
-//{
-//    public int QuestionNo { get; set; }
-//    public string Question { get; set; }
-//    public List<string> Answer { get; set; }
-//    public List<int> RightAnswer { get; set; }
-//    public int QuestionType { get; set; }
-//    public int NoofAnswer { get; set; }
-//    public decimal Score { get; set; }
-//}
 
 [Serializable]
 class Questions

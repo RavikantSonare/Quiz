@@ -222,7 +222,7 @@
         <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#contact" data-original-title>Contact
         </a>--%>
         <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog estoremodal">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -259,7 +259,7 @@
                                     <label for="lblexamdescription">Exam Description</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9" style="padding-bottom: 10px;">
-                                    <asp:TextBox ID="txtExamDescription" TextMode="MultiLine" Rows="5" runat="server" CssClass="summernote form-control" ViewStateMode="Disabled"></asp:TextBox>
+                                    <asp:TextBox ID="txtExamDescription" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control" ViewStateMode="Disabled"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -279,7 +279,7 @@
                                 var Questiono = $.trim($('#<%=txtQuestionno.ClientID %>').val());
                                 var Price = $.trim($('#<%=txtEstoreExamPrice.ClientID %>').val());
                                 var ExamPic = $.trim($('#<%=hfimagebase64.ClientID %>').val());
-                                var ExamDes = $.trim($('#<%=txtExamDescription.ClientID %>').val());
+                                var ExamDes = CKEDITOR.instances['<%=txtExamDescription.ClientID %>'].getData();// $.trim($('#<%=txtExamDescription.ClientID %>').val());
                                 PageMethods.InsertConfigData(Examid, Questiono, Price, ExamPic, ExamDes, OnSuccess);
                             });
 
@@ -321,5 +321,17 @@
             </div>
         </div>
     </div>
-    <script src="img_mapjs/summerHTMLImageMapCreator.js"></script>
+    <script type="text/javascript">
+        CKEDITOR.replace('<%=txtExamDescription.ClientID %>',
+{
+    filebrowserUploadUrl: './Upload.ashx/',
+    filebrowserImageUploadUrl: './Upload.ashx',
+    filebrowserFlashUploadUrl: './Upload.ashx/',
+});
+    </script>
+    <style>
+        body .estoremodal {
+            width: 800px;
+        }
+    </style>
 </asp:Content>

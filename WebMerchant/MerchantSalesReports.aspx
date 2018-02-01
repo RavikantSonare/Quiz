@@ -50,6 +50,14 @@
     <div class="messagealert" id="alert_container">
     </div>
     <div class="col-lg-12">
-        <textarea name="text" class="summernote" id="contents" title="Contents" runat="server"></textarea>
+        <textarea name="text" id="contents" title="Contents" runat="server"></textarea>
+        <script type="text/javascript">
+            CKEDITOR.replace('<%=contents.ClientID %>',
+    {
+        filebrowserUploadUrl: './Upload.ashx/',
+        filebrowserImageUploadUrl: './Upload.ashx',
+        filebrowserFlashUploadUrl: './Upload.ashx/',
+    });
+        </script>
     </div>
 </asp:Content>

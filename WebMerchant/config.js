@@ -74,5 +74,4 @@ CKEDITOR.editorConfig = function (config) {
 
     // %REMOVE_END%
 };
-
 // %LEAVE_UNMINIFIED% %REMOVE_LINE%

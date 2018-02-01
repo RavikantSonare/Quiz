@@ -12,11 +12,24 @@
 
     <!-- Custom CSS -->
     <link href="css/custom.css" rel="stylesheet">
-        
+
     <script src="samples/ckeditor.js"></script>
     <script src="samples/js/sample.js"></script>
     <link href="samples/css/samples.css" rel="stylesheet" />
     <link href="samples/toolbarconfigurator/lib/codemirror/neo.css" rel="stylesheet" />
+    <style>
+        body .modal {
+            padding: 0px;
+            border-radius: 0px;
+            background-color: transparent;
+            max-width: none;
+            box-sizing: border-box;
+            width: initial !important;
+            top: 0% !important;
+            -webkit-transform: translate(0%, 0%) !important;
+            transform: translate(0%, 0%) !important;
+        }
+    </style>
 </head>
 <body oncontextmenu="return false">
     <form id="form1" runat="server">
@@ -113,11 +126,6 @@
 
             $(document).ready(function () { var a = window.location.pathname, i = a.split("/"), t = i[i.length - 1]; $(".nav li a").each(function () { this.href.indexOf(t) >= 0 && ($(this).parent().addClass("active"), $(".nav li ul li a").each(function () { this.href.indexOf(t) >= 0 && ($(this).parent().addClass("active"), $(this).parents().addClass("active"), $(this).parents().css("display", "block")) })) }) });
         </script>
-       <%-- <link href="css/summernote.css" rel="stylesheet" />
-        <script src="js/summernote.js"></script>
-        <script src="js/editor_generate.js"></script>--%>
-    
-
     </form>
 </body>
 </html>

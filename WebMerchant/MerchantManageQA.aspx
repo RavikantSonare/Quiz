@@ -76,13 +76,6 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Label ID="Label1" Text="CK Editor Sample" runat="server"></asp:Label>
-    <br />
-    <textarea runat="server" placeholder="Haber metnini girin." name="editor1" style="height: 700px" id="editor1" rows="10" cols="80">
-            </textarea>
-
-    <asp:Button runat="server" Text="Show Text" ID="show_text" OnClick="show_text_Click" />
-    <asp:Label ID="lblNewsLong" runat="server" Text="getvalue"></asp:Label>
     <h2>Manage Question</h2>
     <hr />
     <div class="tab-content">
@@ -124,11 +117,8 @@
                             <div class="form-group">
                                 <label for="" class="col-sm-3 control-label">Question</label>
                                 <div class="col-sm-9">
-                                    <%--<textarea runat="server" placeholder="Haber metnini girin." name="txtQuestion" style="height: 700px" id="txtQuestion" rows="10" cols="80">
-            </textarea>--%>
-                                    <asp:TextBox ID="txtQuestion" runat="server" CssClass="summernote form-control" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:TextBox ID="txtQuestion" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                                     <asp:HiddenField runat="server" ID="prevVaile" />
-                                    <%--<asp:HiddenField runat="server" ID="hftxtquestion" />--%>
                                 </div>
                             </div>
                             <asp:Panel ID="pnlSingleSelect" runat="server" Visible="false">
@@ -282,9 +272,7 @@
                                     <asp:HiddenField ID="hfExhibit" runat="server" />
                                     <asp:HiddenField ID="hfTopology" runat="server" />
                                     <asp:HiddenField ID="hfScenario" runat="server" />
-                                    <%--<asp:HiddenField ID="hftxtExplanation" runat="server" />--%>
-                                    <asp:TextBox ID="txtExplanation" runat="server" CssClass="summernote form-control" TextMode="MultiLine"></asp:TextBox>
-                                    <%--<textarea runat="server" placeholder="Haber metnini girin." name="txtExplanation" style="height: 700px" id="txtExplanation" rows="10" cols="80" />--%>
+                                    <asp:TextBox ID="txtExplanation" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -371,20 +359,7 @@
             $("#preview").trigger("click");
         });
     </script>
-    <script type="text/javascript">
-        // Replace the <textarea id="editor1"> with a CKEditor
-        // instance, using default configuration.
-        // CKEDITOR.replace('BodyContent_editor1');
-        CKEDITOR.replace('<%=editor1.ClientID %>',
-{
-    //filebrowserBrowseUrl: './Upload.ashx/',
-    //filebrowserImageBrowseUrl: './Upload.ashx/',
-    //filebrowserFlashBrowseUrl: './Upload.ashx/',
-    filebrowserUploadUrl: './Upload.ashx/',
-    filebrowserImageUploadUrl: './Upload.ashx',
-    filebrowserFlashUploadUrl: './Upload.ashx/',
-});
-    </script>
+
     <script type="text/javascript">
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
@@ -400,14 +375,8 @@
 });
     </script>
     <script type="text/javascript">
-        // Replace the <textarea id="editor1"> with a CKEditor
-        // instance, using default configuration.
-        // CKEDITOR.replace('BodyContent_editor1');
         CKEDITOR.replace('<%=txtExplanation.ClientID %>',
 {
-    //    filebrowserBrowseUrl: './Upload.ashx/',
-    //    filebrowserImageBrowseUrl: './Upload.ashx/',
-    //    filebrowserFlashBrowseUrl: './Upload.ashx/',
     filebrowserUploadUrl: './Upload.ashx/',
     filebrowserImageUploadUrl: './Upload.ashx',
     filebrowserFlashUploadUrl: './Upload.ashx/',
