@@ -122,7 +122,6 @@
     <Content Include="config.js" />
     <Content Include="css\example.css" />
     <Content Include="css\login.css" />
-    <Content Include="css\summernote.css" />
     <Content Include="Errorfile\ErrorLog.txt" />
     <Content Include="images\InitialImage.png" />
     <Content Include="images\processing.gif" />
@@ -131,8 +130,6 @@
     <Content Include="img_mapjs\summerHTMLImageMapCreatorCertificate.js" />
     <Content Include="img_mapjs\summerHTMLImageMapCreator.js" />
     <Content Include="js\custome.js" />
-    <Content Include="js\editor_generate.js" />
-    <Content Include="js\summernote.js" />
     <Content Include="MerchantAllowSales.aspx" />
     <Content Include="MerchantCertificate.aspx" />
     <Content Include="MerchantCertificateGenerate.aspx" />
