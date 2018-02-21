@@ -162,9 +162,9 @@
     <Content Include="resource\exhibit3.png" />
     <Content Include="resource\scenario1.jpg" />
     <Content Include="resource\scenario2.png" />
-    <Content Include="resource\topology.png" />
     <Content Include="resource\topology2.png" />
     <Content Include="resource\Windows-10-Settings-App.png" />
+    <None Include="Properties\PublishProfiles\WebMerchant.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -196,8 +196,6 @@
     <Content Include="samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
     <Content Include="samples\toolbarconfigurator\tests\one.js" />
     <Content Include="styles.js" />
-    <Content Include="WebForm1.aspx" />
-    <Content Include="WebForm2.aspx" />
     <None Include="Properties\PublishProfiles\QuizMerchant.pubxml" />
     <Content Include="Web.config" />
     <Content Include="samples\less\custom.less" />
@@ -214,24 +212,11 @@
     <Content Include="samples\Upload.ashx" />
     <Content Include="TemplateImage\img_20180124142911197.png" />
     <Content Include="Upload.ashx" />
-    <None Include="Web.config_18Dec2017" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="Web.Debug.config_18Dec2017">
-      <DependentUpon>Web.config_18Dec2017</DependentUpon>
-    </None>
-    <None Include="Web.Debug.config123">
-      <DependentUpon>Web.config123</DependentUpon>
-    </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config_18Dec2017">
-      <DependentUpon>Web.config_18Dec2017</DependentUpon>
-    </None>
-    <None Include="Web.Release.config123">
-      <DependentUpon>Web.config123</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -243,11 +228,6 @@
     <Content Include="TemplateImage\Image4.jpg" />
     <Content Include="TemplateImage\Image5.jpg" />
     <Content Include="TemplateImage\quiz-duello-icon.jpg" />
-    <Content Include="test.aspx" />
-    <Content Include="Testing.aspx" />
-    <None Include="Web.config123">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BALayer\BABundleExam.cs" />
@@ -490,34 +470,6 @@
     </Compile>
     <Compile Include="samples\Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Testing.aspx.cs">
-      <DependentUpon>Testing.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Testing.aspx.designer.cs">
-      <DependentUpon>Testing.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm2.aspx.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm2.aspx.designer.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

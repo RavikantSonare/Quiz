@@ -119,6 +119,7 @@
     <Content Include="ExamSimulator\ExamSimulator.zip" />
     <Content Include="resource\Windows-10-Settings-App.png" />
     <Content Include="WebForm1.aspx" />
+    <None Include="Properties\PublishProfiles\WebUser.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

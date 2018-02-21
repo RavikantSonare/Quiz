@@ -163,11 +163,6 @@ namespace WebAdmin
                             }
                         }
                     }
-                    else
-                    {
-                        lblerror.InnerText = "Please enter top Merchant level and annual fee";
-                        lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
-                    }
                 }
             }
             catch (Exception ex)
@@ -338,17 +333,17 @@ namespace WebAdmin
             {
                 lblerror.InnerText = "";
             }
-            if (chkQuestionType.SelectedIndex < 0)
-            {
-                ret = false;
-                lblerror.InnerText = "select at least one extra permission";
-                lblerror.Attributes.Add("Style", "display: block;color: Red;");
-                return false;
-            }
-            else
-            {
-                lblerror.InnerText = "";
-            }
+            //if (chkQuestionType.SelectedIndex < 0)
+            //{
+            //    ret = false;
+            //    lblerror.InnerText = "select at least one extra permission";
+            //    lblerror.Attributes.Add("Style", "display: block;color: Red;");
+            //    return false;
+            //}
+            //else
+            //{
+            //    lblerror.InnerText = "";
+            //}
             return ret;
         }
 

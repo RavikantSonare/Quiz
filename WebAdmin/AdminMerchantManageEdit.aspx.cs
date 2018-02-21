@@ -67,7 +67,7 @@ namespace WebAdmin
                 txtStartDate.Text = startdate.ToString("yyyy-MM-dd");
                 DateTime enddate = Convert.ToDateTime(_datatable1.Rows[0]["EndDate"]);
                 txtEndDate.Text = enddate.ToString("yyyy-MM-dd");
-                txtpassword.Text = Decryptdata(_datatable1.Rows[0]["Password"].ToString());
+                txtpassword.Text = Common.DecryptPassword(_datatable1.Rows[0]["Password"].ToString());
                 txtEmailId.Text = _datatable1.Rows[0]["EmailId"].ToString();
                 lnkbtnUpdate.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
             }
@@ -93,7 +93,7 @@ namespace WebAdmin
                 {
                     _bommng.MerchantId = Convert.ToInt32(ViewState["querystring"]);
                     _bommng.MerchantName = txtMerchantName.Text;
-                    _bommng.Password = Encryptdata(txtpassword.Text);
+                    _bommng.Password = Common.EncryptPassword(txtpassword.Text);
                     _bommng.EmailId = txtEmailId.Text;
                     _bommng.Telephone = txtTelephone.Text;
                     _bommng.MerchantLevelId = Convert.ToInt32(drpMerchantLevel.SelectedItem.Value);
@@ -209,28 +209,6 @@ namespace WebAdmin
         protected void ShowMessage(string Message, MessageType type)
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');window.location='" + Request.ApplicationPath + "AdminMerchantManage.aspx'", true);
-        }
-
-        private string Encryptdata(string password)
-        {
-            string strmsg = string.Empty;
-            byte[] encode = new byte[password.Length];
-            encode = Encoding.UTF8.GetBytes(password);
-            strmsg = Convert.ToBase64String(encode);
-            return strmsg;
-        }
-
-        private string Decryptdata(string encryptpwd)
-        {
-            string decryptpwd = string.Empty;
-            UTF8Encoding encodepwd = new UTF8Encoding();
-            Decoder Decode = encodepwd.GetDecoder();
-            byte[] todecode_byte = Convert.FromBase64String(encryptpwd);
-            int charCount = Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
-            char[] decoded_char = new char[charCount];
-            Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
-            decryptpwd = new String(decoded_char);
-            return decryptpwd;
         }
     }
 }

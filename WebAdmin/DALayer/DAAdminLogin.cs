@@ -44,5 +44,42 @@ namespace WebAdmin.DALayer
                 return _boAdmin;
             }
         }
+
+        internal int ChangePassowrd(string eventtxt, BOAdminLogin _boadmin)
+        {
+            int returnvalue = default(int);
+            SqlCommand _sqlcommand;
+            using (SqlConnection _sqlconnection = ConnectionInfo.GetConnection())
+            {
+                _sqlcommand = new SqlCommand();
+
+                _sqlcommand.Connection = _sqlconnection;
+                _sqlcommand.CommandText = "SP_AdminLogin";
+                _sqlcommand.CommandType = CommandType.StoredProcedure;
+                _sqlconnection.Open();
+
+                _sqlcommand.Parameters.AddWithValue("@AdminId", _boadmin.AdminId);
+                _sqlcommand.Parameters.AddWithValue("@UserName", _boadmin.UserName);
+                _sqlcommand.Parameters.AddWithValue("@Password", _boadmin.Password);
+                _sqlcommand.Parameters.AddWithValue("@Event", eventtxt);
+                _sqlcommand.Parameters.AddWithValue("@returnValue", 0).Direction = System.Data.ParameterDirection.InputOutput;
+
+                try
+                {
+                    _sqlcommand.ExecuteNonQuery();
+                    returnvalue = Convert.ToInt32(_sqlcommand.Parameters["@returnValue"].Value);
+                }
+                catch (Exception ex)
+                {
+                    Common.LogError(ex);
+                }
+                finally
+                {
+                    _sqlconnection.Close();
+                    _sqlcommand.Dispose();
+                }
+            }
+            return returnvalue;
+        }
     }
 }

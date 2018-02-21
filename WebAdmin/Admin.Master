@@ -89,6 +89,9 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li role="presentation" class="" id="menu9">
+                                        <a href="AdminPasswordChange.aspx" aria-controls="home" role="tab">Change Password</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

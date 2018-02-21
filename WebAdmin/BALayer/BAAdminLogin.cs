@@ -14,5 +14,10 @@ namespace WebAdmin.BALayer
         {
             return _daadminlogin.SelectAdminDetail(eventtxt, username, password);
         }
+
+        internal int ChangePassowrd(string eventtxt, BOAdminLogin _boadmin)
+        {
+            return _daadminlogin.ChangePassowrd(eventtxt, _boadmin);
+        }
     }
 }

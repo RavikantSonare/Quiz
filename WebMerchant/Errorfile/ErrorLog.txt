@@ -2063,3 +2063,13 @@ Source: mscorlib
 TargetSite: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
 -----------------------------------------------------------
 
+Time: 21/02/2018 01:04:42 PM
+-----------------------------------------------------------
+Message: Failure sending mail.
+StackTrace:    at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at WebMerchant.MerchantRegistration.SendHTMLMail(String email, String Password) in D:\Work\Project\WebMerchant\MerchantRegistration.aspx.cs:line 171
+   at WebMerchant.MerchantRegistration.btnRegistration_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantRegistration.aspx.cs:line 103
+Source: System
+TargetSite: Void Send(System.Net.Mail.MailMessage)
+-----------------------------------------------------------
+

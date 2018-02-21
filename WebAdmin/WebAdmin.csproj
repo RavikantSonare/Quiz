@@ -109,6 +109,7 @@
     <Content Include="AdminMerchantLevelManage.aspx" />
     <Content Include="AdminMerchantManage.aspx" />
     <Content Include="AdminMerchantManageEdit.aspx" />
+    <Content Include="AdminPasswordChange.aspx" />
     <Content Include="AdminQuestionType.aspx" />
     <Content Include="AdminSalesReport.aspx" />
     <Content Include="AdminWithdrawAccount.aspx" />
@@ -220,6 +221,13 @@
     </Compile>
     <Compile Include="AdminMerchantManageEdit.aspx.designer.cs">
       <DependentUpon>AdminMerchantManageEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPasswordChange.aspx.cs">
+      <DependentUpon>AdminPasswordChange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPasswordChange.aspx.designer.cs">
+      <DependentUpon>AdminPasswordChange.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminQuestionType.aspx.cs">
       <DependentUpon>AdminQuestionType.aspx</DependentUpon>
