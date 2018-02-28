@@ -53,6 +53,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="" class="col-sm-3 control-label">Permission:</label>
+                                <div class="col-sm-3">
+                                    <asp:DropDownList ID="ddlPermission" runat="server" CssClass="form-control">
+                                        <asp:ListItem Value="0">Non default</asp:ListItem>
+                                        <asp:ListItem Value="1">Default</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-9">
                                     <label id="lblerror" runat="server" style="display: none; color: #D8000C;"></label>
                                 </div>

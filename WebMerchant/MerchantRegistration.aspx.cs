@@ -100,7 +100,7 @@ namespace WebMerchant
                             Session["registationid"] = returnvalue;
                             lblerror.InnerText = "Registration Success";
                             lblerror.Attributes.Add("Style", "display: block;color: Green;");
-                            SendHTMLMail(txtEmailId.Text, txtPassword.Text);
+                            //SendHTMLMail(txtEmailId.Text, txtPassword.Text);
                             Response.AppendHeader("Refresh", "1;url=MerchantCheckoutLevel.aspx?emid=" + Common.Encryptdata(txtEmailId.Text) + "&mid=" + Common.Encryptdata(returnvalue.ToString()));
                             break;
                     }
@@ -127,6 +127,7 @@ namespace WebMerchant
                 ret = false;
                 lblerror.InnerText = "Enter email id";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
             }
             else
             {
@@ -137,6 +138,7 @@ namespace WebMerchant
                 ret = false;
                 lblerror.InnerText = "Enter password";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
+                return false;
             }
             else
             {
@@ -157,10 +159,10 @@ namespace WebMerchant
             SmtpClient smtpClient = new SmtpClient("relay-hosting.secureserver.net");
             MailMessage message = new MailMessage();
 
-            MailAddress fromAddress = new MailAddress("info@mobi96.org", "info@mobi96.org");
+            // MailAddress fromAddress = new MailAddress("info@mymail.org");
             MailAddress toAddress = new MailAddress(HttpUtility.HtmlEncode(email));
 
-            message.From = fromAddress;
+            // message.From = fromAddress;
             message.To.Add(toAddress);
 
             message.Subject = "Registration Detail";

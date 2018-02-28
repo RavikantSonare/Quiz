@@ -144,7 +144,7 @@ namespace WebAdmin
                     }
                     else
                     { status = "Processing"; }
-                    SendHTMLMail(row.Cells[3].Text, row.Cells[0].Text, row.Cells[6].Text, status, row.Cells[8].Text);
+                   // SendHTMLMail(row.Cells[3].Text, row.Cells[0].Text, row.Cells[6].Text, status, row.Cells[8].Text);
                     ShowMessage("Mail send successfully", MessageType.Success);
                 }
                 else
@@ -213,10 +213,10 @@ namespace WebAdmin
             SmtpClient smtpClient = new SmtpClient("relay-hosting.secureserver.net");
             MailMessage message = new MailMessage();
 
-            MailAddress fromAddress = new MailAddress("info@mobi96.org", "info@mobi96.org");
+            //MailAddress fromAddress = new MailAddress("info@mymail.org");
             MailAddress toAddress = new MailAddress(HttpUtility.HtmlEncode(Emailid));
 
-            message.From = fromAddress;
+            //message.From = fromAddress;
             message.To.Add(toAddress);
 
             message.Subject = "Quiz sales reports";

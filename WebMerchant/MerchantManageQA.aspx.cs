@@ -62,7 +62,7 @@ namespace WebMerchant
                         FillrbtnListQuestiontype(_bomerchantDetail.MerchantLevelId);
                         FillgridViewQAManage(MerchantId);
                         _dtextrapermission = (DataTable)Session["extrapermission"];
-                        if (_dtextrapermission.Rows[0][0].ToString() == "1")
+                        if (_dtextrapermission.Rows.Count > 0 && _dtextrapermission.Rows[0][0].ToString() == "1")
                         {
                             pnlfileuploaod.Visible = true;
                         }

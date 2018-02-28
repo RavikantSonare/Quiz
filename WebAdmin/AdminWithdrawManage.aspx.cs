@@ -107,9 +107,6 @@ namespace WebAdmin
                         FillgridViewWithDrawManage();
                     }
                 }
-                else
-                {
-                }
             }
             catch (Exception ex)
             {
@@ -134,11 +131,8 @@ namespace WebAdmin
                     }
                     else
                     { status = "Pending"; }
-                    SendHTMLMail(row.Cells[2].Text, row.Cells[0].Text, row.Cells[1].Text, status, row.Cells[4].Text);
+                   // SendHTMLMail(row.Cells[2].Text, row.Cells[0].Text, row.Cells[1].Text, status, row.Cells[4].Text);
                     ShowMessage("Mail send successfully", MessageType.Success);
-                }
-                else
-                {
                 }
             }
             catch (Exception ex)
@@ -167,10 +161,10 @@ namespace WebAdmin
             SmtpClient smtpClient = new SmtpClient("relay-hosting.secureserver.net");
             MailMessage message = new MailMessage();
 
-            MailAddress fromAddress = new MailAddress("info@mobi96.org", "info@mobi96.org");
+            //MailAddress fromAddress = new MailAddress("info@mymail.org");
             MailAddress toAddress = new MailAddress(HttpUtility.HtmlEncode(Emailid));
 
-            message.From = fromAddress;
+            //message.From = fromAddress;
             message.To.Add(toAddress);
 
             message.Subject = "Quiz Order Status";

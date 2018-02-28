@@ -65,7 +65,10 @@ namespace WebMerchant
                         Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
                         FillddlUserGroup(MerchantId);
                         FillddlTopCategoryUser(FillddlTopCategory());
-                        FillchkboxListExam(Convert.ToInt32(ddlSecondCategory.SelectedItem.Value), MerchantId);
+                        if (ddlSecondCategory.Items.Count != 0)
+                        {
+                            FillchkboxListExam(Convert.ToInt32(ddlSecondCategory.SelectedItem.Value), MerchantId);
+                        }
                         FillchkboxListAccessOptionUser(FillchkboxListAccessOption());
                         FillgridViewUserList(MerchantId);
                         FillgridViewUserGroupList(MerchantId);
@@ -193,7 +196,10 @@ namespace WebMerchant
             ddlTopCategory.DataValueField = "TopCategoryID";
             ddlTopCategory.DataSource = _table;
             ddlTopCategory.DataBind();
-            FillddlSecondCategoryUser(FillddlSecondCategory(ddlTopCategory.SelectedItem.Value));
+            if (ddlTopCategory.Items.Count != 0)
+            {
+                FillddlSecondCategoryUser(FillddlSecondCategory(ddlTopCategory.SelectedItem.Value));
+            }
         }
 
         private DataTable FillddlSecondCategory(string value)
@@ -210,7 +216,10 @@ namespace WebMerchant
             ddlSecondCategory.DataValueField = "SecondCategoryId";
             ddlSecondCategory.DataSource = _table;
             ddlSecondCategory.DataBind();
-            FillchkboxListExam(Convert.ToInt32(ddlSecondCategory.SelectedItem.Value), MerchantId);
+            if (ddlSecondCategory.Items.Count != 0)
+            {
+                FillchkboxListExam(Convert.ToInt32(ddlSecondCategory.SelectedItem.Value), MerchantId);
+            }
         }
 
         private void FillddlUserGroup(int mid)
@@ -516,7 +525,10 @@ namespace WebMerchant
 
         protected void ddlSecondCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FillchkboxListExam(Convert.ToInt32(ddlSecondCategory.SelectedItem.Value), MerchantId);
+            if (ddlSecondCategory.Items.Count != 0)
+            {
+                FillchkboxListExam(Convert.ToInt32(ddlSecondCategory.SelectedItem.Value), MerchantId);
+            }
         }
 
         protected void ddlStudnetGroup_SelectedIndexChanged(object sender, EventArgs e)
@@ -542,7 +554,10 @@ namespace WebMerchant
             ddlTopCategoryGruop.DataValueField = "TopCategoryID";
             ddlTopCategoryGruop.DataSource = _table;
             ddlTopCategoryGruop.DataBind();
-            FillddlSecondCategoryGroup(FillddlSecondCategory(ddlTopCategoryGruop.SelectedItem.Value));
+            if (ddlTopCategoryGruop.Items.Count != 0)
+            {
+                FillddlSecondCategoryGroup(FillddlSecondCategory(ddlTopCategoryGruop.SelectedItem.Value));
+            }
         }
 
         private void FillddlSecondCategoryGroup(DataTable _table)
@@ -551,7 +566,10 @@ namespace WebMerchant
             ddlSecondCategoryGroup.DataValueField = "SecondCategoryId";
             ddlSecondCategoryGroup.DataSource = _table;
             ddlSecondCategoryGroup.DataBind();
-            FillchkboxListExamgGroup(Convert.ToInt32(ddlSecondCategoryGroup.SelectedItem.Value), MerchantId);
+            if (ddlSecondCategoryGroup.Items.Count != 0)
+            {
+                FillchkboxListExamgGroup(Convert.ToInt32(ddlSecondCategoryGroup.SelectedItem.Value), MerchantId);
+            }
         }
 
         private void FillchkboxListAccessOptionGroup(DataTable _table)
@@ -632,7 +650,10 @@ namespace WebMerchant
         {
             try
             {
-                FillddlSecondCategoryGroup(FillddlSecondCategory(ddlTopCategoryGruop.SelectedValue));
+                if (ddlTopCategoryGruop.Items.Count != 0)
+                {
+                    FillddlSecondCategoryGroup(FillddlSecondCategory(ddlTopCategoryGruop.SelectedValue));
+                }
             }
             catch (Exception ex)
             {
@@ -643,7 +664,10 @@ namespace WebMerchant
 
         protected void ddlSecondCategoryGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FillchkboxListExamgGroup(Convert.ToInt32(ddlSecondCategoryGroup.SelectedItem.Value), MerchantId);
+            if (ddlSecondCategoryGroup.Items.Count != 0)
+            {
+                FillchkboxListExamgGroup(Convert.ToInt32(ddlSecondCategoryGroup.SelectedItem.Value), MerchantId);
+            }
         }
 
         protected void btnAddGroup_Click(object sender, EventArgs e)

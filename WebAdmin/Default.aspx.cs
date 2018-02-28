@@ -79,6 +79,7 @@ namespace WebAdmin
                 lblerror.InnerText = "Enter username";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
                 txtUserName.Focus();
+                return false;
             }
             else
             {
@@ -90,6 +91,7 @@ namespace WebAdmin
                 lblerror.InnerText = "Enter password";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
                 txtPassword.Focus();
+                return false;
             }
             else
             {

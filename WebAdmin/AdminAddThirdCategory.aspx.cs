@@ -215,6 +215,7 @@ namespace WebAdmin
                 lblerror.InnerText = "Enter third category";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
                 txtThirdCategory.Focus();
+                return false;
             }
             else
             {
@@ -226,6 +227,7 @@ namespace WebAdmin
                 lblerror.InnerText = "Select second category";
                 lblerror.Attributes.Add("Style", "display: block;color: Red;");
                 ddlSecondCategory.Focus();
+                return false;
             }
             else
             {

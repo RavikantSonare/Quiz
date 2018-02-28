@@ -67,6 +67,10 @@ namespace WebAdmin
                     if (!string.IsNullOrEmpty(txtQuestionType.Text))
                     {
                         _boqtype.QuestionType = txtQuestionType.Text;
+                        if (ddlPermission.SelectedItem.Value == "0")
+                            _boqtype.DefaultPermission = false;
+                        else
+                            _boqtype.DefaultPermission = true;
                         _boqtype.IsActive = true;
                         _boqtype.IsDelete = false;
                         _boqtype.CreatedBy = adminId;
@@ -120,6 +124,10 @@ namespace WebAdmin
                 {
                     ViewState["qtypeId"] = _datatable2.Rows[0]["QuestionTypeId"].ToString();
                     txtQuestionType.Text = _datatable2.Rows[0]["QuestionType"].ToString();
+                    if (Convert.ToBoolean(_datatable2.Rows[0]["DefaultPermission"]))
+                        ddlPermission.SelectedValue = "1";
+                    else
+                        ddlPermission.SelectedValue = "0";
                     lnkbtnAdd.Text = "Update";
                     lnkbtnAdd.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                 }

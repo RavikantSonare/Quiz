@@ -27,6 +27,7 @@ namespace WebAdmin.DALayer
 
                 _sqlcommand.Parameters.AddWithValue("@QuestionTypeId", bqtype.QuestionTypeId);
                 _sqlcommand.Parameters.AddWithValue("@QuestionType", bqtype.QuestionType);
+                _sqlcommand.Parameters.AddWithValue("@DefaultPermission", bqtype.DefaultPermission);
                 _sqlcommand.Parameters.AddWithValue("@IsActive", bqtype.IsActive);
                 _sqlcommand.Parameters.AddWithValue("@IsDelete", bqtype.IsDelete);
                 _sqlcommand.Parameters.AddWithValue("@CreatedBy", bqtype.CreatedBy);
