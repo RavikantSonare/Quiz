@@ -115,28 +115,28 @@ namespace WebAdmin
         private bool validateForm()
         {
             bool ret = true;
-            if (string.IsNullOrEmpty(txtMerchantName.Text))
-            {
-                ret = false;
-                lblerror.InnerText = "Enter merchant name";
-                lblerror.Attributes.Add("Style", "display: block;color: Red;");
-                return false;
-            }
-            else
-            {
-                lblerror.InnerText = "";
-            }
-            if (string.IsNullOrEmpty(txtTelephone.Text))
-            {
-                ret = false;
-                lblerror.InnerText = "Enter mobile number";
-                lblerror.Attributes.Add("Style", "display: block;color: Red;");
-                return false;
-            }
-            else
-            {
-                lblerror.InnerText = "";
-            }
+            //if (string.IsNullOrEmpty(txtMerchantName.Text))
+            //{
+            //    ret = false;
+            //    lblerror.InnerText = "Enter merchant name";
+            //    lblerror.Attributes.Add("Style", "display: block;color: Red;");
+            //    return false;
+            //}
+            //else
+            //{
+            //    lblerror.InnerText = "";
+            //}
+            //if (string.IsNullOrEmpty(txtTelephone.Text))
+            //{
+            //    ret = false;
+            //    lblerror.InnerText = "Enter mobile number";
+            //    lblerror.Attributes.Add("Style", "display: block;color: Red;");
+            //    return false;
+            //}
+            //else
+            //{
+            //    lblerror.InnerText = "";
+            //}
             if (string.IsNullOrEmpty(txtEmailId.Text))
             {
                 ret = false;

@@ -24,19 +24,23 @@
             $("[id*=chklistAccessoptionGroup]").bind("click", function () {
                 var CHKgrp = document.getElementById("<%=chklistAccessoptionGroup.ClientID%>");
                 var checkboxgrp = CHKgrp.getElementsByTagName("input");
-                if (checkboxgrp[2].checked) {
-                    //alert("Selected = " + label[i].innerHTML + checkbox[i].value);
-                    for (var i = 0; i < checkboxgrp.length; i++) {
-                        if (checkboxgrp[i].value != 3) {
-                            checkboxgrp[i].checked = false;
-                            checkboxgrp[i].disabled = true;
+                for (var i = 0; i < checkboxgrp.length; i++) {
+                    if (checkboxgrp[i].value == 4) {
+                        if (checkboxgrp[i].checked) {
+                            //alert("Selected = " + label[i].innerHTML + checkbox[i].value);
+                            for (var i = 0; i < checkboxgrp.length; i++) {
+                                if (checkboxgrp[i].value != 4) {
+                                    checkboxgrp[i].checked = false;
+                                    checkboxgrp[i].disabled = true;
+                                }
+                            }
                         }
-                    }
-                }
-                else {
-                    for (var i = 0; i < checkboxgrp.length; i++) {
-                        if (checkboxgrp[i].value != 3) {
-                            checkboxgrp[i].disabled = false;
+                        else {
+                            for (var i = 0; i < checkboxgrp.length; i++) {
+                                if (checkboxgrp[i].value != 4) {
+                                    checkboxgrp[i].disabled = false;
+                                }
+                            }
                         }
                     }
                 }
@@ -49,19 +53,23 @@
                 var CHK = document.getElementById("<%=chklistAccessoption.ClientID%>");
                 var checkbox = CHK.getElementsByTagName("input");
                 var label = CHK.getElementsByTagName("label");
-                if (checkbox[2].checked) {
-                    //alert("Selected = " + label[i].innerHTML + checkbox[i].value);
-                    for (var i = 0; i < checkbox.length; i++) {
-                        if (checkbox[i].value != 3) {
-                            checkbox[i].checked = false;
-                            checkbox[i].disabled = true;
+                for (var i = 0; i < checkbox.length; i++) {
+                    if (checkbox[i].value == 4) {
+                        if (checkbox[i].checked) {
+                            //alert("Selected = " + label[i].innerHTML + checkbox[i].value);
+                            for (var i = 0; i < checkbox.length; i++) {
+                                if (checkbox[i].value != 4) {
+                                    checkbox[i].checked = false;
+                                    checkbox[i].disabled = true;
+                                }
+                            }
                         }
-                    }
-                }
-                else {
-                    for (var i = 0; i < checkbox.length; i++) {
-                        if (checkbox[i].value != 3) {
-                            checkbox[i].disabled = false;
+                        else {
+                            for (var i = 0; i < checkbox.length; i++) {
+                                if (checkbox[i].value != 4) {
+                                    checkbox[i].disabled = false;
+                                }
+                            }
                         }
                     }
                 }
@@ -419,7 +427,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="" class="col-sm-3 control-label">Access Option:</label>
-                                                    <div class="col-sm-5">
+                                                    <div class="col-sm-8">
                                                         <div class="row">
                                                             <div class="col-sm-12">
                                                                 <asp:CheckBoxList ID="chklistAccessoption" runat="server" RepeatDirection="Horizontal" CssClass="chktable">

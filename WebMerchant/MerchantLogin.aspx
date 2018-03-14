@@ -62,7 +62,7 @@
                             </asp:TemplateField>
                             <asp:BoundField HeaderText="Valid Date" DataField="EndDate" DataFormatString="{0:yyyy/MM/dd}" />
                             <asp:BoundField HeaderText="Merchant Name" DataField="MerchantName" />
-                            <asp:BoundField HeaderText="Login" DataField="UserName" />
+                            <asp:BoundField HeaderText="Login" DataField="EmailId" />
                             <asp:BoundField HeaderText="Currently Level" DataField="MerchantLevel" />
                             <asp:TemplateField HeaderText="Upgrade" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide">
                                 <ItemTemplate>

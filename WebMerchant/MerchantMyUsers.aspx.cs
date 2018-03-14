@@ -50,6 +50,8 @@ namespace WebMerchant
             }
         }
 
+        DataTable _dtextrapermission = new DataTable();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -69,7 +71,8 @@ namespace WebMerchant
                         {
                             FillchkboxListExam(Convert.ToInt32(ddlSecondCategory.SelectedItem.Value), MerchantId);
                         }
-                        FillchkboxListAccessOptionUser(FillchkboxListAccessOption());
+                        _dtextrapermission = (DataTable)Session["extrapermission"];
+                        FillchkboxListAccessOptionUser(_dtextrapermission);
                         FillgridViewUserList(MerchantId);
                         FillgridViewUserGroupList(MerchantId);
                     }
@@ -147,31 +150,43 @@ namespace WebMerchant
             }
         }
 
-        private DataTable FillchkboxListAccessOption()
-        {
-            BAUserAccess _bausraccess = new BAUserAccess();
-            DataTable _datatable1 = new DataTable();
-            if (ViewState["dtAcsOpt"] != null)
-            {
-                _datatable1 = (DataTable)ViewState["dtAcsOpt"];
-            }
-            else
-            {
-                _datatable1 = _bausraccess.SelectUserAccess("GETALL");
-                ViewState["dtAcsOpt"] = _datatable1;
-            }
-            return _datatable1;
-        }
+        //private DataTable FillchkboxListAccessOption()
+        //{
+        //    BAUserAccess _bausraccess = new BAUserAccess();
+        //    DataTable _datatable1 = new DataTable();
+        //    if (ViewState["dtAcsOpt"] != null)
+        //    {
+        //        _datatable1 = (DataTable)ViewState["dtAcsOpt"];
+        //    }
+        //    else
+        //    {
+        //        _datatable1 = _bausraccess.SelectUserAccess("GETALL");
+        //        ViewState["dtAcsOpt"] = _datatable1;
+        //    }
+        //    return _datatable1;
+        //}
 
         private void FillchkboxListAccessOptionUser(DataTable _table)
         {
-            foreach (DataRow row in _table.Rows)
+            DataRow[] rows = _table.Select(
+        "ExtraPermissionOptId IN (2,3,4)", "",
+System.Data.DataViewRowState.CurrentRows);
+            foreach (DataRow row in rows)
             {
                 ListItem item = new ListItem();
-                item.Text = row["AccessOption"].ToString();
-                item.Value = row["AccessOptionId"].ToString();
+                item.Text = row["ExtraPermissionOpt"].ToString();
+                item.Value = row["ExtraPermissionOptId"].ToString();
                 chklistAccessoption.Items.Add(item);
             }
+
+
+            //foreach (DataRow row in _table.Rows)
+            //{
+            //    ListItem item = new ListItem();
+            //    item.Text = row["AccessOption"].ToString();
+            //    item.Value = row["AccessOptionId"].ToString();
+            //    chklistAccessoption.Items.Add(item);
+            //}
         }
 
         private DataTable FillddlTopCategory()
@@ -575,13 +590,26 @@ namespace WebMerchant
         private void FillchkboxListAccessOptionGroup(DataTable _table)
         {
             chklistAccessoptionGroup.Items.Clear();
-            foreach (DataRow row in _table.Rows)
+
+            DataRow[] rows = _table.Select(
+       "ExtraPermissionOptId IN (2,3,4)", "",
+System.Data.DataViewRowState.CurrentRows);
+            foreach (DataRow row in rows)
             {
                 ListItem item = new ListItem();
-                item.Text = row["AccessOption"].ToString();
-                item.Value = row["AccessOptionId"].ToString();
+                item.Text = row["ExtraPermissionOpt"].ToString();
+                item.Value = row["ExtraPermissionOptId"].ToString();
                 chklistAccessoptionGroup.Items.Add(item);
             }
+
+
+            //foreach (DataRow row in _table.Rows)
+            //{
+            //    ListItem item = new ListItem();
+            //    item.Text = row["AccessOption"].ToString();
+            //    item.Value = row["AccessOptionId"].ToString();
+            //    chklistAccessoptionGroup.Items.Add(item);
+            //}
         }
 
         private void FillchkboxListExamgGroup(int catid, int mid)
@@ -877,7 +905,8 @@ namespace WebMerchant
             Tab_2.CssClass = "Clicked";
             MainView.ActiveViewIndex = 1;
             FillddlTopCategoryGroup(FillddlTopCategory());
-            FillchkboxListAccessOptionGroup(FillchkboxListAccessOption());
+            _dtextrapermission = (DataTable)Session["extrapermission"];
+            FillchkboxListAccessOptionGroup(_dtextrapermission);
         }
     }
 }
