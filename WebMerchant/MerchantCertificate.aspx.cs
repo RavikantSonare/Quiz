@@ -37,7 +37,8 @@ namespace WebMerchant
                     if (!IsPostBack)
                     {
                         Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                        _dtextrapermission = (DataTable)Session["extrapermission"];
+                        GetExtraPermission(_bomerchantDetail.MerchantLevelId);
+                        _dtextrapermission = (DataTable)ViewState["extrapermission"];
                         exists = _dtextrapermission.Select().ToList().Exists(row => row["ExtraPermissionOptId"].ToString() == "5");
                         if (exists)
                         {
@@ -62,6 +63,23 @@ namespace WebMerchant
         protected void Page_PreRender(object sender, EventArgs e)
         {
             ViewState["CheckRefresh"] = Session["CheckRefresh"];
+        }
+
+        private void GetExtraPermission(int levelid)
+        {
+            DataTable _datatable = new DataTable();
+            BAQuestionType _baqtype = new BALayer.BAQuestionType();
+            DataSet _dataset = new System.Data.DataSet();
+            if (ViewState["extrapermission"] != null && !ViewState["extrapermission"].Equals(""))
+            {
+                _datatable = (DataTable)ViewState["dtAcsOpt"];
+            }
+            else
+            {
+                _dataset = _baqtype.SelectQuestionTypeList("GetQTypeWithMLevel", levelid);
+                _datatable = _dataset.Tables[1];
+                ViewState["extrapermission"] = _datatable;
+            }
         }
 
         private void FillgridViewExamReport(int mid)
@@ -145,7 +163,7 @@ namespace WebMerchant
                     _bomercertfict.CreatedDate = DateTime.UtcNow;
                     _bomercertfict.UpdatedBy = MerchantId;
                     _bomercertfict.UpdatedDate = DateTime.UtcNow;
-                    if (ViewState["exmrptId"] != null)
+                    if (ViewState["exmrptId"] != null && !ViewState["exmrptId"].Equals(""))
                     {
                         _bomercertfict.CertificateId = Convert.ToInt32(ViewState["exmrptId"]);
                         _bomercertfict.Event = "Update";

@@ -38,18 +38,34 @@ namespace WebUser
                     BOUser _bousr = _bausr.SelectUserDetail("GetUserDetail", txtEmailId.Text, Encryptdata(txtPassword.Text));
                     if (_bousr != null)
                     {
-                        if (txtPassword.Text == Decryptdata(_bousr.AccessPassword))
+                        if (_bousr.EndDate >= DateTime.Now)
                         {
-                            Session["Userid"] = _bousr.UserId;
-                            Session["UserDetail"] = _bousr;
-                            if (Session["Userid"] != null)
-                                Response.Redirect("UserLogin.aspx", false);
+                            if (_bousr.ValidTimeTo >= DateTime.Now)
+                            {
+                                if (txtPassword.Text == Decryptdata(_bousr.AccessPassword))
+                                {
+                                    Session["Userid"] = _bousr.UserId;
+                                    Session["UserDetail"] = _bousr;
+                                    if (Session["Userid"] != null)
+                                        Response.Redirect("UserLogin.aspx", false);
+                                }
+                                else
+                                {
+                                    lblerror.InnerText = "Password invalid";
+                                    lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
+                                    txtPassword.Focus();
+                                }
+                            }
+                            else
+                            {
+                                lblerror.InnerText = "Your account is expired. contact to merchant";
+                                lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
+                            }
                         }
                         else
                         {
-                            lblerror.InnerText = "Password invalid";
+                            lblerror.InnerText = "Your account has been expired, please contact your merchant";
                             lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
-                            txtPassword.Focus();
                         }
                     }
                     else
@@ -97,3 +113,17 @@ namespace WebUser
         }
     }
 }
+
+
+//if (_bousr.ValidTimeTo > DateTime.Now)
+//                               {
+//                                   Session["Userid"] = _bousr.UserId;
+//                                   Session["UserDetail"] = _bousr;
+//                                   if (Session["Userid"] != null)
+//                                       Response.Redirect("UserLogin.aspx", false);
+//                               }
+//                               else
+//                               {
+//                                   lblerror.InnerText = "Your account is expired. contact to merchant";
+//                                   lblerror.Attributes.Add("Style", "display: block;color: #D8000C;");
+//                               }

@@ -42,6 +42,8 @@ namespace WebUser.BOLayer
         public bool GroupStatus { get; set; }
         public string UGExamId { get; set; }
         public string UGAccessOption { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public string Event { get; set; }
     }

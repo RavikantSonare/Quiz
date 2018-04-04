@@ -95,7 +95,7 @@ namespace WebMerchant
                     _boexmmng.CreatedDate = DateTime.UtcNow;
                     _boexmmng.UpdatedBy = MerchantId;
                     _boexmmng.UpdatedDate = DateTime.UtcNow;
-                    if (ViewState["examId"] != null)
+                    if (ViewState["examId"] != null && !ViewState["examId"].Equals(""))
                     {
                         // btnAdd.OnClientClick = "return getConfirmation(this, 'Please confirm','Are you sure you want to update this record?');";
                         _boexmmng.ExamCodeId = Convert.ToInt32(ViewState["examId"]);
@@ -286,7 +286,7 @@ namespace WebMerchant
                     _boexmmng.CreatedDate = DateTime.UtcNow;
                     _boexmmng.UpdatedBy = MerchantId;
                     _boexmmng.UpdatedDate = DateTime.UtcNow;
-                    if (ViewState["examId"] != null)
+                    if (ViewState["examId"] != null && !ViewState["examId"].Equals(""))
                     {
                         _boexmmng.ExamCodeId = Convert.ToInt32(ViewState["examId"]);
                         _boexmmng.Event = "Update";

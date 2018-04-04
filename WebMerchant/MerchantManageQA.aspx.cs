@@ -61,7 +61,8 @@ namespace WebMerchant
                         FillddlExamCode(MerchantId);
                         FillrbtnListQuestiontype(_bomerchantDetail.MerchantLevelId);
                         FillgridViewQAManage(MerchantId);
-                        _dtextrapermission = (DataTable)Session["extrapermission"];
+                        GetExtraPermission(_bomerchantDetail.MerchantLevelId);
+                        _dtextrapermission = (DataTable)ViewState["extrapermission"];
                         if (_dtextrapermission.Rows.Count > 0 && _dtextrapermission.Rows[0][0].ToString() == "1")
                         {
                             pnlfileuploaod.Visible = true;
@@ -83,6 +84,23 @@ namespace WebMerchant
         protected void Page_PreRender(object sender, EventArgs e)
         {
             ViewState["CheckRefresh"] = Session["CheckRefresh"];
+        }
+
+        private void GetExtraPermission(int levelid)
+        {
+            DataTable _datatable = new DataTable();
+            BAQuestionType _baqtype = new BALayer.BAQuestionType();
+            DataSet _dataset = new System.Data.DataSet();
+            if (ViewState["extrapermission"] != null && !ViewState["extrapermission"].Equals(""))
+            {
+                _datatable = (DataTable)ViewState["dtAcsOpt"];
+            }
+            else
+            {
+                _dataset = _baqtype.SelectQuestionTypeList("GetQTypeWithMLevel", levelid);
+                _datatable = _dataset.Tables[1];
+                ViewState["extrapermission"] = _datatable;
+            }
         }
 
         private void FillddlExamCode(int mid)
@@ -110,7 +128,8 @@ namespace WebMerchant
                 ddlQuestionType.DataTextField = "QuestionType";
                 ddlQuestionType.DataSource = _dataset.Tables[0];
                 ddlQuestionType.DataBind();
-                ddlQuestionType.Items.Insert(0, "Select");
+                //ddlQuestionType.Items.Add(new ListItem("Select", "0"));
+                ddlQuestionType.Items.Insert(0, new ListItem("Select", "0"));
             }
         }
 
@@ -232,7 +251,7 @@ namespace WebMerchant
                 _boqamng.Exhibit = FileUploadAppendTimeStamp(fuSingleExhibit, hfExhibit);
                 _boqamng.Topology = FileUploadAppendTimeStamp(fuSingleTopology, hfTopology);
                 _boqamng.Scenario = FileUploadAppendTimeStamp(fuSingleScenario, hfScenario);
-                if (ViewState["QAId"] != null)
+                if (ViewState["QAId"] != null && !ViewState["QAId"].Equals(""))
                 {
                     _boqamng.QAId = Convert.ToInt32(ViewState["QAId"]);
                     _boqamng.Event = "Update";
@@ -274,7 +293,7 @@ namespace WebMerchant
 
         private void AddSingleAnswer(int qusvalu)
         {
-            if (qusvalu == 2)
+            if (qusvalu == -2)
             {
                 int[] array = (ViewState["arrAnswerID"]) as int[];
                 for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
@@ -342,7 +361,7 @@ namespace WebMerchant
 
         private void AddMultiAnswer(int qusvalu)
         {
-            if (qusvalu == 2)
+            if (qusvalu == -2)
             {
                 int[] arrayMulti = (ViewState["arrMultiAnswerID"]) as int[];
                 for (int loopcnt = 1; loopcnt <= arrayMulti.Length; loopcnt++)
@@ -410,7 +429,7 @@ namespace WebMerchant
 
         private void AddVacantAnswer(int qusvalu)
         {
-            if (qusvalu == 2)
+            if (qusvalu == -2)
             {
                 int[] array = (ViewState["arrVacantAnswerID"]) as int[];
                 for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
@@ -478,7 +497,7 @@ namespace WebMerchant
 
         private void AddDragdropAnswer(int qusvalu)
         {
-            if (qusvalu == 2)
+            if (qusvalu == -2)
             {
                 int[] arrayDragdrop = (ViewState["arrDragdropAnswerID"]) as int[];
                 for (int loopcnt = 1; loopcnt <= arrayDragdrop.Length; loopcnt++)
@@ -547,7 +566,7 @@ namespace WebMerchant
         private void AddHotspotAnswer(int qusvalu)
         {
             string[] AnswerArray = txtmaphtml.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-            if (qusvalu == 2)
+            if (qusvalu == -2)
             {
                 int[] array = (ViewState["arrVacantAnswerID"]) as int[];
                 for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
@@ -613,7 +632,7 @@ namespace WebMerchant
 
         private void AddScenarioAnswer(int qusvalu)
         {
-            if (qusvalu == 2)
+            if (qusvalu == -2)
             {
                 int[] array = (ViewState["arrScenarioAnswerID"]) as int[];
                 for (int loopcnt = 1; loopcnt <= array.Length; loopcnt++)
@@ -863,7 +882,7 @@ namespace WebMerchant
                         txtExplanation.Text = _datatable4.Rows[0][6].ToString();
                     }
                     lnkbtnAdd.Text = "Update";
-                    btnAdd.Text = "Update";
+                    //btnAdd.Text = "Update";
                     lnkbtnAdd.OnClientClick = String.Format("return getConfirmation(this,'{0}','{1}');", "Please confirm", "Are you sure you want to update this record?");
                 }
             }
@@ -958,7 +977,6 @@ namespace WebMerchant
                 rdbtn.ID = loopcnt.ToString();
                 rdbtn.CssClass = "";
                 rdbtn.GroupName = "Single";
-                rdbtn.EnableViewState = true;
                 ctrlPlaceholderTextBox.Controls.Add(rdbtn);
             }
             else if (qtype == 2 || qtype == 4)
@@ -966,7 +984,6 @@ namespace WebMerchant
                 System.Web.UI.WebControls.CheckBox chkmulti = new System.Web.UI.WebControls.CheckBox();
                 chkmulti.ID = loopcnt.ToString();
                 chkmulti.CssClass = "";
-                chkmulti.EnableViewState = true;
                 ctrlPlaceholderTextBox.Controls.Add(chkmulti);
             }
             Label lblop = new Label();
@@ -975,7 +992,6 @@ namespace WebMerchant
 
             System.Web.UI.WebControls.TextBox tb = new System.Web.UI.WebControls.TextBox();
             tb.ID = "tb" + loopcnt;
-            tb.EnableViewState = true;
             tb.TextMode = TextBoxMode.MultiLine;
             ctrlPlaceholderTextBox.Controls.Add(tb);
 
@@ -1014,7 +1030,6 @@ namespace WebMerchant
                 rdbtn.ID = loopcnt.ToString();
                 rdbtn.CssClass = "";
                 rdbtn.GroupName = "Single";
-                rdbtn.EnableViewState = true;
                 ctrlPlaceholderTextBox.Controls.Add(rdbtn);
                 if (valueans)
                 {
@@ -1026,7 +1041,6 @@ namespace WebMerchant
                 System.Web.UI.WebControls.CheckBox chkmulti = new System.Web.UI.WebControls.CheckBox();
                 chkmulti.ID = loopcnt.ToString();
                 chkmulti.CssClass = "";
-                chkmulti.EnableViewState = true;
                 ctrlPlaceholderTextBox.Controls.Add(chkmulti);
                 if (valueans)
                 {
@@ -1041,7 +1055,6 @@ namespace WebMerchant
             tb.ID = "tb" + loopcnt;
             tb.Text = tbvalue;
             tb.TextMode = TextBoxMode.MultiLine;
-            tb.EnableViewState = true;
             ctrlPlaceholderTextBox.Controls.Add(tb);
 
             Label lblClose = new Label();
@@ -1331,7 +1344,7 @@ namespace WebMerchant
             txtQuestion.Text = txtExplanation.Text = "";
             ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = null;
             ViewState["QAId"] = ViewState["arrAnswerID"] = ViewState["arrMultiAnswerID"] = ViewState["arrVacantAnswerID"] = ViewState["arrDragdropAnswerID"] = ViewState["arrScenarioAnswerID"] = "";
-            btnAdd.Text = "Add";
+            //btnAdd.Text = "Add";
             lnkbtnAdd.Text = "Add";
             lnkbtnAdd.OnClientClick = "";
             pnlSingleSelect.Visible = pnlHotspot.Visible = pnladdAnswertxtbox.Visible = false;

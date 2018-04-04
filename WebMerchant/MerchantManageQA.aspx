@@ -4,7 +4,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('[id$=btnAdd], [id$=btnMultiAdd], [id$=btnVacantAdd], [id$=btnHotspotAdd], [id$=btnDragdropAdd],[id$=btnScenarioAdd]').click(function () {
+            $('[id$=lnkbtnAdd]').click(function () {
                 if ($('[id$=ddlExamCode]').val() == null) {
                     $('[id$=lblerror]').css("display", "block");
                     $('[id$=lblerror]').html("Please Select Exam ");
@@ -21,7 +21,7 @@
                 } else {
                     $('[id$=ddlExamCode]').parent().next(".validation").remove(); // remove it
                 }
-                if ($('[id$=ddlQuestionType]').val() == null) {
+                if ($('[id$=ddlQuestionType]').val() == null || $('[id$=ddlQuestionType]').val() == 0) {
                     $('[id$=lblerror]').css("display", "block");
                     $('[id$=lblerror]').html("Please Select Type");
                     $('[id$=ddlQuestionType]').css("border", "1px solid #FF0000");
@@ -70,9 +70,22 @@
                 else {
                     $('[id$=ftxtQuestion]').parent().next(".validation").remove(); // remove it
                 }
+
+                var avalilbl = $('#ContentPlaceHolder1_pnlSingleSelect input:radio,input:checkbox');
+                if (avalilbl.length > 0) {
+                    var CheckAllradio = $("#ContentPlaceHolder1_pnlSingleSelect").find(':radio:checked,:checkbox:checked');
+                    if (CheckAllradio.length > 0) {
+                        //alert('here');
+                    }
+                    else {
+                        $('[id$=txtExplanation]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select correct answer</div>");
+                        return false;
+                    }
+                }
             });
 
         });
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -122,7 +135,7 @@
                                 </div>
                             </div>
                             <asp:Panel ID="pnlSingleSelect" runat="server" Visible="false">
-                                <asp:PlaceHolder runat="server" ID="ctrlPlaceholderTextBox"></asp:PlaceHolder>
+                                <asp:PlaceHolder runat="server" ID="ctrlPlaceholderTextBox" EnableViewState="false"></asp:PlaceHolder>
                             </asp:Panel>
                             <asp:Panel ID="pnlHotspot" runat="server" Visible="false">
                                 <div class="row">
@@ -278,7 +291,7 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-3">
                                     <asp:LinkButton ID="lnkbtnAdd" runat="server" CssClass="btn btn-default" OnClick="btnAdd_Click">Add</asp:LinkButton>
-                                    <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" ValidationGroup="single" Visible="false" />
+                                    <%--<asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" ValidationGroup="single" Visible="false" />--%>
                                     <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-default" OnClick="btnReset_Click" />
                                 </div>
                             </div>
@@ -287,21 +300,22 @@
                                     <label id="lblerror" runat="server" style="display: none; color: #D8000C;"></label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">Exam code:</label>
-                                <div class="col-sm-3">
-                                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control"></asp:TextBox>
-                                </div>
-                                <div class="col-sm-5">
-                                    <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-default" OnClick="btnSearch_Click" />
-                                </div>
-                            </div>
 
                         </div>
                     </div>
                 </asp:Panel>
             </div>
             <div class="row">
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Exam code:</label>
+                    <div class="col-sm-3">
+                        <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="col-sm-5">
+                        <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-default" OnClick="btnSearch_Click" />
+                    </div>
+                </div>
+
                 <div class="clearfix col-sm-12 mtop10" style="max-height: 400px; overflow-y: scroll;">
                     <asp:GridView ID="gvQuestionManage" runat="server" AutoGenerateColumns="false" CssClass="table" DataKeyNames="QAId" OnPageIndexChanging="gvQuestionManage_PageIndexChanging">
                         <Columns>

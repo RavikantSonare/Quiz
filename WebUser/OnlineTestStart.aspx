@@ -69,7 +69,8 @@
         <asp:DataList ID="dlquesanswer" runat="server" RepeatLayout="Flow" DataKeyField="QAId" OnItemDataBound="DataList1_ItemDataBound">
             <ItemTemplate>
                 <div class="col-lg-12" style="border: 1px solid #808080; min-height: 400px">
-                    <asp:Panel ID="Panel1" runat="server" Enabled='<%# Eval("Event").ToString() != "SM" ? true : false %>'>
+                    <asp:Panel ID="Panel1" runat="server">
+                        <%-- Enabled='<%# Eval("Event").ToString() != "SM" ? true : false %>'--%>
                         <asp:HiddenField ID="hfTestMode" runat="server" Value='<%#Eval("Event")%>' />
                         <div class="mtop10">
                             <asp:Label ID="lblQuestion" runat="server" Text='<%#Eval("Question")%>'></asp:Label>

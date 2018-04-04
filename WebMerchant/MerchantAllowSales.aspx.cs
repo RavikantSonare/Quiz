@@ -85,7 +85,7 @@ namespace WebMerchant
                     _bomallsales.CreatedDate = DateTime.UtcNow;
                     _bomallsales.UpdatedBy = MerchantId;
                     _bomallsales.UpdatedDate = DateTime.UtcNow;
-                    if (ViewState["allslsid"] != null)
+                    if (ViewState["allslsid"] != null && !ViewState["allslsid"].Equals(""))
                     {
                         _bomallsales.Id = Convert.ToInt32(ViewState["allslsid"]);
                         _bomallsales.Event = "Update";

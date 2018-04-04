@@ -51,7 +51,10 @@ namespace WebUser.DAlayer
                               GroupId = list.Field<int>("GroupId"),
                               GroupStatus = list.Field<bool>("GroupStatus"),
                               UGExamId = list.Field<string>("UGExamId"),
-                              UGAccessOption = list.Field<string>("UGAccessOption")
+                              UGAccessOption = list.Field<string>("UGAccessOption"),
+                              ValidTimeTo = list.Field<DateTime>("ValidTimeTo"),
+                              StartDate = list.Field<DateTime>("StartDate"),
+                              EndDate = list.Field<DateTime>("EndDate")
 
                           }).FirstOrDefault();
                 return _bousr;

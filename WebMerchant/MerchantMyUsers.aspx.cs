@@ -49,6 +49,7 @@ namespace WebMerchant
                 ViewState["setcurrentitemGroup"] = value;
             }
         }
+        private int merchantId = default(int);
 
         DataTable _dtextrapermission = new DataTable();
 
@@ -71,7 +72,8 @@ namespace WebMerchant
                         {
                             FillchkboxListExam(Convert.ToInt32(ddlSecondCategory.SelectedItem.Value), MerchantId);
                         }
-                        _dtextrapermission = (DataTable)Session["extrapermission"];
+                        GetExtraPermission(_bomerchantDetail.MerchantLevelId);
+                        _dtextrapermission = (DataTable)ViewState["extrapermission"];
                         FillchkboxListAccessOptionUser(_dtextrapermission);
                         FillgridViewUserList(MerchantId);
                         FillgridViewUserGroupList(MerchantId);
@@ -92,6 +94,23 @@ namespace WebMerchant
         protected void Page_PreRender(object sender, EventArgs e)
         {
             ViewState["CheckRefresh"] = Session["CheckRefresh"];
+        }
+
+        private void GetExtraPermission(int levelid)
+        {
+            DataTable _datatable = new DataTable();
+            BAQuestionType _baqtype = new BALayer.BAQuestionType();
+            DataSet _dataset = new System.Data.DataSet();
+            if (ViewState["extrapermission"] != null && !ViewState["extrapermission"].Equals(""))
+            {
+                _datatable = (DataTable)ViewState["dtAcsOpt"];
+            }
+            else
+            {
+                _dataset = _baqtype.SelectQuestionTypeList("GetQTypeWithMLevel", levelid);
+                _datatable = _dataset.Tables[1];
+                ViewState["extrapermission"] = _datatable;
+            }
         }
 
         private void FillchkboxListExam(int catid, int mid)
@@ -193,7 +212,7 @@ System.Data.DataViewRowState.CurrentRows);
         {
             BATopCategory batcat = new BATopCategory();
             DataTable _datatable3 = new DataTable();
-            if (ViewState["dtTopCat"] != null)
+            if (ViewState["dtTopCat"] != null && !ViewState["dtTopCat"].Equals(""))
             {
                 _datatable3 = (DataTable)ViewState["dtTopCat"];
             }
@@ -288,7 +307,7 @@ System.Data.DataViewRowState.CurrentRows);
                     }
                     else { _bomyuser.GroupStatus = false; }
 
-                    if (ViewState["userId"] != null)
+                    if (ViewState["userId"] != null && !ViewState["userId"].Equals(""))
                     {
                         _bomyuser.UserId = Convert.ToInt32(ViewState["userId"]);
                         _bomyuser.Event = "Update";
@@ -715,7 +734,7 @@ System.Data.DataViewRowState.CurrentRows);
                     _bousergrp.CreatedDate = DateTime.UtcNow;
                     _bousergrp.UpdatedBy = MerchantId;
                     _bousergrp.UpdatedDate = DateTime.UtcNow;
-                    if (ViewState["groupId"] != null)
+                    if (ViewState["groupId"] != null && !ViewState["groupId"].Equals(""))
                     {
                         _bousergrp.GroupId = Convert.ToInt32(ViewState["groupId"]);
                         _bousergrp.Event = "Update";
@@ -905,7 +924,7 @@ System.Data.DataViewRowState.CurrentRows);
             Tab_2.CssClass = "Clicked";
             MainView.ActiveViewIndex = 1;
             FillddlTopCategoryGroup(FillddlTopCategory());
-            _dtextrapermission = (DataTable)Session["extrapermission"];
+            _dtextrapermission = (DataTable)ViewState["extrapermission"];
             FillchkboxListAccessOptionGroup(_dtextrapermission);
         }
     }

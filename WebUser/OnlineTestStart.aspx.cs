@@ -211,7 +211,7 @@ namespace WebUser
                     item.Value = listanswer[i].AnswerId.ToString();
                     if (hfTestMode.Value == "SM")
                     {
-                        item.Selected = listanswer[i].RightAnswer;
+                        //item.Selected = listanswer[i].RightAnswer;
                     }
                     else if (hfTestMode.Value == "TM" || hfTestMode.Value == "TO")
                     {
@@ -435,25 +435,32 @@ namespace WebUser
             {
                 if (_examqueanslist.QuestionList != null)
                 {
-                    int mrkcunt = _examqueanslist.QuestionList.Where(ql => ql.Mark == true).Count();
-                    if (mrkcunt == 0)
+                    if (!_examqueanslist.QuestionList.Any(c => c.AnswerList.All(a => a.UserAnswer == false)))
                     {
-                        flagMark = false;
-                        foreach (var item in _examqueanslist.QuestionList)
+                        int mrkcunt = _examqueanslist.QuestionList.Where(ql => ql.Mark == true).Count();
+                        if (mrkcunt == 0)
                         {
-                            var QuetionOrignalAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(ans => ans.RightAnswer.Equals(true)).ToList();
-                            var QuetionUserAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true)).ToList();
+                            flagMark = false;
+                            foreach (var item in _examqueanslist.QuestionList)
+                            {
+                                var QuetionOrignalAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(ans => ans.RightAnswer.Equals(true)).ToList();
+                                var QuetionUserAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true)).ToList();
 
-                            bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
-                            _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().UserResult = a;
+                                bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
+                                _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().UserResult = a;
+                            }
+                            Session["ExamList"] = _examqueanslist;
+                            Response.Redirect("OnlineTestReport.aspx");
+                            //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Your time end now!');window.location ='OnlineTestReport.aspx';", true);
                         }
-                        Session["ExamList"] = _examqueanslist;
-                        Response.Redirect("OnlineTestReport.aspx");
-                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Your time end now!');window.location ='OnlineTestReport.aspx';", true);
+                        else
+                        {
+                            ShowMessage("Please give answer mark question and uncheck all mark question", MessageType.Warning);
+                        }
                     }
                     else
                     {
-                        ShowMessage("Please give answer mark question and uncheck all mark question", MessageType.Info);
+                        ShowMessage("You have not answered all the questions", MessageType.Warning);
                     }
                 }
             }

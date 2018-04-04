@@ -65,7 +65,6 @@ namespace WebMerchant
             System.Data.DataSet _dataset = new System.Data.DataSet();
             _dataset = _baqtype.SelectQuestionTypeList("GetQTypeWithMLevel", levelid);
             _datatable = _dataset.Tables[1];
-            Session["extrapermission"] = _datatable;
             exists = _datatable.Select().ToList().Exists(row => row["ExtraPermissionOptId"].ToString() == "4");
         }
 

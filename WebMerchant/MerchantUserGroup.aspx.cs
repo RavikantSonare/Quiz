@@ -183,7 +183,7 @@ namespace WebMerchant
                     _bousergrp.CreatedDate = DateTime.UtcNow;
                     _bousergrp.UpdatedBy = MerchantId;
                     _bousergrp.UpdatedDate = DateTime.UtcNow;
-                    if (ViewState["groupId"] != null)
+                    if (ViewState["groupId"] != null && !ViewState["groupId"].Equals(""))
                     {
                         _bousergrp.GroupId = Convert.ToInt32(ViewState["groupId"]);
                         _bousergrp.Event = "Update";

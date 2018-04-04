@@ -2947,10 +2947,10 @@ var summerHtmlImageMapCreator = (function () {
                             //Determine the Height and Width.
                             var height = this.height;
                             var width = this.width;
-                            if (height > 450 || width > 800) {
-                                alert("Height and Width must not exceed 450px and 800px.");
-                                return false;
-                            }
+                            //if (height > 450 || width > 800) {
+                            //    alert("Height and Width must not exceed 450px and 800px.");
+                            //    return false;
+                            //}
                             sm_img.style.display = 'inline-block';
                             filename = file.name;
                             utils.show(dropzone_clear_button);

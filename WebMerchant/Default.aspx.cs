@@ -42,7 +42,7 @@ namespace WebMerchant
 
                         if (txtPassword.Text == Common.Decryptdata(_bomerchantDetail.Password))
                         {
-                            if (_bomerchantDetail.EndDate > DateTime.Now)
+                            if (_bomerchantDetail.EndDate >= DateTime.Now)
                             {
                                 if (_bomerchantDetail.ActiveStatus)
                                 {

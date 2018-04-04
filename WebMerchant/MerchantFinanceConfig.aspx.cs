@@ -127,7 +127,7 @@ namespace WebMerchant
                     _bofncfg.CreatedDate = DateTime.UtcNow;
                     _bofncfg.UpdatedBy = MerchantID;
                     _bofncfg.UpdatedDate = DateTime.UtcNow;
-                    if (ViewState["fcId"] != null)
+                    if (ViewState["fcId"] != null && !ViewState["fcId"].Equals(""))
                     {
                         _bofncfg.FinanceConfigId = Convert.ToInt32(ViewState["fcId"]);
                         _bofncfg.Event = "Update";

@@ -164,6 +164,7 @@
     <Content Include="resource\scenario2.png" />
     <Content Include="resource\topology2.png" />
     <Content Include="resource\Windows-10-Settings-App.png" />
+    <Content Include="WebForm1.aspx" />
     <None Include="Properties\PublishProfiles\WebMerchant.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -470,6 +471,13 @@
     </Compile>
     <Compile Include="samples\Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
