@@ -80,7 +80,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('[id$=btnAdd]').click(function () {
-                if ($('[id$=txtRealName]').val() == "") {
+                /*if ($('[id$=txtRealName]').val() == "") {
                     $('[id$=lblerror]').css("display", "block");
                     $('[id$=lblerror]').html("Please Enter RealName");
                     $('[id$=txtRealName]').css("border", "1px solid #FF0000");
@@ -89,7 +89,7 @@
                         $('[id$=lblerror]').css("display", "none");
                     });
                     return false;
-                }
+                }*/
                 if ($('[id$=txtPassword]').val() == "") {
                     $('[id$=lblerror]').css("display", "block");
                     $('[id$=lblerror]').html("Please Enter Password");

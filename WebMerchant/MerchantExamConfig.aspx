@@ -168,7 +168,7 @@
                             <div class="col-sm-6">
                                 <label for="" class="col-sm-3 control-label">Random</label>
                                 <div class="col-sm-6">
-                                    <asp:TextBox ID="txtTestOption" runat="server" class="form-control" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
+                                    <asp:TextBox ID="txtTestOption" runat="server" class="form-control" TextMode="Number" onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
                                 </div>
                                 <label for="" class="col-sm-3 control-label">Questions</label>
                             </div>

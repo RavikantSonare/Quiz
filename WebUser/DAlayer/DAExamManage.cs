@@ -92,7 +92,8 @@ namespace WebUser.DAlayer
                                                   TestTime = li.Field<int>("TestTime"),
                                                   SecondCategoryId = li.Field<int>("SecondCategoryId"),
                                                   SecondCategory = li.Field<string>("SecondCategoryName"),
-                                                  QuestionList = GetQuestionList()
+                                                  QuestionList = GetQuestionList(),
+                                                  TestOption = li.Field<string>("TestOption")
                                               }).FirstOrDefault();
                 _sqlcon.Close();
                 return _boexmmnglist;

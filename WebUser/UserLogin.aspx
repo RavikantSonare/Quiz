@@ -34,7 +34,8 @@
                             <asp:BoundField HeaderText="Exam Code" DataField="ExamCode" />
                             <asp:BoundField HeaderText="Category" DataField="SecondCategoryName" />
                             <asp:BoundField HeaderText="Test Time" DataField="TestTime" />
-                            <asp:BoundField HeaderText="Valid Date" DataField="ValidDate" DataFormatString="{0:yyyy/MM/dd}" />
+                            <%--<asp:BoundField HeaderText="Valid Date" DataField="ValidDate" DataFormatString="{0:yyyy/MM/dd}" />--%>
+                            <asp:BoundField HeaderText="User Valid Date" DataField="ValidTimeTo" DataFormatString="{0:yyyy/MM/dd}" />
                             <asp:TemplateField HeaderText="Study Mode">
                                 <ItemTemplate>
                                     <%--<asp:Button ID="btnStudyNow" runat="server" Text="Study Now" class="btn btn-default" CommandArgument='<%#Eval("ExamCode")%>' Visible='<%# !(Convert.ToBoolean(Eval("OnlyTestOnce"))) %>' OnClick="btnTestMode_Click" />--%>

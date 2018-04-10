@@ -17,6 +17,7 @@ using System.Security.Cryptography;
 using System.Windows.Data;
 using ExamSimulator.BOLayer;
 using ExamSimulator.BALayer;
+using System.Threading.Tasks;
 
 namespace ExamSimulator
 {
@@ -130,9 +131,92 @@ namespace ExamSimulator
             //Delete the original (input) and the encrypted (output) file.
             File.Delete(input);
             //File.Delete(output);
-
+            // DownloadFiles(list);
             BindFileListBox();
         }
+
+        //private void DownloadFiles(BOExamManage _boexm)
+        //{
+        //    List<BOQAManage> AllDataObject = new List<BOQAManage>();
+        //    NullDataReturn:
+        //    AllDataObject = _boexm.QuestionList;
+        //    if (AllDataObject == null && AllDataObject.Count() <= 0) { goto NullDataReturn; }
+        //    List<string> Resource = new List<string>();
+        //    List<string> Exhabit = new List<string>();
+        //    List<string> Topology = new List<string>();
+        //    List<string> Scanrio = new List<string>();
+
+        //    //Process each object
+        //    try
+        //    {
+        //        Resource = AllDataObject.Where(z => z.Exhibit != "").Select(z => z.Exhibit).ToList();
+        //        foreach (dynamic result in Resource)
+        //        {
+        //            lock (this)
+        //            {
+        //                if (!string.IsNullOrEmpty(result))
+        //                {
+        //                    var responseWeb = GetMediaData("Pictures", result).Result;
+        //                }
+        //            }
+        //        }
+        //        //SoundsNameList = AllDataObject.Where(n => n.SoundUrl != null).Select(z => z.SoundUrl).ToList();
+        //        //foreach (dynamic result in SoundsNameList)
+        //        //{
+        //        //    lock (this)
+        //        //    {
+        //        //        if (!string.IsNullOrEmpty(result))
+        //        //        {
+        //        //            var responseWeb = GetMediaData("Sounds", result).Result;
+        //        //        }
+        //        //    }
+        //        //}
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //    }
+        //}
+
+        //private bool GetMediaData(string folderName, string fileName)
+        //{
+        //    bool isDone = false;
+        //    string filePath = "";
+        //    WebClient client = new WebClient();
+        //    try
+        //    {
+        //        lock (this)
+        //        {
+        //            // List data response.
+        //            //HttpResponseMessage response = client.DownloadFileAsync(new Uri("http://biblingo.mobi96.org/Media/" + folderName + "/" + fileName)).Result;
+
+        //            //// Check that response was successful or throw exception
+        //            //response.EnsureSuccessStatusCode();
+
+        //            //// Read response asynchronously and save asynchronously to file
+        //            //filePath = UserDataFolder("Media\\" + folderName, false) + fileName;
+        //            //using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+        //            //{
+        //            //    //copy the content from response to filestream
+        //            //    response.Content.CopyToAsync(fileStream).Wait();
+
+        //            //}
+        //            byte[] data;
+        //            using (WebClient client2 = new WebClient())
+        //            {
+        //                data = client2.DownloadData("http://localhost:60956/resource/canvasimage.png");
+        //            }
+        //            File.WriteAllBytes(Common.UserDataFolder + "canvasimage.png", data);
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        isDone = false;
+        //    }
+
+        //    return isDone;
+        //}
 
         public void wc_DownloadProgressChanged(Object sender, DownloadProgressChangedEventArgs e)
         {

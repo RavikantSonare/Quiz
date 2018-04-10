@@ -92,7 +92,7 @@ namespace ExamSimulator
                 MessageBox.Show("Please enter password");
                 return false;
             }
-            if (!Regex.IsMatch(txtEmailid.Text, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
+            if (!Regex.IsMatch(txtEmailid.Text, @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"))
             {
                 MessageBox.Show("Enter a valid email id");
                 txtEmailid.Select(0, txtEmailid.Text.Length);

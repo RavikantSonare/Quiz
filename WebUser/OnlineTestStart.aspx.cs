@@ -147,6 +147,16 @@ namespace WebUser
             if (list != null)
             {
                 list.QuestionList.ForEach(e => e.Event = mode.ToString());
+                if (mode.ToString() == "TM" || mode.ToString() == "TO")
+                {
+                    list = Shuffle(list);
+                    if (!string.IsNullOrEmpty(list.TestOption))
+                    {
+                        var questinlist = list.QuestionList.Take(Convert.ToInt32(list.TestOption)).ToList();
+                        list.QuestionList.Clear();
+                        list.QuestionList = questinlist;
+                    }
+                }
                 return list;
             }
             else
@@ -156,6 +166,19 @@ namespace WebUser
                 btnEndExam.Enabled = false;
                 return null;
             }
+        }
+
+        public static BOExamManage Shuffle(BOExamManage list)
+        {
+            var random = new Random();
+            for (int index = list.QuestionList.Count - 1; index >= 1; index--)
+            {
+                int other = random.Next(0, index + 1);
+                var temp = list.QuestionList[index];
+                list.QuestionList[index] = list.QuestionList[other];
+                list.QuestionList[other] = temp;
+            }
+            return list;
         }
 
         private void GetExamDetail(BOExamManage _exmlist)
