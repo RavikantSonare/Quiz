@@ -14,7 +14,7 @@ namespace WebAdmin
 {
     public partial class AdminPasswordChange : System.Web.UI.Page
     {
-        private int adminId = default(int);
+        // private int adminId = default(int);
         public enum MessageType { Success, Error, Info, Warning };
 
         protected void Page_PreRender(object sender, EventArgs e)

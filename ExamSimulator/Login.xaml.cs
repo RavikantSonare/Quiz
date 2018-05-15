@@ -44,6 +44,7 @@ namespace ExamSimulator
             }
             catch (SqlException sqlex)
             {
+                string msg = sqlex.Message;
                 MessageBox.Show("Connection unsuccessful..");
             }
             catch (Exception ex)

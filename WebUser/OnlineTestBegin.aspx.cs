@@ -40,7 +40,7 @@ namespace WebUser
             }
             catch (Exception ex)
             {
-
+                string exmsg = ex.Message;
             }
         }
 

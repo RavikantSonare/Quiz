@@ -124,14 +124,14 @@ namespace WebAdmin
                     Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
                     Button btn = (Button)sender;
                     GridViewRow row = (GridViewRow)btn.NamingContainer;
-                    string status;
+                    string status = string.Empty;
                     if (Convert.ToBoolean(row.Cells[3].Text))
                     {
                         status = "Confirmed";
                     }
                     else
                     { status = "Pending"; }
-                   // SendHTMLMail(row.Cells[2].Text, row.Cells[0].Text, row.Cells[1].Text, status, row.Cells[4].Text);
+                    // SendHTMLMail(row.Cells[2].Text, row.Cells[0].Text, row.Cells[1].Text, status, row.Cells[4].Text);
                     ShowMessage("Mail send successfully", MessageType.Success);
                 }
             }

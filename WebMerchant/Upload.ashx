@@ -16,7 +16,7 @@ public class Upload : IHttpHandler
         uploads.SaveAs(context.Server.MapPath(".") + "\\resource\\" + file);
 
         //provide direct URL here
-        string url = "http://localhost:60956/resource/" + file;
+        string url = "http://xcert.top/resource/" + file;
 
         context.Response.Write("<script>window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ", \"" + url + "\");</script>");
         context.Response.End();

@@ -137,7 +137,7 @@ namespace WebAdmin
                     Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
                     Button btn = (Button)sender;
                     GridViewRow row = (GridViewRow)btn.NamingContainer;
-                    string status;
+                    string status = string.Empty;
                     if (Convert.ToBoolean(row.Cells[7].Text))
                     {
                         status = "Confirmed";

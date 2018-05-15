@@ -109,10 +109,10 @@ namespace WebMerchant
                     {
                         _boexmmng.ExamCodeId = 0;
                         _boexmmng.Event = "Insert";
-                        //if (_baexmmng.Insert(_boexmmng) == 1)
-                        //{
-                        //    ShowMessage("Exam added successfully", MessageType.Success);
-                        //}
+                        if (_baexmmng.Insert(_boexmmng) == 1)
+                        {
+                            ShowMessage("Exam added successfully", MessageType.Success);
+                        }
                     }
                 }
             }

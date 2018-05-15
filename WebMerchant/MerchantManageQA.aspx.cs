@@ -133,6 +133,7 @@ namespace WebMerchant
             }
         }
 
+
         private void FillgridViewQAManage(int mid)
         {
             System.Data.DataTable _datatable3 = new System.Data.DataTable();
@@ -319,9 +320,10 @@ namespace WebMerchant
                     _boqans.UpdatedBy = MerchantId;
                     _boqans.UpdatedDate = DateTime.UtcNow;
                     _boqans.Event = "Update";
+                    string success = string.Empty;
                     if (_baqans.Update(_boqans) == 2)
                     {
-                        string success = "Success";
+                        success = "Success";
                     }
                 }
                 ShowMessage("Question updated successfully", MessageType.Success);
@@ -350,9 +352,10 @@ namespace WebMerchant
                     _boqans.UpdatedBy = MerchantId;
                     _boqans.UpdatedDate = DateTime.UtcNow;
                     _boqans.Event = "Insert";
+                    string success = string.Empty;
                     if (_baqans.Insert(_boqans) == 1)
                     {
-                        string success = "Success";
+                        success = "Success";
                     }
                 }
                 ShowMessage("Question added successfully", MessageType.Success);
@@ -387,9 +390,10 @@ namespace WebMerchant
                     _boqans.UpdatedBy = MerchantId;
                     _boqans.UpdatedDate = DateTime.UtcNow;
                     _boqans.Event = "Update";
+                    string success = string.Empty;
                     if (_baqans.Insert(_boqans) == 1)
                     {
-                        string success = "Success";
+                        success = "Success";
                     }
                 }
                 ShowMessage("Question updated successfully", MessageType.Success);
@@ -418,9 +422,10 @@ namespace WebMerchant
                     _boqans.UpdatedBy = MerchantId;
                     _boqans.UpdatedDate = DateTime.UtcNow;
                     _boqans.Event = "Insert";
+                    string success = string.Empty;
                     if (_baqans.Insert(_boqans) == 1)
                     {
-                        string success = "Success";
+                        success = "Success";
                     }
                 }
                 ShowMessage("Question added successfully", MessageType.Success);
@@ -455,9 +460,10 @@ namespace WebMerchant
                     _boqans.UpdatedBy = MerchantId;
                     _boqans.UpdatedDate = DateTime.UtcNow;
                     _boqans.Event = "Update";
+                    string success = string.Empty;
                     if (_baqans.Update(_boqans) == 2)
                     {
-                        string success = "Success";
+                        success = "Success";
                     }
                 }
                 ShowMessage("Question updated successfully", MessageType.Success);
@@ -486,9 +492,10 @@ namespace WebMerchant
                     _boqans.UpdatedBy = MerchantId;
                     _boqans.UpdatedDate = DateTime.UtcNow;
                     _boqans.Event = "Insert";
+                    string success = string.Empty;
                     if (_baqans.Insert(_boqans) == 1)
                     {
-                        string success = "Success";
+                        success = "Success";
                     }
                 }
                 ShowMessage("Question added successfully", MessageType.Success);
@@ -523,9 +530,10 @@ namespace WebMerchant
                     _boqans.UpdatedBy = MerchantId;
                     _boqans.UpdatedDate = DateTime.UtcNow;
                     _boqans.Event = "Update";
+                    string success = string.Empty;
                     if (_baqans.Insert(_boqans) == 1)
                     {
-                        string success = "Success";
+                        success = "Success";
                     }
                 }
                 ShowMessage("Question updated successfully", MessageType.Success);
@@ -554,9 +562,10 @@ namespace WebMerchant
                     _boqans.UpdatedBy = MerchantId;
                     _boqans.UpdatedDate = DateTime.UtcNow;
                     _boqans.Event = "Insert";
+                    string success = string.Empty;
                     if (_baqans.Insert(_boqans) == 1)
                     {
-                        string success = "Success";
+                        success = "Success";
                     }
                 }
                 ShowMessage("Question added successfully", MessageType.Success);
@@ -592,9 +601,10 @@ namespace WebMerchant
                     _boqans.UpdatedBy = MerchantId;
                     _boqans.UpdatedDate = DateTime.UtcNow;
                     _boqans.Event = "Update";
+                    string success = string.Empty;
                     if (_baqans.Update(_boqans) == 2)
                     {
-                        string success = "Success";
+                        success = "Success";
                     }
                 }
                 ShowMessage("Question updated successfully", MessageType.Success);
@@ -621,9 +631,10 @@ namespace WebMerchant
                     _boqans.UpdatedBy = MerchantId;
                     _boqans.UpdatedDate = DateTime.UtcNow;
                     _boqans.Event = "Insert";
+                    string success = string.Empty;
                     if (_baqans.Insert(_boqans) == 1)
                     {
-                        string success = "Success";
+                        success = "Success";
                     }
                 }
                 ShowMessage("Question added successfully", MessageType.Success);
@@ -658,9 +669,10 @@ namespace WebMerchant
                     _boqans.UpdatedBy = MerchantId;
                     _boqans.UpdatedDate = DateTime.UtcNow;
                     _boqans.Event = "Update";
+                    string success = string.Empty;
                     if (_baqans.Update(_boqans) == 2)
                     {
-                        string success = "Success";
+                        success = "Success";
                     }
                 }
                 ShowMessage("Question updated successfully", MessageType.Success);
@@ -689,9 +701,10 @@ namespace WebMerchant
                     _boqans.UpdatedBy = MerchantId;
                     _boqans.UpdatedDate = DateTime.UtcNow;
                     _boqans.Event = "Insert";
+                    string success = string.Empty;
                     if (_baqans.Insert(_boqans) == 1)
                     {
-                        string success = "Success";
+                        success = "Success";
                     }
                 }
                 ShowMessage("Question added successfully", MessageType.Success);
@@ -921,9 +934,10 @@ namespace WebMerchant
                         _boqans.UpdatedDate = DateTime.UtcNow;
                         _boqans.Event = "Delete";
                         BAQAnswer _baqans = new BAQAnswer();
+                        string success = string.Empty;
                         if (_baqans.Insert(_boqans) == 1)
                         {
-                            string success = "Success";
+                            success = "Success";
                         }
                         ShowMessage("Question deleted successfully", MessageType.Success);
                     }
@@ -1088,10 +1102,11 @@ namespace WebMerchant
                 {
                     filePath = Server.MapPath("~/ExcelUpload/") + Path.GetFileName(FileUpload1.PostedFile.FileName);
 
-                    if (!File.Exists(filePath))
+                    if (File.Exists(filePath))
                     {
-                        FileUpload1.SaveAs(filePath);
+                        File.Delete(Server.MapPath("~/ExcelUpload/") + Path.GetFileName(FileUpload1.PostedFile.FileName));
                     }
+                    FileUpload1.SaveAs(filePath);
                     List<Answerlist> _answerlist = new List<Answerlist>();
                     List<RightAnswer> _rightAnswerlist = new List<RightAnswer>();
                     List<QuestionTypelist> _questionTypeList = new List<QuestionTypelist>();
@@ -1319,6 +1334,7 @@ namespace WebMerchant
                         }
                     }
                 }
+                //revalue = true;
             }
             catch (Exception ex)
             {

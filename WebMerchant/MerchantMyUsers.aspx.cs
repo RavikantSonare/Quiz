@@ -49,7 +49,7 @@ namespace WebMerchant
                 ViewState["setcurrentitemGroup"] = value;
             }
         }
-        private int merchantId = default(int);
+        //  private int merchantId = default(int);
 
         DataTable _dtextrapermission = new DataTable();
 

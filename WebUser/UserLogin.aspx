@@ -22,7 +22,7 @@
             </div>
             <div class="col-sm-12">
                 <div class="clearfix mtop10" style="max-height: 300px; overflow-y: scroll;">
-                    <asp:GridView ID="gvExamDetail" runat="server" class="table" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" ShowFooter="true">
+                    <asp:GridView ID="gvExamDetail" runat="server" class="table" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" ShowFooter="true" OnRowDataBound="gvExamDetail_RowDataBound">
                         <Columns>
                             <asp:TemplateField HeaderText="Id" HeaderStyle-CssClass="hide" ItemStyle-CssClass="hide">
                                 <ItemTemplate>
@@ -53,6 +53,8 @@
                                 <ItemTemplate>
                                     <%--<asp:Button ID="btnTestMode" runat="server" Text="Test Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCode")%>' Visible='<%# !(Convert.ToBoolean(Eval("OnlyTestOnce"))) %>' OnClick="btnTestMode_Click" />--%>
                                     <asp:Button ID="btnTestOnce" runat="server" Text="Do Real Test" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnTestOnce_Click" Enabled='<%# Eval("QuestionCount").ToString() != "0" ? true : false %>' Visible='<%# Eval("OnlyTestOnce")%>' />
+                                    <asp:HiddenField ID="hdaccesoption" runat="server" Value='<%#Eval("AccessOption")%>' />
+                                    <asp:HiddenField ID="hdoto" runat="server" Value='<%#Eval("OnlyTestOnce")%>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <%--<asp:TemplateField HeaderText="Download">

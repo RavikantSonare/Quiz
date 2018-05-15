@@ -76,7 +76,7 @@ namespace WebUser
                     Response.Redirect("Default.aspx", false);
                 }
             }
-            catch (Exception ex)
+            catch
             {
 
             }
@@ -225,7 +225,7 @@ namespace WebUser
                 ListBox lbDrag = (ListBox)e.Item.FindControl("lbDrag");
                 ListBox lbDrop = (ListBox)e.Item.FindControl("lbDrop");
                 ImageMap imgHotSpot = (ImageMap)e.Item.FindControl("imgHotSpot");
-                imgHotSpot.ImageUrl = "http://quizmerchant.mobi96.org/resource/" + _examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionID)).FirstOrDefault().Resource;
+                imgHotSpot.ImageUrl = "http://xcert.top/resource/" + _examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionID)).FirstOrDefault().Resource;
                 var listanswer = _examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionID)).FirstOrDefault().AnswerList;
                 for (int i = 0; i < listanswer.Count; i++)
                 {

@@ -76,7 +76,7 @@
                             <asp:Label ID="lblQuestion" runat="server" Text='<%#Eval("Question")%>'></asp:Label>
                         </div>
                         <div class="mtop10">
-                            <asp:Image ID="imgETS" runat="server" Visible='<%#(String.IsNullOrEmpty(Eval("Exhibit").ToString()))&&(String.IsNullOrEmpty(Eval("Topology").ToString()))&&(String.IsNullOrEmpty(Eval("Scenario").ToString()))?  false : true %>' ImageUrl='<%#String.Format("http://quizmerchant.mobi96.org/resource/{0}{1}{2}",Eval("Exhibit").ToString(),Eval("Topology").ToString(),Eval("Scenario").ToString())%>' />
+                            <asp:Image ID="imgETS" runat="server" Visible='<%#(String.IsNullOrEmpty(Eval("Exhibit").ToString()))&&(String.IsNullOrEmpty(Eval("Topology").ToString()))&&(String.IsNullOrEmpty(Eval("Scenario").ToString()))?  false : true %>' ImageUrl='<%#String.Format("http://xcert.top/resource/{0}{1}{2}",Eval("Exhibit").ToString(),Eval("Topology").ToString(),Eval("Scenario").ToString())%>' />
                         </div>
                         <div class="col-lg-12">
                             <asp:RadioButtonList ID="rdbtnAnswerList" CssClass="radioboxlist" runat="server" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString()=="1" || Eval("QuestionTypeId").ToString()== "3" || Eval("QuestionTypeId").ToString()== "6" ? true : false %>' CommandArguments='<%#Eval("QAId")%>' OnSelectedIndexChanged="rdbtnAnswerList_SelectedIndexChanged"></asp:RadioButtonList>

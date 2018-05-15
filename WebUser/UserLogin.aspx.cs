@@ -198,5 +198,26 @@ namespace WebUser
             gvExamDetail.DataSource = _datatable;
             gvExamDetail.DataBind();
         }
+
+        protected void gvExamDetail_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    HiddenField hdacopt = (HiddenField)e.Row.FindControl("hdaccesoption");
+            //    HiddenField hdoto = (HiddenField)e.Row.FindControl("hdoto");
+            //    Button btnTestonce = (Button)e.Row.FindControl("btnTestOnce");
+            //    string[] val = (hdacopt.Value).Split(',');
+            //    foreach (var item in val)
+            //    {
+            //        if (item == "4")
+            //        {
+            //            if (Convert.ToBoolean(hdoto.Value))
+            //            {
+            //                btnTestonce.Visible = true;
+            //            }
+            //        }
+            //    }
+            //}
+        }
     }
 }
