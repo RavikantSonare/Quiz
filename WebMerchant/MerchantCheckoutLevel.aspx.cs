@@ -77,7 +77,7 @@ namespace WebMerchant
             sb.AppendFormat("<input type='hidden' name='email' value='{0}'>", Common.Decryptdata(ViewState["emid"].ToString()));
             sb.AppendFormat("<input type='hidden' name='phone' value='{0}'>", "");
             sb.AppendFormat("<input type='hidden' name='merchant_order_id' value='{0}'>", DateTime.UtcNow.ToString("yyyyMMddHHmmssfff"));
-            sb.AppendFormat("<input type='hidden' name='x_receipt_link_url' value='{0}'>", "http://xcert.top/MerchantRegistration.aspx");
+            sb.AppendFormat("<input type='hidden' name='x_receipt_link_url' value='{0}'>", Common.FullyQualifiedApplicationPath + "MerchantRegistration.aspx");
             // Other params go here
             sb.Append("</form>");
             sb.Append("</body>");

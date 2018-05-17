@@ -11,9 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUser", "WebUser\WebUser.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamSimulator", "ExamSimulator\ExamSimulator.csproj", "{1A84FE99-61EC-44E1-964E-735126F8C5D8}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ExamSimulatorSetup", "ExamSimulatorSetup\ExamSimulatorSetup.vdproj", "{1D50EBC2-6428-4BB0-AF44-F197B77AA00A}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "QuizSetupFile", "QuizSetupFile\QuizSetupFile.vdproj", "{35175B3C-F024-48FC-B8D8-18A28E7FC772}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "QSetup", "QSetup\QSetup.vdproj", "{18346DF4-AD9B-4BB4-A93D-289B4F01AFCC}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "QSetup", "QSetup\QSetup.vdproj", "{ABBC4FEB-15A2-425F-9FE7-BF565AEF8B87}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ExamSimulatorSetup", "ExamSimulatorSetup\ExamSimulatorSetup.vdproj", "{2462E799-A5B0-4EA3-ABF5-666BE4197A01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,14 +57,26 @@ Global
 		{1A84FE99-61EC-44E1-964E-735126F8C5D8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1A84FE99-61EC-44E1-964E-735126F8C5D8}.Release|x86.ActiveCfg = Release|Any CPU
 		{1A84FE99-61EC-44E1-964E-735126F8C5D8}.Release|x86.Build.0 = Release|Any CPU
-		{1D50EBC2-6428-4BB0-AF44-F197B77AA00A}.Debug|Any CPU.ActiveCfg = Debug
-		{1D50EBC2-6428-4BB0-AF44-F197B77AA00A}.Debug|x86.ActiveCfg = Debug
-		{1D50EBC2-6428-4BB0-AF44-F197B77AA00A}.Release|Any CPU.ActiveCfg = Release
-		{1D50EBC2-6428-4BB0-AF44-F197B77AA00A}.Release|x86.ActiveCfg = Release
-		{18346DF4-AD9B-4BB4-A93D-289B4F01AFCC}.Debug|Any CPU.ActiveCfg = Debug
-		{18346DF4-AD9B-4BB4-A93D-289B4F01AFCC}.Debug|x86.ActiveCfg = Debug
-		{18346DF4-AD9B-4BB4-A93D-289B4F01AFCC}.Release|Any CPU.ActiveCfg = Release
-		{18346DF4-AD9B-4BB4-A93D-289B4F01AFCC}.Release|x86.ActiveCfg = Release
+		{35175B3C-F024-48FC-B8D8-18A28E7FC772}.Debug|Any CPU.ActiveCfg = Debug
+		{35175B3C-F024-48FC-B8D8-18A28E7FC772}.Debug|x86.ActiveCfg = Debug
+		{35175B3C-F024-48FC-B8D8-18A28E7FC772}.Release|Any CPU.ActiveCfg = Release
+		{35175B3C-F024-48FC-B8D8-18A28E7FC772}.Release|x86.ActiveCfg = Release
+		{ABBC4FEB-15A2-425F-9FE7-BF565AEF8B87}.Debug|Any CPU.ActiveCfg = Debug
+		{ABBC4FEB-15A2-425F-9FE7-BF565AEF8B87}.Debug|Any CPU.Build.0 = Debug
+		{ABBC4FEB-15A2-425F-9FE7-BF565AEF8B87}.Debug|x86.ActiveCfg = Debug
+		{ABBC4FEB-15A2-425F-9FE7-BF565AEF8B87}.Debug|x86.Build.0 = Debug
+		{ABBC4FEB-15A2-425F-9FE7-BF565AEF8B87}.Release|Any CPU.ActiveCfg = Release
+		{ABBC4FEB-15A2-425F-9FE7-BF565AEF8B87}.Release|Any CPU.Build.0 = Release
+		{ABBC4FEB-15A2-425F-9FE7-BF565AEF8B87}.Release|x86.ActiveCfg = Release
+		{ABBC4FEB-15A2-425F-9FE7-BF565AEF8B87}.Release|x86.Build.0 = Release
+		{2462E799-A5B0-4EA3-ABF5-666BE4197A01}.Debug|Any CPU.ActiveCfg = Debug
+		{2462E799-A5B0-4EA3-ABF5-666BE4197A01}.Debug|Any CPU.Build.0 = Debug
+		{2462E799-A5B0-4EA3-ABF5-666BE4197A01}.Debug|x86.ActiveCfg = Debug
+		{2462E799-A5B0-4EA3-ABF5-666BE4197A01}.Debug|x86.Build.0 = Debug
+		{2462E799-A5B0-4EA3-ABF5-666BE4197A01}.Release|Any CPU.ActiveCfg = Release
+		{2462E799-A5B0-4EA3-ABF5-666BE4197A01}.Release|Any CPU.Build.0 = Release
+		{2462E799-A5B0-4EA3-ABF5-666BE4197A01}.Release|x86.ActiveCfg = Release
+		{2462E799-A5B0-4EA3-ABF5-666BE4197A01}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

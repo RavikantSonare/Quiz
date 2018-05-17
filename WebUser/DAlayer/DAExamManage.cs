@@ -225,7 +225,7 @@ namespace WebUser.DAlayer
             {
                 using (WebClient webClient = new WebClient())
                 {
-                    byte[] imageBytes = webClient.DownloadData("http://xcert.top/resource/" + imagename);
+                    byte[] imageBytes = webClient.DownloadData(Common.FullyQualifiedApplicationPath + "/resource/" + imagename);
                     base64String = Convert.ToBase64String(imageBytes, 0, imageBytes.Length);
                 }
                 return base64String;

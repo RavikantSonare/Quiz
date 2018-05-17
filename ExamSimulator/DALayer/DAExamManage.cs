@@ -97,10 +97,10 @@ namespace ExamSimulator.DALayer
                                                  Question = li.Field<string>("Question"),
                                                  NoofAnswer = li.Field<int>("NoofAnswer"),
                                                  Explanation = li.Field<string>("Explanation"),
-                                                 Resource = !string.IsNullOrEmpty(li.Field<string>("Resource")) ? "http://xcert.top/resource/" + li.Field<string>("Resource") : "",
-                                                 Exhibit = !string.IsNullOrEmpty(li.Field<string>("Exhibit")) ? "http://xcert.top/resource/" + li.Field<string>("Exhibit") : "",
-                                                 Topology = !string.IsNullOrEmpty(li.Field<string>("Topology")) ? "http://xcert.top/resource/" + li.Field<string>("Topology") : "",
-                                                 Scenario = !string.IsNullOrEmpty(li.Field<string>("Scenario")) ? "http://xcert.top/resource/" + li.Field<string>("Scenario") : "",
+                                                 Resource = !string.IsNullOrEmpty(li.Field<string>("Resource")) ? Common.FullyQualifiedApplicationPath + "/resource/" + li.Field<string>("Resource") : "",
+                                                 Exhibit = !string.IsNullOrEmpty(li.Field<string>("Exhibit")) ? Common.FullyQualifiedApplicationPath + "/resource/" + li.Field<string>("Exhibit") : "",
+                                                 Topology = !string.IsNullOrEmpty(li.Field<string>("Topology")) ? Common.FullyQualifiedApplicationPath + "/resource/" + li.Field<string>("Topology") : "",
+                                                 Scenario = !string.IsNullOrEmpty(li.Field<string>("Scenario")) ? Common.FullyQualifiedApplicationPath + "/resource/" + li.Field<string>("Scenario") : "",
                                                  AnswerList = GetAnswerList(li.Field<int>("QAId"))
                                              }).GroupBy(ques => ques.QAId)
                                               .Select(group => group.First()).ToList();
@@ -189,7 +189,7 @@ namespace ExamSimulator.DALayer
             {
                 using (WebClient webClient = new WebClient())
                 {
-                    byte[] imageBytes = webClient.DownloadData("http://xcert.top/resource/" + imagename);
+                    byte[] imageBytes = webClient.DownloadData(Common.FullyQualifiedApplicationPath + "/resource/" + imagename);
                     base64String = Convert.ToBase64String(imageBytes, 0, imageBytes.Length);
                 }
                 return base64String;

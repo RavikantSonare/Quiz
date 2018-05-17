@@ -126,7 +126,7 @@ namespace ExamSimulator
             // WebClient webClient = new WebClient();
             // webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(wc_DownloadProgressChanged);
             //webClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(client_DownloadFileCompleted);
-            // webClient.DownloadFileAsync(new Uri("http://online.xcert.top/ExamSimulator/" + output), @"D:\Work\Project\ExamSimulator\bin\Debug\Examfile\" + output);
+            // webClient.DownloadFileAsync(new Uri(Common.FullyQualifiedApplicationPath +"/ExamSimulator/" + output), @"D:\Work\Project\ExamSimulator\bin\Debug\Examfile\" + output);
 
             //Delete the original (input) and the encrypted (output) file.
             File.Delete(input);
@@ -188,7 +188,7 @@ namespace ExamSimulator
         //        lock (this)
         //        {
         //            // List data response.
-        //            //HttpResponseMessage response = client.DownloadFileAsync(new Uri("http://xcert.top/Media/" + folderName + "/" + fileName)).Result;
+        //            //HttpResponseMessage response = client.DownloadFileAsync(new Uri(Common.FullyQualifiedApplicationPath +"/Media/" + folderName + "/" + fileName)).Result;
 
         //            //// Check that response was successful or throw exception
         //            //response.EnsureSuccessStatusCode();

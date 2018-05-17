@@ -1142,7 +1142,7 @@ namespace WebMerchant
                                 {
                                     if (docObject.DocumentObjectType == DocumentObjectType.Picture)
                                     {
-                                        string docname = System.IO.Path.GetFileNameWithoutExtension(filePath);
+                                       // string docname = System.IO.Path.GetFileNameWithoutExtension(filePath);
                                         DocPicture pic = docObject as DocPicture;
                                         string filename = System.AppDomain.CurrentDomain.BaseDirectory + "resource\\";
                                         bool exists = System.IO.Directory.Exists(filename);
@@ -1159,7 +1159,7 @@ namespace WebMerchant
                                         dSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
                                         dInfo.SetAccessControl(dSecurity);
 
-                                        String imgName = String.Format(docname + "-Question" + questionNo + "-{0}.png", index);
+                                        String imgName = String.Format("Q" + questionNo + "-{0}.png", index);
                                         imgName = string.Concat(Path.GetFileNameWithoutExtension(imgName), DateTime.Now.ToString("yyyyMMddHHmmssfff"), Path.GetExtension(imgName));
                                         if (_imgbtnshow == "")
                                         {
@@ -1215,7 +1215,7 @@ namespace WebMerchant
                                     case "Q":
                                         if (!_questionTypeList.Any(a => a.QuestionType.Contains(CurrrentStr)))
                                         {
-                                            QuestionStr += CurrrentStr + "\n";
+                                            QuestionStr += CurrrentStr + "<br/>";
                                         }
                                         break;
                                     case "IN":
@@ -1243,7 +1243,7 @@ namespace WebMerchant
                                         _answerlist.Add(new Answerlist { Answer = CurrrentStr.Substring(2).Trim(), QuestionNo = questionNo });
                                         break;
                                     case "E":
-                                        ExpStr += CurrrentStr + "\n";
+                                        ExpStr += CurrrentStr + "<br/>";
                                         break;
                                 }
                                 break;
