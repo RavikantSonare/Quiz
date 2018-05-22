@@ -133,7 +133,6 @@ namespace WebMerchant
             }
         }
 
-
         private void FillgridViewQAManage(int mid)
         {
             System.Data.DataTable _datatable3 = new System.Data.DataTable();
@@ -170,6 +169,7 @@ namespace WebMerchant
                 pnlHotspot.Visible = false;
                 pnladdAnswertxtbox.Visible = true;
                 pnlETS.Visible = true;
+                btnAddAnswerSingle.Visible = true;
             }
             else if (ddlQuestionType.SelectedItem.Value == "2")
             {
@@ -182,15 +182,18 @@ namespace WebMerchant
                 pnlHotspot.Visible = false;
                 pnladdAnswertxtbox.Visible = true;
                 pnlETS.Visible = true;
+                btnAddAnswerSingle.Visible = true;
             }
 
             else if (ddlQuestionType.SelectedItem.Value == "3")
             {
                 prevVaile.Value = Convert.ToString(2);
-                for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
-                {
-                    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox");
-                }
+                //for (int loopcnt = 1; loopcnt <= 2; loopcnt++)
+                //{
+                //    this.CreateTextBoxQ(loopcnt, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox");
+                //}
+                this.CreateTextBoxQ(1, Convert.ToInt32(ddlQuestionType.SelectedItem.Value), "ctrlPlaceholderTextBox");
+                btnAddAnswerSingle.Visible = false;
                 pnlSingleSelect.Visible = true;
                 pnlHotspot.Visible = false;
                 pnladdAnswertxtbox.Visible = true;
@@ -207,6 +210,7 @@ namespace WebMerchant
                 pnlHotspot.Visible = false;
                 pnladdAnswertxtbox.Visible = true;
                 pnlETS.Visible = true;
+                btnAddAnswerSingle.Visible = true;
             }
             else if (ddlQuestionType.SelectedItem.Value == "5")
             {
@@ -214,6 +218,7 @@ namespace WebMerchant
                 pnlSingleSelect.Visible = false;
                 pnladdAnswertxtbox.Visible = false;
                 pnlETS.Visible = false;
+                btnAddAnswerSingle.Visible = true;
             }
             else if (ddlQuestionType.SelectedItem.Value == "6")
             {
@@ -226,6 +231,7 @@ namespace WebMerchant
                 pnlHotspot.Visible = false;
                 pnladdAnswertxtbox.Visible = true;
                 pnlETS.Visible = true;
+                btnAddAnswerSingle.Visible = true;
             }
         }
 
@@ -815,6 +821,22 @@ namespace WebMerchant
                     hfExhibit.Value = _datatable4.Rows[0]["Exhibit"].ToString();
                     hfTopology.Value = _datatable4.Rows[0]["Topology"].ToString();
                     hfScenario.Value = _datatable4.Rows[0]["Scenario"].ToString();
+                    dvExhibit.Visible= dvTopology.Visible= dvScenario.Visible = false;
+                    if (!string.IsNullOrEmpty(_datatable4.Rows[0]["Exhibit"].ToString()))
+                    {
+                        imgExhibit.ImageUrl= Common.FullyQualifiedApplicationPath + "/resource/" + _datatable4.Rows[0]["Exhibit"].ToString();
+                        dvExhibit.Visible = true;
+                    }
+                    if (!string.IsNullOrEmpty(_datatable4.Rows[0]["Topology"].ToString()))
+                    {
+                        imgTopology.ImageUrl = Common.FullyQualifiedApplicationPath + "/resource/" + _datatable4.Rows[0]["Topology"].ToString();
+                        dvTopology.Visible = true;
+                    }
+                    if (!string.IsNullOrEmpty(_datatable4.Rows[0]["Scenario"].ToString()))
+                    {
+                        imgScenario.ImageUrl = Common.FullyQualifiedApplicationPath + "/resource/" + _datatable4.Rows[0]["Scenario"].ToString();
+                        dvScenario.Visible = true;
+                    }
                     if (_datatable4.Rows[0][2].ToString().Equals("1"))
                     {
                         pnlSingleSelect.Visible = true;
@@ -982,10 +1004,17 @@ namespace WebMerchant
             ContentPlaceHolder cph = (ContentPlaceHolder)this.Master.FindControl("ContentPlaceHolder1");
             PlaceHolder ctrlPlaceholderTextBox = (PlaceHolder)cph.FindControl(placeholder);
             Label lblOpen = new Label();
-            lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Option " + Convert.ToChar(64 + loopcnt);
+            if (qtype == 3)
+            {
+                lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Answer ";
+            }
+            else
+            {
+                lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Option " + Convert.ToChar(64 + loopcnt);
+            }
             ctrlPlaceholderTextBox.Controls.Add(lblOpen);
 
-            if (qtype == 1 || qtype == 3 || qtype == 6)
+            if (qtype == 1  || qtype == 6)
             {
                 RadioButton rdbtn = new RadioButton();
                 rdbtn.ID = loopcnt.ToString();
@@ -1035,10 +1064,17 @@ namespace WebMerchant
             ContentPlaceHolder cph = (ContentPlaceHolder)this.Master.FindControl("ContentPlaceHolder1");
             PlaceHolder ctrlPlaceholderTextBox = (PlaceHolder)cph.FindControl(placeholder);
             Label lblOpen = new Label();
-            lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Option " + Convert.ToChar(64 + loopcnt);
+            if (qtype == 3)
+            {
+                lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Answer ";
+            }
+            else
+            {
+                lblOpen.Text = "<div class='form-group'><label for= '' class='col-sm-3 control-label'>Option " + Convert.ToChar(64 + loopcnt);
+            }
             ctrlPlaceholderTextBox.Controls.Add(lblOpen);
 
-            if (qtype == 1 || qtype == 3 || qtype == 6)
+            if (qtype == 1 || qtype == 6)
             {
                 RadioButton rdbtn = new RadioButton();
                 rdbtn.ID = loopcnt.ToString();
@@ -1149,10 +1185,6 @@ namespace WebMerchant
                                         if (!exists)
                                         {
                                             DirectoryInfo di = System.IO.Directory.CreateDirectory(filename);
-                                        }
-                                        else
-                                        {
-                                            //Console.WriteLine("The Folder already exists");
                                         }
                                         DirectoryInfo dInfo = new DirectoryInfo(filename);
                                         DirectorySecurity dSecurity = dInfo.GetAccessControl();

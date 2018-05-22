@@ -22,7 +22,6 @@
             });
         });
     </script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
@@ -76,6 +75,7 @@
                             <asp:Label ID="lblQuestion" runat="server" Text='<%#Eval("Question")%>'></asp:Label>
                         </div>
                         <div class="mtop10">
+                            
                             <asp:Image ID="imgETS" runat="server" Visible='<%#(String.IsNullOrEmpty(Eval("Exhibit").ToString()))&&(String.IsNullOrEmpty(Eval("Topology").ToString()))&&(String.IsNullOrEmpty(Eval("Scenario").ToString()))?  false : true %>' ImageUrl='<%#String.Format("http://xcert.top/resource/{0}{1}{2}",Eval("Exhibit").ToString(),Eval("Topology").ToString(),Eval("Scenario").ToString())%>' />
                         </div>
                         <div class="col-lg-12">

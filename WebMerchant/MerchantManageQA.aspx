@@ -263,6 +263,31 @@
                             </asp:Panel>
                             <asp:Panel ID="pnlETS" runat="server">
                                 <div class="form-group">
+                                    <div class="col-sm-offset-3">
+                                        <div class="col-md-3 col-sm-3 col-xs-3" runat="server" id="dvExhibit" visible="false">
+                                            <div class="thumbnail">
+                                                <asp:Image ID="imgExhibit" runat="server" />
+                                                <div class="caption">
+                                                    <p>Exhibit</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3 col-xs-3" runat="server" id="dvTopology" visible="false">
+                                            <div class="thumbnail"> <asp:Image ID="imgTopology" runat="server" />
+                                                <div class="caption">
+                                                    <p>Topology</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3 col-xs-3" runat="server" id="dvScenario" visible="false">
+                                            <div class="thumbnail">
+                                                <asp:Image ID="imgScenario" runat="server" />
+                                                <div class="caption">
+                                                    <p>Scenario</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-sm-offset-3 col-sm-5">
                                         <label class="btn-bs-file btn btn-default">
                                             Exhibit

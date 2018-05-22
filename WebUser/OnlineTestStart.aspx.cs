@@ -76,9 +76,9 @@ namespace WebUser
                     Response.Redirect("Default.aspx", false);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                Common.LogError(ex);
             }
         }
 
@@ -305,9 +305,9 @@ namespace WebUser
                     btnnext.Enabled = false;
                 }
             }
-            catch
+            catch(Exception ex)
             {
-
+                Common.LogError(ex);
             }
         }
 
@@ -523,9 +523,9 @@ namespace WebUser
                 var QuestionNo = Convert.ToInt32(button.ToolTip);
                 _examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionNo)).FirstOrDefault().Mark = Convert.ToBoolean(button.Checked);
             }
-            catch
+            catch (Exception ex)
             {
-
+                Common.LogError(ex);
             }
         }
 
