@@ -386,5 +386,9 @@ namespace WebMerchant
         {
             FillchkboxListExam(Convert.ToInt32(ddlSecondCategory.SelectedItem.Value), MerchantId);
         }
+
+        protected void permissionfunction() {
+          
+        }
     }
 }
