@@ -231,6 +231,7 @@
     <Content Include="TemplateImage\quiz-duello-icon.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BALayer\BAAssignExamUser.cs" />
     <Compile Include="BALayer\BABundleExam.cs" />
     <Compile Include="BALayer\BAExamManage.cs" />
     <Compile Include="BALayer\BAExamReports.cs" />
@@ -256,6 +257,7 @@
     <Compile Include="BALayer\BATopCategory.cs" />
     <Compile Include="BALayer\BAUserAccess.cs" />
     <Compile Include="BALayer\BAUserGroup.cs" />
+    <Compile Include="BOLayer\BOAssignExamUser.cs" />
     <Compile Include="BOLayer\BOBundleExam.cs" />
     <Compile Include="BOLayer\BOExamManage.cs" />
     <Compile Include="BOLayer\BOExamReports.cs" />
@@ -283,6 +285,7 @@
     <Compile Include="BOLayer\BOUserGroup.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="ConnectionInfo.cs" />
+    <Compile Include="DALayer\DAAssignExamUser.cs" />
     <Compile Include="DALayer\DABundleExam.cs" />
     <Compile Include="DALayer\DAExamManage.cs" />
     <Compile Include="DALayer\DAExamReports.cs" />

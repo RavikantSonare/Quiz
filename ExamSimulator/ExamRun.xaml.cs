@@ -117,6 +117,13 @@ namespace ExamSimulator
                     else
                     {
                         _examqueanslist.QuestionList.ForEach(e => e.ExamMode = true);
+                        _examqueanslist= Shuffle(_examqueanslist);
+                        if (!string.IsNullOrEmpty(_examqueanslist.TestOption))
+                        {
+                            var questinlist = _examqueanslist.QuestionList.Take(Convert.ToInt32(_examqueanslist.TestOption)).ToList();
+                            _examqueanslist.QuestionList.Clear();
+                            _examqueanslist.QuestionList = questinlist;
+                        }
                     }
                     //Delete the original (input) and the encrypted (output) file.
                     File.Delete(Common.UserDataFolder + output);
@@ -127,6 +134,19 @@ namespace ExamSimulator
                 MessageBox.Show(ex.ToString());
             }
             return _examqueanslist;
+        }
+
+        public static BOExamManage Shuffle(BOExamManage list)
+        {
+            var random = new Random();
+            for (int index = list.QuestionList.Count - 1; index >= 1; index--)
+            {
+                int other = random.Next(0, index + 1);
+                var temp = list.QuestionList[index];
+                list.QuestionList[index] = list.QuestionList[other];
+                list.QuestionList[other] = temp;
+            }
+            return list;
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)

@@ -121,7 +121,7 @@
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Name="lblhead1" Grid.Row="1" FontSize="45" HorizontalAlignment="Center"></Label>
+                <Label Name="lblhead1" Grid.Row="1" FontSize="25" HorizontalAlignment="Center"></Label>
             </Grid>
         </Border>
     </DockPanel>

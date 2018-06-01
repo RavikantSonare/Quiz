@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ExamSimulator.BOLayer
 {
-    class BOExamManage
+  public  class BOExamManage
     {
         public int ExamCodeId { get; set; }
         public string ExamCode { get; set; }

@@ -313,6 +313,7 @@ System.Data.DataViewRowState.CurrentRows);
                         _bomyuser.Event = "Update";
                         if (_bamyuser.Update(_bomyuser) == 2)
                         {
+                            AssignExamUser(Convert.ToInt32(ViewState["userId"]));
                             ShowMessage("User updated successfully", MessageType.Success);
                         }
                     }
@@ -320,12 +321,13 @@ System.Data.DataViewRowState.CurrentRows);
                     {
                         _bomyuser.UserId = 0;
                         _bomyuser.Event = "Insert";
-                        int retval = _bamyuser.Insert(_bomyuser);
-                        if (retval == 1)
+                        int retval =  _bamyuser.Insert(_bomyuser);
+                        if (retval > 0)
                         {
+                            AssignExamUser(retval);
                             ShowMessage("User added successfully", MessageType.Success);
                         }
-                        else if (retval == 4)
+                        else if (retval == -1)
                         {
                             ShowMessage("Email Id already exist", MessageType.Info);
                         }
@@ -338,6 +340,32 @@ System.Data.DataViewRowState.CurrentRows);
                 ShowMessage("Some technical error", MessageType.Warning);
             }
             ClearControl();
+        }
+
+        private void AssignExamUser(int UserId)
+        {
+            BOAssignExamUser _boaeu=new BOAssignExamUser();
+            BAAssignExamUser _baaeu=new BAAssignExamUser();
+            foreach (ListItem item in chkExamCodeList.Items)
+            {
+                if (item.Selected)
+                {
+                    _boaeu.UserId = UserId;
+                    _boaeu.ExamId =Convert.ToInt32(item.Value);
+                    if (chklistAccessoption.Items.FindByValue("4").Selected)
+                        _boaeu.TestOnce = true;
+                    else
+                        _boaeu.TestOnce = false;
+                    _boaeu.IsActive = true;
+                    _boaeu.IsDelete = false;
+                    _boaeu.CreatedBy = MerchantId;
+                    _boaeu.CreatedDate = DateTime.UtcNow;
+                    _boaeu.UpdatedBy = MerchantId;
+                    _boaeu.UpdatedDate = DateTime.UtcNow;
+                    _boaeu.Event = "Insert";
+                    _baaeu.Insert(_boaeu);
+                }
+            }
         }
 
         private Tuple<string, string> chklist()

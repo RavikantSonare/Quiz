@@ -199,9 +199,9 @@
                 <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="6">
                     <Setter Property="RadioButton.Visibility" Value="Visible"/>
                 </DataTrigger>
-                <DataTrigger  Binding ="{Binding ElementName=txtUserAnswer, Path=Text}"  Value="True">
+                <!--<DataTrigger  Binding ="{Binding ElementName=txtUserAnswer, Path=Text}"  Value="True">
                     <Setter Property="RadioButton.IsChecked" Value="True"/>
-                </DataTrigger>
+                </DataTrigger>-->
             </Style.Triggers>
         </Style>
 
@@ -302,9 +302,9 @@
                 <DataTrigger  Binding ="{Binding ElementName=txtQuestion, Path=Tag}"  Value="2">
                     <Setter Property="CheckBox.Visibility" Value="Visible"/>
                 </DataTrigger>
-                <DataTrigger  Binding ="{Binding ElementName=txtUserAnswer, Path=Text}"  Value="True">
+                <!--<DataTrigger  Binding ="{Binding ElementName=txtUserAnswer, Path=Text}"  Value="True">
                     <Setter Property="CheckBox.IsChecked" Value="True"/>
-                </DataTrigger>
+                </DataTrigger>-->
             </Style.Triggers>
         </Style>
 
@@ -463,7 +463,7 @@
                                         <Button Grid.Column="1" Name="btnTopology" HorizontalAlignment="Center" CommandParameter="{Binding Topology}"  Tag="{Binding Topology}" Style="{StaticResource btnTopology}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnTopology_Click"/>
                                         <Button Grid.Column="2" Name="btnScenario" HorizontalAlignment="Center" CommandParameter="{Binding Scenario}"  Tag="{Binding Scenario}" Style="{StaticResource btnScenario}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnScenario_Click"/>
                                     </Grid>
-                                    <ListBox  x:Name="list" ItemsSource="{Binding AnswerList}" Width="auto" BorderThickness="0" IsEnabled="{Binding ExamMode}" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
+                                    <ListBox  x:Name="list" ItemsSource="{Binding AnswerList}" Width="auto" BorderThickness="0"  ItemContainerStyle="{StaticResource RedGlowItemContainer}"><!--IsEnabled="{Binding ExamMode}"-->
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>

@@ -78,6 +78,7 @@ namespace ExamSimulator.DALayer
                                                   TestTime = li.Field<int>("TestTime"),
                                                   SecondCategoryId = li.Field<int>("SecondCategoryId"),
                                                   SecondCategory = li.Field<string>("SecondCategoryName"),
+                                                  TestOption = li.Field<string>("TestOption"),
                                                   QuestionList = GetQuestionList()
                                               }).FirstOrDefault();
                 _sqlcon.Close();
