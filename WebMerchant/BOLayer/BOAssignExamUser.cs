@@ -13,6 +13,8 @@ namespace WebMerchant.BOLayer
 
         public int ExamId { get; set; }
 
+        public int SecondCatId { get; set; }
+
         public bool TestOnce { get; set; }
 
         public bool IsActive { get; set; }

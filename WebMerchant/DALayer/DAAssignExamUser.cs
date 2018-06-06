@@ -26,6 +26,7 @@ namespace WebMerchant.DALayer
 
                 _sqlcommand.Parameters.AddWithValue("@UserId", _boaeu.UserId);
                 _sqlcommand.Parameters.AddWithValue("@ExamId", _boaeu.ExamId);
+                _sqlcommand.Parameters.AddWithValue("@SecondCatId", _boaeu.SecondCatId);
                 _sqlcommand.Parameters.AddWithValue("@TestOnce", _boaeu.TestOnce);
                 _sqlcommand.Parameters.AddWithValue("@IsActive", _boaeu.IsActive);
                 _sqlcommand.Parameters.AddWithValue("@IsDelete", _boaeu.IsDelete);

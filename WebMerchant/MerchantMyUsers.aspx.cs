@@ -301,6 +301,7 @@ System.Data.DataViewRowState.CurrentRows);
                     _bomyuser.UpdatedDate = DateTime.UtcNow;
                     _bomyuser.ValidTimeTo = Convert.ToDateTime(txtValidTimeto.Text);
                     _bomyuser.GroupId = Convert.ToInt32(ddlStudnetGroup.SelectedItem.Value);
+                    _bomyuser.SecondCategoryId = Convert.ToInt32(ddlSecondCategory.SelectedItem.Value);
                     if (!ddlStudnetGroup.SelectedItem.Value.Equals("0"))
                     {
                         _bomyuser.GroupStatus = true;
@@ -313,7 +314,7 @@ System.Data.DataViewRowState.CurrentRows);
                         _bomyuser.Event = "Update";
                         if (_bamyuser.Update(_bomyuser) == 2)
                         {
-                            AssignExamUser(Convert.ToInt32(ViewState["userId"]));
+                            AssignExamUser(Convert.ToInt32(ViewState["userId"]), Convert.ToInt32(ddlSecondCategory.SelectedItem.Value), _bomyuser.Event);
                             ShowMessage("User updated successfully", MessageType.Success);
                         }
                     }
@@ -324,7 +325,7 @@ System.Data.DataViewRowState.CurrentRows);
                         int retval =  _bamyuser.Insert(_bomyuser);
                         if (retval > 0)
                         {
-                            AssignExamUser(retval);
+                            AssignExamUser(retval,Convert.ToInt32(ddlSecondCategory.SelectedItem.Value) ,_bomyuser.Event);
                             ShowMessage("User added successfully", MessageType.Success);
                         }
                         else if (retval == -1)
@@ -342,7 +343,7 @@ System.Data.DataViewRowState.CurrentRows);
             ClearControl();
         }
 
-        private void AssignExamUser(int UserId)
+        private void AssignExamUser(int UserId,int SecondCatId,string parentEvent)
         {
             BOAssignExamUser _boaeu=new BOAssignExamUser();
             BAAssignExamUser _baaeu=new BAAssignExamUser();
@@ -352,6 +353,7 @@ System.Data.DataViewRowState.CurrentRows);
                 {
                     _boaeu.UserId = UserId;
                     _boaeu.ExamId =Convert.ToInt32(item.Value);
+                    _boaeu.SecondCatId = SecondCatId;
                     if (chklistAccessoption.Items.FindByValue("4").Selected)
                         _boaeu.TestOnce = true;
                     else
@@ -362,7 +364,7 @@ System.Data.DataViewRowState.CurrentRows);
                     _boaeu.CreatedDate = DateTime.UtcNow;
                     _boaeu.UpdatedBy = MerchantId;
                     _boaeu.UpdatedDate = DateTime.UtcNow;
-                    _boaeu.Event = "Insert";
+                    _boaeu.Event = parentEvent;
                     _baaeu.Insert(_boaeu);
                 }
             }
@@ -638,9 +640,7 @@ System.Data.DataViewRowState.CurrentRows);
         {
             chklistAccessoptionGroup.Items.Clear();
 
-            DataRow[] rows = _table.Select(
-       "ExtraPermissionOptId IN (2,3,4)", "",
-System.Data.DataViewRowState.CurrentRows);
+            DataRow[] rows = _table.Select("ExtraPermissionOptId IN (2,3,4)", "",System.Data.DataViewRowState.CurrentRows);
             foreach (DataRow row in rows)
             {
                 ListItem item = new ListItem();

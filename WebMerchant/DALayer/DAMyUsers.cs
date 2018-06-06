@@ -86,6 +86,7 @@ namespace WebMerchant.DALayer
                 _sqlcommand.Parameters.AddWithValue("@GroupId", _bomyuser.GroupId);
                 _sqlcommand.Parameters.AddWithValue("@GroupStatus", _bomyuser.GroupStatus);
                 _sqlcommand.Parameters.AddWithValue("@Event", _bomyuser.Event);
+                _sqlcommand.Parameters.AddWithValue("@SecondCategoryId", _bomyuser.SecondCategoryId);
                 _sqlcommand.Parameters.AddWithValue("@returnValue", 0).Direction = System.Data.ParameterDirection.InputOutput;
 
                 try
