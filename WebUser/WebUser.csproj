@@ -142,9 +142,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BALayer\BAAssignExamUser.cs" />
     <Compile Include="BALayer\BAExamManage.cs" />
     <Compile Include="BALayer\BAExamReports.cs" />
     <Compile Include="BALayer\BAUser.cs" />
+    <Compile Include="BOLayer\BOAssignExamUser.cs" />
     <Compile Include="BOLayer\BOExamManage.cs" />
     <Compile Include="BOLayer\BOExamReports.cs" />
     <Compile Include="BOLayer\BOQAManage.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="BOLayer\BOUser.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="ConnectionInfo.cs" />
+    <Compile Include="DAlayer\DAAssignExamUser.cs" />
     <Compile Include="DAlayer\DAExamManage.cs" />
     <Compile Include="DAlayer\DAExamReports.cs" />
     <Compile Include="DAlayer\DAUser.cs" />

@@ -39,22 +39,22 @@
                             <asp:TemplateField HeaderText="Study Mode">
                                 <ItemTemplate>
                                     <%--<asp:Button ID="btnStudyNow" runat="server" Text="Study Now" class="btn btn-default" CommandArgument='<%#Eval("ExamCode")%>' Visible='<%# !(Convert.ToBoolean(Eval("OnlyTestOnce"))) %>' OnClick="btnTestMode_Click" />--%>
-                                    <asp:Button ID="btnStudyNow" runat="server" Text="Study Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnStudyNow_Click" Enabled='<%# Eval("QuestionCount").ToString() != "0" ? true : false %>' Visible='<%# Convert.ToBoolean(Eval("OnlyTestOnce")) == true ? false : true %>' />
+                                    <asp:Button ID="btnStudyNow" runat="server" Text="Study Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnStudyNow_Click" Enabled='<%# Eval("QuestionCount").ToString() != "0" ? true : false %>' Visible='<%# Convert.ToBoolean(Eval("TestOnce")) == true ? false : true %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Real Test Mode">
                                 <ItemTemplate>
                                     <%--<asp:Button ID="btnTestMode" runat="server" Text="Test Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCode")%>' Visible='<%# !(Convert.ToBoolean(Eval("OnlyTestOnce"))) %>' OnClick="btnTestMode_Click" />--%>
-                                    <asp:Button ID="btnTestMode" runat="server" Text="Test Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnTestMode_Click" Enabled='<%# Eval("QuestionCount").ToString() != "0" ? true : false %>' Visible='<%# Convert.ToBoolean(Eval("OnlyTestOnce")) == true ? false : true %>' />
+                                    <asp:Button ID="btnTestMode" runat="server" Text="Test Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnTestMode_Click" Enabled='<%# Eval("QuestionCount").ToString() != "0" ? true : false %>' Visible='<%# Convert.ToBoolean(Eval("TestOnce")) == true ? false : true %>' />
                                     <asp:Label ID="lblemptymsg" runat="server" Text="Question not available" ForeColor="Red" Visible='<%# Eval("QuestionCount").ToString() == "0" ? true : false %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Test Once">
                                 <ItemTemplate>
                                     <%--<asp:Button ID="btnTestMode" runat="server" Text="Test Now" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCode")%>' Visible='<%# !(Convert.ToBoolean(Eval("OnlyTestOnce"))) %>' OnClick="btnTestMode_Click" />--%>
-                                    <asp:Button ID="btnTestOnce" runat="server" Text="Do Real Test" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnTestOnce_Click" Enabled='<%# Eval("QuestionCount").ToString() != "0" ? true : false %>' Visible='<%# Eval("OnlyTestOnce")%>' />
+                                    <asp:Button ID="btnTestOnce" runat="server" Text="Do Real Test" CssClass="btn btn-default" CommandArgument='<%#Eval("ExamCodeId")%>' OnClick="btnTestOnce_Click" Enabled='<%# Eval("QuestionCount").ToString() != "0" ? true : false %>' Visible='<%# Eval("TestOnce")%>' />
                                     <asp:HiddenField ID="hdaccesoption" runat="server" Value='<%#Eval("AccessOption")%>' />
-                                    <asp:HiddenField ID="hdoto" runat="server" Value='<%#Eval("OnlyTestOnce")%>' />
+                                    <asp:HiddenField ID="hdoto" runat="server" Value='<%#Eval("TestOnce")%>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <%--<asp:TemplateField HeaderText="Download">

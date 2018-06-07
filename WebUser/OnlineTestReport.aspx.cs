@@ -126,14 +126,26 @@ namespace WebUser
 
         private void UpdateExamManage(BOExamManage _boexammanage)
         {
-            BOExamManage _boexmnge = new BOExamManage();
-            BAExamManage _baexmmng = new BAExamManage();
-            _boexmnge.ExamCodeId = _boexammanage.ExamCodeId;
-            _boexmnge.OnlyTestOnce = false;
-            _boexmnge.UpdatedBy = _bouserDetail.UserId;
-            _boexmnge.UpdatedDate = DateTime.UtcNow;
-            _boexmnge.Event = "UpdateByUser";
-            _baexmmng.IUD(_boexmnge);
+            //BOExamManage _boexmnge = new BOExamManage();
+            //BAExamManage _baexmmng = new BAExamManage();
+            //_boexmnge.ExamCodeId = _boexammanage.ExamCodeId;
+            //_boexmnge.OnlyTestOnce = false;
+            //_boexmnge.UpdatedBy = _bouserDetail.UserId;
+            //_boexmnge.UpdatedDate = DateTime.UtcNow;
+            //_boexmnge.Event = "UpdateByUser";
+            //_baexmmng.IUD(_boexmnge);
+
+            ///6June2018 New table for TestOnce permission
+
+            BOAssignExamUser _boaeu = new BOAssignExamUser();
+            BAAssignExamUser _baaeu = new BAAssignExamUser();
+            _boaeu.ExamId = _boexammanage.ExamCodeId;
+            _boaeu.UserId = _bouserDetail.UserId;
+            _boaeu.TestOnce = false;
+            _boaeu.UpdatedBy = _bouserDetail.UserId;
+            _boaeu.UpdatedDate = DateTime.UtcNow;
+            _boaeu.Event = "UpdateByUser";
+            _baaeu.IUD(_boaeu);
         }
     }
 }
