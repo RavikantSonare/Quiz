@@ -15,7 +15,6 @@ using System.Security.Cryptography;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ExamSimulator.BOLayer;
-
 namespace ExamSimulator
 {
     /// <summary>
@@ -39,18 +38,21 @@ namespace ExamSimulator
             try
             {
                 filelist = filelistitem;
-                _time = TimeSpan.FromSeconds(filelistitem.Examtime * 60);
-                _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+                if (!filelistitem.Mode.Equals("SM"))
                 {
-                    lblTimer.Content = _time.ToString("c");
-                    if (_time == TimeSpan.Zero)
+                    _time = TimeSpan.FromSeconds(filelistitem.Examtime * 60);
+                    _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
                     {
-                        _timer.Stop();
-                        btnEndExam.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-                    }
-                    _time = _time.Add(TimeSpan.FromSeconds(-1));
-                }, Application.Current.Dispatcher);
-                _timer.Start();
+                        lblTimer.Content = _time.ToString("c");
+                        if (_time == TimeSpan.Zero)
+                        {
+                            _timer.Stop();
+                            btnEndExam.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                        }
+                        _time = _time.Add(TimeSpan.FromSeconds(-1));
+                    }, Application.Current.Dispatcher);
+                    _timer.Start();
+                }
             }
             catch
             {
@@ -112,12 +114,13 @@ namespace ExamSimulator
                     {
                         btnCorrectAnswer.Visibility = Visibility.Visible;
                         _examqueanslist.QuestionList.ForEach(e => e.ExamMode = false);
-                        _examqueanslist.QuestionList.Where(q => q.IsActive.Equals(false)).ToList().ForEach(b => b.AnswerList.Where(a => a.RightAnswer.Equals(true)).ToList().ForEach(r => r.UserAnswer = true));
+                        // _examqueanslist.QuestionList.Where(q => q.IsActive.Equals(false)).ToList().ForEach(b => b.AnswerList.Where(a => a.RightAnswer.Equals(true)).ToList().ForEach(r => r.UserAnswer = true));
                     }
                     else
                     {
+                        stpnlTimer.Visibility = Visibility.Visible;
                         _examqueanslist.QuestionList.ForEach(e => e.ExamMode = true);
-                        _examqueanslist= Shuffle(_examqueanslist);
+                        _examqueanslist = Shuffle(_examqueanslist);
                         if (!string.IsNullOrEmpty(_examqueanslist.TestOption))
                         {
                             var questinlist = _examqueanslist.QuestionList.Take(Convert.ToInt32(_examqueanslist.TestOption)).ToList();
@@ -294,15 +297,30 @@ namespace ExamSimulator
         {
             try
             {
-                foreach (var item in _list.QuestionList)
+                if (!_list.QuestionList.Any(c => c.AnswerList.All(a => a.UserAnswer == false)))
                 {
-                    var QuetionOrignalAns = _list.QuestionList.Where(q => q.QAId.Equals(item.QAId)).FirstOrDefault().AnswerList.Where(ans => ans.RightAnswer.Equals(true)).ToList();
-                    var QuetionUserAns = _list.QuestionList.Where(q => q.QAId.Equals(item.QAId)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true)).ToList();
+                    int mrkcunt = _list.QuestionList.Where(ql => ql.Mark == true).Count();
+                    if (mrkcunt == 0)
+                    {
+                        foreach (var item in _list.QuestionList)
+                        {
+                            var QuetionOrignalAns = _list.QuestionList.Where(q => q.QAId.Equals(item.QAId)).FirstOrDefault().AnswerList.Where(ans => ans.RightAnswer.Equals(true)).ToList();
+                            var QuetionUserAns = _list.QuestionList.Where(q => q.QAId.Equals(item.QAId)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true)).ToList();
 
-                    bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
-                    _list.QuestionList.Where(q => q.QAId.Equals(item.QAId)).FirstOrDefault().UserResult = a;
+                            bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
+                            _list.QuestionList.Where(q => q.QAId.Equals(item.QAId)).FirstOrDefault().UserResult = a;
+                        }
+                        NavigationService.Navigate(new ExamReport(_list.QuestionList.Where(z => z.UserResult == true).Count(), _list.QuestionList.Count(), _list.PassingPercentage, _list.SecondCategory + " " + _list.ExamCode));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please give answer mark question and uncheck all mark question", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
                 }
-                NavigationService.Navigate(new ExamReport(_list.QuestionList.Where(z => z.UserResult == true).Count(), _list.QuestionList.Count(), _list.PassingPercentage, _list.SecondCategory + " " + _list.ExamCode));
+                else
+                {
+                    MessageBox.Show("You have not answered all the questions", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
             catch
             {
@@ -589,4 +607,5 @@ namespace ExamSimulator
             _timer.Start();
         }
     }
+
 }

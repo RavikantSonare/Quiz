@@ -512,7 +512,6 @@ namespace WebUser
                 Panel pnlexplain = (Panel)item.FindControl("pnlexplain");
                 pnlexplain.Visible = true;
             }
-
         }
 
         protected void chkmark_CheckedChanged(object sender, EventArgs e)

@@ -16,6 +16,7 @@ namespace ExamSimulator.DALayer
         private SqlCommand _sqlcommond;
         private SqlDataAdapter _sqldataadapter;
         private DataTable _datatable;
+        private List<BOQAnswer> _answerlist;
 
         internal List<BOExamManage> SelectExamDetail(string v, int uid)
         {
@@ -98,11 +99,12 @@ namespace ExamSimulator.DALayer
                                                  Question = li.Field<string>("Question"),
                                                  NoofAnswer = li.Field<int>("NoofAnswer"),
                                                  Explanation = li.Field<string>("Explanation"),
-                                                 Resource = !string.IsNullOrEmpty(li.Field<string>("Resource")) ? Common.FullyQualifiedApplicationPath + "/resource/" + li.Field<string>("Resource") : "",
-                                                 Exhibit = !string.IsNullOrEmpty(li.Field<string>("Exhibit")) ? Common.FullyQualifiedApplicationPath + "/resource/" + li.Field<string>("Exhibit") : "",
-                                                 Topology = !string.IsNullOrEmpty(li.Field<string>("Topology")) ? Common.FullyQualifiedApplicationPath + "/resource/" + li.Field<string>("Topology") : "",
-                                                 Scenario = !string.IsNullOrEmpty(li.Field<string>("Scenario")) ? Common.FullyQualifiedApplicationPath + "/resource/" + li.Field<string>("Scenario") : "",
-                                                 AnswerList = GetAnswerList(li.Field<int>("QAId"))
+                                                 Resource = !string.IsNullOrEmpty(li.Field<string>("Resource")) ? "http://xcert.top/resource/" + li.Field<string>("Resource") : "",
+                                                 Exhibit = !string.IsNullOrEmpty(li.Field<string>("Exhibit")) ? "http://xcert.top/resource/" + li.Field<string>("Exhibit") : "",
+                                                 Topology = !string.IsNullOrEmpty(li.Field<string>("Topology")) ? "http://xcert.top/resource/" + li.Field<string>("Topology") : "",
+                                                 Scenario = !string.IsNullOrEmpty(li.Field<string>("Scenario")) ? "http://xcert.top/resource/" + li.Field<string>("Scenario") : "",
+                                                 AnswerList = GetAnswerList(li.Field<int>("QAId")),
+                                                 CorrectAns = GetCorrectAnswer(li.Field<int>("QAId"))
                                              }).GroupBy(ques => ques.QAId)
                                               .Select(group => group.First()).ToList();
             return _qustionlist;
@@ -110,7 +112,7 @@ namespace ExamSimulator.DALayer
 
         private List<BOQAnswer> GetAnswerList(int quid)
         {
-            List<BOQAnswer> _answerlist = (from li in _datatable.AsEnumerable()
+            _answerlist = (from li in _datatable.AsEnumerable()
                                            .Where(p => p.Field<int>("QAId") == quid)
                                            select new BOQAnswer
                                            {
@@ -121,6 +123,26 @@ namespace ExamSimulator.DALayer
                                            })
                                             .ToList();
             return _answerlist;
+        }
+
+        private string GetCorrectAnswer(int quid)
+        {
+            string crrctans = string.Empty;
+            for (int i = 0; i < _answerlist.Count; i++)
+            {
+                if (_answerlist[i].RightAnswer)
+                {
+                    if (!string.IsNullOrEmpty(crrctans))
+                    {
+                        crrctans += "," + ((char)(i + 65)).ToString();
+                    }
+                    else
+                    {
+                        crrctans = ((char)(i + 65)).ToString();
+                    }
+                }
+            }
+            return crrctans;
         }
 
         internal BOExamManage SelectExamQestionAnswerbase64(string txtevent, int examid)

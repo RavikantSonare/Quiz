@@ -47,7 +47,8 @@ namespace ExamSimulator
             lblPassingStatusValue.Content = lblResultStatusValue.Content = Convert.ToString(totalScore);
             if (resultScore >= passingSocre)
             {
-                lblresultStatus.Content = "Congratulation! You has passed the " + examtitle + " exam";
+                lblresultStatus.Content = new TextBlock() { Text = "Congratulation! You has passed the " + examtitle + " exam", TextWrapping = TextWrapping.Wrap,TextAlignment=TextAlignment.Center };
+                //lblresultStatus.Content = "Congratulation! You has passed the " + examtitle + " exam";
                 lblresultStatus.Foreground = Brushes.Green;
             }
             else

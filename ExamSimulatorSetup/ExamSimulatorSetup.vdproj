@@ -15,19 +15,25 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_3C8304BF49C247909DBFD654A917C207"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_68FFCF5488657F8F8B8B8C76D256D59A"
-        "OwnerKey" = "8:_3C8304BF49C247909DBFD654A917C207"
+        "OwnerKey" = "8:_A343E38350094957BAFA509369B75637"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_8683E1467136424DBF4AAB991D70AA2B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A343E38350094957BAFA509369B75637"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A4342C4A22394BD8BEFC1608FEACE01E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -40,7 +46,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3C8304BF49C247909DBFD654A917C207"
+        "OwnerKey" = "8:_A343E38350094957BAFA509369B75637"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -145,11 +151,6 @@
             "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_68FFCF5488657F8F8B8B8C76D256D59A"
-                    {
-                    "Name" = "8:Newtonsoft.Json.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Newtonsoft.Json.dll"
             "TargetName" = "8:"
@@ -173,6 +174,26 @@
             {
             "SourcePath" = "8:C:\\Users\\mobiweb\\Desktop\\licence.rtf"
             "TargetName" = "8:licence.rtf"
+            "Tag" = "8:"
+            "Folder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A4342C4A22394BD8BEFC1608FEACE01E"
+            {
+            "SourcePath" = "8:C:\\Users\\mobiweb\\Desktop\\ExamSimulator_Pro\\ExamSimulator\\q.ico"
+            "TargetName" = "8:q.ico"
             "Tag" = "8:"
             "Folder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
             "Condition" = "8:"
@@ -257,7 +278,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ExamSimulatorSetup"
         "ProductCode" = "8:{85EA2A28-98D3-4909-952B-9A4E4414B746}"
-        "PackageCode" = "8:{2C6CAD27-200E-4D49-B3DD-95FC34AFCCA1}"
+        "PackageCode" = "8:{F45C8578-50B8-41E6-B882-1A1124ABE16D}"
         "UpgradeCode" = "8:{CF53BD36-E778-4A65-95C2-4CD0A9D866CB}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -377,7 +398,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_2A1EE9AF699F4841911F52EB66C61421"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_2B6165302499466FB57C2FE6A4C9B9D5"
             {
             "Name" = "8:ExamSimulatorSetup"
             "Arguments" = "8:"
@@ -385,13 +406,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_3C8304BF49C247909DBFD654A917C207"
-            "Folder" = "8:_4F4BCCDA690243109B99D3F5731521B3"
+            "Target" = "8:_A343E38350094957BAFA509369B75637"
+            "Folder" = "8:_8E35F698B507442BB7AA70CD35B4D655"
             "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
-            "Icon" = "8:"
+            "Icon" = "8:_A4342C4A22394BD8BEFC1608FEACE01E"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_8FAEE3A0D34A484AA5967BF1D48ACD79"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E4390E65E41D4749A6BB7085CBD680DE"
             {
             "Name" = "8:ExamSimulatorSetup"
             "Arguments" = "8:"
@@ -399,8 +420,8 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_3C8304BF49C247909DBFD654A917C207"
-            "Folder" = "8:_8E35F698B507442BB7AA70CD35B4D655"
+            "Target" = "8:_A343E38350094957BAFA509369B75637"
+            "Folder" = "8:_4F4BCCDA690243109B99D3F5731521B3"
             "WorkingFolder" = "8:_4A965FB9FF75494187D30D17FB543E7D"
             "Icon" = "8:"
             "Feature" = "8:"
@@ -851,7 +872,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_3C8304BF49C247909DBFD654A917C207"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A343E38350094957BAFA509369B75637"
             {
             "SourcePath" = "8:..\\ExamSimulator\\obj\\Debug\\ExamSimulator.exe"
             "TargetName" = "8:"

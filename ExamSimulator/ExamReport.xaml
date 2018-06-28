@@ -136,7 +136,7 @@
                 <StackPanel HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top">
                     <Label Name="lblresultStatus"  FontSize="25" HorizontalAlignment="Center"></Label>
                     <Label  FontSize="50" HorizontalAlignment="Center">Examination Score Report</Label>
-                    <Label Name="lblExamName"  FontSize="22" HorizontalAlignment="Center"></Label>
+                    <Label Name="lblExamName"  FontSize="22" HorizontalAlignment="Center" ></Label>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Width="auto">
                     <Grid HorizontalAlignment="Center" Width="auto">

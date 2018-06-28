@@ -125,7 +125,7 @@
                                     <%--<asp:LinkButton ID="lnkbtnGenerateExamSimulatorDemo" CommandArgument='<%#Eval("ExamSimulatorDemo") %>' runat="server">Generate</asp:LinkButton>--%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Only Test Once">
+                            <asp:TemplateField HeaderText="Only Test Once" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkbtnOnlytestOnce" runat="server" CommandArgument='<%#Eval("OnlyTestOnce") %>' OnClick="lnkbtnOnlytestOnce_Click"><%# (Boolean.Parse(Eval("OnlyTestOnce").ToString())) ? "Yes" : "No" %></asp:LinkButton>
                                 </ItemTemplate>

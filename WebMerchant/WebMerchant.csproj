@@ -232,6 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BALayer\BAAssignExamUser.cs" />
+    <Compile Include="BALayer\BAAssignExamUserGroup.cs" />
     <Compile Include="BALayer\BABundleExam.cs" />
     <Compile Include="BALayer\BAExamManage.cs" />
     <Compile Include="BALayer\BAExamReports.cs" />
@@ -258,6 +259,7 @@
     <Compile Include="BALayer\BAUserAccess.cs" />
     <Compile Include="BALayer\BAUserGroup.cs" />
     <Compile Include="BOLayer\BOAssignExamUser.cs" />
+    <Compile Include="BOLayer\BOAssignExamUserGroup.cs" />
     <Compile Include="BOLayer\BOBundleExam.cs" />
     <Compile Include="BOLayer\BOExamManage.cs" />
     <Compile Include="BOLayer\BOExamReports.cs" />
@@ -286,6 +288,7 @@
     <Compile Include="Common.cs" />
     <Compile Include="ConnectionInfo.cs" />
     <Compile Include="DALayer\DAAssignExamUser.cs" />
+    <Compile Include="DALayer\DAAssignExamUserGroup.cs" />
     <Compile Include="DALayer\DABundleExam.cs" />
     <Compile Include="DALayer\DAExamManage.cs" />
     <Compile Include="DALayer\DAExamReports.cs" />

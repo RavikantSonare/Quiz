@@ -45,12 +45,17 @@ namespace ExamSimulator.DALayer
                               ExamId = list.Field<string>("ExamId"),
                               ExamCode = list.Field<string>("ExamCode"),
                               ValidTime = list.Field<DateTime>("ValidTime"),
-                              AccessOption = list.Field<string>("AccessPassword"),
+                              AccessOption = list.Field<string>("AccessOption"),
                               IsActive = list.Field<bool>("IsActive"),
                               IsDelete = list.Field<bool>("IsDelete"),
                               EmailId = list.Field<string>("EmailId"),
                               GroupId = list.Field<int>("GroupId"),
-                              GroupStatus = list.Field<bool>("GroupStatus")
+                              GroupStatus = list.Field<bool>("GroupStatus"),
+                              UGExamId = list.Field<string>("UGExamId"),
+                              UGAccessOption = list.Field<string>("UGAccessOption"),
+                              ValidTimeTo = list.Field<DateTime>("ValidTimeTo"),
+                              StartDate = list.Field<DateTime>("StartDate"),
+                              EndDate = list.Field<DateTime>("EndDate")
                           }).FirstOrDefault();
                 return _bousr;
             }

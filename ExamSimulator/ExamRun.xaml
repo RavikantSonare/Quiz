@@ -365,6 +365,17 @@
             <Setter Property="FontSize" Value="15"/>
         </Style>
 
+        <Style x:Key="explainhide" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextBlock.Visibility" Value="Visible"/>
+            <Style.Triggers>
+                <Trigger Property="Text" Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+                <Trigger Property="Text" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
     <DockPanel LastChildFill="True">
         <Border Height="55" DockPanel.Dock="Bottom" Style="{StaticResource bottomborder}">
@@ -401,11 +412,14 @@
         </Border>
         <Border Background="White">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0">
+                <StackPanel Grid.Row="0" Grid.Column="0">
                     <Grid Margin="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"></RowDefinition>
@@ -434,7 +448,7 @@
                             <Label  Content="of"  FontSize="15" />
                             <Label x:Name="lblQuestionOutof"  FontSize="15"/>
                         </StackPanel>
-                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <StackPanel Name="stpnlTimer" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
                             <Button x:Name="btnPauseTimer" Content="Pause" Margin="0,0,7,8" Padding="4,2,4,2" Height="25" Background="#0769B4" Foreground="White" FontSize="13" Click="btnPauseTimer_Click"/>
                             <Image VerticalAlignment="Top" Name="imgtimer">
                                 <Image.Source>
@@ -445,13 +459,14 @@
                         </StackPanel>
                     </Grid>
                 </StackPanel>
-                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
-                    <ListBox  x:Name="listQuestion" ItemsSource="{Binding QuestionList}" ItemContainerStyle="{StaticResource RedGlowItemContainer}">
+                <ScrollViewer Grid.Row="1" Grid.Column="0" >
+                    <ListBox  x:Name="listQuestion" ItemsSource="{Binding QuestionList}" ItemContainerStyle="{StaticResource RedGlowItemContainer}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock  Name="txtQuestion" Text="{Binding Question}" Tag="{Binding QuestionTypeId}" Style="{StaticResource wpfStyle1}" Width="1000"/>
-                                    <RichTextBox local:HtmlRichTextBoxBehavior.Text="" Width="700" BorderThickness="0" BorderBrush="Transparent" Visibility="Collapsed"/>
+                                    <TextBlock  Name="txtQuestion" Text="{Binding Question}" Tag="{Binding QuestionTypeId}" Style="{StaticResource wpfStyle1}"/>
+
+                                    <!--<RichTextBox local:HtmlRichTextBoxBehavior.Text="" Width="700" BorderThickness="0" BorderBrush="Transparent" Visibility="Collapsed"/>-->
                                     <!--{Binding ElementName=txtQuestion, Path=Text}-->
                                     <Grid Width="300">
                                         <Grid.ColumnDefinitions>
@@ -463,7 +478,8 @@
                                         <Button Grid.Column="1" Name="btnTopology" HorizontalAlignment="Center" CommandParameter="{Binding Topology}"  Tag="{Binding Topology}" Style="{StaticResource btnTopology}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnTopology_Click"/>
                                         <Button Grid.Column="2" Name="btnScenario" HorizontalAlignment="Center" CommandParameter="{Binding Scenario}"  Tag="{Binding Scenario}" Style="{StaticResource btnScenario}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnScenario_Click"/>
                                     </Grid>
-                                    <ListBox  x:Name="list" ItemsSource="{Binding AnswerList}" Width="auto" BorderThickness="0"  ItemContainerStyle="{StaticResource RedGlowItemContainer}"><!--IsEnabled="{Binding ExamMode}"-->
+                                    <ListBox  x:Name="list" ItemsSource="{Binding AnswerList}" Width="auto" BorderThickness="0"  ItemContainerStyle="{StaticResource RedGlowItemContainer}">
+                                        <!--IsEnabled="{Binding ExamMode}"-->
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
@@ -571,11 +587,14 @@
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
                                     </Canvas>
-                                    <TextBlock  Text="{Binding Explanation}" Style="{StaticResource wpfStyle2}" Visibility="Collapsed"/>
                                     <Border Name="brdrCorrectAnswer" BorderBrush="Black" BorderThickness="1" Margin="0,10,0,0" Visibility="Collapsed">
                                         <StackPanel>
-                                            <TextBlock Name="txtRightAnswerString" Text="{Binding RightAnswer}" Style="{StaticResource wpfStyle2}" Visibility="Collapsed"/>
-                                            <TextBlock Name="txtExplanation" Text="{Binding Explanation, StringFormat=Explanation : {0}}" Style="{StaticResource wpfStyle2}"/>
+                                            <WrapPanel>
+                                                <Label Content="Correct Answer :" FontSize="13"  Margin="15,10,0,10"></Label>
+                                                <TextBlock Name="txtRightAnswerString" Text="{Binding CorrectAns}" FontSize="13" TextWrapping="Wrap" Margin="0,15,15,10"/>
+                                            </WrapPanel>
+                                            <TextBlock Name="txtExplanation" Text="{Binding Explanation}" FontSize="13" TextWrapping="Wrap" Margin="15,0,15,10" Style="{StaticResource explainhide}" />
+                                            <!--Style="{StaticResource wpfStyle2}"-->
                                         </StackPanel>
                                     </Border>
                                 </StackPanel>

@@ -30,5 +30,7 @@ namespace WebMerchant.BOLayer
         public DateTime? UpdatedDate { get; set; }
 
         public string Event { get; set; }
+
+        public int SecondCategoryId { get; set; }
     }
 }

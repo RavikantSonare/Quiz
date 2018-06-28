@@ -31,6 +31,7 @@ namespace ExamSimulator.BOLayer
         public bool UserResult { get; set; }
         public bool ExamMode { get; set; }
         public bool Mark { get; set; }
+        public string CorrectAns { get; set; }
         public List<BOQAnswer> AnswerList { get; set; }
     }
 }

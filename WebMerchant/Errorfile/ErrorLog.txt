@@ -1,1 +1,17 @@
-﻿
+﻿Time: 14/06/2018 10:49:57 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebMerchant.MerchantMyUsers.AssignExamUserGroup(Int32 UserGroupId, Int32 SecondCatId, String parentEvent) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 835
+   at WebMerchant.MerchantMyUsers.btnAddGroup_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantMyUsers.aspx.cs:line 782
+Source: WebMerchant
+TargetSite: Void AssignExamUserGroup(Int32, Int32, System.String)
+-----------------------------------------------------------
+
+Time: 26/06/2018 09:33:08 AM
+-----------------------------------------------------------
+Message: Index was outside the bounds of the array.
+StackTrace:    at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1281
+Source: WebMerchant
+TargetSite: Void btnImport_Click(System.Object, System.EventArgs)
+-----------------------------------------------------------
+

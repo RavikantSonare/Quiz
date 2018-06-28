@@ -8,22 +8,23 @@ using WebMerchant.BOLayer;
 
 namespace WebMerchant.DALayer
 {
-    public class DAAssignExamUser
+    
+    public class DAAssignExamUserGroup
     {
         private SqlCommand _sqlcommand;
 
-        internal int IUDAssignExamUser(BOAssignExamUser _boaeu)
+        internal int IUDAssignExamUser(BOAssignExamUserGroup _boaeu)
         {
             int returnValue = default(int);
             using (SqlConnection _sqlconnection = ConnectionInfo.GetConnection())
             {
                 _sqlcommand = new SqlCommand();
                 _sqlcommand.Connection = _sqlconnection;
-                _sqlcommand.CommandText = "SP_IUDAssignExamUser";
+                _sqlcommand.CommandText = "SP_IUDAssignExamUserGroup";
                 _sqlcommand.CommandType = CommandType.StoredProcedure;
                 _sqlconnection.Open();
 
-                _sqlcommand.Parameters.AddWithValue("@UserId", _boaeu.UserId);
+                _sqlcommand.Parameters.AddWithValue("@UserGroupId", _boaeu.UserGroupId);
                 _sqlcommand.Parameters.AddWithValue("@ExamId", _boaeu.ExamId);
                 _sqlcommand.Parameters.AddWithValue("@SecondCatId", _boaeu.SecondCatId);
                 _sqlcommand.Parameters.AddWithValue("@TestOnce", _boaeu.TestOnce);

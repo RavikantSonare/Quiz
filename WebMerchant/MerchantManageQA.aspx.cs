@@ -821,10 +821,10 @@ namespace WebMerchant
                     hfExhibit.Value = _datatable4.Rows[0]["Exhibit"].ToString();
                     hfTopology.Value = _datatable4.Rows[0]["Topology"].ToString();
                     hfScenario.Value = _datatable4.Rows[0]["Scenario"].ToString();
-                    dvExhibit.Visible= dvTopology.Visible= dvScenario.Visible = false;
+                    dvExhibit.Visible = dvTopology.Visible = dvScenario.Visible = false;
                     if (!string.IsNullOrEmpty(_datatable4.Rows[0]["Exhibit"].ToString()))
                     {
-                        imgExhibit.ImageUrl= Common.FullyQualifiedApplicationPath + "/resource/" + _datatable4.Rows[0]["Exhibit"].ToString();
+                        imgExhibit.ImageUrl = Common.FullyQualifiedApplicationPath + "/resource/" + _datatable4.Rows[0]["Exhibit"].ToString();
                         dvExhibit.Visible = true;
                     }
                     if (!string.IsNullOrEmpty(_datatable4.Rows[0]["Topology"].ToString()))
@@ -1014,7 +1014,7 @@ namespace WebMerchant
             }
             ctrlPlaceholderTextBox.Controls.Add(lblOpen);
 
-            if (qtype == 1  || qtype == 6)
+            if (qtype == 1 || qtype == 6)
             {
                 RadioButton rdbtn = new RadioButton();
                 rdbtn.ID = loopcnt.ToString();
@@ -1178,7 +1178,7 @@ namespace WebMerchant
                                 {
                                     if (docObject.DocumentObjectType == DocumentObjectType.Picture)
                                     {
-                                       // string docname = System.IO.Path.GetFileNameWithoutExtension(filePath);
+                                        // string docname = System.IO.Path.GetFileNameWithoutExtension(filePath);
                                         DocPicture pic = docObject as DocPicture;
                                         string filename = System.AppDomain.CurrentDomain.BaseDirectory + "resource\\";
                                         bool exists = System.IO.Directory.Exists(filename);
@@ -1275,7 +1275,15 @@ namespace WebMerchant
                                         _answerlist.Add(new Answerlist { Answer = CurrrentStr.Substring(2).Trim(), QuestionNo = questionNo });
                                         break;
                                     case "E":
-                                        ExpStr += CurrrentStr + "<br/>";
+                                        if (CurrrentStr.Contains("Explanation:"))
+                                        {
+                                            var s = CurrrentStr.Split(':');
+                                            ExpStr += s[1].ToString() + "<br/>";
+                                        }
+                                        else
+                                        {
+                                            ExpStr += CurrrentStr + "<br/>";
+                                        }
                                         break;
                                 }
                                 break;

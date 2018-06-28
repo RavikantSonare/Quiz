@@ -762,12 +762,14 @@ System.Data.DataViewRowState.CurrentRows);
                     _bousergrp.CreatedDate = DateTime.UtcNow;
                     _bousergrp.UpdatedBy = MerchantId;
                     _bousergrp.UpdatedDate = DateTime.UtcNow;
+                    _bousergrp.SecondCategoryId = Convert.ToInt32(ddlSecondCategoryGroup.SelectedItem.Value);
                     if (ViewState["groupId"] != null && !ViewState["groupId"].Equals(""))
                     {
                         _bousergrp.GroupId = Convert.ToInt32(ViewState["groupId"]);
                         _bousergrp.Event = "Update";
                         if (_bausergrp.Update(_bousergrp) == 2)
                         {
+                            AssignExamUserGroup(Convert.ToInt32(ViewState["groupId"]), Convert.ToInt32(ddlSecondCategoryGroup.SelectedItem.Value), _bousergrp.Event);
                             ShowMessage("Group updated successfully", MessageType.Success);
                         }
                     }
@@ -775,10 +777,15 @@ System.Data.DataViewRowState.CurrentRows);
                     {
                         _bousergrp.GroupId = 0;
                         _bousergrp.Event = "Insert";
-                        int result = _bausergrp.Insert(_bousergrp);
-                        if (result == 1)
+                        int result = 2;// _bausergrp.Insert(_bousergrp);
+                        if (result >0)
                         {
+                            AssignExamUserGroup(result, Convert.ToInt32(ddlSecondCategoryGroup.SelectedItem.Value), _bousergrp.Event);
                             ShowMessage("Group added successfully", MessageType.Success);
+                        }
+                        else if (result == -1)
+                        {
+                            ShowMessage("Group already exist", MessageType.Info);
                         }
                     }
                 }
@@ -813,6 +820,33 @@ System.Data.DataViewRowState.CurrentRows);
             ViewState["groupId"] = null;
             FillchkboxListExamgGroup(Convert.ToInt32(ddlSecondCategoryGroup.SelectedItem.Value), MerchantId);
             FillgridViewUserGroupList(MerchantId);
+        }
+
+        private void AssignExamUserGroup(int UserGroupId, int SecondCatId, string parentEvent)
+        {
+            BOAssignExamUserGroup _boaeug = new BOAssignExamUserGroup();
+            BAAssignExamUserGroup _baaeug = new BAAssignExamUserGroup();
+            foreach (ListItem item in chkExamCodeListGroup.Items)
+            {
+                if (item.Selected)
+                {
+                    _boaeug.UserGroupId = UserGroupId;
+                    _boaeug.ExamId = Convert.ToInt32(item.Value);
+                    _boaeug.SecondCatId = SecondCatId;
+                    if (chklistAccessoptionGroup.Items.FindByValue("4").Selected)
+                        _boaeug.TestOnce = true;
+                    else
+                        _boaeug.TestOnce = false;
+                    _boaeug.IsActive = true;
+                    _boaeug.IsDelete = false;
+                    _boaeug.CreatedBy = MerchantId;
+                    _boaeug.CreatedDate = DateTime.UtcNow;
+                    _boaeug.UpdatedBy = MerchantId;
+                    _boaeug.UpdatedDate = DateTime.UtcNow;
+                    _boaeug.Event = parentEvent;
+                    _baaeug.Insert(_boaeug);
+                }
+            }
         }
 
         private string chklistGroup()

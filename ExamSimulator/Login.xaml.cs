@@ -26,6 +26,7 @@ namespace ExamSimulator
     public partial class Login : Window
     {
         private BAUser _bausr = new BAUser();
+        bool exists;
         public Login()
         {
             InitializeComponent();
@@ -60,18 +61,49 @@ namespace ExamSimulator
                 BOUser _bousr = _bausr.SelectUserDetail("GetUserDetail", txtEmailid.Text, Encryptdata(txtPassword.Password));
                 if (_bousr != null)
                 {
-                    Application.Current.Properties["Bouser"] = _bousr;
-                    if (txtPassword.Password == Decryptdata(_bousr.AccessPassword))
+                    if (_bousr.EndDate >= DateTime.Now)
                     {
-                        this.Hide();
-                        MainWindow _mainWindow = new ExamSimulator.MainWindow();
-                        _mainWindow.ShowDialog();
+                        if (_bousr.ValidTimeTo >= DateTime.Now)
+                        {
+                            if (!string.IsNullOrEmpty(_bousr.AccessOption))
+                            {
+                                string[] accessoption = _bousr.AccessOption.Split(',');
+                                exists = accessoption.Contains("3");
+                            }
+                            else if (!string.IsNullOrEmpty(_bousr.UGAccessOption))
+                            {
+                                string[] accessoption = _bousr.UGAccessOption.Split(',');
+                                exists = accessoption.Contains("3");
+                            }
+                            if (exists)
+                            {
+                                Application.Current.Properties["Bouser"] = _bousr;
+                                if (txtPassword.Password == Decryptdata(_bousr.AccessPassword))
+                                {
+                                    this.Hide();
+                                    MainWindow _mainWindow = new ExamSimulator.MainWindow();
+                                    _mainWindow.ShowDialog();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Email Id or Password Invalid", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    txtEmailid.Text = txtPassword.Password = "";
+                                    txtEmailid.Focus();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("You are not authorized to Offline Exam");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Your account is expired. contact to merchant");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Email Id or Password Invalid", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        txtEmailid.Text = txtPassword.Password = "";
-                        txtEmailid.Focus();
+                        MessageBox.Show("Your account has been expired, please contact your merchant");
                     }
                 }
                 else
