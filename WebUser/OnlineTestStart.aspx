@@ -60,7 +60,10 @@
             <div class="col-lg-4" style="text-align: right">
                 <asp:DataList ID="dlmark" runat="server" RepeatLayout="Flow">
                     <ItemTemplate>
-                        <asp:CheckBox ID="chkmark" runat="server" Text="Mark" Checked='<%#Eval("Mark")%>' ToolTip='<%#Eval("QAId")%>' OnCheckedChanged="chkmark_CheckedChanged" AutoPostBack="true" />
+                        <ul class="radioboxlist" style="position: absolute; right: 0;">
+                            <li>
+                                <asp:CheckBox ID="chkmark" runat="server" class="custCheckBox" Text="Mark" Checked='<%#Eval("Mark")%>' ToolTip='<%#Eval("QAId")%>' OnCheckedChanged="chkmark_CheckedChanged" AutoPostBack="true" /></li>
+                        </ul>
                     </ItemTemplate>
                 </asp:DataList>
             </div>
@@ -79,8 +82,8 @@
                             <asp:Image ID="imgETS" runat="server" Visible='<%#(String.IsNullOrEmpty(Eval("Exhibit").ToString()))&&(String.IsNullOrEmpty(Eval("Topology").ToString()))&&(String.IsNullOrEmpty(Eval("Scenario").ToString()))?  false : true %>' ImageUrl='<%#String.Format("http://xcert.top/resource/{0}{1}{2}",Eval("Exhibit").ToString(),Eval("Topology").ToString(),Eval("Scenario").ToString())%>' />
                         </div>
                         <div class="col-lg-12">
-                            <asp:RadioButtonList ID="rdbtnAnswerList" CssClass="radioboxlist" runat="server" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString()=="1" || Eval("QuestionTypeId").ToString()== "3" || Eval("QuestionTypeId").ToString()== "6" ? true : false %>' CommandArguments='<%#Eval("QAId")%>' OnSelectedIndexChanged="rdbtnAnswerList_SelectedIndexChanged"></asp:RadioButtonList>
-                            <asp:CheckBoxList ID="chkboxAnswerList" CssClass="radioboxlist" runat="server" RepeatLayout="Flow" Visible='<%# Eval("QuestionTypeId").ToString() == "2" ? true : false %>' CommandArguments='<%#Eval("QAId")%>' OnSelectedIndexChanged="chkboxAnswerList_SelectedIndexChanged"></asp:CheckBoxList>
+                            <asp:RadioButtonList ID="rdbtnAnswerList" CssClass="radioboxlist" runat="server" RepeatLayout="UnorderedList" Visible='<%# Eval("QuestionTypeId").ToString()=="1" || Eval("QuestionTypeId").ToString()== "3" || Eval("QuestionTypeId").ToString()== "6" ? true : false %>' CommandArguments='<%#Eval("QAId")%>' OnSelectedIndexChanged="rdbtnAnswerList_SelectedIndexChanged"></asp:RadioButtonList>
+                            <asp:CheckBoxList ID="chkboxAnswerList" CssClass="radioboxlist" runat="server" RepeatLayout="UnorderedList" Visible='<%# Eval("QuestionTypeId").ToString() == "2" ? true : false %>' CommandArguments='<%#Eval("QAId")%>' OnSelectedIndexChanged="chkboxAnswerList_SelectedIndexChanged"></asp:CheckBoxList>
                             <asp:Panel ID="pnlDragDrop" runat="server" Visible='<%# Eval("QuestionTypeId").ToString() == "4" ? true : false %>'>
                                 <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
                                 <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
@@ -156,6 +159,7 @@
                 </div>
                 <div class="col-lg-4">
                     <asp:Button ID="btnEndExam" runat="server" Text="End Exam" CssClass="btn bg-primary btn-block btn-square" OnClick="btnEndExam_Click" />
+                    <asp:Button ID="btnTimerEndExam" runat="server" Text="End Exam" CssClass="btn bg-primary btn-block btn-square" OnClick="btnTimerEndExam_Click" Visible="false" />
                 </div>
             </div>
         </div>

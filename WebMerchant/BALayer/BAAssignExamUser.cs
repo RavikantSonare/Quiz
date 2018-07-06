@@ -9,10 +9,15 @@ namespace WebMerchant.BALayer
 {
     public class BAAssignExamUser
     {
-        DAAssignExamUser _daaeu=new DAAssignExamUser();
+        DAAssignExamUser _daaeu = new DAAssignExamUser();
         internal int Insert(BOAssignExamUser _boaeu)
         {
-           return _daaeu.IUDAssignExamUser(_boaeu);
+            return _daaeu.IUDAssignExamUser(_boaeu);
+        }
+
+        internal int IUD(BOAssignExamUser _boaeu)
+        {
+            return _daaeu.IUD(_boaeu);
         }
     }
 }

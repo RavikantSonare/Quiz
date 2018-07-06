@@ -79,9 +79,10 @@
                             <asp:BoundField HeaderText="UserName" DataField="UserName" />
                             <asp:BoundField HeaderText="CategoryName" DataField="SecondCategoryName" />
                             <asp:BoundField HeaderText="ExamCode" DataField="ExamCode" />
-                            <asp:TemplateField HeaderText="Result">
+                            <asp:TemplateField HeaderText="        Result       ">
                                 <ItemTemplate>
                                     <%# (Boolean.Parse(Eval("Result").ToString())) ? "Pass" : "Fail" %>
+                                    <asp:Button ID="btnReActive" runat="server" Text="Reactive" CssClass="btn btn-default" Visible='<%# (!Boolean.Parse(Eval("Result").ToString()))%>' ToolTip='<%#Eval("UserId") %>' CommandArgument='<%#Eval("ExamId")%>' OnClick="btnReActive_Click" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Score">
@@ -89,11 +90,11 @@
                                     <asp:Label ID="lblScore" runat="server" Text=' <%# string.Format("{0:f0}{1}", Eval("Score"),"%")%>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="AllowPrint">
+                            <%-- <asp:TemplateField HeaderText="AllowPrint">
                                 <ItemTemplate>
                                     <%# (Boolean.Parse(Eval("AllowPrint").ToString())) ? "Yes" : "No" %>
                                 </ItemTemplate>
-                            </asp:TemplateField>
+                            </asp:TemplateField>--%>
                             <asp:TemplateField HeaderText="Digital Certificate">
                                 <ItemTemplate>
                                     <asp:DropDownList ID="drpTemplate" runat="server" class="form-control"></asp:DropDownList>

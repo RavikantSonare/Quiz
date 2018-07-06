@@ -299,5 +299,19 @@ namespace WebMerchant
             //_boexmnge.Event = "UpdateByUser";
             //_baexmmng.IUD(_boexmnge);
         }
+
+        protected void btnReActive_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            BOAssignExamUser _boaeu = new BOAssignExamUser();
+            BAAssignExamUser _baaeu = new BAAssignExamUser();
+            _boaeu.ExamId = Convert.ToInt32(btn.CommandArgument);
+            _boaeu.UserId = Convert.ToInt32(btn.ToolTip);
+            _boaeu.TestOnce = true;
+            _boaeu.UpdatedBy = Convert.ToInt32(btn.ToolTip);
+            _boaeu.UpdatedDate = DateTime.UtcNow;
+            _boaeu.Event = "UpdateByUser";
+            _baaeu.IUD(_boaeu);
+        }
     }
 }

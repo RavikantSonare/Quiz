@@ -88,7 +88,7 @@ namespace WebUser
                     BOExamReports _boexrport = new BOExamReports();
                     BAExamReports _baexrport = new BAExamReports();
                     _boexrport.UserId = _bouserDetail.UserId;
-                    _boexrport.CategoryId = 1;
+                    _boexrport.CategoryId = _boexammanage.SecondCategoryId;
                     _boexrport.ExamId = _boexammanage.ExamCodeId;
                     if (resultScore >= passingSocre)
                     {
@@ -148,5 +148,5 @@ namespace WebUser
             _baaeu.IUD(_boaeu);
         }
     }
-   
+
 }

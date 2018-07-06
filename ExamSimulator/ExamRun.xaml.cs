@@ -47,7 +47,7 @@ namespace ExamSimulator
                         if (_time == TimeSpan.Zero)
                         {
                             _timer.Stop();
-                            btnEndExam.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                            btnEndExamEndTimer.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
                         }
                         _time = _time.Add(TimeSpan.FromSeconds(-1));
                     }, Application.Current.Dispatcher);
@@ -163,10 +163,11 @@ namespace ExamSimulator
                         currentQuestionIndex++;
                         btnPrevious.IsEnabled = true;
                         BindQuestionlist(_list);
-                        showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Where(f => f.Mark).ToList().Count);
+                        //showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Where(f => f.Mark).ToList().Count);
                     }
                     if (_list.QuestionList.Where(f => f.Mark).ToList().Count - 1 == currentQuestionIndex)
                     {
+                        BindQuestionlist(_list);
                         btnPrevious.IsEnabled = true;
                         btnNext.IsEnabled = false;
                     }
@@ -178,10 +179,11 @@ namespace ExamSimulator
                         currentQuestionIndex++;
                         btnPrevious.IsEnabled = true;
                         BindQuestionlist(_list);
-                        showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Count);
+                        // showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Count);
                     }
                     if (_list.QuestionList.Count - 1 == currentQuestionIndex)
                     {
+                        BindQuestionlist(_list);
                         btnPrevious.IsEnabled = true;
                         btnNext.IsEnabled = false;
                     }
@@ -204,7 +206,7 @@ namespace ExamSimulator
                         currentQuestionIndex--;
                         btnNext.IsEnabled = true;
                         BindQuestionlist(_list);
-                        showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Where(f => f.Mark).ToList().Count);
+                        // showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Where(f => f.Mark).ToList().Count);
                     }
                     if (currentQuestionIndex == 0)
                     {
@@ -219,7 +221,7 @@ namespace ExamSimulator
                         currentQuestionIndex--;
                         btnNext.IsEnabled = true;
                         BindQuestionlist(_list);
-                        showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Count);
+                        //  showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Count);
                     }
                     if (currentQuestionIndex == 0)
                     {
@@ -286,6 +288,12 @@ namespace ExamSimulator
                 var button = sender as CheckBox;
                 var QuestionNo = Convert.ToInt32(button.TabIndex);
                 _list.QuestionList.Where(q => q.QAId.Equals(QuestionNo)).FirstOrDefault().Mark = Convert.ToBoolean(button.IsChecked);
+                int mrkcunt = _list.QuestionList.Where(ql => ql.Mark == true).Count();
+                if (mrkcunt == 0)
+                {
+                    flagMark = false;
+                    BindQuestionlist(_list);
+                }
             }
             catch
             {
@@ -328,6 +336,27 @@ namespace ExamSimulator
             }
         }
 
+        private void btnEndExamEndTimer_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                foreach (var item in _list.QuestionList)
+                {
+                    var QuetionOrignalAns = _list.QuestionList.Where(q => q.QAId.Equals(item.QAId)).FirstOrDefault().AnswerList.Where(ans => ans.RightAnswer.Equals(true)).ToList();
+                    var QuetionUserAns = _list.QuestionList.Where(q => q.QAId.Equals(item.QAId)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true)).ToList();
+
+                    bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
+                    _list.QuestionList.Where(q => q.QAId.Equals(item.QAId)).FirstOrDefault().UserResult = a;
+                }
+                NavigationService.Navigate(new ExamReport(_list.QuestionList.Where(z => z.UserResult == true).Count(), _list.QuestionList.Count(), _list.PassingPercentage, _list.SecondCategory + " " + _list.ExamCode));
+
+            }
+            catch
+            {
+
+            }
+        }
+
         private bool CheckUserAnswer(List<BOQAnswer> list1, List<BOQAnswer> list2)
         {
             if (list1.Count != list2.Count)
@@ -359,14 +388,22 @@ namespace ExamSimulator
 
         private void btnReviewMarkExam_Click(object sender, RoutedEventArgs e)
         {
-            flagMark = true;
-            currentQuestionIndex = 0;
-            //_list = _list.QuestionList.Where(q => q.Mark.Equals(true)).ToList();
-            _list.QuestionList.Where(q => q.Mark.Equals(true)).ToList();
-            BindQuestionlist(_list);
-            btnPrevious.IsEnabled = false;
-            btnNext.IsEnabled = true;
-            showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Count);
+            int mrkcunt = _list.QuestionList.Where(ql => ql.Mark == true).Count();
+            if (mrkcunt > 0)
+            {
+                flagMark = true;
+                currentQuestionIndex = 0;
+                //_list = _list.QuestionList.Where(q => q.Mark.Equals(true)).ToList();
+                _list.QuestionList.Where(q => q.Mark.Equals(true)).ToList();
+                BindQuestionlist(_list);
+                btnPrevious.IsEnabled = false;
+                btnNext.IsEnabled = true;
+                //showQuestionNo(currentQuestionIndex + 1, _list.QuestionList.Count);
+            }
+            else
+            {
+                MessageBox.Show("Sorry! no mark question found", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnCorrectAnswer_Click(object sender, RoutedEventArgs e)
@@ -598,13 +635,6 @@ namespace ExamSimulator
             var QuestionNo = Convert.ToInt32(rect.ToolTip);
             var UserAns = rect.Tag.ToString();
             _list.QuestionList.Where(q => q.QAId.Equals(QuestionNo)).FirstOrDefault().AnswerList.Where(f => f.Answer.Equals(UserAns)).FirstOrDefault().UserAnswer = true;
-        }
-
-        private void btnPauseTimer_Click(object sender, RoutedEventArgs e)
-        {
-            _timer.Stop();
-            MessageBox.Show("Your exam has been paused. Click 'OK' to continue.", "Paused", MessageBoxButton.OK, MessageBoxImage.Information);
-            _timer.Start();
         }
     }
 

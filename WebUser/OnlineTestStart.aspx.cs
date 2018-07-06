@@ -17,13 +17,26 @@ namespace WebUser
         #region Global Variables
         // public int currentQuestionIndex;
         static BOExamManage _examqueanslist = new BOExamManage();
-        static bool flagMark = false;
+        // bool flagMark = false;
         #endregion
 
         static int hh, mm, ss;
         static double TimeAllSecondes;
         public enum MessageType { Success, Error, Info, Warning };
 
+        private bool flagMark
+        {
+            get
+            {
+                if (ViewState["flagMark"] == null)
+                    return false;
+                return (bool)ViewState["flagMark"];
+            }
+            set
+            {
+                ViewState["flagMark"] = value;
+            }
+        }
         private int currentQuestionIndex
         {
             get
@@ -51,7 +64,7 @@ namespace WebUser
                         BOUser _bouserDetail = (BOUser)Session["UserDetail"];
                         if (Request.QueryString["exmid"] != null && Request.QueryString["tstmd"] != null)
                         {
-                            if (Request.QueryString["tstmd"].ToString().Equals("SM") || Request.QueryString["tstmd"].ToString().Equals("TM"))
+                            if (Request.QueryString["tstmd"].ToString().Equals("SM"))
                             {
                                 Timer1.Enabled = false;
                                 pnltimer.Visible = false;
@@ -91,7 +104,7 @@ namespace WebUser
                     currentQuestionIndex--;
                     btnnext.Enabled = true;
                     GetExamDetail(_examqueanslist);
-                    showQuestionNo(currentQuestionIndex + 1);
+                    // showQuestionNo(currentQuestionIndex + 1);
                 }
                 if (currentQuestionIndex == 0)
                 {
@@ -105,7 +118,7 @@ namespace WebUser
                 {
                     currentQuestionIndex -= 1;
                     btnnext.Enabled = true;
-                    showQuestionNo(currentQuestionIndex + 1);
+                    //  showQuestionNo(currentQuestionIndex + 1);
                     GetExamDetail(_examqueanslist);
                 }
             }
@@ -120,7 +133,7 @@ namespace WebUser
                     currentQuestionIndex++;
                     btnprevious.Enabled = true;
                     GetExamDetail(_examqueanslist);
-                    showQuestionNo(currentQuestionIndex + 1);
+                    // showQuestionNo(currentQuestionIndex + 1);
                 }
                 if (_examqueanslist.QuestionList.Where(f => f.Mark).ToList().Count - 1 == currentQuestionIndex)
                 {
@@ -134,7 +147,7 @@ namespace WebUser
                 {
                     currentQuestionIndex += 1;
                     btnprevious.Enabled = true;
-                    showQuestionNo(currentQuestionIndex + 1);
+                    // showQuestionNo(currentQuestionIndex + 1);
                     GetExamDetail(_examqueanslist);
                 }
             }
@@ -305,7 +318,7 @@ namespace WebUser
                     btnnext.Enabled = false;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Common.LogError(ex);
             }
@@ -352,7 +365,7 @@ namespace WebUser
             if (time_Span == TimeSpan.Zero)
             {
                 // ScriptManager.RegisterStartupScript(this, GetType(), "InvokeButton", "invokeButtonClick();", true);
-                btnEndExam_Click(btnEndExam, null);
+                btnTimerEndExam_Click(btnTimerEndExam, null);
                 // Response.Redirect("UserLogin.aspx");
             }
         }
@@ -489,6 +502,28 @@ namespace WebUser
             }
         }
 
+        protected void btnTimerEndExam_Click(object sender, EventArgs e)
+        {
+            if (_examqueanslist != null)
+            {
+                if (_examqueanslist.QuestionList != null)
+                {
+                    flagMark = false;
+                    foreach (var item in _examqueanslist.QuestionList)
+                    {
+                        var QuetionOrignalAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(ans => ans.RightAnswer.Equals(true)).ToList();
+                        var QuetionUserAns = _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().AnswerList.Where(u => u.UserAnswer.Equals(true)).ToList();
+
+                        bool a = CheckUserAnswer(QuetionOrignalAns, QuetionUserAns);
+                        _examqueanslist.QuestionList.Where(q => q.Question.Equals(item.Question)).FirstOrDefault().UserResult = a;
+                    }
+                    Session["ExamList"] = _examqueanslist;
+                    Response.Redirect("OnlineTestReport.aspx");
+                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Your time end now!');window.location ='OnlineTestReport.aspx';", true);
+                }
+            }
+        }
+
         private bool CheckUserAnswer(List<BOQAnswer> list1, List<BOQAnswer> list2)
         {
             if (list1.Count != list2.Count)
@@ -521,6 +556,12 @@ namespace WebUser
                 var button = sender as CheckBox;
                 var QuestionNo = Convert.ToInt32(button.ToolTip);
                 _examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionNo)).FirstOrDefault().Mark = Convert.ToBoolean(button.Checked);
+                int mrkcunt = _examqueanslist.QuestionList.Where(ql => ql.Mark == true).Count();
+                if (mrkcunt == 0)
+                {
+                    flagMark = false;
+                    GetExamDetail(_examqueanslist);
+                }
             }
             catch (Exception ex)
             {
