@@ -15,3 +15,134 @@ Source: WebMerchant
 TargetSite: Void btnImport_Click(System.Object, System.EventArgs)
 -----------------------------------------------------------
 
+Time: 12/07/2018 08:41:58 AM
+-----------------------------------------------------------
+Message: Procedure or function SP_IUDAssignExamUser has too many arguments specified.
+StackTrace:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at WebMerchant.DALayer.DAAssignExamUser.IUDAssignExamUser(BOAssignExamUser _boaeu) in D:\Work\Project\WebMerchant\DALayer\DAAssignExamUser.cs:line 43
+Source: .Net SqlClient Data Provider
+TargetSite: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+-----------------------------------------------------------
+
+Time: 18/07/2018 12:23:50 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at sprᣓ.ᜀ(ListLevel A_0, String A_1)
+   at sprᣓ.ᜁ(XmlReader A_0, ListLevel A_1)
+   at sprᣓ.ᜀ(XmlReader A_0, ListStyle A_1)
+   at sprᣓ.ᜒ(XmlReader A_0)
+   at sprᣓ.᜕(XmlReader A_0)
+   at sprᣓ.ᜁ(spr᪉ A_0)
+   at sprᣓ.ᜁ(Document A_0)
+   at sprᣓ.ᜀ(String A_0, Document A_1)
+   at Spire.Doc.Document.ᜌ(String A_0)
+   at Spire.Doc.Document.LoadFromFile(String fileName, FileFormat fileFormat, String password)
+   at Spire.Doc.Document.ᜀ(String A_0, String A_1)
+   at Spire.Doc.Document..ctor(String fileName)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1167
+Source: Spire.Doc
+TargetSite: Void ᜀ(Spire.Doc.Documents.ListLevel, System.String)
+-----------------------------------------------------------
+
+Time: 18/07/2018 12:50:25 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at sprᣓ.ᜀ(ListLevel A_0, String A_1)
+   at sprᣓ.ᜁ(XmlReader A_0, ListLevel A_1)
+   at sprᣓ.ᜀ(XmlReader A_0, ListStyle A_1)
+   at sprᣓ.ᜒ(XmlReader A_0)
+   at sprᣓ.᜕(XmlReader A_0)
+   at sprᣓ.ᜁ(spr᪉ A_0)
+   at sprᣓ.ᜁ(Document A_0)
+   at sprᣓ.ᜀ(String A_0, Document A_1)
+   at Spire.Doc.Document.ᜌ(String A_0)
+   at Spire.Doc.Document.LoadFromFile(String fileName, FileFormat fileFormat, String password)
+   at Spire.Doc.Document.ᜀ(String A_0, String A_1)
+   at Spire.Doc.Document..ctor(String fileName)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1167
+Source: Spire.Doc
+TargetSite: Void ᜀ(Spire.Doc.Documents.ListLevel, System.String)
+-----------------------------------------------------------
+
+Time: 18/07/2018 12:53:41 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at sprᣓ.ᜀ(ListLevel A_0, String A_1)
+   at sprᣓ.ᜁ(XmlReader A_0, ListLevel A_1)
+   at sprᣓ.ᜀ(XmlReader A_0, ListStyle A_1)
+   at sprᣓ.ᜒ(XmlReader A_0)
+   at sprᣓ.᜕(XmlReader A_0)
+   at sprᣓ.ᜁ(spr᪉ A_0)
+   at sprᣓ.ᜁ(Document A_0)
+   at sprᣓ.ᜀ(String A_0, Document A_1)
+   at Spire.Doc.Document.ᜌ(String A_0)
+   at Spire.Doc.Document.LoadFromFile(String fileName, FileFormat fileFormat, String password)
+   at Spire.Doc.Document.ᜀ(String A_0, String A_1)
+   at Spire.Doc.Document..ctor(String fileName)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1167
+Source: Spire.Doc
+TargetSite: Void ᜀ(Spire.Doc.Documents.ListLevel, System.String)
+-----------------------------------------------------------
+
+Time: 18/07/2018 12:54:46 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at sprᣓ.ᜀ(ListLevel A_0, String A_1)
+   at sprᣓ.ᜁ(XmlReader A_0, ListLevel A_1)
+   at sprᣓ.ᜀ(XmlReader A_0, ListStyle A_1)
+   at sprᣓ.ᜒ(XmlReader A_0)
+   at sprᣓ.᜕(XmlReader A_0)
+   at sprᣓ.ᜁ(spr᪉ A_0)
+   at sprᣓ.ᜁ(Document A_0)
+   at sprᣓ.ᜀ(String A_0, Document A_1)
+   at Spire.Doc.Document.ᜌ(String A_0)
+   at Spire.Doc.Document.LoadFromFile(String fileName, FileFormat fileFormat, String password)
+   at Spire.Doc.Document.ᜀ(String A_0, String A_1)
+   at Spire.Doc.Document..ctor(String fileName)
+   at WebMerchant.MerchantManageQA.btnImport_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantManageQA.aspx.cs:line 1167
+Source: Spire.Doc
+TargetSite: Void ᜀ(Spire.Doc.Documents.ListLevel, System.String)
+-----------------------------------------------------------
+
+Time: 20/07/2018 06:28:36 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebMerchant.MerchantDashboard.btnUpdate_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantDashboard.aspx.cs:line 127
+Source: WebMerchant
+TargetSite: Void btnUpdate_Click(System.Object, System.EventArgs)
+-----------------------------------------------------------
+
+Time: 20/07/2018 06:30:09 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebMerchant.MerchantDashboard.btnUpdate_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantDashboard.aspx.cs:line 127
+Source: WebMerchant
+TargetSite: Void btnUpdate_Click(System.Object, System.EventArgs)
+-----------------------------------------------------------
+
+Time: 20/07/2018 06:32:17 AM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at WebMerchant.MerchantDashboard.btnUpdate_Click(Object sender, EventArgs e) in D:\Work\Project\WebMerchant\MerchantDashboard.aspx.cs:line 127
+Source: WebMerchant
+TargetSite: Void btnUpdate_Click(System.Object, System.EventArgs)
+-----------------------------------------------------------
+
+Time: 24/07/2018 12:02:48 PM
+-----------------------------------------------------------
+Message: Object cannot be cast from DBNull to other types.
+StackTrace:    at System.DBNull.System.IConvertible.ToInt32(IFormatProvider provider)
+   at System.Convert.ToInt32(Object value)
+   at WebMerchant.DALayer.DAMerchantEstoreConfig.IUDEstoreConfig(BOMerchantEstoreConfig _bomecnfg) in D:\Work\Project\WebMerchant\DALayer\DAMerchantEstoreConfig.cs:line 46
+Source: mscorlib
+TargetSite: Int32 System.IConvertible.ToInt32(System.IFormatProvider)
+-----------------------------------------------------------
+

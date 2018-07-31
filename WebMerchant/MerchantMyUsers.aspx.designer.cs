@@ -157,6 +157,15 @@ namespace WebMerchant {
         protected global::System.Web.UI.WebControls.CheckBoxList chkExamCodeList;
         
         /// <summary>
+        /// chkcheckdECL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkcheckdECL;
+        
+        /// <summary>
         /// chklistAccessoption control.
         /// </summary>
         /// <remarks>
@@ -254,6 +263,15 @@ namespace WebMerchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList chkExamCodeListGroup;
+        
+        /// <summary>
+        /// chkcheckdECLgrp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkcheckdECLgrp;
         
         /// <summary>
         /// chklistAccessoptionGroup control.

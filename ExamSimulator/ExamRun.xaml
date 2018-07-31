@@ -572,7 +572,7 @@
                                         <Button Grid.Column="1" Name="btnTopology" HorizontalAlignment="Center" CommandParameter="{Binding Topology}"  Tag="{Binding Topology}" Style="{StaticResource btnTopology}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnTopology_Click"/>
                                         <Button Grid.Column="2" Name="btnScenario" HorizontalAlignment="Center" CommandParameter="{Binding Scenario}"  Tag="{Binding Scenario}" Style="{StaticResource btnScenario}" Background="#1C3347" Foreground="White" Height="25" Margin="10,7,10,0" FontSize="15" Click="btnScenario_Click"/>
                                     </Grid>
-                                    <ListBox  x:Name="list" ItemsSource="{Binding AnswerList}" Width="auto" BorderThickness="0"  ItemContainerStyle="{StaticResource RedGlowItemContainer}">
+                                    <ListBox  x:Name="list" ItemsSource="{Binding AnswerList}" Width="auto" BorderThickness="0"  ItemContainerStyle="{StaticResource RedGlowItemContainer}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                         <!--IsEnabled="{Binding ExamMode}"-->
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
@@ -580,12 +580,12 @@
                                                     <TextBox Name="txtUserAnswer" Text="{Binding UserAnswer}" Visibility="Collapsed" />
                                                     <RadioButton x:Name="rbtnanswer" Style="{StaticResource rbtnanswer}" Tag="{Binding Answer}" TabIndex="{Binding QuestionId}"  GroupName="Answer" Click="RadioButton_Checked">
                                                         <RadioButton.Content>
-                                                            <ContentPresenter Content="{Binding Answer}"/>
+                                                            <TextBlock Text="{Binding Answer}" TextWrapping="Wrap"/>
                                                         </RadioButton.Content>
                                                     </RadioButton>
                                                     <CheckBox x:Name="chkanswer" Style="{StaticResource chkanswer}" Tag="{Binding Answer}" TabIndex="{Binding QuestionId}" Click="Checkbox_checked" >
                                                         <CheckBox.Content>
-                                                            <ContentPresenter Content="{Binding Answer}"/>
+                                                            <TextBlock Text="{Binding Answer}" TextWrapping="Wrap"/>
                                                         </CheckBox.Content>
                                                     </CheckBox>
                                                 </StackPanel>

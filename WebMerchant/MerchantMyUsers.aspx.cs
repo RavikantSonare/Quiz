@@ -51,6 +51,14 @@ namespace WebMerchant
         }
         //  private int merchantId = default(int);
 
+            //For add new user
+        private DataView dvlistitem;
+        private DataTable dtlistitem = new DataTable();
+
+        //for add user group
+        private DataView dvlistitemgrp;
+        private DataTable dtlistitemgrp = new DataTable();
+
         DataTable _dtextrapermission = new DataTable();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -77,6 +85,20 @@ namespace WebMerchant
                         FillchkboxListAccessOptionUser(_dtextrapermission);
                         FillgridViewUserList(MerchantId);
                         FillgridViewUserGroupList(MerchantId);
+                    }
+                    if (ViewState["dtlistitem"] == null)
+                    {
+                        dtlistitem.Columns.Add(new DataColumn("Item"));
+                        dtlistitem.Columns.Add(new DataColumn("Id"));
+                        ViewState["dtlistitem"] = dtlistitem;
+                        dvlistitem = new DataView(dtlistitem);
+                    }
+                    if (ViewState["dtlistitemgrp"] == null)
+                    {
+                        dtlistitemgrp.Columns.Add(new DataColumn("Item"));
+                        dtlistitemgrp.Columns.Add(new DataColumn("Id"));
+                        ViewState["dtlistitemgrp"] = dtlistitemgrp;
+                        dvlistitemgrp = new DataView(dtlistitemgrp);
                     }
                 }
                 else
@@ -305,6 +327,7 @@ System.Data.DataViewRowState.CurrentRows);
                     if (!ddlStudnetGroup.SelectedItem.Value.Equals("0"))
                     {
                         _bomyuser.GroupStatus = true;
+                        _bomyuser.AccessOption = "";
                     }
                     else { _bomyuser.GroupStatus = false; }
 
@@ -312,25 +335,35 @@ System.Data.DataViewRowState.CurrentRows);
                     {
                         _bomyuser.UserId = Convert.ToInt32(ViewState["userId"]);
                         _bomyuser.Event = "Update";
-                        if (_bamyuser.Update(_bomyuser) == 2)
+                        int retval = _bamyuser.Update(_bomyuser);
+                        if (retval == 2)
                         {
+                            txtEmailAddress.Enabled = true;
                             AssignExamUser(Convert.ToInt32(ViewState["userId"]), Convert.ToInt32(ddlSecondCategory.SelectedItem.Value), _bomyuser.Event);
                             ShowMessage("User updated successfully", MessageType.Success);
+                        }
+                        else if (retval == -11)
+                        {
+                            ShowMessage("Please make the unique password", MessageType.Info);
                         }
                     }
                     else
                     {
                         _bomyuser.UserId = 0;
                         _bomyuser.Event = "Insert";
-                        int retval =  _bamyuser.Insert(_bomyuser);
+                        int retval = _bamyuser.Insert(_bomyuser);
                         if (retval > 0)
                         {
-                            AssignExamUser(retval,Convert.ToInt32(ddlSecondCategory.SelectedItem.Value) ,_bomyuser.Event);
+                            AssignExamUser(retval, Convert.ToInt32(ddlSecondCategory.SelectedItem.Value), _bomyuser.Event);
                             ShowMessage("User added successfully", MessageType.Success);
                         }
                         else if (retval == -1)
                         {
                             ShowMessage("Email Id already exist", MessageType.Info);
+                        }
+                        else if (retval == -11)
+                        {
+                            ShowMessage("Please make the unique password", MessageType.Info);
                         }
                     }
                 }
@@ -343,17 +376,25 @@ System.Data.DataViewRowState.CurrentRows);
             ClearControl();
         }
 
-        private void AssignExamUser(int UserId,int SecondCatId,string parentEvent)
+        private void AssignExamUser(int UserId, int SecondCatId, string parentEvent)
         {
-            BOAssignExamUser _boaeu=new BOAssignExamUser();
-            BAAssignExamUser _baaeu=new BAAssignExamUser();
-            foreach (ListItem item in chkExamCodeList.Items)
+            BOAssignExamUser _boaeu = new BOAssignExamUser();
+            BAAssignExamUser _baaeu = new BAAssignExamUser();
+            foreach (ListItem item in chkcheckdECL.Items)
             {
-                if (item.Selected)
-                {
+                //if (item.Selected)
+                //{
                     _boaeu.UserId = UserId;
-                    _boaeu.ExamId =Convert.ToInt32(item.Value);
+                    _boaeu.ExamId = Convert.ToInt32(item.Value);
                     _boaeu.SecondCatId = SecondCatId;
+                    if (chklistAccessoption.Items.FindByValue("2").Selected)
+                        _boaeu.OnlineTest = true;
+                    else
+                        _boaeu.OnlineTest = false;
+                    if (chklistAccessoption.Items.FindByValue("3").Selected)
+                        _boaeu.OfflineSimulator = true;
+                    else
+                        _boaeu.OfflineSimulator = false;
                     if (chklistAccessoption.Items.FindByValue("4").Selected)
                         _boaeu.TestOnce = true;
                     else
@@ -366,7 +407,7 @@ System.Data.DataViewRowState.CurrentRows);
                     _boaeu.UpdatedDate = DateTime.UtcNow;
                     _boaeu.Event = parentEvent;
                     _baaeu.Insert(_boaeu);
-                }
+               // }
             }
         }
 
@@ -374,10 +415,10 @@ System.Data.DataViewRowState.CurrentRows);
         {
             string exmcode = string.Empty;
             string exmcodeid = string.Empty;
-            foreach (ListItem item in chkExamCodeList.Items)
+            foreach (ListItem item in chkcheckdECL.Items)
             {
-                if (item.Selected)
-                {
+                //if (item.Selected)
+                //{
                     if (exmcode != "" && exmcode != null)
                     {
                         exmcode += "," + item.Text;
@@ -388,7 +429,7 @@ System.Data.DataViewRowState.CurrentRows);
                         exmcode += item.Text;
                         exmcodeid += item.Value;
                     }
-                }
+                //}
             }
             return Tuple.Create(exmcode, exmcodeid);
         }
@@ -474,6 +515,7 @@ System.Data.DataViewRowState.CurrentRows);
                     txtRealName.Text = _datatable4.Rows[0]["UserName"].ToString();
                     txtPassword.Text = Decryptdata(_datatable4.Rows[0]["AccessPassword"].ToString());
                     txtEmailAddress.Text = _datatable4.Rows[0]["EmailId"].ToString();
+                    txtEmailAddress.Enabled = false;
                     setcurrentitem = _datatable4.Rows[0]["ExamId"].ToString().Split(',').ToList();
                     for (int i = 0; i < chkExamCodeList.Items.Count; i++)
                     {
@@ -640,7 +682,7 @@ System.Data.DataViewRowState.CurrentRows);
         {
             chklistAccessoptionGroup.Items.Clear();
 
-            DataRow[] rows = _table.Select("ExtraPermissionOptId IN (2,3,4)", "",System.Data.DataViewRowState.CurrentRows);
+            DataRow[] rows = _table.Select("ExtraPermissionOptId IN (2,3,4)", "", System.Data.DataViewRowState.CurrentRows);
             foreach (DataRow row in rows)
             {
                 ListItem item = new ListItem();
@@ -777,8 +819,8 @@ System.Data.DataViewRowState.CurrentRows);
                     {
                         _bousergrp.GroupId = 0;
                         _bousergrp.Event = "Insert";
-                        int result = 2;// _bausergrp.Insert(_bousergrp);
-                        if (result >0)
+                        int result = _bausergrp.Insert(_bousergrp);
+                        if (result > 0)
                         {
                             AssignExamUserGroup(result, Convert.ToInt32(ddlSecondCategoryGroup.SelectedItem.Value), _bousergrp.Event);
                             ShowMessage("Group added successfully", MessageType.Success);
@@ -826,13 +868,21 @@ System.Data.DataViewRowState.CurrentRows);
         {
             BOAssignExamUserGroup _boaeug = new BOAssignExamUserGroup();
             BAAssignExamUserGroup _baaeug = new BAAssignExamUserGroup();
-            foreach (ListItem item in chkExamCodeListGroup.Items)
+            foreach (ListItem item in chkcheckdECLgrp.Items)
             {
-                if (item.Selected)
-                {
+                //if (item.Selected)
+                //{
                     _boaeug.UserGroupId = UserGroupId;
                     _boaeug.ExamId = Convert.ToInt32(item.Value);
                     _boaeug.SecondCatId = SecondCatId;
+                    if (chklistAccessoptionGroup.Items.FindByValue("2").Selected)
+                        _boaeug.OnlineTest = true;
+                    else
+                        _boaeug.OnlineTest = false;
+                    if (chklistAccessoptionGroup.Items.FindByValue("3").Selected)
+                        _boaeug.OfflineSimulator = true;
+                    else
+                        _boaeug.OfflineSimulator = false;
                     if (chklistAccessoptionGroup.Items.FindByValue("4").Selected)
                         _boaeug.TestOnce = true;
                     else
@@ -845,17 +895,17 @@ System.Data.DataViewRowState.CurrentRows);
                     _boaeug.UpdatedDate = DateTime.UtcNow;
                     _boaeug.Event = parentEvent;
                     _baaeug.Insert(_boaeug);
-                }
+               // }
             }
         }
 
         private string chklistGroup()
         {
             string exmcodeid = string.Empty;
-            foreach (ListItem item in chkExamCodeListGroup.Items)
+            foreach (ListItem item in chkcheckdECLgrp.Items)
             {
-                if (item.Selected)
-                {
+                //if (item.Selected)
+                //{
                     if (exmcodeid != "" && exmcodeid != null)
                     {
                         exmcodeid += "," + item.Value;
@@ -864,7 +914,7 @@ System.Data.DataViewRowState.CurrentRows);
                     {
                         exmcodeid += item.Value;
                     }
-                }
+                //}
             }
             return exmcodeid;
         }
@@ -971,6 +1021,55 @@ System.Data.DataViewRowState.CurrentRows);
                 ShowMessage("Some technical error", MessageType.Warning);
             }
             ClearControlGroup();
+        }
+
+        protected void chkExamCodeList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //alwaysselectitem = chkExamCodeList.Items.Cast<ListItem>().Where(li => li.Selected).ToList();
+            foreach (ListItem item in chkExamCodeList.Items)
+            {
+                if (item.Selected)
+                {
+                    dtlistitem = (DataTable)ViewState["dtlistitem"];
+                    bool contains = dtlistitem.AsEnumerable().Any(row => item.Value == row.Field<String>("Id"));
+                    if (dtlistitem != null && contains==false)
+                    {
+                        DataRow dr = dtlistitem.NewRow();
+                        dr["Item"] = item.Text;
+                        dr["Id"] = item.Value;
+                        dtlistitem.Rows.Add(dr);
+                        dvlistitem = new DataView(dtlistitem);
+                    }
+                    chkcheckdECL.DataValueField = "Id";
+                    chkcheckdECL.DataTextField = "Item";
+                    chkcheckdECL.DataSource = (DataTable)ViewState["dtlistitem"];
+                    chkcheckdECL.DataBind();
+                }
+            }
+        }
+
+        protected void chkExamCodeListGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (ListItem item in chkExamCodeListGroup.Items)
+            {
+                if (item.Selected)
+                {
+                    dtlistitemgrp = (DataTable)ViewState["dtlistitemgrp"];
+                    bool contains = dtlistitemgrp.AsEnumerable().Any(row => item.Value == row.Field<String>("Id"));
+                    if (dtlistitemgrp != null && contains == false)
+                    {
+                        DataRow dr = dtlistitemgrp.NewRow();
+                        dr["Item"] = item.Text;
+                        dr["Id"] = item.Value;
+                        dtlistitemgrp.Rows.Add(dr);
+                        dvlistitemgrp = new DataView(dtlistitemgrp);
+                    }
+                    chkcheckdECLgrp.DataValueField = "Id";
+                    chkcheckdECLgrp.DataTextField = "Item";
+                    chkcheckdECLgrp.DataSource = (DataTable)ViewState["dtlistitemgrp"];
+                    chkcheckdECLgrp.DataBind();
+                }
+            }
         }
 
         protected void Tab1_Click(object sender, EventArgs e)

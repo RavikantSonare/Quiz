@@ -15,6 +15,10 @@ namespace WebMerchant.BOLayer
 
         public int SecondCatId { get; set; }
 
+        public bool OnlineTest { get; set; }
+
+        public bool OfflineSimulator { get; set; }
+
         public bool TestOnce { get; set; }
 
         public bool IsActive { get; set; }

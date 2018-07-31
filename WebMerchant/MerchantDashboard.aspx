@@ -18,30 +18,31 @@
                     focusSet = true;
                 } else {
                     $('[id$=txtMerchantName]').parent().next(".validation").remove(); // remove it
-                } if ($('[id$=txtTelephone]').val() == "") {
-                    $('[id$=txtTelephone]').css("border", "1px solid #FF0000");
-                    if ($('[id$=txtTelephone]').parent().next(".validation").length == 0) // only add if not added
-                    {
-                        $('[id$=txtTelephone]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please enter mobile no.</div>");
-                    }
-                    $('[id$=txtTelephone]').focus(function () {
-                        $('[id$=txtTelephone]').css("border", "1px solid #000000");
-                    });
-                    e.preventDefault(); // prevent form from POST to server
-                    focusSet = true;
-                } else {
-                    $('[id$=txtTelephone]').parent().next(".validation").remove(); // remove it
-                    $('[id$=txtTelephone]').keydown(function (e) {
-                        if (e.shiftKey || e.ctrlKey || e.altKey) {
-                            e.preventDefault();
-                        } else {
-                            var key = e.keyCode;
-                            if (!((key == 8) || (key == 46) || (key >= 35 && key <= 40) || (key >= 48 && key <= 57) || (key >= 96 && key <= 105))) {
-                                e.preventDefault();
-                            }
-                        }
-                    });
                 }
+                //if ($('[id$=txtTelephone]').val() == "") {
+                //    $('[id$=txtTelephone]').css("border", "1px solid #FF0000");
+                //    if ($('[id$=txtTelephone]').parent().next(".validation").length == 0) // only add if not added
+                //    {
+                //        $('[id$=txtTelephone]').parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please enter mobile no.</div>");
+                //    }
+                //    $('[id$=txtTelephone]').focus(function () {
+                //        $('[id$=txtTelephone]').css("border", "1px solid #000000");
+                //    });
+                //    e.preventDefault(); // prevent form from POST to server
+                //    focusSet = true;
+                //} else {
+                //    $('[id$=txtTelephone]').parent().next(".validation").remove(); // remove it
+                //    $('[id$=txtTelephone]').keydown(function (e) {
+                //        if (e.shiftKey || e.ctrlKey || e.altKey) {
+                //            e.preventDefault();
+                //        } else {
+                //            var key = e.keyCode;
+                //            if (!((key == 8) || (key == 46) || (key >= 35 && key <= 40) || (key >= 48 && key <= 57) || (key >= 96 && key <= 105))) {
+                //                e.preventDefault();
+                //            }
+                //        }
+                //    });
+                //}
                 if ($('[id$=txtEmailId]').val() == "") {
                     $('[id$=txtEmailId]').css("border", "1px solid #FF0000");
                     if ($('[id$=txtEmailId]').parent().next(".validation").length == 0) // only add if not added
@@ -221,7 +222,7 @@
             <div class="form-group row">
                 <label for="inputPassword" class="control-label col-xs-2">Tel:</label>
                 <div class="col-xs-5">
-                    <asp:TextBox ID="txtTelephone" runat="server" CssClass="form-control" MaxLength="10"></asp:TextBox>
+                    <asp:TextBox ID="txtTelephone" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
                 </div>
             </div>
             <div class="form-group row">

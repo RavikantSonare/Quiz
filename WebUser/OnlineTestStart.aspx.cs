@@ -245,14 +245,14 @@ namespace WebUser
                     ListItem item = new ListItem();
                     item.Text = listanswer[i].Answer;
                     item.Value = listanswer[i].AnswerId.ToString();
-                    if (hfTestMode.Value == "SM")
-                    {
-                        //item.Selected = listanswer[i].RightAnswer;
-                    }
-                    else if (hfTestMode.Value == "TM" || hfTestMode.Value == "TO")
-                    {
+                    //if (hfTestMode.Value == "SM")
+                    //{
+                    //    //item.Selected = listanswer[i].RightAnswer;
+                    //}
+                    //else if (hfTestMode.Value == "TM" || hfTestMode.Value == "TO")
+                    //{
                         item.Selected = Convert.ToBoolean(listanswer[i].UserAnswer);
-                    }
+                    //}
                     int qutype = _examqueanslist.QuestionList.Where(q => q.QAId.Equals(QuestionID)).FirstOrDefault().QuestionTypeId;
                     if (qutype == 1 || qutype == 3 || qutype == 6)
                     {

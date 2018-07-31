@@ -409,7 +409,7 @@
                                                     <div class="col-sm-2">
                                                         <asp:DropDownList ID="ddlTopCategory" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlTopCategory_SelectedIndexChanged"></asp:DropDownList>
                                                         <div class="mtop10">
-                                                            <asp:CheckBox ID="chkAll" Text="Select All" runat="server" />
+                                                            <asp:CheckBox ID="chkAll" Text="Select All" runat="server" Visible="false"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-2">
@@ -418,9 +418,13 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="" class="col-sm-3 control-label">Exam:</label>
-                                                    <div class="col-sm-3">
-                                                        <div style="overflow-y: scroll; width: 550px; height: 125px">
-                                                            <asp:CheckBoxList ID="chkExamCodeList" runat="server" RepeatColumns="4" CssClass="chktable">
+                                                    <div class="col-sm-9" style="font-size: 12px;">
+                                                        <div class="col-sm-8" style="overflow-y: scroll; height: 125px">
+                                                            <asp:CheckBoxList ID="chkExamCodeList" runat="server" RepeatColumns="2" CssClass="chktable" AutoPostBack="true" OnSelectedIndexChanged="chkExamCodeList_SelectedIndexChanged">
+                                                            </asp:CheckBoxList>
+                                                        </div>
+                                                        <div class="col-sm-4" style="overflow-y: scroll; height: 125px">
+                                                            <asp:CheckBoxList ID="chkcheckdECL" runat="server" CssClass="chktable">
                                                             </asp:CheckBoxList>
                                                         </div>
                                                     </div>
@@ -473,7 +477,7 @@
                                                 <div class="col-sm-2">
                                                     <asp:DropDownList ID="ddlTopCategoryGruop" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlTopCategoryGruop_SelectedIndexChanged"></asp:DropDownList>
                                                     <div class="mtop10">
-                                                        <asp:CheckBox ID="chkAllGroup" Text="Check All" runat="server" />
+                                                        <asp:CheckBox ID="chkAllGroup" Text="Check All" runat="server" Visible="false"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-2">
@@ -482,11 +486,15 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="" class="col-sm-3 control-label">Exam:</label>
-                                                <div class="col-sm-3">
-                                                    <div style="overflow-y: scroll; width: 550px; height: 125px">
-                                                        <asp:CheckBoxList ID="chkExamCodeListGroup" runat="server" RepeatColumns="4" CssClass="chktable">
+                                                <div class="col-sm-9" style="font-size: 12px;">
+                                                    <div class="col-sm-8" style="overflow-y: scroll; height: 125px">
+                                                        <asp:CheckBoxList ID="chkExamCodeListGroup" runat="server" RepeatColumns="2" CssClass="chktable" AutoPostBack="true" OnSelectedIndexChanged="chkExamCodeListGroup_SelectedIndexChanged">
                                                         </asp:CheckBoxList>
                                                     </div>
+                                                     <div class="col-sm-4" style="overflow-y: scroll; height: 125px">
+                                                            <asp:CheckBoxList ID="chkcheckdECLgrp" runat="server" CssClass="chktable">
+                                                            </asp:CheckBoxList>
+                                                        </div>
                                                 </div>
                                             </div>
 

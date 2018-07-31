@@ -124,7 +124,13 @@ namespace WebMerchant
                     _bomerchant.MerchantName = txtMerchantName.Text;
                     _bomerchant.UserName = txtUserName.Text;
                     _bomerchant.Password = Common.Encryptdata(txtpassword.Text);
-                    _bomerchant.StateId = Convert.ToInt32(drpState.SelectedItem.Value);
+                    if (drpState.SelectedItem != null)
+                    {
+                        _bomerchant.StateId = Convert.ToInt32(drpState.SelectedItem.Value);
+                    }
+                    else
+                    { _bomerchant.StateId = 0; }
+                       
                     _bomerchant.Telephone = txtTelephone.Text;
                     _bomerchant.Brand = txtBrand.Text;
                     _bomerchant.Picture = lblPicture.Text;

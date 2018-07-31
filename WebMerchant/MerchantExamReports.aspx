@@ -82,12 +82,12 @@
                             <asp:TemplateField HeaderText="        Result       ">
                                 <ItemTemplate>
                                     <%# (Boolean.Parse(Eval("Result").ToString())) ? "Pass" : "Fail" %>
-                                    <asp:Button ID="btnReActive" runat="server" Text="Reactive" CssClass="btn btn-default" Visible='<%# (!Boolean.Parse(Eval("Result").ToString()))%>' ToolTip='<%#Eval("UserId") %>' CommandArgument='<%#Eval("ExamId")%>' OnClick="btnReActive_Click" />
+                                    <asp:Button ID="btnReActive" runat="server" Text="Reactive" CssClass="btn btn-default" Enabled='<%# (!Boolean.Parse(Eval("Result").ToString()))%>' ToolTip='<%#Eval("UserId") %>' CommandArgument='<%#Eval("ExamId")%>' OnClick="btnReActive_Click" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Score">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblScore" runat="server" Text=' <%# string.Format("{0:f0}{1}", Eval("Score"),"%")%>'></asp:Label>
+                                    <asp:Label ID="lblScore" runat="server" Text=' <%# string.Format("{0:f0}{1}{2:f0}", Eval("Score"),"/",Eval("OutofScore"))%>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <%-- <asp:TemplateField HeaderText="AllowPrint">
@@ -97,17 +97,17 @@
                             </asp:TemplateField>--%>
                             <asp:TemplateField HeaderText="Digital Certificate">
                                 <ItemTemplate>
-                                    <asp:DropDownList ID="drpTemplate" runat="server" class="form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="drpTemplate" runat="server" class="form-control" Visible='<%# (Boolean.Parse(Eval("Result").ToString()))%>'></asp:DropDownList>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <asp:Button ID="btnGenerate" runat="server" Text="Generate" CssClass="btn btn-default" Enabled='<%# (Boolean.Parse(Eval("Result").ToString()))%>' />
+                                    <asp:Button ID="btnGenerate" runat="server" Text="Generate" CssClass="btn btn-default" Enabled='<%# (Boolean.Parse(Eval("Result").ToString()))%>' Visible='<%# (Boolean.Parse(Eval("Result").ToString()))%>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="No.#">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtNo" runat="server" CssClass="form-control" Enabled='<%# (Boolean.Parse(Eval("Result").ToString()))%>' onkeyup="CheckFirstChar(event.keyCode, this)"></asp:TextBox>
+                                    <asp:TextBox ID="txtNo" runat="server" CssClass="form-control" Enabled='<%# (Boolean.Parse(Eval("Result").ToString()))%>' onkeyup="CheckFirstChar(event.keyCode, this)" Visible='<%# (Boolean.Parse(Eval("Result").ToString()))%>'></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <%-- <asp:TemplateField HeaderText="Option">

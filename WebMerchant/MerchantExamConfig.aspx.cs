@@ -220,6 +220,7 @@ namespace WebMerchant
                 {
                     ViewState["examId"] = table.Rows[0]["ExamCodeId"].ToString();
                     txtExamCode.Text = table.Rows[0]["ExamCode"].ToString();
+                    txtExamCode.Enabled = false;
                     txtExamtitle.Text = table.Rows[0]["ExamTitle"].ToString();
                     drpTopCategory.SelectedValue = table.Rows[0]["TopCategoryId"].ToString();
                     FilldropDownSecondCategory(drpTopCategory.SelectedItem.Value);
@@ -290,8 +291,10 @@ namespace WebMerchant
                     {
                         _boexmmng.ExamCodeId = Convert.ToInt32(ViewState["examId"]);
                         _boexmmng.Event = "Update";
-                        if (_baexmmng.Update(_boexmmng) == 2)
+                        int retval = _baexmmng.Update(_boexmmng);
+                        if (retval == 2)
                         {
+                            txtExamCode.Enabled = true;
                             ShowMessage("Exam updated successfully", MessageType.Success);
                         }
                     }
